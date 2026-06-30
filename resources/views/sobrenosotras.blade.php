@@ -22,10 +22,7 @@
   </div>
 </div>
 
-
 <div class="page-content">
-
-  <!-- por que se llama nebula view -->
   <div class="habitos-intro reveal">
     <div class="habitos-intro-text">
       <div class="section-kicker">Información</div>
@@ -40,11 +37,11 @@
       </div>
     </div>
     <div class="img-placeholder" style="min-height:360px;">
-      <img src="../Multimedia/favicon y logo.png" alt="Nebula View" />
-    </div>
+  <img src="http://127.0.0.1:8000/images/favicon%20y%20logo.png" alt="Nebula View" />
+</div>
   </div>
 
-  <!--sobre nosotras-->
+  <!--Sobre nosotras c:-->
   <section class="team-section">
  
     <div class="section-header">
@@ -58,8 +55,8 @@
         <div class="card-top-bar"></div>
         <div class="card-inner">
           <div class="photo-circle">
-            <img src="../Multimedia/Allison Román" alt="Allison Román">
-            <!-- <img src="foto-valentina.jpg" alt="Valentina Arce"> -->
+            <img src="{{ asset('images/Allison Román.jpeg') }}" alt="Allison Román">
+        
           </div>
           <div class="info-col">
             <p class="name">Allison Román</p>
@@ -76,12 +73,12 @@
         <div class="card-top-bar"></div>
         <div class="card-inner">
           <div class="photo-circle">
-            <img src="../Multimedia/Naomy Segura" alt="Naomy Segura">
-            <!-- <img src="foto-sofia.jpg" alt="Sofía Mendoza"> -->
+            <img src="{{ asset('images/Naomy Segura.jpeg') }}" alt="Naomy Segura">
+   
           </div>
           <div class="info-col">
             <p class="name">Naomy Segura</p>
-            <p class="role">Team/Backend</p>
+            <p class="role">Team</p>
             <div class="tag-row">
               <span class="tag">Backend</span>
               
@@ -94,12 +91,12 @@
         <div class="card-top-bar"></div>
         <div class="card-inner">
           <div class="photo-circle">
-            <img src="../Multimedia/Fatima Torres" alt="Fatima Torres">
-            <!-- <img src="foto-lucia.jpg" alt="Lucía Reyes"> -->
+            <img src="{{ asset('images/Fatima Torres.jpg') }}" alt="Fatima Torres">
+          
           </div>
           <div class="info-col">
             <p class="name">Fatima Torres</p>
-            <p class="role">Team/Frontend</p>
+            <p class="role">Team</p>
             <div class="tag-row">
               <span class="tag">Frontend</span>
               
@@ -112,8 +109,7 @@
         <div class="card-top-bar"></div>
         <div class="card-inner">
           <div class="photo-circle">
-             <img src="../Multimedia/Alessandra Vásquez" alt="Alessandra Vásquez">
-            <!-- <img src="foto-isabella.jpg" alt="Isabella Castro"> -->
+             <img src="{{ asset('images/Alessandra Vásquez.jpeg') }}" alt="Alessandra Vásquez">
           </div>
           <div class="info-col">
             <p class="name">Alessandra Vásquez</p>

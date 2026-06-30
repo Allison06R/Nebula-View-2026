@@ -1,0 +1,45 @@
+<?php
+ 
+namespace App\Http\Controllers;
+ 
+use App\Models\Usuario;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+ 
+class RegistroController extends Controller
+{
+    public function index()
+    {
+        return view('auth.registro');
+    }
+ 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre'                => ['required', 'string', 'max:100'],
+            'apellido'              => ['required', 'string', 'max:100'],
+            'usuario'               => ['required', 'string', 'max:50', Rule::unique('usuario', 'usuario')],
+            'correo'                => ['required', 'email', 'max:150', Rule::unique('usuario', 'correo')],
+            'password'              => ['required', 'string', 'min:6', 'confirmed'],
+            'terms'                 => ['accepted'],
+        ]);
+ 
+        $nuevoUsuario = Usuario::create([
+            'id_admin'   => null,
+            'usuario'    => $request->usuario,
+            'correo'     => $request->correo,
+            'contrasena' => Hash::make($request->password),
+            'nombre'     => $request->nombre,
+            'apellido'   => $request->apellido,
+            'rol'        => 'usuario',
+            'sesion'     => null,
+        ]);
+ 
+        // Inicia sesión automáticamente tras registrarse
+        Auth::login($nuevoUsuario);
+ 
+        return redirect()->route('home')->with('success', '¡Cuenta creada con éxito! Bienvenido a Nebula View.');
+    }
+}

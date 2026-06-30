@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-<!--Empieza la pagina aqui-->
 
 <!-- HERO -->
 <div class="page-hero">
@@ -33,7 +32,7 @@
       <div class="habitos-highlight">
         <span class="habitos-highlight-icon">👁️</span>
         <p><strong>¿Sabías que?</strong><p>Un examen visual completo no solo detecta problemas de la vista, sino que también puede revelar enfermedades 
-            generales como la diabetes o la hipertensión antes de que presenten síntomas visibles.</p>
+            generales como la diabetes antes de que presenten síntomas visibles.</p>
       </div>
     </div>
     <div class="img-placeholder" style="min-height:360px;">
@@ -100,7 +99,7 @@
   
 <div class="ps-wrap">
 
-  <h2 class="ps-title">Profesionales en EL Salvador</h2>
+ <h2 class="ps-title">Profesionales <em>en El Salvador</em></h2>
   <p class="ps-intro">
     En El Salvador contamos con profesionales de la salud visual altamente capacitados, dedicados a brindar atención de calidad en diagnóstico, tratamiento y corrección de problemas oculares. Cada especialista aporta su experiencia para mejorar la calidad de vida de los pacientes a través de un enfoque personalizado y el uso de tecnología moderna.
   </p>
@@ -208,18 +207,86 @@
 
 <!--Recomendaciones para examenes de la vista-->
 <div class="contenedor">
- <h2 class="ps-title">Recomendaciones para examenes visuales</h2>
-  <div class="grid">
-    <div class="tarjeta izquierda">
-      <h3 class="subtitulo">1. Preparación</h3>
-      <p class="texto">Lleve una lista de sus medicamentos actuales, antecedentes familiares de enfermedades oculares y, si usa lentes de contacto, acuda con sus gafas para la evaluación.</p>
-    </div>
-    <div class="tarjeta">
-      <h3 class="subtitulo">2. Antes de la cita</h3>
-      <p class="texto">Suspenda el uso de lentes de contacto (blandos 4 días, rígidos 8 días) antes de la cita para no alterar la forma de la córnea.</p>
-    </div>
+  <h2 class="ps-title">Recomendaciones para exámenes visuales</h2>
+  <p class="ps-intro" style="text-align:center;margin-bottom:32px;">
+    Toca cada paso para conocer cómo prepararte de la mejor manera para tu próxima cita.
+  </p>
+
+  <div class="reco-accordion">
+
+    <details class="reco-item" open>
+      <summary>
+        <span class="reco-num">01</span>
+        <span class="reco-head">
+          <span class="reco-icon">📋</span>
+          Preparación previa
+        </span>
+        <span class="reco-toggle">+</span>
+      </summary>
+      <div class="reco-body">
+        Lleve una lista de sus medicamentos actuales, antecedentes familiares de enfermedades oculares y, si usa lentes de contacto, acuda con sus gafas para la evaluación.
+      </div>
+    </details>
+
+    <details class="reco-item">
+      <summary>
+        <span class="reco-num">02</span>
+        <span class="reco-head">
+          <span class="reco-icon">👁️</span>
+          Antes de la cita
+        </span>
+        <span class="reco-toggle">+</span>
+      </summary>
+      <div class="reco-body">
+        Suspenda el uso de lentes de contacto (blandos 4 días, rígidos 8 días) antes de la cita para no alterar la forma de la córnea.
+      </div>
+    </details>
+
+    <details class="reco-item">
+      <summary>
+        <span class="reco-num">03</span>
+        <span class="reco-head">
+          <span class="reco-icon">☀️</span>
+          Protección ese mismo día
+        </span>
+        <span class="reco-toggle">+</span>
+      </summary>
+      <div class="reco-body">
+        Algunos exámenes dilatan la pupila, lo que aumenta la sensibilidad a la luz. Lleve gafas de sol y, si es posible, evite manejar inmediatamente después de la cita.
+      </div>
+    </details>
+
+    <details class="reco-item">
+      <summary>
+        <span class="reco-num">04</span>
+        <span class="reco-head">
+          <span class="reco-icon">📝</span>
+          Anote sus síntomas
+        </span>
+        <span class="reco-toggle">+</span>
+      </summary>
+      <div class="reco-body">
+        Apunte molestias recientes (visión borrosa, dolor de cabeza, fatiga ocular) y desde cuándo las presenta. Esto ayuda al especialista a enfocar el diagnóstico.
+      </div>
+    </details>
+
+    <details class="reco-item">
+      <summary>
+        <span class="reco-num">05</span>
+        <span class="reco-head">
+          <span class="reco-icon">⏰</span>
+          Frecuencia recomendada
+        </span>
+        <span class="reco-toggle">+</span>
+      </summary>
+      <div class="reco-body">
+        Adultos sin problemas visuales: cada 1-2 años. Niños, adultos mayores o personas con diabetes/hipertensión: al menos una vez al año o según indicación médica.
+      </div>
+    </details>
+
   </div>
 </div>
+
 </div>
 <!-- FOOTER -->
 

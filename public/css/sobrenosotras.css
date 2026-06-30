@@ -85,8 +85,20 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .section-kicker { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--violet); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
 .section-kicker::before { content: ''; width: 28px; height: 2px; background: linear-gradient(90deg, var(--violet), var(--pink)); border-radius: 2px; display: inline-block; }
  
-.img-placeholder { width: 100%; border-radius: 20px; overflow: hidden; }
-.img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; display: block; }
+.img-placeholder {
+  width: 100%;
+  height: 360px;       
+  border-radius: 20px;
+  overflow: hidden;
+}
+ 
+.img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  
+  border-radius: 20px;
+  display: block;
+}
 
 
 /* — NAV BAR — */
@@ -231,8 +243,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 /* ══════════════════════════════
    SOBRE NOSOTRAS 
 ══════════════════════════════ */
-    .team-section { max-width: 860px; width: 100%; }
- 
+.team-section { max-width: 860px; width: 100%; margin: 0 auto; }.team-section { max-width: 860px; width: 100%; margin: 0 auto; } 
     .section-header { text-align: center; margin-bottom: 2.8rem; }
  
     .eyebrow {

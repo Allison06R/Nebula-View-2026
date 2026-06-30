@@ -1,37 +1,42 @@
 <?php
-
+ 
 namespace App\Models;
-
+ 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+ 
+class Usuario extends Authenticatable
 {
     use Notifiable;
-
-    protected $table = 'users';
-
+ 
+    // Nombre real de la tabla
+    protected $table = 'usuario';
+ 
+    // Tu PK es "id_usuario"
+    protected $primaryKey = 'id_usuario';
+ 
+    // Si la tabla no tiene created_at / updated_at, desactiva timestamps
+    public $timestamps = false;
+ 
     protected $fillable = [
+        'id_admin',
+        'usuario',
+        'correo',
+        'contrasena',
         'nombre',
         'apellido',
-        'usuario',
-        'email',
-        'password',
+        'rol',
+        'sesion',
     ];
-
+ 
     protected $hidden = [
-        'password',
-        'remember_token',
+        'contrasena',
     ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password'          => 'hashed',
-    ];
-
-    // Relación: un usuario puede tener un perfil visual
-    public function perfilVisual()
+ 
+    // Laravel busca "password" por defecto para auth; le decimos
+    // que el campo real es "contrasena"
+    public function getAuthPassword()
     {
-        return $this->hasOne(PerfilVisual::class, 'usuario_id');
+        return $this->contrasena;
     }
 }

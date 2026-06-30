@@ -7,29 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class PerfilVisual extends Model
 {
     protected $table = 'perfil_visual';
+    protected $primaryKey = 'id_perfil_visual';
 
     protected $fillable = [
-        'usuario_id',
-        'edad',
-        'sexo',
-        'ocupacion',
-        'cara',
-        'sintomas',
-        'frecuencia',
-        'desde_tiempo',
-        'problema',
-        'lentes',
-        'revision',
-        'pantalla',
-        'dispositivos',
-        'regla',
-        'uv',
-        'sueno',
+        'id_usuario', 'tipo_cara', 'edad', 'sexo',
+        'problema_visual', 'sintomas', 'color', 'estetica'
     ];
 
-    // Relación inversa
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
 }
