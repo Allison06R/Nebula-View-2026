@@ -8,11 +8,7 @@ class PerfilVisual extends Model
 {
     protected $table = 'perfil_visual';
     protected $primaryKey = 'id_perfil_visual';
-
-    protected $fillable = [
-        'id_usuario', 'tipo_cara', 'edad', 'sexo',
-        'problema_visual', 'sintomas', 'color', 'estetica'
-    ];
+    protected $guarded = [];
 
     public function usuario()
     {

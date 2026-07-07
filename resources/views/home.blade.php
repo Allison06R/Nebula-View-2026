@@ -194,6 +194,7 @@
 </section>
 
 <!-- ROSTROS Y LENTES -->
+<!-- ROSTROS Y LENTES -->
 <section id="rostros">
   <p class="section-label">Tipos de Rostro</p>
   <h2 class="section-title">El Lente Perfecto para Cada Rostro</h2>
@@ -214,6 +215,14 @@
     <div class="face-card reveal reveal-d3">
       <svg class="face-svg" viewBox="0 0 80 100"><path d="M40,88 Q12,65 12,35 Q12,14 40,18 Q68,14 68,35 Q68,65 40,88Z" fill="none" stroke="url(#fg1)" stroke-width="2"/><path d="M18,42 Q22,36 32,37 Q38,37 38,42 Q38,47 28,47 Q18,47 18,42Z" fill="none" stroke="#e879f9" stroke-width="1.5"/><path d="M42,42 Q42,37 52,37 Q62,36 62,42 Q62,47 52,47 Q42,47 42,42Z" fill="none" stroke="#e879f9" stroke-width="1.5"/><line x1="38" y1="42" x2="42" y2="42" stroke="#e879f9" stroke-width="1.5"/><path d="M32,66 Q40,71 48,66" stroke="#7b4fcf" stroke-width="1.5" fill="none"/></svg>
       <div class="face-name">Corazón</div><div class="face-lens-rec">Equilibran frente ancha</div><div class="face-lens-name">Cat-eye / Aviador</div>
+    </div>
+    <div class="face-card reveal">
+      <svg class="face-svg" viewBox="0 0 80 100"><polygon points="40,10 68,45 40,90 12,45" fill="none" stroke="url(#fg1)" stroke-width="2"/><ellipse cx="27" cy="43" rx="8" ry="5" fill="none" stroke="#67e8f9" stroke-width="1.5"/><ellipse cx="53" cy="43" rx="8" ry="5" fill="none" stroke="#67e8f9" stroke-width="1.5"/><line x1="35" y1="43" x2="45" y2="43" stroke="#67e8f9" stroke-width="1.5"/><path d="M19,43 Q16,38 12,40" stroke="#67e8f9" stroke-width="1.5" fill="none"/><path d="M61,43 Q64,38 68,40" stroke="#67e8f9" stroke-width="1.5" fill="none"/><path d="M32,65 Q40,70 48,65" stroke="#7b4fcf" stroke-width="1.5" fill="none"/></svg>
+      <div class="face-name">Diamante</div><div class="face-lens-rec">Destacan los ojos</div><div class="face-lens-name">Ovalados / Sin montura</div>
+    </div>
+    <div class="face-card reveal reveal-d1">
+      <svg class="face-svg" viewBox="0 0 80 100"><ellipse cx="40" cy="50" rx="22" ry="40" fill="none" stroke="url(#fg1)" stroke-width="2"/><rect x="17" y="41" width="18" height="12" rx="6" fill="none" stroke="#c084fc" stroke-width="1.5"/><rect x="45" y="41" width="18" height="12" rx="6" fill="none" stroke="#c084fc" stroke-width="1.5"/><line x1="35" y1="47" x2="45" y2="47" stroke="#c084fc" stroke-width="1.5"/><line x1="17" y1="47" x2="12" y2="45" stroke="#c084fc" stroke-width="1.5"/><line x1="63" y1="47" x2="68" y2="45" stroke="#c084fc" stroke-width="1.5"/><path d="M31,70 Q40,75 49,70" stroke="#7b4fcf" stroke-width="1.5" fill="none"/></svg>
+      <div class="face-name">Oblongo</div><div class="face-lens-rec">Dan amplitud visual</div><div class="face-lens-name">Grandes / Decorativos</div>
     </div>
   </div>
 </section>

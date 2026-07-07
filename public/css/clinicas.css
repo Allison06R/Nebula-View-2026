@@ -298,10 +298,10 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 }
 .enfermedad-card:hover::before { left: 150%; }
 .enfermedad-card:hover { transform: translateX(6px); box-shadow: var(--shadow-lifted); }
-.enfermedad-card--terra { background: #c2713a; color: white; }
-.enfermedad-card--navy  { background: var(--dark); color: white; }
-.enfermedad-card--sage  { background: #2d6a5a; color: white; }
-.enfermedad-card--plum  { background: var(--plum); color: white; }
+.enfermedad-card--terra { background: #9a4c9a; color: white; }
+.enfermedad-card--navy  { background: #732f73; color: white;  }
+.enfermedad-card--sage  { background: #4b1b4b; color: white;  }
+.enfermedad-card--plum  { background: #371037; color: white;  }
 .enfermedad-card__tag {
   display: inline-block; font-size: 0.75rem;
   font-style: italic; letter-spacing: 0.05em;

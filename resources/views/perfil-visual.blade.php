@@ -1,195 +1,208 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
-@section('title', 'Perfil Visual — Nebula View')
+@section('title', 'Perfil Visual - Nebula View')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/registroSV.css') }}">
+<link rel="stylesheet" href="{{ asset('css/perfilvisual.css') }}">
 @endsection
 
 @section('content')
+<div class="pv-shell">
 
-<div class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div class="hero-accent-rect"></div>
-  <div class="page-hero-title">
-    <h1>Tu Perfil Visual</h1>
-    <div class="breadcrumb"><a>Completa tu información para una experiencia personalizada</a></div>
+  <div class="pv-progress-wrap">
+    <div class="pv-progress-top">
+      <span class="pv-progress-label" id="stepLabel">Paso 1 de 3</span>
+      <span class="pv-progress-pct" id="stepPct">33%</span>
+    </div>
+    <div class="pv-progress-track">
+      <div class="pv-progress-fill" id="progressFill" style="width:33%"></div>
+    </div>
+  </div>
+
+  <div class="pv-steps" style="margin-bottom:24px;">
+    <div class="pv-step active" id="step-ind-0"></div>
+    <div class="pv-step" id="step-ind-1"></div>
+    <div class="pv-step" id="step-ind-2"></div>
+  </div>
+
+  <div class="pv-card">
+
+    @if(session('success'))
+      <div class="pv-alert pv-alert-success">Perfil guardado correctamente.</div>
+    @endif
+    @if($errors->any())
+      <div class="pv-alert pv-alert-error">
+        <ul>@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
+      </div>
+    @endif
+
+    <form method="POST" action="{{ route('perfil-visual.store') }}" id="pvForm">
+      @csrf
+
+      <div class="pv-step-panel" id="panel-0">
+        <div class="pv-section-badge">
+          <span class="pv-section-dot"></span>
+          Datos personales
+        </div>
+        <h2 class="pv-question">Cuéntanos sobre <em>ti</em></h2>
+        <p class="pv-question-sub">Esta información nos ayuda a personalizar tus recomendaciones de lentes.</p>
+
+        <div class="pv-grid-2">
+          <div class="pv-input-wrap">
+            <label>Edad</label>
+            <input type="number" name="edad" min="1" max="120" placeholder="Ej: 24" value="{{ old('edad', $perfil->edad ?? '') }}" required>
+          </div>
+          <div class="pv-input-wrap">
+            <label>Sexo</label>
+            <select name="sexo" required>
+              <option value="">Selecciona...</option>
+              @foreach(['Masculino','Femenino','Otro'] as $op)
+                <option value="{{ $op }}" {{ old('sexo', $perfil->sexo ?? '') == $op ? 'selected':'' }}>{{ $op }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
+        <div class="pv-input-wrap">
+          <label>Forma de tu rostro</label>
+          <div class="pv-options">
+            @foreach(['Redonda','Ovalada','Cuadrada','Alargada','Corazón','Diamante'] as $op)
+              <div class="pv-option">
+                <input type="radio" name="tipo_cara" id="cara_{{ $loop->index }}" value="{{ $op }}" {{ old('tipo_cara', $perfil->tipo_cara ?? '') == $op ? 'checked':'' }}>
+                <label class="pv-option-label" for="cara_{{ $loop->index }}">
+                  <span class="pv-radio-circle"></span>
+                  {{ $op }}
+                </label>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-step-panel" id="panel-1" style="display:none">
+        <div class="pv-section-badge">
+          <span class="pv-section-dot"></span>
+          Salud Visual
+        </div>
+        <h2 class="pv-question">¿Cómo está tu <em>visión</em>?</h2>
+        <p class="pv-question-sub">Sé honesto, esta información es solo para mejorar tus recomendaciones.</p>
+
+        <div class="pv-input-wrap">
+          <label>Problema visual diagnosticado</label>
+          <div class="pv-options">
+            @foreach(['Miopía','Hipermetropía','Astigmatismo','Presbicia','Ninguno','No lo sé'] as $op)
+              <div class="pv-option">
+                <input type="radio" name="problema_visual" id="pv_{{ $loop->index }}" value="{{ $op }}" {{ old('problema_visual', $perfil->problema_visual ?? '') == $op ? 'checked':'' }}>
+                <label class="pv-option-label" for="pv_{{ $loop->index }}">
+                  <span class="pv-radio-circle"></span>
+                  {{ $op }}
+                </label>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+        <div class="pv-input-wrap" style="margin-top:20px">
+          <label>Sintomas visuales frecuentes</label>
+          <div class="pv-options">
+            @foreach(['Ninguno','Dolor de cabeza','Vista borrosa','Ojos secos','Ardor','Fatiga visual'] as $op)
+              <div class="pv-option">
+                <input type="radio" name="sintomas" id="sint_{{ $loop->index }}" value="{{ $op }}" {{ old('sintomas', $perfil->sintomas ?? '') == $op ? 'checked':'' }}>
+                <label class="pv-option-label" for="sint_{{ $loop->index }}">
+                  <span class="pv-radio-circle"></span>
+                  {{ $op }}
+                </label>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-step-panel" id="panel-2" style="display:none">
+        <div class="pv-section-badge">
+          <span class="pv-section-dot"></span>
+          Tu estilo
+        </div>
+        <h2 class="pv-question">¿Cuál es tu <em>estética</em>?</h2>
+        <p class="pv-question-sub">Estos datos nos ayudan a recomendarte los lentes perfectos para ti.</p>
+
+        <div class="pv-input-wrap">
+          <label>Color de preferencia para tus lentes</label>
+          <div class="pv-options">
+            @foreach(['Negro','Café','Azul','Transparente','Dorado','Plateado'] as $op)
+              <div class="pv-option">
+                <input type="radio" name="color" id="color_{{ $loop->index }}" value="{{ $op }}" {{ old('color', $perfil->color ?? '') == $op ? 'checked':'' }}>
+                <label class="pv-option-label" for="color_{{ $loop->index }}">
+                  <span class="pv-radio-circle"></span>
+                  {{ $op }}
+                </label>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+        <div class="pv-input-wrap" style="margin-top:20px">
+          <label>Estilo estético que prefieres</label>
+          <div class="pv-options">
+            @foreach(['Clásico','Moderno','Deportivo','Elegante','Minimalista'] as $op)
+              <div class="pv-option">
+                <input type="radio" name="estetica" id="est_{{ $loop->index }}" value="{{ $op }}" {{ old('estetica', $perfil->estetica ?? '') == $op ? 'checked':'' }}>
+                <label class="pv-option-label" for="est_{{ $loop->index }}">
+                  <span class="pv-radio-circle"></span>
+                  {{ $op }}
+                </label>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-nav">
+        <button type="button" class="pv-btn-prev" id="btnPrev" style="visibility:hidden" onclick="cambiarPaso(-1)">
+          Anterior
+        </button>
+        <button type="button" class="pv-btn-next" id="btnNext" onclick="cambiarPaso(1)">
+          Siguiente <span class="pv-btn-arrow">-&gt;</span>
+        </button>
+        <button type="submit" class="pv-btn-next" id="btnSubmit" style="display:none">
+          Guardar perfil <span class="pv-btn-arrow">-&gt;</span>
+        </button>
+      </div>
+
+    </form>
   </div>
 </div>
-
-<div class="page-content" style="max-width:720px;margin:0 auto;padding:2rem 1rem 4rem;">
-
-  @if (session('success'))
-    <div style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#34d399;padding:1rem 1.2rem;border-radius:12px;margin-bottom:1.5rem;">
-      {{ session('success') }}
-    </div>
-  @endif
-
-  <form method="POST" action="{{ route('perfil-visual') }}">
-    @csrf
-
-    <div class="sv-section">
-      <h3 class="sv-section-title">Datos personales</h3>
-      <div class="sv-grid">
-        <div class="sv-field">
-          <label>Edad</label>
-          <input type="number" name="edad" value="{{ old('edad') }}" min="1" max="120" required>
-          @error('edad') <span class="sv-error">{{ $message }}</span> @enderror
-        </div>
-        <div class="sv-field">
-          <label>Sexo</label>
-          <select name="sexo">
-            <option value="">Seleccionar...</option>
-            <option value="masculino" {{ old('sexo') == 'masculino' ? 'selected' : '' }}>Masculino</option>
-            <option value="femenino" {{ old('sexo') == 'femenino' ? 'selected' : '' }}>Femenino</option>
-            <option value="otro" {{ old('sexo') == 'otro' ? 'selected' : '' }}>Otro</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>Ocupación</label>
-          <input type="text" name="ocupacion" value="{{ old('ocupacion') }}" placeholder="Ej: Estudiante, Programador...">
-        </div>
-        <div class="sv-field">
-          <label>Forma de cara</label>
-          <select name="cara">
-            <option value="">Seleccionar...</option>
-            <option value="oval">Oval</option>
-            <option value="redondo">Redondo</option>
-            <option value="cuadrado">Cuadrado</option>
-            <option value="corazon">Corazón</option>
-            <option value="diamante">Diamante</option>
-            <option value="oblongo">Oblongo</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="sv-section">
-      <h3 class="sv-section-title">Síntomas visuales</h3>
-      <div class="sv-grid">
-        <div class="sv-field sv-full">
-          <label>¿Tienes algún síntoma visual?</label>
-          <input type="text" name="sintomas" value="{{ old('sintomas') }}" placeholder="Ej: Visión borrosa, dolor de cabeza...">
-        </div>
-        <div class="sv-field">
-          <label>Frecuencia de síntomas</label>
-          <select name="frecuencia">
-            <option value="">Seleccionar...</option>
-            <option value="nunca">Nunca</option>
-            <option value="ocasionalmente">Ocasionalmente</option>
-            <option value="frecuentemente">Frecuentemente</option>
-            <option value="siempre">Siempre</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>¿Desde cuándo?</label>
-          <select name="desde">
-            <option value="">Seleccionar...</option>
-            <option value="menos1">Menos de 1 mes</option>
-            <option value="1a6">1 a 6 meses</option>
-            <option value="6a12">6 a 12 meses</option>
-            <option value="mas1">Más de 1 año</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="sv-section">
-      <h3 class="sv-section-title">Historia visual</h3>
-      <div class="sv-grid">
-        <div class="sv-field sv-full">
-          <label>¿Tienes algún problema visual diagnosticado?</label>
-          <input type="text" name="problema" value="{{ old('problema') }}" placeholder="Ej: Miopía, Astigmatismo...">
-        </div>
-        <div class="sv-field">
-          <label>¿Usas lentes?</label>
-          <select name="lentes">
-            <option value="">Seleccionar...</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>Última revisión visual</label>
-          <select name="revision">
-            <option value="">Seleccionar...</option>
-            <option value="menos6m">Menos de 6 meses</option>
-            <option value="1año">Hace 1 año</option>
-            <option value="mas1">Hace más de 1 año</option>
-            <option value="nunca">Nunca</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="sv-section">
-      <h3 class="sv-section-title">Hábitos digitales</h3>
-      <div class="sv-grid">
-        <div class="sv-field">
-          <label>Horas frente a pantalla al día</label>
-          <select name="pantalla">
-            <option value="">Seleccionar...</option>
-            <option value="menos2">Menos de 2 horas</option>
-            <option value="2a4">2 a 4 horas</option>
-            <option value="4a8">4 a 8 horas</option>
-            <option value="mas8">Más de 8 horas</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>Dispositivos más usados</label>
-          <input type="text" name="dispositivos" value="{{ old('dispositivos') }}" placeholder="Ej: Computadora, celular...">
-        </div>
-        <div class="sv-field">
-          <label>¿Aplicas la regla 20-20-20?</label>
-          <select name="regla">
-            <option value="">Seleccionar...</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="aveces">A veces</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>¿Usas protección UV?</label>
-          <select name="uv">
-            <option value="">Seleccionar...</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="aveces">A veces</option>
-          </select>
-        </div>
-        <div class="sv-field">
-          <label>Horas de sueño por noche</label>
-          <select name="sueno">
-            <option value="">Seleccionar...</option>
-            <option value="menos6">Menos de 6 horas</option>
-            <option value="6a7">6 a 7 horas</option>
-            <option value="7a9">7 a 9 horas</option>
-            <option value="mas9">Más de 9 horas</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <button type="submit" style="width:100%;padding:1rem;background:linear-gradient(135deg,#7b4fcf,#c084fc);border:none;border-radius:14px;color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer;margin-top:1rem;transition:opacity .2s;">
-      Guardar perfil visual
-    </button>
-  </form>
-</div>
-
 @endsection
 
-@section('css')
-@parent
-<style>
-.sv-section { margin-bottom: 2rem; }
-.sv-section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1rem; color: #c084fc; }
-.sv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.sv-full { grid-column: 1 / -1; }
-.sv-field label { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
-.sv-field input, .sv-field select { width: 100%; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #fff; font-size: 0.9rem; outline: none; transition: border .2s; box-sizing: border-box; }
-.sv-field input:focus, .sv-field select:focus { border-color: #7b4fcf; }
-.sv-field select option { background: #1e1b4b; }
-.sv-error { color: #f87171; font-size: 0.8rem; }
-@media(max-width:600px){ .sv-grid { grid-template-columns: 1fr; } }
-</style>
+@section('scripts')
+<script>
+let paso = 0;
+const totalPasos = 3;
+const porcentajes = [33, 66, 100];
+const labels = ['Paso 1 de 3 - Datos personales', 'Paso 2 de 3 - Salud Visual', 'Paso 3 de 3 - Tu estilo'];
+
+function cambiarPaso(dir) {
+  document.getElementById('panel-' + paso).style.display = 'none';
+  document.getElementById('step-ind-' + paso).classList.remove('active');
+  document.getElementById('step-ind-' + paso).classList.add('done');
+
+  paso += dir;
+  if (paso < 0) paso = 0;
+  if (paso >= totalPasos) paso = totalPasos - 1;
+
+  document.getElementById('panel-' + paso).style.display = 'block';
+  document.getElementById('step-ind-' + paso).classList.remove('done');
+  document.getElementById('step-ind-' + paso).classList.add('active');
+
+  document.getElementById('progressFill').style.width = porcentajes[paso] + '%';
+  document.getElementById('stepLabel').textContent = labels[paso];
+  document.getElementById('stepPct').textContent = porcentajes[paso] + '%';
+
+  document.getElementById('btnPrev').style.visibility = paso === 0 ? 'hidden' : 'visible';
+  document.getElementById('btnNext').style.display    = paso === totalPasos - 1 ? 'none' : 'flex';
+  document.getElementById('btnSubmit').style.display  = paso === totalPasos - 1 ? 'flex' : 'none';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 @endsection

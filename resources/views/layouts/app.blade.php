@@ -108,6 +108,16 @@
     </span>
     <span class="d-arr">›</span>
   </a>
+
+  @auth
+   <a href="{{ route('perfil-visual.store') }}" class="{{ request()->routeIs('perfil-visual.store') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/><path d="M9 12l2 2 4-4" stroke-width="1.5"/></svg>
+      Perfil Visual
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+  @endauth
     </nav>
 
   <div class="drawer-divider" style="margin: 8px 16px;"></div>

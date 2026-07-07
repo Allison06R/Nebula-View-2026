@@ -10,51 +10,33 @@ class PerfilVisualController extends Controller
     // ── Mostrar formulario del perfil visual ─────────────────────────────────
     public function show()
     {
-        return view('perfil-visual');
+        // Trae el perfil ya guardado del usuario autenticado (si existe)
+        // para precargar el formulario, igual que hace el panel admin.
+        $perfil = PerfilVisual::where('id_usuario', auth()->id())->first();
+
+        return view('perfil-visual', compact('perfil'));
     }
 
-    // ── Guardar perfil visual del usuario ────────────────────────────────────
+    // ── Guardar / actualizar perfil visual del usuario ───────────────────────
     public function store(Request $request)
     {
-        $request->validate([
-            'edad'        => 'required|integer|min:1|max:120',
-            'sexo'        => 'required|string',
-            'ocupacion'   => 'required|string|max:100',
-            'cara'        => 'required|string',
-            'sintomas'    => 'nullable|string',
-            'frecuencia'  => 'nullable|string',
-            'desde'       => 'nullable|string',
-            'problema'    => 'nullable|string',
-            'lentes'      => 'nullable|string',
-            'revision'    => 'nullable|string',
-            'pantalla'    => 'nullable|string',
-            'dispositivos'=> 'nullable|string',
-            'regla'       => 'nullable|string',
-            'uv'          => 'nullable|string',
-            'sueno'       => 'nullable|string',
+        $datos = $request->validate([
+            'edad'            => 'required|integer|min:1|max:120',
+            'sexo'            => 'required|string|max:20',
+            'tipo_cara'       => 'required|string|max:50',
+            'problema_visual' => 'nullable|string|max:100',
+            'sintomas'        => 'nullable|string|max:255',
+            'color'           => 'nullable|string|max:50',
+            'estetica'        => 'nullable|string|max:100',
         ]);
 
         PerfilVisual::updateOrCreate(
-            ['usuario_id' => auth()->id()],
-            [
-                'edad'         => $request->edad,
-                'sexo'         => $request->sexo,
-                'ocupacion'    => $request->ocupacion,
-                'cara'         => $request->cara,
-                'sintomas'     => $request->sintomas,
-                'frecuencia'   => $request->frecuencia,
-                'desde_tiempo' => $request->desde,
-                'problema'     => $request->problema,
-                'lentes'       => $request->lentes,
-                'revision'     => $request->revision,
-                'pantalla'     => $request->pantalla,
-                'dispositivos' => $request->dispositivos,
-                'regla'        => $request->regla,
-                'uv'           => $request->uv,
-                'sueno'        => $request->sueno,
-            ]
+            ['id_usuario' => auth()->id()],
+            $datos
         );
 
-        return redirect()->back()->with('success', 'Perfil visual guardado correctamente.');
+        return redirect()
+            ->route('perfil-visual')
+            ->with('success', 'Perfil visual guardado correctamente.');
     }
 }
