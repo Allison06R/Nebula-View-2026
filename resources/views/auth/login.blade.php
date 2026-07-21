@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 @section('title', 'Inicio de Sesión — Nebula View')
 
 @section('css')

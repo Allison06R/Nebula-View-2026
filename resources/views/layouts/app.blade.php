@@ -110,13 +110,7 @@
   </a>
 
   @auth
-   <a href="{{ route('perfil-visual.store') }}" class="{{ request()->routeIs('perfil-visual.store') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/><path d="M9 12l2 2 4-4" stroke-width="1.5"/></svg>
-      Perfil Visual
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+
   @endauth
     </nav>
 
@@ -125,6 +119,13 @@
     {{-- Botones de sesión dentro del drawer --}}
     <nav class="drawer-nav" style="padding-top: 0;">
       @auth
+
+      <a href="{{ route('perfil-visual.show') }}" class="{{ request()->routeIs('perfil-visual.show') ? 'active' : '' }}">    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/><path d="M9 12l2 2 4-4" stroke-width="1.5"/></svg>
+      Perfil Visual
+    </span>
+    <span class="d-arr">›</span>
+  </a>
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-drawer-form').submit();">
           <span class="d-link">
@@ -134,7 +135,9 @@
           <span class="d-arr">›</span>
         </a>
         <form id="logout-drawer-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
-      @else
+      
+      
+        @else
         <a href="{{ route('login') }}">
           <span class="d-link">
             <svg class="d-icon" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><line x1="15" y1="12" x2="3" y2="12"/></svg>

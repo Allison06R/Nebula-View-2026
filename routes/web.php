@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\PerfilVisualController;
 use App\Http\Controllers\TestController;
-// use App\Http\Controllers\AdminController; // pendiente hasta crear el controlador
+use App\Http\Controllers\Admin\AdminController;
 
 // ─── Páginas públicas ────────────────────────────────────────────────────────
 Route::get('/',                   fn() => view('home'))->name('home');
@@ -37,28 +37,28 @@ Route::get('/test', [TestController::class, 'index'])->name('test');
 Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
 Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
 // ─── Panel de administración ──────────────────────────────────────────────────
-// Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-//     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
-//
-//     // Usuarios
-//     Route::get('/usuarios',                  [AdminController::class, 'usuariosIndex'])->name('usuarios.index');
-//     Route::get('/usuarios/crear',            [AdminController::class, 'usuariosCreate'])->name('usuarios.create');
-//     Route::post('/usuarios',                 [AdminController::class, 'usuariosStore'])->name('usuarios.store');
-//     Route::get('/usuarios/{usuario}',        [AdminController::class, 'usuariosShow'])->name('usuarios.show');
-//     Route::get('/usuarios/{usuario}/editar', [AdminController::class, 'usuariosEdit'])->name('usuarios.edit');
-//     Route::put('/usuarios/{usuario}',        [AdminController::class, 'usuariosUpdate'])->name('usuarios.update');
-//     Route::delete('/usuarios/{usuario}',     [AdminController::class, 'usuariosDestroy'])->name('usuarios.destroy');
-//
-//     // Perfil visual (admin)
-//     Route::get('/usuarios/{usuario}/perfil',    [AdminController::class, 'perfilEdit'])->name('usuarios.perfil.edit');
-//     Route::put('/usuarios/{usuario}/perfil',    [AdminController::class, 'perfilUpdate'])->name('usuarios.perfil.update');
-//     Route::delete('/usuarios/{usuario}/perfil', [AdminController::class, 'perfilDestroy'])->name('usuarios.perfil.destroy');
-//
-//     // Modelos 3D
-//     Route::get('/modelos',             [AdminController::class, 'modelosIndex'])->name('modelos.index');
-//     Route::delete('/modelos/{modelo}', [AdminController::class, 'modelosDestroy'])->name('modelos.destroy');
-//
-//     // Tests
-//     Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
-//     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
-// });
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    // Usuarios
+    Route::get('/usuarios',                  [AdminController::class, 'usuariosIndex'])->name('usuarios.index');
+    Route::get('/usuarios/crear',            [AdminController::class, 'usuariosCreate'])->name('usuarios.create');
+    Route::post('/usuarios',                 [AdminController::class, 'usuariosStore'])->name('usuarios.store');
+    Route::get('/usuarios/{usuario}',        [AdminController::class, 'usuariosShow'])->name('usuarios.show');
+    Route::get('/usuarios/{usuario}/editar', [AdminController::class, 'usuariosEdit'])->name('usuarios.edit');
+    Route::put('/usuarios/{usuario}',        [AdminController::class, 'usuariosUpdate'])->name('usuarios.update');
+    Route::delete('/usuarios/{usuario}',     [AdminController::class, 'usuariosDestroy'])->name('usuarios.destroy');
+
+    // Perfil visual (admin)
+    Route::get('/usuarios/{usuario}/perfil',    [AdminController::class, 'perfilEdit'])->name('usuarios.perfil.edit');
+    Route::put('/usuarios/{usuario}/perfil',    [AdminController::class, 'perfilUpdate'])->name('usuarios.perfil.update');
+    Route::delete('/usuarios/{usuario}/perfil', [AdminController::class, 'perfilDestroy'])->name('usuarios.perfil.destroy');
+
+    // Modelos 3D
+    Route::get('/modelos',             [AdminController::class, 'modelosIndex'])->name('modelos.index');
+    Route::delete('/modelos/{modelo}', [AdminController::class, 'modelosDestroy'])->name('modelos.destroy');
+
+    // Tests
+    Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
+    Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
+});

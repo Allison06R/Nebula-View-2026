@@ -19,7 +19,7 @@ class RegistroController extends Controller
     {
         $request->validate([
             'nombre'                => ['required', 'string', 'max:100'],
-            'apellido'              => ['required', 'string', 'max:100'],
+           
             'usuario'               => ['required', 'string', 'max:50', Rule::unique('usuario', 'usuario')],
             'correo'                => ['required', 'email', 'max:150', Rule::unique('usuario', 'correo')],
             'password'              => ['required', 'string', 'min:6', 'confirmed'],
@@ -32,7 +32,7 @@ class RegistroController extends Controller
             'correo'     => $request->correo,
             'contrasena' => Hash::make($request->password),
             'nombre'     => $request->nombre,
-            'apellido'   => $request->apellido,
+    
             'rol'        => 'usuario',
             'sesion'     => null,
         ]);

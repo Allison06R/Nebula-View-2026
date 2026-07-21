@@ -10,7 +10,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_usuario');
             $table->string('tipo_cara', 50)->nullable();
             $table->integer('edad')->nullable();
-            $table->char('sexo', 1)->nullable();
+            $table->string('sexo', 20)->nullable();
             $table->string('problema_visual', 100)->nullable();
             $table->text('sintomas')->nullable();
             $table->string('color', 50)->nullable();

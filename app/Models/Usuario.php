@@ -8,15 +8,10 @@ use Illuminate\Notifications\Notifiable;
 class Usuario extends Authenticatable
 {
     use Notifiable;
- 
-    // Nombre real de la tabla
+
     protected $table = 'usuario';
- 
-    // Tu PK es "id_usuario"
     protected $primaryKey = 'id_usuario';
- 
-    // Si la tabla no tiene created_at / updated_at, desactiva timestamps
-    public $timestamps = false;
+     public $timestamps = false;
  
     protected $fillable = [
         'id_admin',
@@ -24,7 +19,7 @@ class Usuario extends Authenticatable
         'correo',
         'contrasena',
         'nombre',
-        'apellido',
+     
         'rol',
         'sesion',
     ];
@@ -33,10 +28,23 @@ class Usuario extends Authenticatable
         'contrasena',
     ];
  
-    // Laravel busca "password" por defecto para auth; le decimos
-    // que el campo real es "contrasena"
     public function getAuthPassword()
     {
         return $this->contrasena;
+    }
+
+    public function perfilVisual()
+    {
+        return $this->hasOne(PerfilVisual::class, 'id_usuario', 'id_usuario');
+    }
+
+    public function modelos3d()
+    {
+        return $this->hasMany(Modelo3d::class, 'id_usuario', 'id_usuario');
+    }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'id_usuario', 'id_usuario');
     }
 }

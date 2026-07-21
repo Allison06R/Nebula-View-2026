@@ -10,8 +10,7 @@ class PerfilVisualController extends Controller
     // ── Mostrar formulario del perfil visual ─────────────────────────────────
     public function show()
     {
-        // Trae el perfil ya guardado del usuario autenticado (si existe)
-        // para precargar el formulario, igual que hace el panel admin.
+      
         $perfil = PerfilVisual::where('id_usuario', auth()->id())->first();
 
         return view('perfil-visual', compact('perfil'));
@@ -36,7 +35,7 @@ class PerfilVisualController extends Controller
         );
 
         return redirect()
-            ->route('perfil-visual')
+            ->route('perfil-visual.show')
             ->with('success', 'Perfil visual guardado correctamente.');
     }
 }

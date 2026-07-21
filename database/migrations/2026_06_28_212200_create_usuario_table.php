@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('correo', 150)->unique();
             $table->string('contrasena', 255);
             $table->string('nombre', 100);
-            $table->string('apellido', 100)->nullable();
+           
             $table->string('rol', 30)->default('usuario');
             $table->boolean('sesion')->default(false);
         });
