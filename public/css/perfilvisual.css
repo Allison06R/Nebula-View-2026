@@ -23,9 +23,10 @@
 }
 body {
   background: var(--pv-bg);
+  font-family: 'DM Sans', sans-serif;
 }
 .pv-shell {
-  margin-top: 
+  margin-top: 1px;
 }
 
 html { scroll-behavior: smooth; }
@@ -481,3 +482,4 @@ html { scroll-behavior: smooth; }
   .pv-grid-2 { grid-template-columns: 1fr; }
   .pv-btn-next { padding: 12px 20px; font-size: 14px; }
 }
+

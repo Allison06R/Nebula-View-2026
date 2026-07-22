@@ -184,3 +184,37 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   transition: background .2s, color .2s;
   white-space: nowrap;
 }
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --plum: #C9A0DC;
+  --lilac: #2A1B3D;
+  --blush: #241530;
+  --text: #EDE6F5;
+  --muted: #A99BC0;
+}
+[data-theme="dark"] body { background: #14091F; color: var(--text); }
+[data-theme="dark"] nav#navbar { background: rgba(20,9,31,0.92); border-bottom-color: rgba(201,160,220,0.12); }
+[data-theme="dark"] .mobile-menu-drawer { background: #1A0E2A; }
+[data-theme="dark"] .drawer-close { background: var(--blush); }
+
+/* Toggle buttons */
+.icon-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 10px;
+  background: transparent; border: none; cursor: pointer;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.icon-toggle-btn:hover { background: rgba(107,47,160,0.08); }
+.icon-toggle-btn svg { width: 19px; height: 19px; stroke: var(--plum); fill: none; stroke-width: 2; stroke-linecap: round; }
+[data-theme="dark"] .icon-toggle-btn:hover { background: rgba(201,160,220,0.12); }
+
+.lang-toggle-btn {
+  font-size: 13px; font-weight: 600; color: var(--plum);
+  background: transparent; border: 1px solid rgba(107,47,160,0.2);
+  border-radius: 10px; padding: 6px 10px; cursor: pointer;
+  transition: background .2s;
+}
+.lang-toggle-btn:hover { background: rgba(107,47,160,0.08); }
+

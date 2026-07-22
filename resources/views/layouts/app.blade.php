@@ -93,6 +93,13 @@
   <span class="d-arr">›</span>
 </a>
 
+<a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Rostros
+        </span>
+        <span class="d-arr">›</span>
+      </a>
       <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
         <span class="d-link">
           <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
@@ -135,8 +142,8 @@
           <span class="d-arr">›</span>
         </a>
         <form id="logout-drawer-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
-      
-      
+
+
         @else
         <a href="{{ route('login') }}">
           <span class="d-link">
@@ -155,7 +162,16 @@
       @endauth
     </nav>
 
-   
+    {{-- Traducción y modo oscuro dentro del drawer --}}
+    <div style="display:flex; gap:10px; justify-content:center; padding:0 28px 16px;">
+      <button class="lang-toggle-btn" id="langToggleMobile" type="button">
+        {{ app()->getLocale() === 'es' ? 'EN' : 'ES' }}
+      </button>
+      <button class="icon-toggle-btn" id="themeToggleMobile" type="button" aria-label="Modo oscuro">
+        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.5A7 7 0 0 1 12 3Z"/></svg>
+      </button>
+    </div>
+
     <div class="drawer-footer">
       <p>¿Necesitas ayuda?<br><strong>Contáctanos en cualquier momento</strong></p>
     </div>
@@ -183,6 +199,18 @@
   </a>
 
   <div class="nav-actions">
+    {{-- Botón de traducción --}}
+    <button class="lang-toggle-btn" id="langToggle" type="button">
+      {{ app()->getLocale() === 'es' ? 'EN' : 'ES' }}
+    </button>
+
+    {{-- Botón de modo oscuro --}}
+    <button class="icon-toggle-btn" id="themeToggle" type="button" aria-label="Modo oscuro">
+      <svg id="themeIcon" viewBox="0 0 24 24">
+        <path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.5A7 7 0 0 1 12 3Z"/>
+      </svg>
+    </button>
+
     @auth
       <a href="{{ route('logout') }}"
          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -274,6 +302,37 @@ if (modalOverlayEl && modalCloseBtn) {
   modalCloseBtn.addEventListener('click', () => { modalOverlayEl.classList.remove('open'); document.body.style.overflow = ''; });
   modalOverlayEl.addEventListener('click', e => { if (e.target === modalOverlayEl) { modalOverlayEl.classList.remove('open'); document.body.style.overflow = ''; } });
 }
+
+/* ══════════════════════════════
+   MODO OSCURO
+══════════════════════════════ */
+const rootEl = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') rootEl.setAttribute('data-theme', 'dark');
+
+function toggleTheme() {
+  const isDark = rootEl.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    rootEl.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    rootEl.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
+
+/* ══════════════════════════════
+   TRADUCCIÓN (ES / EN)
+══════════════════════════════ */
+function switchLang() {
+  const current = "{{ app()->getLocale() }}";
+  const next = current === 'es' ? 'en' : 'es';
+  window.location.href = `{{ url('/lang') }}/${next}`;
+}
+document.getElementById('langToggle')?.addEventListener('click', switchLang);
+document.getElementById('langToggleMobile')?.addEventListener('click', switchLang);
 </script>
 
 @yield('scripts')

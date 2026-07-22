@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\PerfilVisualController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\RostrosController;
 
 // ─── Páginas públicas ────────────────────────────────────────────────────────
 Route::get('/',                   fn() => view('home'))->name('home');
@@ -17,6 +18,8 @@ Route::get('/profesionales',      fn() => view('profesionales'))->name('profesio
 Route::view('/clinicas', 'clinicas')->name('clinicas');
 Route::get('/sobrenosotras',      fn() => view('sobrenosotras'))->name('sobrenosotras');
 Route::view('/lentes', 'lentes')->name('lentes');
+Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
+
 
 // ─── Autenticación ───────────────────────────────────────────────────────────
 Route::get('/login', [AuthController::class, 'index'])->name('login');
