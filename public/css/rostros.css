@@ -1,21 +1,11 @@
-:root {
-    --plum: #6B2FA0;
-    --violet: #9B59B6;
-    --lavender: #C39BD3;
-    --lilac: #EDE7F6;
-    --blush: #F8F0FF;
-    --dark: #1A0A2E;
-    --mid: #3D1A6E;
-    --white: #FFFFFF;
-    --pink: #E91E8C;
-    --text: #2D1B4E;
-    --muted: #7B6F8A;
-  }
-
 body {
-  background: var(--pv-bg);
+  background: var(--white);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
 }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 /* ── HERO ── */
 .hero{
   padding-top:80px;
@@ -322,8 +312,9 @@ body {
 
 /* ── TIPS STRIP ── */
 .tips-strip{
-  margin:0 60px;border-radius:24px;
-  background:var(--dark);
+  margin:0 60px 60px;border-radius:24px;
+  background:#6B2FA0;
+  background:linear-gradient(135deg,var(--plum) 0%,var(--mid) 100%);
   padding:48px 52px;
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:24px;
@@ -351,4 +342,3 @@ body {
   .faces-grid{grid-template-columns:1fr;}
   .tips-strip{grid-template-columns:1fr;}
 }
-
