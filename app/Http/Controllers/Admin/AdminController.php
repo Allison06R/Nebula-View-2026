@@ -19,7 +19,7 @@ class AdminController extends Controller
         $totalPerfiles = PerfilVisual::count();
         $totalModelos  = Modelo3d::count();
         $totalTests    = Test::count();
-        $recientes     = Usuario::latest()->take(5)->get();
+        $recientes     = Usuario::orderByDesc('id_usuario')->take(5)->get();
 
         return view('admin.dashboard', compact(
             'totalUsuarios', 'totalPerfiles', 'totalModelos', 'totalTests', 'recientes'
@@ -44,7 +44,7 @@ class AdminController extends Controller
             $query->where('rol', $request->rol);
         }
 
-        $usuarios = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+        $usuarios = $query->orderByDesc('id_usuario')->paginate(10)->withQueryString();
 
         return view('admin.usuarios.index', compact('usuarios'));
     }

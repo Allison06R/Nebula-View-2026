@@ -28,7 +28,7 @@
       </div>
       <div class="perfil-item">
         <div class="perfil-item-label">Usuario</div>
-        <div class="perfil-item-value">@{{ $usuario->usuario }}</div>
+        <div class="perfil-item-value">{{ '@'.$usuario->usuario }}</div>
       </div>
       <div class="perfil-item">
         <div class="perfil-item-label">Correo</div>
@@ -39,8 +39,8 @@
         <div class="perfil-item-value"><span class="badge badge-{{ $usuario->rol }}">{{ ucfirst($usuario->rol) }}</span></div>
       </div>
       <div class="perfil-item">
-        <div class="perfil-item-label">Registrado</div>
-        <div class="perfil-item-value">{{ $usuario->created_at?->format('d/m/Y') ?? '—' }}</div>
+        <div class="perfil-item-label">ID de cuenta</div>
+        <div class="perfil-item-value">#{{ $usuario->id_usuario }}</div>
       </div>
     </div>
   </div>

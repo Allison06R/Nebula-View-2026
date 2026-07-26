@@ -51,7 +51,7 @@
           <th>Usuario</th>
           <th>Correo</th>
           <th>Rol</th>
-          <th>Registro</th>
+          <th>ID</th>
         </tr>
       </thead>
       <tbody>
@@ -62,13 +62,12 @@
               <div class="admin-user-row-avatar">{{ strtoupper(substr($u->nombre, 0, 1)) }}</div>
               <div>
                 <div class="admin-user-row-name">{{ $u->nombre }}</div>
-                <div class="admin-user-row-sub">@{{ $u->usuario }}</div>
-              </div>
+                <div class="admin-user-row-sub">{{ '@'.$u->usuario }}</div>              </div>
             </div>
           </td>
           <td style="color:var(--a-muted);font-size:12.5px">{{ $u->correo }}</td>
           <td><span class="badge badge-{{ $u->rol }}">{{ ucfirst($u->rol) }}</span></td>
-          <td style="color:var(--a-muted);font-size:12px">{{ $u->created_at->format('d/m/Y') }}</td>
+          <td style="color:var(--a-muted);font-size:12px">#{{ $u->id_usuario }}</td>
         </tr>
         @empty
         <tr><td colspan="4" style="text-align:center;color:var(--a-muted);padding:30px">No hay usuarios aún.</td></tr>

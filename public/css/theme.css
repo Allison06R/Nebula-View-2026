@@ -1,22 +1,10 @@
 /* ══════════════════════════════════════════════════════════════
    NEBULA VIEW — TEMA Y COLORES CENTRALIZADOS
    ------------------------------------------------------------
-   Este archivo es la ÚNICA fuente de verdad para los colores
+   Este archivo es la ÚNICA fuente de  para los colores
    del sitio. Antes cada página (.css) repetía su propio :root
    con los mismos colores, lo que hacía imposible cambiar el
    tema (o crear modo oscuro) sin editar 15 archivos distintos.
-
-   A partir de ahora:
-   - Este archivo se carga PRIMERO en el layout principal
-     (antes que cualquier otro css de página).
-   - Todas las páginas usan estas mismas variables (var(--plum),
-     var(--pink), etc.) en vez de valores fijos.
-   - Para cambiar un color de todo el sitio, se cambia UNA sola
-     vez aquí.
-   - El modo oscuro se activa agregando el atributo
-     data-theme="dark" en <html> (ya lo hace el botón de luna
-     del navbar). Aquí abajo están TODOS los reemplazos que se
-     usan en modo oscuro.
    ══════════════════════════════════════════════════════════════ */
 
 :root {

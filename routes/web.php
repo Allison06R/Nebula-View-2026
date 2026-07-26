@@ -65,3 +65,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
 });
+

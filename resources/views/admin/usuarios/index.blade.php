@@ -41,7 +41,7 @@
         <th>Correo</th>
         <th>Rol</th>
         <th>Perfil visual</th>
-        <th>Registro</th>
+        <th>ID</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -53,7 +53,7 @@
             <div class="admin-user-row-avatar">{{ strtoupper(substr($u->nombre, 0, 1)) }}</div>
             <div>
               <div class="admin-user-row-name">{{ $u->nombre }}</div>
-              <div class="admin-user-row-sub">@{{ $u->usuario }}</div>
+             <div class="admin-user-row-sub">{{ '@'.$u->usuario }}</div>
             </div>
           </div>
         </td>
@@ -66,7 +66,7 @@
             <span style="color:var(--a-muted);font-size:12px">— Sin perfil</span>
           @endif
         </td>
-        <td style="color:var(--a-muted);font-size:12px">{{ $u->created_at->format('d/m/Y') }}</td>
+        <td style="color:var(--a-muted);font-size:12px">#{{ $u->id_usuario }}</td>
         <td>
           <div style="display:flex;gap:6px">
             <a href="{{ route('admin.usuarios.show', $u->id_usuario) }}" class="btn btn-ghost btn-sm" title="Ver">

@@ -7,6 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png">
+<script>
+  (function() {
+    var tema = localStorage.getItem('nebula-admin-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  })();
+</script>
 </head>
 <body>
 
@@ -15,9 +21,7 @@
   <aside class="admin-sidebar">
     <div class="admin-brand">
       <div class="admin-brand-eye">
-        <svg viewBox="0 0 24 24" width="22" height="22" stroke="#C39BD3" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-        </svg>
+        <img src="{{ asset('images/logo.png') }}" alt="Nebula View" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="admin-brand-text">
         <strong>Nebula View</strong>
@@ -52,7 +56,7 @@
         <div class="admin-user-avatar">{{ strtoupper(substr(auth()->user()->nombre, 0, 1)) }}</div>
         <div class="admin-user-info">
           <strong>{{ auth()->user()->nombre }}</strong>
-          <span>@{{ auth()->user()->usuario }}</span>
+          <span>{{ '@'.auth()->user()->usuario }}</span>
         </div>
       </div>
       <form method="POST" action="{{ route('logout') }}">
@@ -71,6 +75,14 @@
         <div class="admin-page-subtitle">@yield('page-subtitle')</div>
       </div>
       <div class="admin-topbar-actions">
+        <a href="{{ route('home') }}" class="btn btn-ghost btn-sm">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Volver al sitio
+        </a>
+        <button type="button" id="themeToggle" class="btn btn-ghost btn-sm" title="Cambiar tema" onclick="toggleTema()">
+          <svg id="themeIconMoon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="themeIconSun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
         @yield('topbar-actions')
       </div>
     </header>
@@ -99,6 +111,21 @@
 </div>
 
 @yield('scripts')
+
+<script>
+  function toggleTema() {
+    var actual = document.documentElement.getAttribute('data-theme') || 'dark';
+    var nuevo = actual === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nuevo);
+    localStorage.setItem('nebula-admin-theme', nuevo);
+    actualizarIconoTema(nuevo);
+  }
+  function actualizarIconoTema(tema) {
+    document.getElementById('themeIconMoon').style.display = tema === 'dark' ? 'block' : 'none';
+    document.getElementById('themeIconSun').style.display  = tema === 'light' ? 'block' : 'none';
+  }
+  actualizarIconoTema(document.documentElement.getAttribute('data-theme') || 'dark');
+</script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@
               <div class="admin-user-row-avatar">{{ strtoupper(substr($t->usuario->nombre, 0, 1)) }}</div>
               <div>
                 <div class="admin-user-row-name">{{ $t->usuario->nombre }}</div>
-                <div class="admin-user-row-sub">@{{ $t->usuario->usuario }}</div>
+                <div class="admin-user-row-sub">{{ '@'.$t->usuario->usuario }}</div>
               </div>
             </div>
           @else

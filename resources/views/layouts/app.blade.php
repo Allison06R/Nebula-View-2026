@@ -6,11 +6,12 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title', 'Nebula View')</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
 @yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
 <body>
+@include('layouts.preloader')
 
 {{-- MOBILE MENU DRAWER --}}
 <div class="mobile-menu" id="mobileMenu">
@@ -55,52 +56,52 @@
         <span class="d-arr">›</span>
       </a>
 
-          <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
-      <span class="d-link">
-        <svg class="d-icon" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3h6"/><path d="M9 11l2 2 4-4"/><path d="M9 16h6"/></svg>
-        Hábitos
-      </span>
-      <span class="d-arr">›</span>
-    </a>
-    <a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }}">
-      <span class="d-link">
-        <svg class="d-icon" viewBox="0 0 24 24">
-          <path d="M9 2h6"/>
-          <path d="M12 2v6"/>
-          <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
-        </svg>
-        Test
-      </span>
-      <span class="d-arr">›</span>
-    </a>
-          <a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }}">
-            <span class="d-link">
-              <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
-              Tienda / Modelos 3D
-            </span>
-            <span class="d-arr">›</span>
-          </a>
-          <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
-      <span class="d-link">
-        <svg class="d-icon" viewBox="0 0 24 24">
-          <circle cx="6" cy="14" r="3.2"/>
-          <circle cx="18" cy="14" r="3.2"/>
-          <path d="M9.2 14h5.6"/>
-          <path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/>
-          <path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/>
-        </svg>
-        Lentes
-      </span>
-      <span class="d-arr">›</span>
-    </a>
+      <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Hábitos
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+<a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }}">
+  <span class="d-link">
+    <svg class="d-icon" viewBox="0 0 24 24">
+      <path d="M9 2h6"/>
+      <path d="M12 2v6"/>
+      <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
+    </svg>
+    Test
+  </span>
+  <span class="d-arr">›</span>
+</a>
+      <a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+          Tienda / Modelos 3D
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
+  <span class="d-link">
+    <svg class="d-icon" viewBox="0 0 24 24">
+      <circle cx="6" cy="14" r="3.2"/>
+      <circle cx="18" cy="14" r="3.2"/>
+      <path d="M9.2 14h5.6"/>
+      <path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/>
+      <path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/>
+    </svg>
+    Lentes
+  </span>
+  <span class="d-arr">›</span>
+</a>
 
-    <a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
-      <span class="d-link">
-        <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="10" x2="9" y2="11"/><line x1="15" y1="10" x2="15" y2="11"/><path d="M8.5 15c1 1 2.2 1.5 3.5 1.5s2.5-.5 3.5-1.5"/></svg>
-        Rostros
-      </span>
-      <span class="d-arr">›</span>
-    </a>
+<a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Rostros
+        </span>
+        <span class="d-arr">›</span>
+      </a>
       <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
         <span class="d-link">
           <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
@@ -127,6 +128,16 @@
     {{-- Botones de sesión dentro del drawer --}}
     <nav class="drawer-nav" style="padding-top: 0;">
       @auth
+
+      @if(auth()->user()->rol === 'admin')
+      <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.*') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Panel Admin
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      @endif
 
       <a href="{{ route('perfil-visual.show') }}" class="{{ request()->routeIs('perfil-visual.show') ? 'active' : '' }}">    <span class="d-link">
       <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/><path d="M9 12l2 2 4-4" stroke-width="1.5"/></svg>
@@ -213,6 +224,9 @@
     </button>
 
     @auth
+      @if(auth()->user()->rol === 'admin')
+        <a href="{{ route('admin.dashboard') }}" class="nav-session-link nav-session-link--btn">Panel Admin</a>
+      @endif
       <a href="{{ route('logout') }}"
          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
          class="nav-session-link">
@@ -237,40 +251,40 @@
 @yield('content')
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="site-footer-grid">
-    <div class="site-footer-brand">
-      <span class="site-footer-logo">Nebula View 👁</span>
-      <p class="site-footer-desc">Tu destino de confianza para lentes de calidad y cuidado visual.</p>
-      <p class="site-footer-mail">info@nebulaview.com</p>
+<footer style="background:#1A0A2E;color:rgba(255,255,255,0.7);padding:50px 60px 28px;font-family:'DM Sans',sans-serif;">
+  <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:30px;">
+    <div>
+      <span style="font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:700;display:block;margin-bottom:14px;">Nebula View 👁</span>
+      <p style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:280px;margin:0 0 14px;">Tu destino de confianza para lentes de calidad y cuidado visual.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);">info@nebulaview.com</p>
     </div>
-    <div class="site-footer-col">
-      <h4>Links</h4>
-      <ul>
-        <li><a href="{{ route('home') }}">Inicio</a></li>
-        <li><a href="{{ route('salud-visual') }}">Salud Visual</a></li>
-        <li><a href="{{ route('modelos3d') }}">Catálogo</a></li>
-        <li><a href="{{ route('profesionales') }}">Profesionales</a></li>
+    <div>
+      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Links</h4>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+        <li><a href="{{ route('home') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Inicio</a></li>
+        <li><a href="{{ route('salud-visual') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Salud Visual</a></li>
+        <li><a href="{{ route('modelos3d') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Catálogo</a></li>
+        <li><a href="{{ route('profesionales') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Profesionales</a></li>
       </ul>
     </div>
-    <div class="site-footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="#">Ayuda en línea</a></li>
-        <li><a href="#">Política de privacidad</a></li>
-        <li><a href="#">Términos</a></li>
+    <div>
+      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Help</h4>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Ayuda en línea</a></li>
+        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Política de privacidad</a></li>
+        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Términos</a></li>
       </ul>
     </div>
-    <div class="site-footer-col site-footer-newsletter">
-      <h4>Newsletter</h4>
-      <p>Recibe lo último sobre cuidado visual y nuevas colecciones.</p>
-      <div class="site-footer-form">
-        <input type="email" placeholder="Tu correo electrónico">
-        <button type="button">Suscribir</button>
+    <div>
+      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Newsletter</h4>
+      <p style="font-size:13px;margin:0 0 10px;color:rgba(255,255,255,0.6);">Recibe lo último sobre cuidado visual y nuevas colecciones.</p>
+      <div style="display:flex;gap:8px;">
+        <input type="email" placeholder="Tu correo electrónico" style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:white;font-size:13px;outline:none;">
+        <button style="padding:10px 18px;border-radius:10px;border:none;background:linear-gradient(135deg,#9B59B6,#6B2FA0);color:white;font-size:13px;font-weight:600;cursor:pointer;">Suscribir</button>
       </div>
     </div>
   </div>
-  <div class="site-footer-bottom">
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.35);border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;margin-top:20px;flex-wrap:wrap;gap:10px;">
     <span>© 2026 Nebula View. Todos los derechos reservados.</span>
     <span>Hecho con 💜 para tu visión</span>
   </div>
@@ -335,7 +349,7 @@ function switchLang() {
 document.getElementById('langToggle')?.addEventListener('click', switchLang);
 document.getElementById('langToggleMobile')?.addEventListener('click', switchLang);
 </script>
-
+ <script src="{{ asset('js/preloader.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
