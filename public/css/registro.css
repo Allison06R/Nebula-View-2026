@@ -1,22 +1,8 @@
-:root {
-  --plum: #6B2FA0;
-  --violet: #9B59B6;
-  --lavender: #C39BD3;
-  --lilac: #EDE7F6;
-  --blush: #F8F0FF;
-  --dark: #1A0A2E;
-  --mid: #3D1A6E;
-  --white: #FFFFFF;
-  --pink: #E91E8C;
-  --text: #2D1B4E;
-  --muted: #7B6F8A;
-}
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
-  background: linear-gradient(160deg, #EDE7F6 0%, #F3EAFF 40%, #EAD9FF 100%);
+  background: linear-gradient(160deg, var(--lilac) 0%, #F3EAFF 40%, #EAD9FF 100%);
   color: var(--text);
   overflow-x: hidden;
   min-height: 100vh;
@@ -61,7 +47,7 @@ main.login-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #fff;
+  background: var(--white);
   position: relative;
   z-index: 2;
 }
@@ -139,7 +125,7 @@ main.login-wrapper {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 20px;
-  color: #fff;
+  color: var(--white);
   margin-bottom: 12px;
   letter-spacing: 1px;
   text-align: center;
@@ -155,7 +141,7 @@ main.login-wrapper {
 
 .nv-dots { display: flex; gap: 8px; margin-top: 28px; }
 .nv-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
-.nv-dot.on { background: #fff; }
+.nv-dot.on { background: var(--white); }
 
 /* ══════════════════════════════
    FORM FIELDS
@@ -187,7 +173,7 @@ main.login-wrapper {
 
 .field-wrap:focus-within {
   border-color: #a855f7;
-  background: #fff;
+  background: var(--white);
   box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
 }
 
@@ -237,7 +223,7 @@ main.login-wrapper {
   border-radius: 14px;
   border: none;
   background: linear-gradient(90deg, #7c3aed, #a855f7);
-  color: #fff;
+  color: var(--white);
   font-family: 'Syne', sans-serif;
   font-size: 15px;
   font-weight: 700;
@@ -432,7 +418,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107, 47, 160, 0.12); }
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #ffffff;
+  background: var(--white);
   border: 1.5px solid rgba(124, 58, 237, 0.25);
   border-radius: 12px;
   padding: 10px 14px;

@@ -67,6 +67,10 @@
   --a-warning:  #F39C12;
   --a-sidebar:  260px;
   --a-topbar:   68px;
+  --a-topbar-bg:  rgba(13,7,24,0.85);
+  --a-surface:    rgba(255,255,255,0.05);
+  --a-nav-active: #E0CCFF;
+  --a-option-bg:  #1A0A2E;
 
   /* ── Footer (compartido en todas las páginas) ── */
   --footer-bg:     #1A0A2E;
@@ -122,4 +126,20 @@
   --a-border: rgba(155,89,182,0.28);
   --a-text:   rgba(255,255,255,0.92);
   --a-muted:  rgba(255,255,255,0.5);
+}
+
+/* El panel de Admin tiene su propio interruptor claro/oscuro
+   (independiente del de las demás páginas), guardado como
+   data-theme="light" en <html> solo dentro de /admin. */
+[data-theme="light"] {
+  --a-dark:    #F6F1FA;
+  --a-panel:   #FFFFFF;
+  --a-card:    #FFFFFF;
+  --a-border:  rgba(107,47,160,0.15);
+  --a-text:    rgba(30,15,46,0.88);
+  --a-muted:   rgba(30,15,46,0.45);
+  --a-topbar-bg: rgba(255,255,255,0.85);
+  --a-surface:   rgba(107,47,160,0.05);
+  --a-nav-active: var(--a-plum);
+  --a-option-bg:  #FFFFFF;
 }

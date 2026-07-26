@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
  
-:root {
-  --plum: #6B2FA0;
-  --violet: #9B59B6;
-  --lavender: #C39BD3;
-  --lilac: #EDE7F6;
-  --blush: #F8F0FF;
-  --dark: #1A0A2E;
-  --white: #FFFFFF;
-  --pink: #E91E8C;
-  --text: #2D1B4E;
-  --muted: #7B6F8A;
-}
- 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
@@ -284,7 +271,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
     }
  
     .card {
-      background: #ffffff;
+      background: var(--white);
       border: 0.5px solid #CECBF6;
       border-radius: 16px;
       overflow: hidden;

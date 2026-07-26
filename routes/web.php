@@ -22,12 +22,19 @@ Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
 
 
 // ─── Autenticación ───────────────────────────────────────────────────────────
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// 'guest' evita que alguien con sesión activa pueda ver login/registro
+// (Laravel lo redirige automáticamente a la ruta 'home').
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
-Route::post('/registro', [RegistroController::class, 'store']);
+    Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
+    Route::post('/registro', [RegistroController::class, 'store']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 // ─── Perfil visual (requiere sesión) ─────────────────────────────────────────
 Route::middleware('auth')->group(function () {
@@ -65,4 +72,3 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
 });
-

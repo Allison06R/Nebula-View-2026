@@ -142,7 +142,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 /* ── FRENTE ── */
 .flip-card-front {
   border: 2px solid #a67cc5;
-  background: #ffffff;
+  background: var(--white);
   display: flex;
   flex-direction: column;
   transition: box-shadow .3s;
@@ -151,8 +151,8 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .flip-card:hover .flip-card-front { box-shadow: 0 4px 16px rgba(123, 79, 166, 0.25); }
 
 .card-top-label {
-  background: linear-gradient(120deg, #7b4fa6, #9B59B6);
-  color: #ffffff;
+  background: linear-gradient(120deg, #7b4fa6, var(--violet));
+  color: var(--white);
   font-family: 'Playfair Display', serif;
   font-size: 16px;
   font-weight: 700;
@@ -202,7 +202,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   font-family: 'Playfair Display', serif;
   font-size: 21px;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .back-title::before {
@@ -233,7 +233,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .ps-wrap {
   font-family: 'Nunito', sans-serif;
   padding: 40px 5%;
-  background: #ffffff;
+  background: var(--white);
 }
 .ps-title {
   text-align: center;
@@ -303,7 +303,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .doc-name {
   font-weight: 800;
   font-size: 0.95rem;
-  color: #fff;
+  color: var(--white);
   margin-bottom: 4px;
 }
 
@@ -316,7 +316,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .btn-contacto {
   position: relative;
   z-index: 2;
-  background: #fff;
+  background: var(--white);
   color: #7b4fa6;
   border: none;
   border-radius: 20px;
@@ -422,7 +422,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 }
 
 .reco-item[open] {
-  border-color: #9B59B6;
+  border-color: var(--violet);
   box-shadow: 0 8px 24px rgba(107, 47, 160, 0.12);
 }
 
@@ -444,7 +444,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   font-family: 'Lora', serif;
   font-weight: 700;
   font-size: 15px;
-  color: #9B59B6;
+  color: var(--violet);
   min-width: 28px;
   flex-shrink: 0;
 }
@@ -479,7 +479,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .reco-item[open] .reco-toggle {
   transform: rotate(45deg);
   background: #7b4fa6;
-  color: #fff;
+  color: var(--white);
 }
 
 .reco-body {

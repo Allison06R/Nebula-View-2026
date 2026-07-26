@@ -1,18 +1,4 @@
-:root {
-    --plum: #6B2FA0;
-    --violet: #9B59B6;
-    --lavender: #C39BD3;
-    --lilac: #EDE7F6;
-    --blush: #F8F0FF;
-    --dark: #1A0A2E;
-    --mid: #3D1A6E;
-    --white: #FFFFFF;
-    --pink: #E91E8C;
-    --text: #2D1B4E;
-    --muted: #7B6F8A;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'DM Sans', sans-serif;
@@ -29,7 +15,7 @@
     min-height: auto;
     padding-top: 10px;
     padding-bottom: 20px;
-    background: linear-gradient(160deg, #EDE7F6 0%, #F3EAFF 40%, #EAD9FF 100%);
+    background: linear-gradient(160deg, var(--lilac) 0%, #F3EAFF 40%, #EAD9FF 100%);
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -347,7 +333,7 @@
   .glasses-big-circle {
     width: 320px; height: 320px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #C39BD3 0%, var(--plum) 100%);
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--plum) 100%);
     display: flex;
     align-items: center;
     justify-content: center;

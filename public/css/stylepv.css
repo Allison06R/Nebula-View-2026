@@ -1,18 +1,4 @@
-:root {
-    --plum: #6B2FA0;
-    --violet: #9B59B6;
-    --lavender: #C39BD3;
-    --lilac: #EDE7F6;
-    --blush: #F8F0FF;
-    --dark: #1A0A2E;
-    --mid: #3D1A6E;
-    --white: #FFFFFF;
-    --pink: #E91E8C;
-    --text: #2D1B4E;
-    --muted: #7B6F8A;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'DM Sans', sans-serif;
@@ -555,7 +541,7 @@
 
   .modal-tip-box {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, #EDE7F6, #F3EAFF);
+    background: linear-gradient(135deg, var(--pv-lilac), #F3EAFF);
     border-radius: 16px; padding: 24px 26px;
     display: flex; gap: 18px; align-items: flex-start;
     border: 1px solid rgba(107,47,160,0.1);

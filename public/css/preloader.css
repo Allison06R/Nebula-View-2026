@@ -103,7 +103,7 @@
 
 .np-iris  { fill: url(#npIrisGrad); }
 .np-pupil { fill: #0D0620; }
-.np-shine { fill: #fff; }
+.np-shine { fill: var(--white); }
 .np-shine-lg { opacity: .95; }
 .np-shine-sm { opacity: .6; }
 .np-iris-group {

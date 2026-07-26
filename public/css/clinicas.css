@@ -1,24 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-:root {
-  --plum:    #6B2FA0;
-  --violet:  #9B59B6;
-  --lavender:#C39BD3;
-  --lilac:   #EDE7F6;
-  --blush:   #F8F0FF;
-  --dark:    #1A0A2E;
-  --white:   #FFFFFF;
-  --pink:    #E91E8C;
-  --text:    #2D1B4E;
-  --muted:   #7B6F8A;
-
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
-  --shadow-card:   0 4px 24px rgba(107,47,160,0.08);
-  --shadow-lifted: 0 12px 40px rgba(107,47,160,0.14);
-}
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
@@ -60,7 +41,7 @@ img { max-width: 100%; display: block; }
   cursor: pointer; transition: all 0.25s ease;
   border: 2px solid transparent;
 }
-.btn--primary { background: var(--plum); color: #fff; }
+.btn--primary { background: var(--plum); color: var(--white); }
 .btn--primary:hover {
   background: var(--violet);
   transform: translateY(-2px);
@@ -316,10 +297,10 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .enfermedad-card__link { font-size: 0.85rem; font-weight: 600; opacity: 0.9; transition: opacity 0.2s; }
 .enfermedad-card__link:hover { opacity: 1; text-decoration: underline; }
 .enfermedad-card__eye { width: 100px; height: 100px; border-radius: 50%; opacity: 0.25; flex-shrink: 0; }
-.enfermedad-card__eye--far  { background: radial-gradient(circle, #fff 30%, transparent 70%); border: 3px solid rgba(255,255,255,0.5); }
-.enfermedad-card__eye--near { background: radial-gradient(circle at 30% 40%, #fff 20%, transparent 60%); border: 3px solid rgba(255,255,255,0.5); }
-.enfermedad-card__eye--hyper { background: radial-gradient(ellipse 60% 80%, #fff 25%, transparent 65%); border: 3px solid rgba(255,255,255,0.5); }
-.enfermedad-card__eye--astig { background: radial-gradient(ellipse 80% 40%, #fff 20%, transparent 60%); border: 3px solid rgba(255,255,255,0.5); }
+.enfermedad-card__eye--far  { background: radial-gradient(circle, var(--white) 30%, transparent 70%); border: 3px solid rgba(255,255,255,0.5); }
+.enfermedad-card__eye--near { background: radial-gradient(circle at 30% 40%, var(--white) 20%, transparent 60%); border: 3px solid rgba(255,255,255,0.5); }
+.enfermedad-card__eye--hyper { background: radial-gradient(ellipse 60% 80%, var(--white) 25%, transparent 65%); border: 3px solid rgba(255,255,255,0.5); }
+.enfermedad-card__eye--astig { background: radial-gradient(ellipse 80% 40%, var(--white) 20%, transparent 60%); border: 3px solid rgba(255,255,255,0.5); }
 
 /* ===== INFO CARDS ===== */
 .info-cards {
@@ -459,7 +440,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   width: 88px; height: 88px;
   border-radius: 50%;
   background: radial-gradient(circle at 38% 35%,
-    #9B59B6 0%, #6B2FA0 35%, #3a0f6e 65%, #1A0A2E 100%);
+    var(--violet) 0%, var(--plum) 35%, #3a0f6e 65%, #1A0A2E 100%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 18px rgba(107,47,160,0.6);

@@ -37,7 +37,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 
 .nav-session-link--btn {
   background: var(--plum);
-  color: #fff !important;
+  color: var(--white) !important;
 }
 .nav-session-link--btn:hover { background: var(--plum); opacity: 0.9; }
 
@@ -262,7 +262,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .site-footer-form button {
   padding: 10px 18px; border-radius: 10px; border: none;
   background: linear-gradient(135deg, var(--violet), var(--plum));
-  color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+  color: var(--white); font-size: 13px; font-weight: 600; cursor: pointer;
   white-space: nowrap; flex-shrink: 0;
 }
 
