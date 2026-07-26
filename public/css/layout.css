@@ -184,18 +184,15 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   white-space: nowrap;
 }
 
-/* Dark mode overrides */
-[data-theme="dark"] {
-  --plum: #C9A0DC;
-  --lilac: #2A1B3D;
-  --blush: #241530;
-  --text: #EDE6F5;
-  --muted: #A99BC0;
-}
+/* Dark mode overrides — las variables de color (--plum, --lilac, --text, etc.)
+   ya se redefinen una sola vez en theme.css; aquí solo van los ajustes
+   específicos de este layout que no son variables. */
 [data-theme="dark"] body { background: #14091F; color: var(--text); }
 [data-theme="dark"] nav#navbar { background: rgba(20,9,31,0.92); border-bottom-color: rgba(201,160,220,0.12); }
 [data-theme="dark"] .mobile-menu-drawer { background: #1A0E2A; }
 [data-theme="dark"] .drawer-close { background: var(--blush); }
+[data-theme="dark"] .drawer-nav a.active { background: rgba(155,89,182,0.22); color: var(--plum); }
+[data-theme="dark"] .drawer-nav a:hover  { background: rgba(155,89,182,0.14); color: var(--plum); }
 
 /* Toggle buttons */
 .icon-toggle-btn {

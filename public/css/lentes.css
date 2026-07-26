@@ -1,4 +1,3 @@
-
 :root {
   --plum:    #6B2FA0;
   --violet:  #9B59B6;
@@ -23,7 +22,7 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
-  color: var(--dark);
+  color: var(--heading);
   text-align: center;
   margin-bottom: 0.5rem;
 }
@@ -44,6 +43,9 @@
 .page-banner__bg {
   position: absolute; inset: 0;
   background: linear-gradient(135deg, #e8d5f5 0%, #c8b4e8 30%, #a8c4e8 70%, #b8d4f0 100%);
+}
+[data-theme="dark"] .page-banner__bg {
+  background: linear-gradient(135deg, #2A1B3D 0%, #3D1A6E 30%, #241442 70%, #1B0E33 100%);
 }
 .page-banner__orb { position: absolute; border-radius: 50%; pointer-events: none; }
 .page-banner__orb--1 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(107,47,160,0.18) 0%, transparent 70%); top: -60px; right: 10%; animation: floatOrb 6s ease-in-out infinite; }
@@ -78,7 +80,7 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3.8vw, 46px);
   font-weight: 900; line-height: 1.1;
-  color: var(--dark); margin-bottom: 1.5rem;
+  color: var(--heading); margin-bottom: 1.5rem;
 }
 .intro__title em { font-style: italic; color: var(--plum); }
 .intro__body { font-size: 15px; color: var(--muted); line-height: 1.9; }
@@ -124,7 +126,7 @@
   top: -200px; right: -100px; pointer-events: none;
 }
 .pilares__head { text-align: center; margin-bottom: 3rem; }
-.pilares__head .section-title { color: var(--dark); }
+.pilares__head .section-title { color: var(--heading); }
 .pilares__row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -162,7 +164,7 @@
   border-color: var(--plum);
   box-shadow: 0 6px 20px rgba(107,47,160,0.2);
 }
-.pilar h3 { font-weight: 700; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.4rem; }
+.pilar h3 { font-weight: 700; font-size: 0.95rem; color: var(--heading); margin-bottom: 0.4rem; }
 .pilar p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
 /* ===== TIPOS ===== */
@@ -188,9 +190,9 @@
 }
 .tipo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lifted); }
 .tipo-card--a { background: var(--dark); color: white; }
-.tipo-card--b { background: var(--lilac); color: var(--dark); }
+.tipo-card--b { background: var(--lilac); color: var(--heading); }
 .tipo-card--c { background: var(--plum); color: white; }
-.tipo-card--d { background: var(--blush); color: var(--dark); border: 1.5px solid var(--lavender); }
+.tipo-card--d { background: var(--blush); color: var(--heading); border: 1.5px solid var(--lavender); }
 .tipo-card__accent {
   position: absolute;
   top: 0; right: 0;
@@ -286,7 +288,7 @@
 .faq__sidebar-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  font-weight: 900; color: var(--dark); line-height: 1.2;
+  font-weight: 900; color: var(--heading); line-height: 1.2;
   margin-bottom: 1.25rem;
 }
 .faq__sidebar-title em { color: var(--plum); font-style: italic; }
@@ -302,7 +304,7 @@
 .faq-question {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.25rem 0; cursor: pointer;
-  font-weight: 600; font-size: 0.95rem; color: var(--dark);
+  font-weight: 600; font-size: 0.95rem; color: var(--heading);
   transition: color .2s; background: none; border: none;
   width: 100%; text-align: left; font-family: 'DM Sans', sans-serif;
 }
@@ -561,7 +563,7 @@
 .proceso__card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.15rem; font-weight: 700;
-  color: var(--dark); margin-bottom: 0.5rem;
+  color: var(--heading); margin-bottom: 0.5rem;
 }
 .proceso__card p {
   font-size: 0.875rem; color: var(--muted); line-height: 1.8;

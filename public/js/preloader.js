@@ -13,7 +13,7 @@
     });
 
     window.addEventListener('load', () => {
-        setTimeout(closeAndReveal, 500);
+        setTimeout(closeAndReveal, 1400);
     });
 
     function closeAndReveal() {

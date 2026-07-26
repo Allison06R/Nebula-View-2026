@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Nunito:wght@400;600;700;800&family=Lora:wght@400;600;700&display=swap');
- 
-:root {
-  --plum: #6B2FA0;
-  --violet: #9B59B6;
-  --lavender: #C39BD3;
-  --lilac: #EDE7F6;
-  --blush: #F8F0FF;
-  --dark: #1A0A2E;
-  --white: #FFFFFF;
-  --pink: #E91E8C;
-  --text: #2D1B4E;
-  --muted: #7B6F8A;
-}
- 
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
@@ -103,7 +90,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
    Profesionales intro
 ══════════════════════════════ */
 .habitos-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
-.habitos-intro-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; color: var(--dark); line-height: 1.15; margin-bottom: 20px; }
+.habitos-intro-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; color: var(--heading); line-height: 1.15; margin-bottom: 20px; }
 .habitos-intro-text h2 em { color: var(--plum); font-style: italic; }
 .habitos-intro-text p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 14px; }
 .habitos-highlight { display: flex; align-items: flex-start; gap: 14px; background: var(--blush); border-left: 3px solid var(--violet); border-radius: 0 12px 12px 0; padding: 16px 20px; margin-top: 24px; }
@@ -253,7 +240,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   font-family: 'Playfair Display', serif;
   font-weight: 900;
   font-size: clamp(28px, 3.5vw, 38px);
-  color: var(--dark);
+  color: var(--heading);
   margin-bottom: 16px;
   letter-spacing: -0.3px;
 }
@@ -357,7 +344,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .doc-right h3 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(20px, 2.2vw, 26px);
-  color: var(--dark);
+  color: var(--heading);
   font-weight: 900;
   letter-spacing: -0.2px;
   margin-bottom: 4px;

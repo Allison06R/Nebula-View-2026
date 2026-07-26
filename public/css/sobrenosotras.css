@@ -231,7 +231,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
    Por que se llama nebula view 
 ══════════════════════════════ */
 .habitos-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
-.habitos-intro-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; color: var(--dark); line-height: 1.15; margin-bottom: 20px; }
+.habitos-intro-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; color: var(--heading); line-height: 1.15; margin-bottom: 20px; }
 .habitos-intro-text h2 em { color: var(--plum); font-style: italic; }
 .habitos-intro-text p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 14px; }
 .habitos-highlight { display: flex; align-items: flex-start; gap: 14px; background: var(--blush); border-left: 3px solid var(--violet); border-radius: 0 12px 12px 0; padding: 16px 20px; margin-top: 24px; }

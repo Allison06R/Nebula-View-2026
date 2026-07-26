@@ -9,6 +9,7 @@
 
 :root {
   /* ── Paleta principal (marca) ── */
+  --heading: #1A0A2E;    /* texto de títulos, distinta de --dark que es solo para fondos */
   --plum:     #6B2FA0;   /* morado principal — botones, títulos destacados */
   --mid:      #3D1A6E;   /* morado oscuro — degradados */
   --violet:   #9B59B6;   /* violeta — acentos, hovers */
@@ -20,8 +21,11 @@
   --white:    #FFFFFF;
 
   /* ── Texto ── */
-  --text:  #2D1B4E;      /* texto principal */
+--text:  #2D1B4E;      /* texto principal */
   --muted: #7B6F8A;      /* texto secundario / descripciones */
+  --heading: #1A0A2E;    /* texto de títulos — SIEMPRE usar esta en vez de --dark para color de texto.
+                             --dark es solo para FONDOS (footer, tarjetas oscuras); en modo oscuro se
+                             vuelve más negro, así que usarla como color de texto lo hace invisible. */
 
   /* ── Estados ── */
   --success: #2ECC71;
@@ -73,10 +77,9 @@
 
 /* ══════════════════════════════════════════════════════════════
    MODO OSCURO
-   Se activa así: document.documentElement.setAttribute('data-theme','dark')
-   (ya implementado en resources/views/layouts/app.blade.php)
    ══════════════════════════════════════════════════════════════ */
 [data-theme="dark"] {
+  --heading: #F3ECFB;    /* títulos claros en modo oscuro */
   --plum:     #C9A0DC;
   --mid:      #8B5FC7;
   --violet:   #B47FD1;
@@ -87,8 +90,9 @@
   --dark:     #0B0414;
   --white:    #1A0E2A;   /* "blanco" de tarjetas/fondos en modo oscuro */
 
-  --text:  #EDE6F5;
+--text:  #EDE6F5;
   --muted: #A99BC0;
+  --heading: #F3ECFB;    /* en modo oscuro los títulos deben ser claros, no negros */
 
   --success: #3FE087;
   --danger:  #FF6B5B;
