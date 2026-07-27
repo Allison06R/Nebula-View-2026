@@ -110,7 +110,17 @@
         </span>
         <span class="d-arr">›</span>
       </a>
-
+<a href="{{ route('clinicas') }}" class="{{ request()->routeIs('clinicas') ? 'active' : '' }}">
+  <span class="d-link">
+    <svg class="d-icon" viewBox="0 0 24 24">
+      <path d="M9 2h6"/>
+      <path d="M12 2v6"/>
+      <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
+    </svg>
+    Clínicas
+  </span>
+  <span class="d-arr">›</span>
+</a>
    <a href="{{ route('sobrenosotras') }}" class="{{ request()->routeIs('sobrenosotras') ? 'active' : '' }}">
     <span class="d-link">
       <svg class="d-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 21v-1a5 5 0 0 1 6-4.9"/></svg>

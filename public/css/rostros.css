@@ -342,3 +342,9 @@ html { scroll-behavior: smooth; }
   .faces-grid{grid-template-columns:1fr;}
   .tips-strip{grid-template-columns:1fr;}
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — rostros.css
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .hero { background: linear-gradient(160deg, var(--lilac) 0%, #201333 45%, #150C24 100%); }
+[data-theme="dark"] .btn-quiz { background: var(--mid); }

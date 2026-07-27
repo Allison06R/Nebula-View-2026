@@ -63,19 +63,7 @@
             @error('nombre') <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $message }}</div> @enderror
           </div>
 
-          <div class="field half">
-            <label>Apellido</label>
-            <div class="field-wrap">
-              <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-              <input type="text" name="apellido" placeholder="Tu apellido" required value="{{ old('apellido') }}"/>
-            </div>
-            @error('apellido') <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $message }}</div> @enderror
-          </div>
+          
         </div>
 
         <div class="field">

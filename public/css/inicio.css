@@ -339,3 +339,21 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
   border-radius: 50%;
   box-shadow: 0 0 8px var(--pink);
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — inicio.css (login)
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .nv-wrap { background: #1B1030; border-color: rgba(155,89,182,0.25); }
+[data-theme="dark"] .nv-title { color: #E9DBFF; }
+[data-theme="dark"] .nv-sub { color: #B9A6D9; }
+[data-theme="dark"] .field label { color: #C9A0DC; }
+[data-theme="dark"] .field-wrap { background: #241A3D; border-color: rgba(155,89,182,0.3); }
+[data-theme="dark"] .field-wrap input { color: #EDE6F5; }
+[data-theme="dark"] .field-wrap input::placeholder { color: #7A6B94; }
+[data-theme="dark"] .remember { color: #B9A6D9; }
+[data-theme="dark"] .forgot { color: #C9A0DC; }
+[data-theme="dark"] .signup-row { color: #B9A6D9; }
+[data-theme="dark"] .signup-row a { color: #C9A0DC; }
+[data-theme="dark"] .trust-bar { background: #4C2178; }
+[data-theme="dark"] nav#navbar { background: rgba(20,9,31,0.92); border-bottom-color: rgba(201,160,220,0.12); }
+[data-theme="dark"] body { background: linear-gradient(160deg, var(--lilac) 0%, #5826a3 40%, #2f0535 100%); }

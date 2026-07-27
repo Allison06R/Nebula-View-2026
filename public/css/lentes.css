@@ -613,3 +613,13 @@ body {
 body {
   font-family: 'DM Sans', sans-serif;
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — lentes.css (overrides adicionales)
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+   [data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
+
+[data-theme="dark"] .pilar__num { background: var(--white); }
+[data-theme="dark"] .proceso__card { background: var(--white); border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .tipo-card--c { background: var(--mid); }
+[data-theme="dark"] .tipo-card--c .tipo-card__accent { background: white; }

@@ -14,7 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
    ->withMiddleware(function (Middleware $middleware) {
     $middleware->alias([
         'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
+        'noauth' => \App\Http\Middleware\BlockGuest::class,
     ]);
+
+    // Evita que el navegador guarde en caché las páginas (login, perfil-visual, etc.)
+    // para que el botón "atrás" no muestre contenido obsoleto tras iniciar/cerrar sesión.
+    $middleware->appendToGroup('web', \App\Http\Middleware\PreventBackHistory::class);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

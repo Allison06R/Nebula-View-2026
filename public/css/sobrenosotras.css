@@ -574,3 +574,19 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
     filter: drop-shadow(0px 20px 40px rgba(112, 45, 170, 0.5));
 
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — sobrenosotras.css
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
+[data-theme="dark"] .eyebrow { color: #A9A3F0; }
+[data-theme="dark"] .section-title { color: #E6E4FB; }
+[data-theme="dark"] .section-title em { color: #A9A3F0; }
+[data-theme="dark"] .divider { background: #A9A3F0; }
+[data-theme="dark"] .card { border-color: rgba(155,89,182,0.25); }
+[data-theme="dark"] .card:hover { border-color: #A9A3F0; }
+[data-theme="dark"] .photo-circle { background: #2A2650; border-color: #534AB7; }
+[data-theme="dark"] .initials { color: #A9A3F0; }
+[data-theme="dark"] .name { color: #E6E4FB; }
+[data-theme="dark"] .role { color: #A9A3F0; }
+[data-theme="dark"] .tag { background: #2A2650; color: #B9B3F5; }

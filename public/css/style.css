@@ -786,3 +786,20 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
     filter: drop-shadow(0px 20px 40px rgba(112, 45, 170, 0.5));
 
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — style.css (home)
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .hero { background: linear-gradient(160deg, var(--lilac) 0%, #201333 40%, #150C24 100%); }
+[data-theme="dark"] .hero-card {
+  background: rgba(26,14,42,0.72);
+  border-color: rgba(155,89,182,0.25);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+[data-theme="dark"] .hero-badge { background: rgba(155,89,182,0.18); border-color: rgba(155,89,182,0.3); }
+[data-theme="dark"] .condition-item { background: var(--white); }
+[data-theme="dark"] .condition-item.active { background: var(--mid); color: white; border-color: var(--mid); }
+[data-theme="dark"] .condition-item.active .condition-dot { background: white; }
+[data-theme="dark"] .products { background: var(--white); }
+[data-theme="dark"] .trust-bar { background: #4C2178; }
+[data-theme="dark"] .glasses-big-circle { background: linear-gradient(135deg, var(--lavender) 0%, var(--mid) 100%); }

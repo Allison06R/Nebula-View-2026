@@ -855,3 +855,21 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .drawer-footer { margin-top: auto; padding: 20px 28px 32px; border-top: 1px solid var(--lilac); text-align: center; }
 .drawer-footer p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 .drawer-footer strong { color: var(--plum); }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — stylepv.css (problemas visuales)
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
+[data-theme="dark"] .eye-chart { background: var(--white); }
+[data-theme="dark"] .eye-chart-row { color: var(--heading); }
+[data-theme="dark"] .info-card { border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .modal-box { background: var(--white); }
+[data-theme="dark"] .modal-stat { border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .anatomy-circle { background: linear-gradient(135deg, var(--lilac) 0%, #2A1B3D 100%); }
+[data-theme="dark"] .stat-chip { background: var(--white); border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .type-card.refractivo { background: linear-gradient(135deg, #241A3D, #2A1B3D); border-color: rgba(155,89,182,0.2); }
+[data-theme="dark"] .type-card.degenerativo { background: linear-gradient(135deg, #16202E, #1A2735); border-color: rgba(91,163,201,0.2); }
+[data-theme="dark"] .type-card.infeccioso { background: linear-gradient(135deg, #142A20, #17301F); border-color: rgba(45,170,120,0.2); }
+[data-theme="dark"] .type-card.neurologico { background: linear-gradient(135deg, #2A2015, #301F17); border-color: rgba(200,100,50,0.2); }
+[data-theme="dark"] .type-tag { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .modal-tip-box { background: linear-gradient(135deg, var(--pv-lilac), #201333); }

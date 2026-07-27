@@ -6,15 +6,11 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureUserIsAdmin
+class BlockGuest
 {
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()->check()) {
-            return redirect()->route('login');
-        }
-
-        if (auth()->user()->rol !== 'admin') {
             return response()->view('errors.denegado', [], 403);
         }
 

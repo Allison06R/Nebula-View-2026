@@ -315,3 +315,17 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
 @media (max-width: 600px) {
   .page-content { padding: 36px 16px 60px; }
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — habitos.css
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+    [data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
+[data-theme="dark"] .habits-col.good { background: #12271C; border-color: rgba(63,224,135,0.25); }
+[data-theme="dark"] .habits-col.bad  { background: #2B1616; border-color: rgba(255,107,91,0.25); }
+[data-theme="dark"] .habits-col.good .habits-col-header h3 { color: #3FE087; }
+[data-theme="dark"] .habits-col.bad  .habits-col-header h3 { color: #FF6B5B; }
+[data-theme="dark"] .habits-col.good .habits-col-badge { background: rgba(63,224,135,0.18); }
+[data-theme="dark"] .habits-col.bad  .habits-col-badge { background: rgba(255,107,91,0.18); }
+[data-theme="dark"] .habits-col.good .habit-bullet { background: #3FE087; }
+[data-theme="dark"] .habits-col.bad  .habit-bullet { background: #FF6B5B; }
+[data-theme="dark"] .carousel-card .front-img-placeholder .ph-label { color: #C39BD3; }

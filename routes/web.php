@@ -13,7 +13,7 @@ Route::get('/',                   fn() => view('home'))->name('home');
 Route::get('/problemas-visuales', fn() => view('problemas-visuales'))->name('problemas-visuales');
 Route::get('/salud-visual',       fn() => view('salud-visual'))->name('salud-visual');
 Route::get('/habitos',            fn() => view('habitos'))->name('habitos');
-Route::get('/modelos3d',          fn() => view('modelos3d'))->name('modelos3d');
+Route::get('/modelos3d',          fn() => view('modelos3d'))->name('modelos3d')->middleware('noauth');
 Route::get('/profesionales',      fn() => view('profesionales'))->name('profesionales');
 Route::view('/clinicas', 'clinicas')->name('clinicas');
 Route::get('/sobrenosotras',      fn() => view('sobrenosotras'))->name('sobrenosotras');
@@ -22,8 +22,6 @@ Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
 
 
 // ─── Autenticación ───────────────────────────────────────────────────────────
-// 'guest' evita que alguien con sesión activa pueda ver login/registro
-// (Laravel lo redirige automáticamente a la ruta 'home').
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -42,10 +40,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/perfil-visual', [PerfilVisualController::class, 'store'])->name('perfil-visual.store');
 });
 
-// ─── Test / diagnóstico IA ────────────────────────────────────────────────────
-Route::get('/test', [TestController::class, 'index'])->name('test');
-Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
-Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
+// ─── Test / diagnóstico IA (requiere sesión) ──────────────────────────────────
+Route::middleware('noauth')->group(function () {
+    Route::get('/test', [TestController::class, 'index'])->name('test');
+    Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
+    Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
+});
 // ─── Panel de administración ──────────────────────────────────────────────────
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');

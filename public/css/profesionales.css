@@ -614,3 +614,20 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 60px 60
 @media (max-width: 600px) {
   .page-content { padding: 36px 16px 60px; }
 }
+/* ══════════════════════════════════════════════════════════════
+   MODO OSCURO — profesionales.css
+   Solo overrides de color, la estructura/posición no cambia.
+   ══════════════════════════════════════════════════════════════ */
+   [data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
+[data-theme="dark"] .ps-intro { color: var(--muted); }
+[data-theme="dark"] .carousel-card { background: #3B2A57; }
+[data-theme="dark"] .doc-info-box { background: rgba(20, 10, 35, 0.82); }
+[data-theme="dark"] .btn-contacto { color: #C9A0DC; }
+[data-theme="dark"] .btn-contacto:hover { background: #2A1B3D; }
+[data-theme="dark"] .dot { background: #5C3F80; }
+[data-theme="dark"] .dot.active { background: #C9A0DC; }
+[data-theme="dark"] .reco-item { background: #241A3D; border-color: rgba(155,89,182,0.3); }
+[data-theme="dark"] .reco-head { color: #E9DBFF; }
+[data-theme="dark"] .reco-toggle { background: rgba(155,89,182,0.22); color: #C9A0DC; }
+[data-theme="dark"] .reco-item[open] .reco-toggle { background: #C9A0DC; color: #1A0A2E; }
+[data-theme="dark"] .reco-body { color: #B9A6D9; }
