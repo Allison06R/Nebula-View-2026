@@ -7,6 +7,10 @@ use App\Http\Controllers\PerfilVisualController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
+use App\Http\Controllers\ChatWidgetController;
+
+// ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
+Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
 
 // ─── Páginas públicas ────────────────────────────────────────────────────────
 Route::get('/',                   fn() => view('home'))->name('home');

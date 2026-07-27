@@ -362,5 +362,9 @@ document.getElementById('langToggleMobile')?.addEventListener('click', switchLan
 </script>
  <script src="{{ asset('js/preloader.js') }}"></script>
 @yield('scripts')
+
+@unless(request()->routeIs('test'))
+    @include('components.chatbotwidget')
+@endunless
 </body>
 </html>

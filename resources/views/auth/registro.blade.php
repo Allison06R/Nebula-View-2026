@@ -134,23 +134,7 @@
       </form>
     </div>
 
-    <aside class="nv-right">
-      <div class="orb orb1"></div>
-      <div class="orb orb2"></div>
-      <div class="eye-logo">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </div>
-      <div class="nv-brand">NEBULA VIEW</div>
-      <div class="nv-tagline">Únete y comienza a explorar modelos y recursos visuales exclusivos.</div>
-      <div class="nv-dots">
-        <div class="nv-dot on"></div>
-        <div class="nv-dot"></div>
-        <div class="nv-dot"></div>
-      </div>
-    </aside>
+    <img src="{{ asset('images/nebulita-removebg-preview.png') }}" alt="Nebulita" class="nv-character">
 
   </div>
 </main>

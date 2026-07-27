@@ -6,7 +6,6 @@
 <style>
 /* Override layout.css para esta página */
 body {
-  background: linear-gradient(160deg, #EDE7F6 0%, #F3EAFF 40%, #EAD9FF 100%) !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -15,7 +14,34 @@ footer.lc-footer {
   background: #1A0A2E !important;
   padding: 60px 60px 30px !important;
 }
-.toast { ... }
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #ffffff;
+  border: 1.5px solid rgba(124,58,237,0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.12);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+  width: fit-content;
+  max-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e1b4b;
+}
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.t-ico { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.toast.toast-ok  .t-ico { background: rgba(52,211,153,0.12); color: #059669; }
+.toast.toast-err .t-ico { background: rgba(239,68,68,0.10);  color: #dc2626; }
+.t-txt { display: flex; flex-direction: column; gap: 1px; }
+.t-txt b    { font-size: 13px; font-weight: 600; color: #1e1b4b; }
+.t-txt span { font-size: 11px; color: #6b7280; }
 </style>
 @endsection
 
@@ -82,23 +108,7 @@ footer.lc-footer {
       </form>
     </div>
 
-    <div class="nv-right">
-      <div class="orb orb1"></div>
-      <div class="orb orb2"></div>
-      <div class="eye-logo">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </div>
-      <div class="nv-brand">NEBULA VIEW</div>
-      <div class="nv-tagline">Explora el universo visual con una perspectiva completamente nueva.</div>
-      <div class="nv-dots">
-        <div class="nv-dot on"></div>
-        <div class="nv-dot"></div>
-        <div class="nv-dot"></div>
-      </div>
-    </div>
+    <img src="{{ asset('images/nebulita-removebg-preview.png') }}" alt="Nebulita" class="nv-character">
 
   </div>
 </main>
