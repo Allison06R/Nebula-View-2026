@@ -2,34 +2,15 @@
 
 // Catálogo centralizado de opciones de apariencia de perfil.
 //
-// Los avatares y banners predeterminados son ARCHIVOS DE IMAGEN reales
-// que viven en public/images/perfil/avatares y public/images/perfil/banners.
-// Ahora mismo son placeholders (degradados generados) -- para poner las
-// fotos/banners definitivos, solo reemplaza esos archivos por otros con
-// EL MISMO NOMBRE (avatar-1.jpg, banner-1.jpg, etc.), no hace falta tocar
-// codigo ni este archivo.
+// La foto de perfil y el banner ya NO usan una galería de opciones:
+// cada usuario ve un placeholder predeterminado (dibujado por CSS en
+// miperfil.css: .mp-avatar-default y .mp-banner-default) hasta que
+// sube su propia imagen para reemplazarlo.
+//
+// El único catálogo que sigue siendo una lista de opciones es el de
+// marcos (el borde decorativo alrededor de la foto de perfil).
 
 return [
-
-    'avatares' => [
-        'avatar-1' => 'Nebulosa',
-        'avatar-2' => 'Eclipse',
-        'avatar-3' => 'Aurora',
-        'avatar-4' => 'Cometa',
-        'avatar-5' => 'Iris',
-        'avatar-6' => 'Prisma',
-        'avatar-7' => 'Lavanda',
-        'avatar-8' => 'Coral',
-    ],
-
-    'banners' => [
-        'banner-1' => 'Nebula violeta',
-        'banner-2' => 'Medianoche',
-        'banner-3' => 'Atardecer rosa',
-        'banner-4' => 'Oceano',
-        'banner-5' => 'Aurora boreal',
-        'banner-6' => 'Polvo estelar',
-    ],
 
     'marcos' => [
         'ninguno'  => 'Sin marco',
@@ -38,8 +19,5 @@ return [
         'brillo'   => 'Brillo cosmico',
         'punteado' => 'Puntos orbitales',
     ],
-
-    'avatares_ruta' => 'images/perfil/avatares',
-    'banners_ruta'  => 'images/perfil/banners',
 
 ];

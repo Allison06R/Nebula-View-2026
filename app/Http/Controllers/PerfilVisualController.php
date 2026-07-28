@@ -7,19 +7,12 @@ use App\Models\PerfilVisual;
 
 class PerfilVisualController extends Controller
 {
-    // ── Mostrar formulario del perfil visual ─────────────────────────────────
-    public function show()
-    {
-      
-        $perfil = PerfilVisual::where('id_usuario', auth()->id())->first();
-
-        return view('perfil-visual', compact('perfil'));
-    }
-
-    // ── Guardar / actualizar perfil visual del usuario ───────────────────────
+    // ── Guardar / actualizar las preferencias del perfil visual ──────────────
+    // Este formulario ahora vive dentro de "Mi Perfil" (sección "Mis
+    // preferencias"), ya no es una página aparte.
     public function store(Request $request)
     {
-        $datos = $request->validate([
+        $datos = $request->validateWithBag('preferencias', [
             'edad'            => 'required|integer|min:1|max:120',
             'sexo'            => 'required|string|max:20',
             'tipo_cara'       => 'required|string|max:50',
@@ -40,7 +33,7 @@ class PerfilVisualController extends Controller
         );
 
         return redirect()
-            ->route('perfil-visual.show')
-            ->with('success', 'Perfil visual guardado correctamente.');
+            ->route('mi-perfil.show')
+            ->with('success_preferencias', 'Tus preferencias se guardaron correctamente.');
     }
 }

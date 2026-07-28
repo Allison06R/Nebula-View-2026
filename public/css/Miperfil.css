@@ -1,7 +1,10 @@
 /* ══════════════════════════════════════════════════════════════
-   MI PERFIL — foto, marco y banner
+   MI PERFIL — foto, marco, banner y preferencias
    ══════════════════════════════════════════════════════════════ */
-
+body {
+  background: var(--pv-bg);
+  font-family: 'DM Sans', sans-serif;
+}
 .mp-cosmos{
   position:relative; min-height:100vh; overflow:hidden;
   padding:100px 24px 60px;
@@ -40,7 +43,9 @@
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
-.mp-banner-preview{ height:150px; width:100%; transition:background .3s ease; }
+.mp-banner-preview{ position:relative; height:150px; width:100%; overflow:hidden; }
+.mp-banner-preview img{ width:100%; height:100%; object-fit:cover; display:block; }
+.mp-banner-default{ width:100%; height:100%; background:linear-gradient(135deg,#6B2FA0,#9B59B6,#D946EF); }
 .mp-preview-body{
   background:rgba(255,255,255,.05); backdrop-filter:blur(18px);
   padding:0 1.75rem 1.5rem; display:flex; align-items:flex-end; gap:1.1rem;
@@ -54,6 +59,7 @@
 }
 .mp-avatar-inner img{ width:100%; height:100%; object-fit:cover; }
 .mp-avatar-inner svg{ width:46%; height:46%; }
+.mp-avatar-default{ background:linear-gradient(135deg,#6B2FA0,#D946EF); display:flex; align-items:center; justify-content:center; }
 .mp-preview-info{ padding-bottom:.4rem; }
 .mp-preview-name{ color:#fff; font-weight:600; font-size:1.05rem; margin:0; }
 .mp-preview-sub{ color:rgba(255,255,255,.55); font-size:.8rem; margin:.15rem 0 0; }
@@ -69,48 +75,18 @@
 .mp-section-title{ font-family:'Playfair Display', serif; font-size:1.25rem; color:#fff; margin:0 0 .25rem; }
 .mp-section-hint{ font-size:.82rem; color:rgba(255,255,255,.55); margin:0 0 1.25rem; }
 
-/* Tabs: galería vs subir foto */
-.mp-tabs{ display:flex; gap:.5rem; margin-bottom:1.25rem; }
-.mp-tab{
-  flex:1; text-align:center; padding:.6rem .5rem; border-radius:10px; cursor:pointer;
-  font-size:.85rem; font-weight:600; color:rgba(255,255,255,.65);
-  border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); transition:all .2s;
-}
-.mp-tab.active{ background:linear-gradient(135deg,var(--violet),var(--lavender)); color:#fff; border-color:transparent; }
-
-/* Avatar gallery */
-.mp-avatar-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(72px,1fr)); gap:.9rem; }
-.mp-avatar-opt input{ position:absolute; opacity:0; width:0; height:0; }
-.mp-avatar-opt label{ display:flex; flex-direction:column; align-items:center; gap:.4rem; cursor:pointer; }
-.mp-avatar-swatch{
-  width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  border:2px solid transparent; transition:all .2s ease;
-}
-.mp-avatar-swatch svg{ width:44%; height:44%; }
-.mp-avatar-opt input:checked + label .mp-avatar-swatch{ border-color:#fff; box-shadow:0 0 0 3px rgba(192,132,252,.55), 0 6px 16px rgba(123,79,207,.4); transform:translateY(-2px); }
-.mp-avatar-label{ font-size:.72rem; color:rgba(255,255,255,.7); text-align:center; }
-
-.mp-avatar--nebulosa{ background:linear-gradient(135deg,#6B2FA0,#D946EF); }
-.mp-avatar--eclipse{ background:linear-gradient(135deg,#1B0E33,#3D1A6E); }
-.mp-avatar--aurora{ background:linear-gradient(135deg,#2ECC71,#06B6D4); }
-.mp-avatar--cometa{ background:linear-gradient(135deg,#2563EB,#9B59B6); }
-.mp-avatar--iris{ background:linear-gradient(135deg,#9B59B6,#E91E8C); }
-.mp-avatar--prisma{ background:linear-gradient(135deg,#F39C12,#E91E8C); }
-.mp-avatar--lavanda{ background:linear-gradient(135deg,#C39BD3,#6B2FA0); }
-.mp-avatar--coral{ background:linear-gradient(135deg,#F4739E,#F39C12); }
-
-/* Upload dropzone */
+/* ---------- Upload dropzone (foto y banner) ---------- */
 .mp-dropzone{
   border:2px dashed rgba(255,255,255,.2); border-radius:16px; padding:2rem 1rem;
-  text-align:center; cursor:pointer; transition:all .2s;
+  text-align:center; cursor:pointer; transition:all .2s; display:block;
 }
 .mp-dropzone:hover{ border-color:var(--lavender); background:rgba(255,255,255,.03); }
-.mp-dropzone input[type="file"]{ display:none; }
+input[type="file"]{ display:none; }
 .mp-dropzone-icon{ width:34px; height:34px; margin:0 auto .6rem; color:var(--lavender); }
 .mp-dropzone-text{ color:rgba(255,255,255,.7); font-size:.85rem; }
 .mp-dropzone-filename{ margin-top:.6rem; font-size:.8rem; color:var(--lavender); font-weight:600; }
 
-/* Frame gallery */
+/* ---------- Frame gallery ---------- */
 .mp-frame-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(78px,1fr)); gap:1rem; }
 .mp-frame-opt input{ position:absolute; opacity:0; width:0; height:0; }
 .mp-frame-opt label{ display:flex; flex-direction:column; align-items:center; gap:.4rem; cursor:pointer; }
@@ -124,22 +100,7 @@
 .mp-frame--brillo .mp-frame-demo-wrap{ padding:4px; border-radius:50%; box-shadow:0 0 20px 5px rgba(192,132,252,.65); }
 .mp-frame--punteado .mp-frame-demo-wrap{ padding:4px; border-radius:50%; border:3px dashed var(--pink); }
 
-/* Banner gallery */
-.mp-banner-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(100px,1fr)); gap:.9rem; }
-.mp-banner-opt input{ position:absolute; opacity:0; width:0; height:0; }
-.mp-banner-opt label{ display:block; cursor:pointer; }
-.mp-banner-swatch{ height:52px; border-radius:12px; border:2px solid transparent; transition:all .2s ease; }
-.mp-banner-opt input:checked + label .mp-banner-swatch{ border-color:#fff; box-shadow:0 0 0 3px rgba(192,132,252,.55); }
-.mp-banner-label{ font-size:.72rem; color:rgba(255,255,255,.7); text-align:center; margin-top:.4rem; }
-
-.mp-banner--nebula{ background:linear-gradient(135deg,#6B2FA0,#9B59B6,#D946EF); }
-.mp-banner--medianoche{ background:linear-gradient(135deg,#0D0620,#241442,#3D1A6E); }
-.mp-banner--atardecer{ background:linear-gradient(135deg,#E91E8C,#F39C12); }
-.mp-banner--oceano{ background:linear-gradient(135deg,#0F2C4C,#2563EB,#06B6D4); }
-.mp-banner--bosque{ background:linear-gradient(135deg,#0D3B2E,#2ECC71,#06B6D4); }
-.mp-banner--polvo{ background:linear-gradient(135deg,#1A0A2E,#3D1A6E,#9B59B6); }
-
-/* Save button */
+/* ---------- Save button ---------- */
 .mp-actions{ display:flex; justify-content:flex-end; }
 .mp-btn-save{
   display:flex; align-items:center; gap:6px;
@@ -150,8 +111,38 @@
 }
 .mp-btn-save:hover{ transform:translateY(-1px); box-shadow:0 10px 26px rgba(123,79,207,.55); }
 
+/* ---------- Preferencias (antes "perfil visual") ---------- */
+.mp-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+.mp-input-wrap label{ display:block; font-size:.82rem; color:rgba(255,255,255,.7); margin-bottom:.45rem; }
+.mp-input-wrap input[type="number"], .mp-input-wrap select{
+  width:100%; padding:.75rem 1rem; border-radius:12px;
+  border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06);
+  color:#fff; font-size:.92rem; outline:none; transition:border .2s, background .2s;
+  box-sizing:border-box; appearance:none;
+}
+.mp-input-wrap input[type="number"]:focus, .mp-input-wrap select:focus{ border-color:var(--violet); background:rgba(255,255,255,.09); }
+.mp-input-wrap select option{ background:var(--nebula-plum, #1e1b4b); color:#fff; }
+.mp-pref-block{ margin-bottom:1.5rem; }
+
+.mp-chip-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:.6rem; }
+.mp-chip input{ position:absolute; opacity:0; width:0; height:0; }
+.mp-chip label{
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:.7rem .6rem; border-radius:12px; font-size:.85rem;
+  border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.85); cursor:pointer; transition:all .2s ease;
+}
+.mp-chip label:hover{ border-color:rgba(192,132,252,.5); background:rgba(255,255,255,.08); }
+.mp-chip input:checked + label{
+  background:linear-gradient(135deg, var(--violet), var(--lavender));
+  border-color:transparent; color:#fff; font-weight:600;
+  box-shadow:0 6px 18px rgba(123,79,207,.45);
+}
+.mp-chip input:focus-visible + label{ outline:2px solid var(--lavender); outline-offset:2px; }
+
 @media(max-width:600px){
   .mp-card{ padding:1.25rem; }
   .mp-preview-body{ flex-direction:column; align-items:flex-start; gap:.6rem; }
   .mp-title{ font-size:1.5rem; }
+  .mp-grid-2{ grid-template-columns:1fr; }
 }

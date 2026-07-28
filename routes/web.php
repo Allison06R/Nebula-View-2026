@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/mi-perfil',  [MiPerfilController::class, 'show'])->name('mi-perfil.show');
     Route::post('/mi-perfil', [MiPerfilController::class, 'update'])->name('mi-perfil.update');
+    Route::post('/mi-perfil/preferencias', [MiPerfilController::class, 'preferencias'])->name('mi-perfil.preferencias');
 
     // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.
     Route::redirect('/perfil-visual', '/mi-perfil');

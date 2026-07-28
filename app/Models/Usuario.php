@@ -22,11 +22,9 @@ class Usuario extends Authenticatable
      
         'rol',
         'sesion',
-        'avatar_tipo',
-        'avatar_preset',
         'avatar_custom',
         'marco_perfil',
-        'banner_perfil',
+        'banner_custom',
     ];
  
     protected $hidden = [
@@ -54,15 +52,22 @@ class Usuario extends Authenticatable
     }
 
     /**
-     * URL de la foto de perfil si el usuario subió una foto propia.
-     * Si usa un avatar prediseñado (preset), esto es null y la vista
-     * dibuja el avatar con CSS/SVG usando avatar_preset.
+     * URL de la foto de perfil subida por el usuario.
+     * Si no ha subido ninguna, esto es null y la vista dibuja
+     * el avatar predeterminado (placeholder CSS).
      */
     public function getAvatarUrlAttribute(): ?string
     {
-        if ($this->avatar_tipo === 'custom' && $this->avatar_custom) {
-            return asset($this->avatar_custom);
-        }
-        return null;
+        return $this->avatar_custom ? asset('storage/' . $this->avatar_custom) : null;
+    }
+
+    /**
+     * URL del banner de perfil subido por el usuario.
+     * Si no ha subido ninguno, esto es null y la vista dibuja
+     * el banner predeterminado (placeholder CSS).
+     */
+    public function getBannerUrlAttribute(): ?string
+    {
+        return $this->banner_custom ? asset('storage/' . $this->banner_custom) : null;
     }
 }
