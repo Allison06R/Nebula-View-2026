@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\PerfilVisualController;
+use App\Http\Controllers\MiPerfilController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
@@ -38,10 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-// ─── Perfil visual (requiere sesión) ─────────────────────────────────────────
+// ─── Mi Perfil: foto, marco, banner y preferencias visuales (requiere sesión) ─
 Route::middleware('auth')->group(function () {
-    Route::get('/perfil-visual',  [PerfilVisualController::class, 'show'])->name('perfil-visual.show');
-    Route::post('/perfil-visual', [PerfilVisualController::class, 'store'])->name('perfil-visual.store');
+    Route::get('/mi-perfil',  [MiPerfilController::class, 'show'])->name('mi-perfil.show');
+    Route::post('/mi-perfil', [MiPerfilController::class, 'update'])->name('mi-perfil.update');
+
+    // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.
+    Route::redirect('/perfil-visual', '/mi-perfil');
 });
 
 // ─── Test / diagnóstico IA (requiere sesión) ──────────────────────────────────

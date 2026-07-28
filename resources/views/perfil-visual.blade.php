@@ -97,7 +97,7 @@
             <div class="pv-chip-grid">
               @foreach(['Miopía','Hipermetropía','Astigmatismo','Presbicia','Ninguno','No lo sé'] as $op)
                 <div class="pv-chip">
-                  <input type="radio" name="problema_visual" id="pv_{{ $loop->index }}" value="{{ $op }}" {{ old('problema_visual', $perfil->problema_visual ?? '') == $op ? 'checked':'' }}>
+                  <input type="radio" name="problema_visual" id="pv_{{ $loop->index }}" value="{{ $op }}" {{ old('problema_visual', $perfil->problema_visual ?? '') == $op ? 'checked':'' }} required>
                   <label for="pv_{{ $loop->index }}">{{ $op }}</label>
                 </div>
               @endforeach
@@ -109,7 +109,7 @@
             <div class="pv-chip-grid">
               @foreach(['Ninguno','Dolor de cabeza','Vista borrosa','Ojos secos','Ardor','Fatiga visual'] as $op)
                 <div class="pv-chip">
-                  <input type="radio" name="sintomas" id="sint_{{ $loop->index }}" value="{{ $op }}" {{ old('sintomas', $perfil->sintomas ?? '') == $op ? 'checked':'' }}>
+                  <input type="radio" name="sintomas" id="sint_{{ $loop->index }}" value="{{ $op }}" {{ old('sintomas', $perfil->sintomas ?? '') == $op ? 'checked':'' }} required>
                   <label for="sint_{{ $loop->index }}">{{ $op }}</label>
                 </div>
               @endforeach
@@ -130,7 +130,7 @@
             <div class="pv-chip-grid">
               @foreach(['Negro','Café','Azul','Transparente','Dorado','Plateado'] as $op)
                 <div class="pv-chip">
-                  <input type="radio" name="color" id="color_{{ $loop->index }}" value="{{ $op }}" {{ old('color', $perfil->color ?? '') == $op ? 'checked':'' }}>
+                  <input type="radio" name="color" id="color_{{ $loop->index }}" value="{{ $op }}" {{ old('color', $perfil->color ?? '') == $op ? 'checked':'' }} required>
                   <label for="color_{{ $loop->index }}">{{ $op }}</label>
                 </div>
               @endforeach
@@ -142,7 +142,7 @@
             <div class="pv-chip-grid">
               @foreach(['Clásico','Moderno','Deportivo','Elegante','Minimalista'] as $op)
                 <div class="pv-chip">
-                  <input type="radio" name="estetica" id="est_{{ $loop->index }}" value="{{ $op }}" {{ old('estetica', $perfil->estetica ?? '') == $op ? 'checked':'' }}>
+                  <input type="radio" name="estetica" id="est_{{ $loop->index }}" value="{{ $op }}" {{ old('estetica', $perfil->estetica ?? '') == $op ? 'checked':'' }} required>
                   <label for="est_{{ $loop->index }}">{{ $op }}</label>
                 </div>
               @endforeach
@@ -334,7 +334,37 @@ const totalPasos = 3;
 const porcentajes = [33, 66, 100];
 const labels = ['Paso 1 de 3 · Datos personales', 'Paso 2 de 3 · Salud Visual', 'Paso 3 de 3 · Tu estilo'];
 
+// Como los pasos ocultos (display:none) quedan excluidos de la validación
+// nativa del navegador, validamos manualmente antes de avanzar para que
+// ningún campo pueda quedar sin responder.
+function pvValidarPaso(idx) {
+  const panel = document.getElementById('panel-' + idx);
+  const campos = panel.querySelectorAll('[name]');
+  const nombresVistos = new Set();
+
+  for (const campo of campos) {
+    const nombre = campo.name;
+    if (nombresVistos.has(nombre)) continue;
+    nombresVistos.add(nombre);
+
+    if (campo.type === 'radio') {
+      const marcado = panel.querySelector('input[name="' + nombre + '"]:checked');
+      if (!marcado) {
+        alert('Por favor selecciona una opción antes de continuar.');
+        return false;
+      }
+    } else if (!campo.value || !campo.value.trim()) {
+      alert('Por favor completa todos los campos antes de continuar.');
+      campo.focus();
+      return false;
+    }
+  }
+  return true;
+}
+
 function cambiarPaso(dir) {
+  if (dir > 0 && !pvValidarPaso(paso)) return;
+
   document.getElementById('panel-' + paso).style.display = 'none';
   document.getElementById('step-ind-' + paso).classList.remove('active');
   document.getElementById('step-ind-' + paso).classList.add('done');

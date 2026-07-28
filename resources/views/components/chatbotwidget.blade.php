@@ -4,6 +4,8 @@
     tiene su propio chat con el contexto del diagnóstico).
 --}}
 
+<div id="nv-chat-overlay"></div>
+
 <div id="nv-chat" class="nv-chat">
 
     <button id="nv-chat-bubble" aria-label="Abrir asistente Nebula View" aria-expanded="false">
@@ -20,6 +22,11 @@
                 <div class="nv-chat-name">Asistente Nebula View</div>
                 <div class="nv-chat-status"><span class="nv-dot"></span>En línea</div>
             </div>
+            <button id="nv-chat-close" type="button" aria-label="Minimizar asistente">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
 
         <div id="nv-chat-messages" class="nv-chat-messages"></div>
@@ -41,9 +48,39 @@
     .nv-chat {
         position: fixed;
         bottom: 26px;
-        right: 26px;
+        left: 26px;
         z-index: 9999;
         font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Fondo difuminado detrás del chat, visible mientras la ventana está abierta */
+    #nv-chat-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        background: rgba(20, 10, 40, 0.25);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    #nv-chat-overlay.open {
+        animation: nv-overlay-in 0.28s ease forwards;
+        pointer-events: auto;
+    }
+    #nv-chat-overlay.closing {
+        animation: nv-overlay-out 0.22s ease forwards;
+        pointer-events: none;
+    }
+
+    @keyframes nv-overlay-in {
+        0%   { opacity: 0; visibility: visible; }
+        100% { opacity: 1; visibility: visible; }
+    }
+    @keyframes nv-overlay-out {
+        0%   { opacity: 1; visibility: visible; }
+        100% { opacity: 0; visibility: hidden; }
     }
 
     #nv-chat-bubble {
@@ -69,9 +106,11 @@
     #nv-chat-window {
         position: absolute;
         bottom: 78px;
-        right: 0;
-        width: 350px;
-        height: 480px;
+        left: 0;
+        width: 400px;
+        max-width: calc(100vw - 40px);
+        height: 620px;
+        max-height: 78vh;
         background: var(--white);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-lifted);
@@ -80,14 +119,26 @@
         display: flex;
         flex-direction: column;
         opacity: 0;
-        transform: translateY(14px) scale(0.97);
+        transform: translateY(24px) scale(0.9);
+        transform-origin: bottom left;
         pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease;
     }
     .nv-chat.open #nv-chat-window {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+        animation: nv-window-in 0.32s cubic-bezier(.34,1.56,.64,1) forwards;
         pointer-events: auto;
+    }
+    .nv-chat.closing #nv-chat-window {
+        animation: nv-window-out 0.2s ease-in forwards;
+        pointer-events: none;
+    }
+
+    @keyframes nv-window-in {
+        0%   { opacity: 0; transform: translateY(24px) scale(0.9); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes nv-window-out {
+        0%   { opacity: 1; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(16px) scale(0.92); }
     }
 
     .nv-chat-header {
@@ -98,21 +149,22 @@
         gap: 12px;
     }
     .nv-chat-avatar {
-        width: 34px; height: 34px;
+        width: 38px; height: 38px;
         border-radius: 50%;
         background: rgba(255,255,255,0.15);
         display: flex; align-items: center; justify-content: center;
-        font-size: 17px;
+        font-size: 19px;
         flex-shrink: 0;
     }
+    .nv-chat-header-info { flex: 1; min-width: 0; }
     .nv-chat-name {
         font-family: 'Playfair Display', serif;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 17px;
         color: var(--white);
     }
     .nv-chat-status {
-        font-size: 12px;
+        font-size: 13px;
         color: rgba(255,255,255,0.75);
         display: flex; align-items: center; gap: 5px;
         margin-top: 2px;
@@ -122,6 +174,22 @@
         background: var(--success);
         display: inline-block;
     }
+    #nv-chat-close {
+        border: none;
+        background: rgba(255,255,255,0.15);
+        color: var(--white);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 0.15s ease, transform 0.15s ease;
+    }
+    #nv-chat-close:hover { background: rgba(255,255,255,0.28); transform: scale(1.06); }
+    #nv-chat-close svg { width: 15px; height: 15px; }
 
     .nv-chat-messages {
         flex: 1;
@@ -137,11 +205,11 @@
 
     .nv-msg { display: flex; }
     .nv-msg-bubble {
-        max-width: 80%;
-        padding: 10px 14px;
+        max-width: 82%;
+        padding: 11px 15px;
         border-radius: var(--radius-sm);
-        font-size: 13.5px;
-        line-height: 1.5;
+        font-size: 15.5px;
+        line-height: 1.55;
     }
     .nv-msg.bot { justify-content: flex-start; }
     .nv-msg.bot .nv-msg-bubble {
@@ -166,11 +234,11 @@
         background: var(--blush);
     }
     .nv-sug {
-        font-size: 12px;
+        font-size: 13.5px;
         color: var(--plum);
         background: var(--lilac);
         border-radius: 999px;
-        padding: 6px 12px;
+        padding: 7px 13px;
         cursor: pointer;
         transition: background 0.15s ease;
         white-space: nowrap;
@@ -188,8 +256,8 @@
         flex: 1;
         border: 1px solid var(--lilac);
         border-radius: var(--radius-sm);
-        padding: 10px 14px;
-        font-size: 13.5px;
+        padding: 11px 15px;
+        font-size: 15px;
         color: var(--text);
         outline: none;
         font-family: inherit;
@@ -212,9 +280,13 @@
     .nv-chat-form button:hover { background: var(--mid); }
     .nv-chat-form button svg { width: 16px; height: 16px; }
 
-    @media (max-width: 420px) {
-        #nv-chat-window { width: calc(100vw - 32px); right: -10px; height: 70vh; }
-        .nv-chat { right: 16px; bottom: 16px; }
+    @media (max-width: 900px) {
+        #nv-chat-window { width: 380px; }
+    }
+
+    @media (max-width: 480px) {
+        #nv-chat-window { width: calc(100vw - 32px); height: 72vh; left: -10px; }
+        .nv-chat { left: 16px; bottom: 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -231,7 +303,9 @@
 <script>
 (function () {
     const widget   = document.getElementById('nv-chat');
+    const overlay  = document.getElementById('nv-chat-overlay');
     const bubble   = document.getElementById('nv-chat-bubble');
+    const closeBtn = document.getElementById('nv-chat-close');
     const messages = document.getElementById('nv-chat-messages');
     const form     = document.getElementById('nv-chat-form');
     const input    = document.getElementById('nv-chat-input');
@@ -278,10 +352,17 @@
         return row;
     }
 
+    function closeChat() {
+        widget.classList.remove('open');
+        overlay.classList.remove('open');
+        bubble.setAttribute('aria-expanded', 'false');
+    }
+
     bubble.addEventListener('click', () => {
         widget.classList.toggle('open');
         const isOpen = widget.classList.contains('open');
         bubble.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        overlay.classList.toggle('open', isOpen);
 
         if (isOpen) {
             input.focus();
@@ -292,6 +373,9 @@
             }
         }
     });
+
+    closeBtn.addEventListener('click', closeChat);
+    overlay.addEventListener('click', closeChat);
 
     async function sendMessage(text) {
         text = text.trim();

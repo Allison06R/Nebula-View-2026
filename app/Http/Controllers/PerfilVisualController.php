@@ -23,10 +23,15 @@ class PerfilVisualController extends Controller
             'edad'            => 'required|integer|min:1|max:120',
             'sexo'            => 'required|string|max:20',
             'tipo_cara'       => 'required|string|max:50',
-            'problema_visual' => 'nullable|string|max:100',
-            'sintomas'        => 'nullable|string|max:255',
-            'color'           => 'nullable|string|max:50',
-            'estetica'        => 'nullable|string|max:100',
+            'problema_visual' => 'required|string|max:100',
+            'sintomas'        => 'required|string|max:255',
+            'color'           => 'required|string|max:50',
+            'estetica'        => 'required|string|max:100',
+        ], [
+            'problema_visual.required' => 'Selecciona un problema visual diagnosticado.',
+            'sintomas.required'        => 'Selecciona un síntoma visual frecuente.',
+            'color.required'           => 'Selecciona un color de preferencia.',
+            'estetica.required'        => 'Selecciona un estilo estético.',
         ]);
 
         PerfilVisual::updateOrCreate(

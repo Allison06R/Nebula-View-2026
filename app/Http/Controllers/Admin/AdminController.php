@@ -128,17 +128,19 @@ class AdminController extends Controller
 
     public function perfilUpdate(Request $request, Usuario $usuario)
     {
+        $datos = $request->validate([
+            'tipo_cara'       => 'required|string|max:50',
+            'edad'            => 'required|integer|min:1|max:120',
+            'sexo'            => 'required|string|max:20',
+            'problema_visual' => 'required|string|max:100',
+            'sintomas'        => 'required|string|max:255',
+            'color'           => 'required|string|max:50',
+            'estetica'        => 'required|string|max:100',
+        ]);
+
         PerfilVisual::updateOrCreate(
             ['id_usuario' => $usuario->id_usuario],
-            [
-                'tipo_cara'       => $request->tipo_cara,
-                'edad'            => $request->edad,
-                'sexo'            => $request->sexo,
-                'problema_visual' => $request->problema_visual,
-                'sintomas'        => $request->sintomas,
-                'color'           => $request->color,
-                'estetica'        => $request->estetica,
-            ]
+            $datos
         );
 
         return redirect()->route('admin.usuarios.show', $usuario)

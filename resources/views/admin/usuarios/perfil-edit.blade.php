@@ -24,7 +24,7 @@
 
         <div class="admin-form-group">
           <label class="admin-form-label">Tipo de cara</label>
-          <select name="tipo_cara" class="admin-form-select">
+          <select name="tipo_cara" class="admin-form-select" required>
             <option value="">— Seleccionar —</option>
             @foreach(['ovalada','redonda','cuadrada','corazon','alargada','diamante'] as $tipo)
               <option value="{{ $tipo }}" {{ old('tipo_cara', $perfil->tipo_cara ?? '')==$tipo ? 'selected':'' }}>{{ ucfirst($tipo) }}</option>
@@ -35,13 +35,13 @@
 
         <div class="admin-form-group">
           <label class="admin-form-label">Edad</label>
-          <input type="number" name="edad" min="0" max="120" value="{{ old('edad', $perfil->edad ?? '') }}" class="admin-form-input">
+          <input type="number" name="edad" min="0" max="120" value="{{ old('edad', $perfil->edad ?? '') }}" class="admin-form-input" required>
           @error('edad') <span class="admin-form-error">{{ $message }}</span> @enderror
         </div>
 
         <div class="admin-form-group">
           <label class="admin-form-label">Sexo</label>
-          <select name="sexo" class="admin-form-select">
+          <select name="sexo" class="admin-form-select" required>
             <option value="">— Seleccionar —</option>
             <option value="femenino" {{ old('sexo', $perfil->sexo ?? '')=='femenino' ? 'selected':'' }}>Femenino</option>
             <option value="masculino" {{ old('sexo', $perfil->sexo ?? '')=='masculino' ? 'selected':'' }}>Masculino</option>
@@ -52,25 +52,25 @@
 
         <div class="admin-form-group">
           <label class="admin-form-label">Color preferido</label>
-          <input type="text" name="color" value="{{ old('color', $perfil->color ?? '') }}" class="admin-form-input" placeholder="Ej. Negro, Carey, Violeta">
+          <input type="text" name="color" value="{{ old('color', $perfil->color ?? '') }}" class="admin-form-input" placeholder="Ej. Negro, Carey, Violeta" required>
           @error('color') <span class="admin-form-error">{{ $message }}</span> @enderror
         </div>
 
         <div class="admin-form-group admin-form-full">
           <label class="admin-form-label">Problema visual</label>
-          <input type="text" name="problema_visual" value="{{ old('problema_visual', $perfil->problema_visual ?? '') }}" class="admin-form-input" placeholder="Ej. Miopía, Astigmatismo">
+          <input type="text" name="problema_visual" value="{{ old('problema_visual', $perfil->problema_visual ?? '') }}" class="admin-form-input" placeholder="Ej. Miopía, Astigmatismo" required>
           @error('problema_visual') <span class="admin-form-error">{{ $message }}</span> @enderror
         </div>
 
         <div class="admin-form-group admin-form-full">
           <label class="admin-form-label">Síntomas</label>
-          <textarea name="sintomas" class="admin-form-textarea" placeholder="Describe los síntomas reportados">{{ old('sintomas', $perfil->sintomas ?? '') }}</textarea>
+          <textarea name="sintomas" class="admin-form-textarea" placeholder="Describe los síntomas reportados" required>{{ old('sintomas', $perfil->sintomas ?? '') }}</textarea>
           @error('sintomas') <span class="admin-form-error">{{ $message }}</span> @enderror
         </div>
 
         <div class="admin-form-group admin-form-full">
           <label class="admin-form-label">Estética preferida</label>
-          <textarea name="estetica" class="admin-form-textarea" placeholder="Preferencias estéticas de montura, estilo, etc.">{{ old('estetica', $perfil->estetica ?? '') }}</textarea>
+          <textarea name="estetica" class="admin-form-textarea" placeholder="Preferencias estéticas de montura, estilo, etc." required>{{ old('estetica', $perfil->estetica ?? '') }}</textarea>
           @error('estetica') <span class="admin-form-error">{{ $message }}</span> @enderror
         </div>
 

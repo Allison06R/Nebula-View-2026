@@ -150,9 +150,9 @@
       </a>
       @endif
 
-      <a href="{{ route('perfil-visual.show') }}" class="{{ request()->routeIs('perfil-visual.show') ? 'active' : '' }}">    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/><path d="M9 12l2 2 4-4" stroke-width="1.5"/></svg>
-      Perfil Visual
+      <a href="{{ route('mi-perfil.show') }}" class="{{ request()->routeIs('mi-perfil.show') ? 'active' : '' }}">    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+      Mi Perfil
     </span>
     <span class="d-arr">›</span>
   </a>
