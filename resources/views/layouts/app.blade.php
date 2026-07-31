@@ -235,14 +235,36 @@
     </button>
 
     @auth
-      @if(auth()->user()->rol === 'admin')
-        <a href="{{ route('admin.dashboard') }}" class="nav-session-link nav-session-link--btn">Panel Admin</a>
-      @endif
-      <a href="{{ route('logout') }}"
-         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-         class="nav-session-link">
-        Cerrar sesión
-      </a>
+      <div class="nav-user" id="navUser">
+        <button class="nav-user-btn" id="navUserBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Cuenta">
+          <span class="nav-user-avatar">
+            @if(auth()->user()->avatar_url)
+              <img src="{{ auth()->user()->avatar_url }}" alt="">
+            @else
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+            @endif
+          </span>
+        </button>
+
+        <div class="nav-user-menu" id="navUserMenu">
+          <div class="nav-user-menu-header">
+            <p class="nav-user-menu-name">{{ auth()->user()->nombre }}</p>
+            <p class="nav-user-menu-sub">@ {{ auth()->user()->usuario }}</p>
+          </div>
+          <div class="nav-user-menu-divider"></div>
+          @if(auth()->user()->rol === 'admin')
+            <a href="{{ route('admin.dashboard') }}" class="nav-user-menu-item">Panel Admin</a>
+          @endif
+          <a href="{{ route('mi-perfil.show') }}" class="nav-user-menu-item">Mi Perfil</a>
+          <a href="{{ route('preferencias.show') }}" class="nav-user-menu-item">Preferencias</a>
+          <div class="nav-user-menu-divider"></div>
+          <a href="{{ route('logout') }}"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+             class="nav-user-menu-item nav-user-menu-item--danger">
+            Cerrar sesión
+          </a>
+        </div>
+      </div>
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
         @csrf
       </form>
@@ -250,14 +272,16 @@
       <a href="{{ route('login') }}" class="nav-session-link">Inicio de Sesión</a>
       <a href="{{ route('registro') }}" class="nav-session-link nav-session-link--btn">Registro</a>
     @endauth
-
-    <button class="ham-btn" id="hamBtn" aria-label="Abrir menú">
+<button class="ham-btn" id="hamBtn" aria-label="Abrir menú">
       <div class="ham-line"></div>
       <div class="ham-line"></div>
       <div class="ham-line"></div>
     </button>
   </div>
+
+  <div id="scrollProgress"></div>
 </nav>
+  </div>
 
 @yield('content')
 
@@ -350,6 +374,49 @@ document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
 
 /* ══════════════════════════════
+   MENÚ DE USUARIO (navbar)
+══════════════════════════════ */
+const navUser = document.getElementById('navUser');
+const navUserBtn = document.getElementById('navUserBtn');
+const navUserMenu = document.getElementById('navUserMenu');
+
+function closeUserMenu() {
+  if (!navUser) return;
+  navUser.classList.remove('open');
+  navUserBtn.setAttribute('aria-expanded', 'false');
+}
+
+if (navUserBtn) {
+  navUserBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navUser.classList.toggle('open');
+    navUserBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (navUser.classList.contains('open') && !navUser.contains(e.target)) {
+      closeUserMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeUserMenu();
+  });
+}
+/* ══════════════════════════════
+   BARRA DE PROGRESO DE SCROLL
+══════════════════════════════ */
+const scrollProgressEl = document.getElementById('scrollProgress');
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  scrollProgressEl.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
+/* ══════════════════════════════
    TRADUCCIÓN (ES / EN)
 ══════════════════════════════ */
 function switchLang() {
@@ -366,5 +433,6 @@ document.getElementById('langToggleMobile')?.addEventListener('click', switchLan
 @unless(request()->routeIs('test'))
     @include('components.chatbotwidget')
 @endunless
+
 </body>
 </html>

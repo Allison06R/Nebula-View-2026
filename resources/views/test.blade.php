@@ -96,7 +96,7 @@
         <div class="chat-header">
           <div class="chat-avatar">🤖</div>
           <div class="chat-header-info">
-            <div class="chat-header-name">Asistente Nebula View</div>
+            <div class="chat-header-name">Asistente Nebulita</div>
             <div class="chat-header-status">● En línea · contexto de tu diagnóstico activo</div>
           </div>
         </div>

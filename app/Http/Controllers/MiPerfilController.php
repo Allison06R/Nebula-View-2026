@@ -16,35 +16,38 @@ class MiPerfilController extends Controller
     private array $opcionesColor    = ['Negro', 'Café', 'Azul', 'Transparente', 'Dorado', 'Plateado'];
     private array $opcionesEstetica = ['Clásico', 'Moderno', 'Deportivo', 'Elegante', 'Minimalista'];
 
-    // ── Mostrar la página de perfil (apariencia + preferencias) ──────────────
+    // ── Mostrar la página de perfil (foto, marco, banner e información) ──────
     public function show()
     {
         $usuario = auth()->user();
-        $marcos  = config('apariencia.marcos');
-        $perfil  = PerfilVisual::where('id_usuario', $usuario->id_usuario)->first();
 
         return view('mi-perfil', [
-            'usuario'          => $usuario,
-            'marcos'           => $marcos,
-            'perfil'           => $perfil,
-            'opcionesSexo'     => $this->opcionesSexo,
-            'opcionesCara'     => $this->opcionesCara,
-            'opcionesProblema' => $this->opcionesProblema,
-            'opcionesSintomas' => $this->opcionesSintomas,
-            'opcionesColor'    => $this->opcionesColor,
-            'opcionesEstetica' => $this->opcionesEstetica,
+            'usuario'  => $usuario,
+            'marcos'   => config('apariencia.marcos'),
+            'avatares' => config('apariencia.avatares'),
+            'banners'  => config('apariencia.banners'),
+            'stats'    => $this->statsDe($usuario),
         ]);
     }
 
     // ── Guardar la foto, el banner y el marco elegido ─────────────────────────
+    // La foto y el banner pueden venir de dos fuentes: una imagen que el
+    // usuario sube (foto/banner) o una elección de la galería
+    // (avatar_preset/banner_preset). Si llega un archivo subido, este
+    // tiene prioridad y se guarda en el disco 'public'; si no, se guarda
+    // la elección de la galería.
     public function update(Request $request)
     {
-        $marcoKeys = array_keys(config('apariencia.marcos'));
+        $marcoKeys   = array_keys(config('apariencia.marcos'));
+        $avatarKeys  = array_keys(config('apariencia.avatares'));
+        $bannerKeys  = array_keys(config('apariencia.banners'));
 
         $datos = $request->validate([
-            'foto'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'banner'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'marco_perfil' => 'required|in:' . implode(',', $marcoKeys),
+            'foto'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'avatar_preset' => 'nullable|string|in:' . implode(',', $avatarKeys),
+            'banner'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'banner_preset' => 'nullable|string|in:' . implode(',', $bannerKeys),
+            'marco_perfil'  => 'required|in:' . implode(',', $marcoKeys),
         ], [
             'foto.image'   => 'La foto debe ser una imagen (jpg, png o webp).',
             'foto.max'     => 'La imagen no debe superar 4 MB.',
@@ -60,6 +63,10 @@ class MiPerfilController extends Controller
                 Storage::disk('public')->delete($usuario->avatar_custom);
             }
             $usuario->avatar_custom = $request->file('foto')->store('avatars', 'public');
+            $usuario->avatar_tipo   = 'custom';
+        } elseif (!empty($datos['avatar_preset'])) {
+            $usuario->avatar_preset = $datos['avatar_preset'];
+            $usuario->avatar_tipo   = 'preset';
         }
 
         if ($request->hasFile('banner')) {
@@ -67,6 +74,10 @@ class MiPerfilController extends Controller
                 Storage::disk('public')->delete($usuario->banner_custom);
             }
             $usuario->banner_custom = $request->file('banner')->store('banners', 'public');
+            $usuario->banner_tipo   = 'custom';
+        } elseif (!empty($datos['banner_preset'])) {
+            $usuario->banner_perfil = $datos['banner_preset'];
+            $usuario->banner_tipo   = 'preset';
         }
 
         $usuario->marco_perfil = $datos['marco_perfil'];
@@ -77,7 +88,26 @@ class MiPerfilController extends Controller
             ->with('success', 'Tu perfil se actualizó correctamente.');
     }
 
-    // ── Guardar las preferencias del perfil visual (antes página aparte) ─────
+    // ── Mostrar la página de preferencias visuales (aparte de Mi Perfil) ─────
+    public function preferenciasShow()
+    {
+        $usuario = auth()->user();
+        $perfil  = PerfilVisual::where('id_usuario', $usuario->id_usuario)->first();
+
+        return view('preferencias', [
+            'usuario'          => $usuario,
+            'perfil'           => $perfil,
+            'stats'            => $this->statsDe($usuario),
+            'opcionesSexo'     => $this->opcionesSexo,
+            'opcionesCara'     => $this->opcionesCara,
+            'opcionesProblema' => $this->opcionesProblema,
+            'opcionesSintomas' => $this->opcionesSintomas,
+            'opcionesColor'    => $this->opcionesColor,
+            'opcionesEstetica' => $this->opcionesEstetica,
+        ]);
+    }
+
+    // ── Guardar las preferencias del perfil visual ────────────────────────────
     public function preferencias(Request $request)
     {
         $datos = $request->validate([
@@ -96,7 +126,16 @@ class MiPerfilController extends Controller
         );
 
         return redirect()
-            ->route('mi-perfil.show')
+            ->route('preferencias.show')
             ->with('success_preferencias', 'Tus preferencias se guardaron correctamente.');
+    }
+
+    // ── Estadísticas reales para la tarjeta de perfil ─────────────────────────
+    private function statsDe($usuario): array
+    {
+        return [
+            'tests'     => $usuario->tests()->count(),
+            'modelos3d' => $usuario->modelos3d()->count(),
+        ];
     }
 }

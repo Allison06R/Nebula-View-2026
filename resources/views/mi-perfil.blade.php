@@ -3,13 +3,12 @@
 @section('title', 'Mi Perfil - Nebula View')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/miperfil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Miperfil.css') }}">
 @endsection
 
 @section('content')
 @php
   $marcoActual = $usuario->marco_perfil ?? 'ninguno';
-  $p = $perfil;
 @endphp
 
 <div class="mp-cosmos">
@@ -17,16 +16,13 @@
   <div class="mp-nebula mp-nebula-a"></div>
   <div class="mp-nebula mp-nebula-b"></div>
 
-  <div class="mp-shell">
+  <div class="mp-shell" style="max-width:1040px;">
 
     <h2 class="mp-title">Personaliza tu <em>perfil</em></h2>
-    <p class="mp-subtitle">Elige tu foto, un marco, un banner y cuéntanos tus preferencias visuales.</p>
+    <p class="mp-subtitle">Elige tu foto, un marco y un banner para tu cuenta.</p>
 
     @if(session('success'))
       <div class="mp-alert mp-alert-success">{{ session('success') }}</div>
-    @endif
-    @if(session('success_preferencias'))
-      <div class="mp-alert mp-alert-success">{{ session('success_preferencias') }}</div>
     @endif
     @if($errors->any())
       <div class="mp-alert mp-alert-error">
@@ -34,183 +30,138 @@
       </div>
     @endif
 
-    <form method="POST" action="{{ route('mi-perfil.update') }}" enctype="multipart/form-data" id="mpForm">
-      @csrf
+    <div class="mp-layout">
 
-      {{-- ───────── Vista previa en vivo ───────── --}}
-      <div class="mp-preview">
-        <div class="mp-banner-preview" id="mpBannerPreview">
-          @if($usuario->banner_url)
-            <img src="{{ $usuario->banner_url }}" id="mpBannerImgPreview" alt="Banner de perfil">
-          @else
-            <div class="mp-banner-default" id="mpBannerImgPreview"></div>
-          @endif
+      {{-- ───────── Tarjeta de perfil ───────── --}}
+      @include('partials.perfil-card', ['activo' => 'perfil'])
+
+      {{-- ───────── Contenido con pestañas ───────── --}}
+      <div class="mp-content">
+
+        <div class="mp-tabbar">
+          <button type="button" class="mp-tab mp-tab--active" data-tab="apariencia" onclick="mpSwitchTab('apariencia')">Apariencia</button>
+          <button type="button" class="mp-tab" data-tab="informacion" onclick="mpSwitchTab('informacion')">Información</button>
         </div>
-        <div class="mp-preview-body">
-          <div class="mp-avatar-ring mp-frame--{{ $marcoActual }}" id="mpFrameWrap">
-            <div class="mp-avatar-inner" id="mpAvatarInnerWrap">
-              @if($usuario->avatar_url)
-                <img src="{{ $usuario->avatar_url }}" id="mpAvatarImgPreview" alt="Foto de perfil">
-              @else
-                <div class="mp-avatar-default" style="width:100%;height:100%;">
-                  @include('partials.mp-icon', ['icon' => 'sparkle'])
-                </div>
-              @endif
-            </div>
-          </div>
-          <div class="mp-preview-info">
-            <p class="mp-preview-name">{{ $usuario->nombre }}</p>
-            <p class="mp-preview-sub">@ {{ $usuario->usuario }}</p>
-          </div>
-        </div>
-      </div>
 
-      {{-- ───────── Foto de perfil ───────── --}}
-      <div class="mp-card">
-        <div class="mp-section-badge"><span class="mp-section-dot"></span>Foto de perfil</div>
-        <h3 class="mp-section-title">Tu foto</h3>
-        <p class="mp-section-hint">Sube una imagen para reemplazar la foto predeterminada.</p>
+        {{-- ── Panel: Apariencia ── --}}
+        <div class="mp-tabpanel mp-tabpanel--active" id="tab-apariencia">
+          <form method="POST" action="{{ route('mi-perfil.update') }}" enctype="multipart/form-data" id="mpForm">
+            @csrf
 
-        <label class="mp-dropzone" for="fotoInput" id="mpDropzoneFoto">
-          <svg class="mp-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-          <div class="mp-dropzone-text">Haz clic para elegir una imagen (jpg, png o webp, máx. 4MB)</div>
-          <div class="mp-dropzone-filename" id="mpFotoFileName"></div>
-        </label>
-        <input type="file" name="foto" id="fotoInput" accept="image/png,image/jpeg,image/webp" onchange="mpFotoSeleccionada(this)">
-      </div>
+            {{-- Foto de perfil --}}
+            <div class="mp-card">
+              <div class="mp-section-badge"><span class="mp-section-dot"></span>Foto de perfil</div>
+              <h3 class="mp-section-title">Tu foto</h3>
+              <p class="mp-section-hint">Elige una foto de la galería o sube la tuya.</p>
 
-      {{-- ───────── Marco ───────── --}}
-      <div class="mp-card">
-        <div class="mp-section-badge"><span class="mp-section-dot"></span>Marco</div>
-        <h3 class="mp-section-title">Decora el borde de tu foto</h3>
-        <p class="mp-section-hint">Elige el estilo de marco para tu avatar.</p>
+              <div class="mp-frame-grid">
+                @foreach($avatares as $key => $av)
+                  <div class="mp-frame-opt">
+                    <input type="radio" name="avatar_preset" id="avatar_{{ $key }}" value="{{ $key }}"
+                           {{ $usuario->avatar_tipo === 'preset' && $usuario->avatar_preset == $key ? 'checked' : '' }}
+                           onchange="mpSelectAvatarPreset('{{ $key }}', '{{ asset($av['archivo']) }}')">
+                    <label for="avatar_{{ $key }}">
+                      <span class="mp-frame-demo-wrap">
+                        <img src="{{ asset($av['archivo']) }}" alt="{{ $av['nombre'] }}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;display:block;">
+                      </span>
+                      <span class="mp-frame-label">{{ $av['nombre'] }}</span>
+                    </label>
+                  </div>
+                @endforeach
+              </div>
 
-        <div class="mp-frame-grid">
-          @foreach($marcos as $key => $label)
-            <div class="mp-frame-opt">
-              <input type="radio" name="marco_perfil" id="marco_{{ $key }}" value="{{ $key }}"
-                     {{ $marcoActual == $key ? 'checked' : '' }}
-                     onchange="mpSelectFrame('{{ $key }}')">
-              <label for="marco_{{ $key }}">
-                <span class="mp-frame-demo-wrap mp-frame--{{ $key }}">
-                  <span class="mp-frame-demo"></span>
-                </span>
-                <span class="mp-frame-label">{{ $label }}</span>
+              <p class="mp-section-hint" style="margin-top:1.25rem;">O sube tu propia imagen:</p>
+              <label class="mp-dropzone" for="fotoInput" id="mpDropzoneFoto">
+                <svg class="mp-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                <div class="mp-dropzone-text">Haz clic para elegir una imagen (jpg, png o webp, máx. 4MB)</div>
+                <div class="mp-dropzone-filename" id="mpFotoFileName"></div>
               </label>
+              <input type="file" name="foto" id="fotoInput" accept="image/png,image/jpeg,image/webp" onchange="mpFotoSeleccionada(this)">
             </div>
-          @endforeach
+
+            {{-- Marco --}}
+            <div class="mp-card">
+              <div class="mp-section-badge"><span class="mp-section-dot"></span>Marco</div>
+              <h3 class="mp-section-title">Decora el borde de tu foto</h3>
+              <p class="mp-section-hint">Elige el estilo de marco para tu avatar.</p>
+
+              <div class="mp-frame-grid">
+                @foreach($marcos as $key => $label)
+                  <div class="mp-frame-opt">
+                    <input type="radio" name="marco_perfil" id="marco_{{ $key }}" value="{{ $key }}"
+                           {{ $marcoActual == $key ? 'checked' : '' }}
+                           onchange="mpSelectFrame('{{ $key }}')">
+                    <label for="marco_{{ $key }}">
+                      <span class="mp-frame-demo-wrap mp-frame--{{ $key }}">
+                        <span class="mp-frame-demo"></span>
+                      </span>
+                      <span class="mp-frame-label">{{ $label }}</span>
+                    </label>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+
+            {{-- Banner --}}
+            <div class="mp-card">
+              <div class="mp-section-badge"><span class="mp-section-dot"></span>Banner</div>
+              <h3 class="mp-section-title">El fondo de tu perfil</h3>
+              <p class="mp-section-hint">Elige un banner de la galería o sube el tuyo.</p>
+
+              <div class="mp-frame-grid">
+                @foreach($banners as $key => $bn)
+                  <div class="mp-frame-opt">
+                    <input type="radio" name="banner_preset" id="banner_{{ $key }}" value="{{ $key }}"
+                           {{ $usuario->banner_tipo !== 'custom' && $usuario->banner_perfil == $key ? 'checked' : '' }}
+                           onchange="mpSelectBannerPreset('{{ $key }}', `{{ $bn['gradiente'] }}`)">
+                    <label for="banner_{{ $key }}">
+                      <span class="mp-frame-demo-wrap">
+                        <span style="display:block;width:78px;height:44px;border-radius:10px;background:{{ $bn['gradiente'] }};"></span>
+                      </span>
+                      <span class="mp-frame-label">{{ $bn['nombre'] }}</span>
+                    </label>
+                  </div>
+                @endforeach
+              </div>
+
+              <p class="mp-section-hint" style="margin-top:1.25rem;">O sube tu propia imagen:</p>
+              <label class="mp-dropzone" for="bannerInput" id="mpDropzoneBanner">
+                <svg class="mp-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                <div class="mp-dropzone-text">Haz clic para elegir una imagen (jpg, png o webp, máx. 4MB)</div>
+                <div class="mp-dropzone-filename" id="mpBannerFileName"></div>
+              </label>
+              <input type="file" name="banner" id="bannerInput" accept="image/png,image/jpeg,image/webp" onchange="mpBannerSeleccionada(this)">
+            </div>
+
+            <div class="mp-actions">
+              <button type="submit" class="mp-btn-save">Guardar cambios</button>
+            </div>
+          </form>
         </div>
+
+        {{-- ── Panel: Información ── --}}
+        <div class="mp-tabpanel" id="tab-informacion">
+          <div class="mp-card">
+            <div class="mp-section-badge"><span class="mp-section-dot"></span>Información</div>
+            <h3 class="mp-section-title">Datos de tu cuenta</h3>
+            <p class="mp-section-hint">Esta es la información con la que te registraste.</p>
+
+            <div class="mp-info-row">
+              <span class="mp-info-label">Nombre</span>
+              <span class="mp-info-value">{{ $usuario->nombre }}</span>
+            </div>
+            <div class="mp-info-row">
+              <span class="mp-info-label">Usuario</span>
+              <span class="mp-info-value">@ {{ $usuario->usuario }}</span>
+            </div>
+            <div class="mp-info-row">
+              <span class="mp-info-label">Correo electrónico</span>
+              <span class="mp-info-value">{{ $usuario->correo }}</span>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      {{-- ───────── Banner ───────── --}}
-      <div class="mp-card">
-        <div class="mp-section-badge"><span class="mp-section-dot"></span>Banner</div>
-        <h3 class="mp-section-title">El fondo de tu perfil</h3>
-        <p class="mp-section-hint">Sube una imagen para reemplazar el banner predeterminado.</p>
-
-        <label class="mp-dropzone" for="bannerInput" id="mpDropzoneBanner">
-          <svg class="mp-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-          <div class="mp-dropzone-text">Haz clic para elegir una imagen (jpg, png o webp, máx. 4MB)</div>
-          <div class="mp-dropzone-filename" id="mpBannerFileName"></div>
-        </label>
-        <input type="file" name="banner" id="bannerInput" accept="image/png,image/jpeg,image/webp" onchange="mpBannerSeleccionada(this)">
-      </div>
-
-      <div class="mp-actions">
-        <button type="submit" class="mp-btn-save">Guardar cambios</button>
-      </div>
-
-    </form>
-
-    {{-- ───────── Mis preferencias (antes "Perfil Visual", página aparte) ───────── --}}
-    <div class="mp-card">
-      <div class="mp-section-badge"><span class="mp-section-dot"></span>Mis preferencias</div>
-      <h3 class="mp-section-title">Tu perfil visual</h3>
-      <p class="mp-section-hint">Esta información nos ayuda a personalizar tus recomendaciones de lentes.</p>
-
-      <form method="POST" action="{{ route('mi-perfil.preferencias') }}" id="mpPrefForm">
-        @csrf
-
-        <div class="mp-grid-2">
-          <div class="mp-input-wrap">
-            <label>Edad</label>
-            <input type="number" name="edad" min="1" max="120" placeholder="Ej: 24" value="{{ old('edad', $p->edad ?? '') }}">
-          </div>
-          <div class="mp-input-wrap">
-            <label>Sexo</label>
-            <select name="sexo">
-              <option value="">Selecciona...</option>
-              @foreach($opcionesSexo as $op)
-                <option value="{{ $op }}" {{ old('sexo', $p->sexo ?? '') == $op ? 'selected':'' }}>{{ $op }}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-
-        <div class="mp-input-wrap mp-pref-block">
-          <label>Forma de tu rostro</label>
-          <div class="mp-chip-grid">
-            @foreach($opcionesCara as $i => $op)
-              <div class="mp-chip">
-                <input type="radio" name="tipo_cara" id="cara_{{ $i }}" value="{{ $op }}" {{ old('tipo_cara', $p->tipo_cara ?? '') == $op ? 'checked':'' }}>
-                <label for="cara_{{ $i }}">{{ $op }}</label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-        <div class="mp-input-wrap mp-pref-block">
-          <label>Problema visual diagnosticado</label>
-          <div class="mp-chip-grid">
-            @foreach($opcionesProblema as $i => $op)
-              <div class="mp-chip">
-                <input type="radio" name="problema_visual" id="prob_{{ $i }}" value="{{ $op }}" {{ old('problema_visual', $p->problema_visual ?? '') == $op ? 'checked':'' }}>
-                <label for="prob_{{ $i }}">{{ $op }}</label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-        <div class="mp-input-wrap mp-pref-block">
-          <label>Síntomas visuales frecuentes</label>
-          <div class="mp-chip-grid">
-            @foreach($opcionesSintomas as $i => $op)
-              <div class="mp-chip">
-                <input type="radio" name="sintomas" id="sint_{{ $i }}" value="{{ $op }}" {{ old('sintomas', $p->sintomas ?? '') == $op ? 'checked':'' }}>
-                <label for="sint_{{ $i }}">{{ $op }}</label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-        <div class="mp-input-wrap mp-pref-block">
-          <label>Color de preferencia para tus lentes</label>
-          <div class="mp-chip-grid">
-            @foreach($opcionesColor as $i => $op)
-              <div class="mp-chip">
-                <input type="radio" name="color" id="color_{{ $i }}" value="{{ $op }}" {{ old('color', $p->color ?? '') == $op ? 'checked':'' }}>
-                <label for="color_{{ $i }}">{{ $op }}</label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-        <div class="mp-input-wrap">
-          <label>Estilo estético que prefieres</label>
-          <div class="mp-chip-grid">
-            @foreach($opcionesEstetica as $i => $op)
-              <div class="mp-chip">
-                <input type="radio" name="estetica" id="est_{{ $i }}" value="{{ $op }}" {{ old('estetica', $p->estetica ?? '') == $op ? 'checked':'' }}>
-                <label for="est_{{ $i }}">{{ $op }}</label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-        <div class="mp-actions">
-          <button type="submit" class="mp-btn-save">Guardar preferencias</button>
-        </div>
-      </form>
     </div>
 
   </div>
@@ -223,10 +174,14 @@ function mpFotoSeleccionada(input) {
   if (!input.files || !input.files[0]) return;
   document.getElementById('mpFotoFileName').textContent = input.files[0].name;
 
+  // Subir un archivo tiene prioridad sobre la galería: deseleccionamos
+  // cualquier avatar de galería que estuviera marcado.
+  document.querySelectorAll('input[name="avatar_preset"]').forEach(r => r.checked = false);
+
   const reader = new FileReader();
   reader.onload = function (e) {
-    const wrap = document.getElementById('mpAvatarInnerWrap');
-    wrap.innerHTML = '<img src="' + e.target.result + '" id="mpAvatarImgPreview" style="width:100%;height:100%;object-fit:cover;">';
+    const wrap = document.getElementById('mpCardAvatarInner');
+    wrap.innerHTML = '<img src="' + e.target.result + '" style="width:100%;height:100%;object-fit:cover;">';
   };
   reader.readAsDataURL(input.files[0]);
 }
@@ -235,17 +190,50 @@ function mpBannerSeleccionada(input) {
   if (!input.files || !input.files[0]) return;
   document.getElementById('mpBannerFileName').textContent = input.files[0].name;
 
+  document.querySelectorAll('input[name="banner_preset"]').forEach(r => r.checked = false);
+
   const reader = new FileReader();
   reader.onload = function (e) {
-    const wrap = document.getElementById('mpBannerPreview');
-    wrap.innerHTML = '<img src="' + e.target.result + '" id="mpBannerImgPreview" style="width:100%;height:100%;object-fit:cover;">';
+    const banner = document.getElementById('mpCardBanner');
+    banner.style.background = 'none';
+    banner.style.backgroundImage = 'url(' + e.target.result + ')';
+    banner.style.backgroundSize = 'cover';
+    banner.style.backgroundPosition = 'center';
   };
   reader.readAsDataURL(input.files[0]);
 }
 
+function mpSelectAvatarPreset(key, url) {
+  // Elegir una foto de la galería cancela cualquier archivo que
+  // estuviera a punto de subirse, para que gane la elección visible.
+  document.getElementById('fotoInput').value = '';
+  document.getElementById('mpFotoFileName').textContent = '';
+
+  const wrap = document.getElementById('mpCardAvatarInner');
+  wrap.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;">';
+}
+
+function mpSelectBannerPreset(key, gradiente) {
+  document.getElementById('bannerInput').value = '';
+  document.getElementById('mpBannerFileName').textContent = '';
+
+  const banner = document.getElementById('mpCardBanner');
+  banner.style.backgroundImage = 'none';
+  banner.style.background = gradiente;
+}
+
 function mpSelectFrame(key) {
-  const frameWrap = document.getElementById('mpFrameWrap');
-  frameWrap.className = 'mp-avatar-ring mp-frame--' + key;
+  const frameWrap = document.getElementById('mpCardFrameWrap');
+  frameWrap.className = 'mp-avatar-ring mp-frame--' + key + ' mp-card2-avatar';
+}
+
+function mpSwitchTab(tab) {
+  document.querySelectorAll('.mp-tab').forEach(btn => {
+    btn.classList.toggle('mp-tab--active', btn.dataset.tab === tab);
+  });
+  document.querySelectorAll('.mp-tabpanel').forEach(panel => {
+    panel.classList.toggle('mp-tabpanel--active', panel.id === 'tab-' + tab);
+  });
 }
 </script>
 @endsection

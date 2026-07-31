@@ -146,3 +146,70 @@ input[type="file"]{ display:none; }
   .mp-title{ font-size:1.5rem; }
   .mp-grid-2{ grid-template-columns:1fr; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Layout de dos columnas: tarjeta de perfil + contenido
+   ══════════════════════════════════════════════════════════════ */
+.mp-layout{ display:grid; grid-template-columns:280px 1fr; gap:1.75rem; align-items:start; }
+
+/* ---------- Tarjeta de perfil (banner + avatar + stats + navegación) ---------- */
+.mp-card2{
+  border-radius:24px; overflow:hidden;
+  border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05);
+  backdrop-filter:blur(18px); position:sticky; top:100px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+.mp-card2-banner{
+  height:90px; background-size:cover; background-position:center;
+  background-color:#241442;
+}
+.mp-card2-body{
+  padding:0 1.5rem 1.5rem; margin-top:-46px;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+.mp-card2-avatar{ margin-bottom:.75rem; }
+.mp-card2-name{ color:#fff; font-weight:700; font-size:1.05rem; margin:0; }
+.mp-card2-user{ color:rgba(255,255,255,.55); font-size:.8rem; margin:.15rem 0 1.25rem; }
+
+.mp-card2-stats{ display:flex; flex-direction:column; gap:.6rem; width:100%; margin-bottom:1.25rem; }
+.mp-card2-stat{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.6rem .9rem; border-radius:12px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+}
+.mp-card2-stat-num{ color:#fff; font-weight:700; font-size:1rem; }
+.mp-card2-stat-label{ color:rgba(255,255,255,.55); font-size:.75rem; text-align:right; }
+
+.mp-pillnav{ display:flex; gap:.35rem; width:100%; background:rgba(255,255,255,.04); padding:.3rem; border-radius:12px; }
+.mp-pill{
+  flex:1; text-align:center; padding:.55rem .5rem; border-radius:9px;
+  color:rgba(255,255,255,.65); font-size:.82rem; font-weight:600;
+  text-decoration:none; transition:all .2s;
+}
+.mp-pill:hover{ color:#fff; }
+.mp-pill--active{
+  background:linear-gradient(135deg,var(--violet),var(--lavender)); color:#fff;
+  box-shadow:0 6px 18px rgba(123,79,207,.45);
+}
+
+/* ---------- Pestañas dentro del contenido ---------- */
+.mp-tabbar{ display:flex; gap:.5rem; margin-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,.12); }
+.mp-tab{
+  background:none; border:none; padding:.85rem 1.1rem;
+  color:rgba(255,255,255,.55); font-size:.9rem; font-weight:600; cursor:pointer;
+  border-bottom:2px solid transparent; transition:all .2s; font-family:'DM Sans', sans-serif;
+}
+.mp-tab:hover{ color:#fff; }
+.mp-tab--active{ color:#fff; border-bottom-color:var(--lavender); }
+.mp-tabpanel{ display:none; }
+.mp-tabpanel--active{ display:block; }
+
+.mp-info-row{ display:flex; justify-content:space-between; align-items:center; padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.mp-info-row:last-child{ border-bottom:none; }
+.mp-info-label{ color:rgba(255,255,255,.55); font-size:.85rem; }
+.mp-info-value{ color:#fff; font-size:.92rem; font-weight:600; }
+
+@media(max-width:760px){
+  .mp-layout{ grid-template-columns:1fr; }
+  .mp-card2{ position:static; }
+}

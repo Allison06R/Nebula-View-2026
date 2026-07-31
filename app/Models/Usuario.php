@@ -22,8 +22,12 @@ class Usuario extends Authenticatable
      
         'rol',
         'sesion',
+        'avatar_tipo',
+        'avatar_preset',
         'avatar_custom',
         'marco_perfil',
+        'banner_perfil',
+        'banner_tipo',
         'banner_custom',
     ];
  
@@ -52,22 +56,47 @@ class Usuario extends Authenticatable
     }
 
     /**
-     * URL de la foto de perfil subida por el usuario.
-     * Si no ha subido ninguna, esto es null y la vista dibuja
-     * el avatar predeterminado (placeholder CSS).
+     * URL de la foto de perfil a mostrar.
+     * - Si avatar_tipo es 'custom' y hay un archivo subido -> esa imagen.
+     * - Si avatar_tipo es 'preset' -> la imagen de la galería
+     *   (config/apariencia.php) que el usuario eligió.
+     * - Si no hay nada configurado -> null y la vista dibuja el
+     *   placeholder predeterminado.
      */
     public function getAvatarUrlAttribute(): ?string
     {
-        return $this->avatar_custom ? asset('storage/' . $this->avatar_custom) : null;
+        if ($this->avatar_tipo === 'custom' && $this->avatar_custom) {
+            return asset('storage/' . $this->avatar_custom);
+        }
+
+        $archivo = config("apariencia.avatares.{$this->avatar_preset}.archivo");
+        return $archivo ? asset($archivo) : null;
     }
 
     /**
-     * URL del banner de perfil subido por el usuario.
-     * Si no ha subido ninguno, esto es null y la vista dibuja
-     * el banner predeterminado (placeholder CSS).
+     * URL del banner subido por el usuario, o null si el banner activo
+     * es uno de la galería (esos se dibujan como degradado CSS, ver
+     * getBannerGradientAttribute) o si no hay ninguno configurado.
      */
     public function getBannerUrlAttribute(): ?string
     {
-        return $this->banner_custom ? asset('storage/' . $this->banner_custom) : null;
+        if ($this->banner_tipo === 'custom' && $this->banner_custom) {
+            return asset('storage/' . $this->banner_custom);
+        }
+
+        return null;
+    }
+
+    /**
+     * Degradado CSS del banner de galería elegido (solo aplica cuando
+     * banner_tipo no es 'custom').
+     */
+    public function getBannerGradientAttribute(): ?string
+    {
+        if ($this->banner_tipo === 'custom') {
+            return null;
+        }
+
+        return config("apariencia.banners.{$this->banner_perfil}.gradiente");
     }
 }

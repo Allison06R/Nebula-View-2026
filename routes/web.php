@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/mi-perfil',  [MiPerfilController::class, 'show'])->name('mi-perfil.show');
     Route::post('/mi-perfil', [MiPerfilController::class, 'update'])->name('mi-perfil.update');
+
+    Route::get('/preferencias',  [MiPerfilController::class, 'preferenciasShow'])->name('preferencias.show');
     Route::post('/mi-perfil/preferencias', [MiPerfilController::class, 'preferencias'])->name('mi-perfil.preferencias');
 
     // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.

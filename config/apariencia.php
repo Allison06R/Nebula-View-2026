@@ -2,13 +2,12 @@
 
 // Catálogo centralizado de opciones de apariencia de perfil.
 //
-// La foto de perfil y el banner ya NO usan una galería de opciones:
-// cada usuario ve un placeholder predeterminado (dibujado por CSS en
-// miperfil.css: .mp-avatar-default y .mp-banner-default) hasta que
-// sube su propia imagen para reemplazarlo.
-//
-// El único catálogo que sigue siendo una lista de opciones es el de
-// marcos (el borde decorativo alrededor de la foto de perfil).
+// El usuario puede ELEGIR su foto de perfil y su banner entre una
+// galería de opciones predeterminadas, o bien SUBIR su propia imagen
+// (se guarda en storage/app/public y la ruta queda en la BD, columnas
+// avatar_custom / banner_custom de la tabla usuario). Cuál de las dos
+// fuentes se muestra lo indican avatar_tipo / banner_tipo ('preset' o
+// 'custom').
 
 return [
 
@@ -18,6 +17,44 @@ return [
         'doble'    => 'Anillo doble',
         'brillo'   => 'Brillo cosmico',
         'punteado' => 'Puntos orbitales',
+    ],
+
+    // Galería de fotos de perfil predeterminadas. La ruta es relativa
+    // a /public (se resuelve con asset()).
+    'avatares' => [
+        'avatar-1' => [
+            'nombre'  => 'Nebulita',
+            'archivo' => 'images/avatares/avatar-1.png',
+        ],
+        'avatar-2' => [
+            'nombre'  => 'Explorador',
+            'archivo' => 'images/avatares/avatar-2.png',
+        ],
+        'avatar-3' => [
+            'nombre'  => 'Exploradora',
+            'archivo' => 'images/avatares/avatar-3.png',
+        ],
+    ],
+
+    // Galería de banners predeterminados. Son degradados CSS (no
+    // requieren archivo de imagen) que respetan la paleta de la marca.
+    'banners' => [
+        'banner-1' => [
+            'nombre'    => 'Nébula',
+            'gradiente' => 'linear-gradient(135deg,#6B2FA0,#9B59B6,#D946EF)',
+        ],
+        'banner-2' => [
+            'nombre'    => 'Medianoche',
+            'gradiente' => 'linear-gradient(135deg,#1e1b4b,#6B2FA0,#C39BD3)',
+        ],
+        'banner-3' => [
+            'nombre'    => 'Aurora',
+            'gradiente' => 'linear-gradient(135deg,#9B59B6,#E91E8C,#C39BD3)',
+        ],
+        'banner-4' => [
+            'nombre'    => 'Atardecer cósmico',
+            'gradiente' => 'linear-gradient(135deg,#E91E8C,#9B59B6,#6B2FA0)',
+        ],
     ],
 
 ];

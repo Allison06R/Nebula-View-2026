@@ -4,6 +4,16 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/modelo.css') }}">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+<style>
+  .custom-model-viewer {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    background: transparent;
+    --poster-color: transparent;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -84,6 +94,53 @@
           <span class="ftag">Unisex</span>
           <span class="ftag">UV400</span>
           <span class="ftag">Ligero</span>
+        </div>
+        <div class="featured-actions">
+          <a href="#" class="btn-primary">Ver en tienda →</a>
+          <button class="btn-ghost" title="Guardar">♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEPARATOR -->
+  <div class="sep">
+    <div class="sep-inner">
+      <div class="sep-line"></div>
+      Nuevo modelo
+      <div class="sep-line"></div>
+    </div>
+  </div>
+
+  <!-- CUSTOM UPLOADED MODEL -->
+  <div class="featured-section reveal">
+    <h2>Lentes azules<br><em>en 3D</em></h2>
+    <div class="featured-card">
+      <div class="featured-viewer">
+        <model-viewer
+          class="custom-model-viewer"
+          src="{{ asset('models/blue-eyeglasses.glb') }}"
+          alt="Lentes azules en 3D"
+          camera-controls
+          auto-rotate
+          rotation-per-second="20deg"
+          shadow-intensity="1"
+          exposure="1"
+          camera-orbit="0deg 75deg 105%"
+          min-camera-orbit="auto auto 50%"
+          max-camera-orbit="auto auto 200%">
+        </model-viewer>
+      </div>
+      <div class="featured-info">
+        <div class="featured-badge">Nuevo</div>
+        <div class="featured-title">Blue Eyeglasses</div>
+        <div class="featured-subtitle">Modelo 3D subido por el equipo</div>
+        <div class="featured-divider"></div>
+        <p class="featured-desc">Montura azul con líneas modernas. Gira, acerca y examina el modelo con total libertad usando el visor interactivo.</p>
+        <div class="featured-tags">
+          <span class="ftag">Azul</span>
+          <span class="ftag">Moderno</span>
+          <span class="ftag">Unisex</span>
         </div>
         <div class="featured-actions">
           <a href="#" class="btn-primary">Ver en tienda →</a>

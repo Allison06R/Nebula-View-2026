@@ -16,7 +16,7 @@ class ChatWidgetController extends Controller
 
         $systemPrompt = [
             'role' => 'system',
-            'content' => 'Eres el asistente virtual de Nebula View, una plataforma de optometría y '
+            'content' => 'Eres el asistente virtual de Nebula View llamada Nebulita, una plataforma de optometría y '
                 . 'recomendación de lentes. Responde siempre en español, de forma breve, cálida y '
                 . 'profesional. Ayuda a los usuarios con dudas sobre el test de diagnóstico visual, '
                 . 'recomendaciones de lentes, problemas visuales, salud visual, hábitos, modelos 3D, '

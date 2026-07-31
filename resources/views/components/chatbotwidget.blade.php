@@ -9,17 +9,20 @@
 <div id="nv-chat" class="nv-chat">
 
     <button id="nv-chat-bubble" aria-label="Abrir asistente Nebula View" aria-expanded="false">
-        <span id="nv-icon-eye">👁</span>
+        <img id="nv-icon-avatar" src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita">
         <svg id="nv-icon-close" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
+        <span id="nv-chat-tooltip">Asistente Nebulita</span>
     </button>
 
-    <div id="nv-chat-window" role="dialog" aria-label="Asistente Nebula View">
+    <div id="nv-chat-window" role="dialog" aria-label="Asistente Nebulita">
         <div class="nv-chat-header">
-            <div class="nv-chat-avatar">👁</div>
+            <div class="nv-chat-avatar">
+                <img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulitaa">
+            </div>
             <div class="nv-chat-header-info">
-                <div class="nv-chat-name">Asistente Nebula View</div>
+                <div class="nv-chat-name">Asistente Nebulita</div>
                 <div class="nv-chat-status"><span class="nv-dot"></span>En línea</div>
             </div>
             <button id="nv-chat-close" type="button" aria-label="Minimizar asistente">
@@ -98,10 +101,57 @@
         transition: transform 0.18s ease;
     }
     #nv-chat-bubble:hover { transform: scale(1.06); }
-    #nv-chat-bubble #nv-icon-eye { font-size: 24px; line-height: 1; }
+    #nv-chat-bubble #nv-icon-avatar {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        pointer-events: none;
+    }
     #nv-chat-bubble #nv-icon-close { width: 24px; height: 24px; display: none; }
-    .nv-chat.open #nv-chat-bubble #nv-icon-eye { display: none; }
+    .nv-chat.open #nv-chat-bubble #nv-icon-avatar { display: none; }
     .nv-chat.open #nv-chat-bubble #nv-icon-close { display: block; }
+
+    /* Tooltip "Asistente Nebulita" que aparece al lado del bubble en hover */
+    #nv-chat-tooltip {
+        position: absolute;
+        left: calc(100% + 14px);
+        top: 50%;
+        transform: translateY(-50%) translateX(-8px);
+        background: var(--plum, #4a2e6b);
+        color: var(--white, #fff);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        padding: 8px 14px;
+        border-radius: 999px;
+        box-shadow: var(--shadow-lifted, 0 6px 18px rgba(0,0,0,0.18));
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    #nv-chat-tooltip::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        background: var(--plum, #4a2e6b);
+        border-radius: 2px;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    #nv-chat-bubble:hover #nv-chat-tooltip {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+    /* No mostrar el tooltip cuando el chat ya está abierto */
+    .nv-chat.open #nv-chat-tooltip { display: none; }
+
+    @media (max-width: 480px) {
+        #nv-chat-tooltip { display: none; }
+    }
 
     #nv-chat-window {
         position: absolute;
@@ -155,6 +205,12 @@
         display: flex; align-items: center; justify-content: center;
         font-size: 19px;
         flex-shrink: 0;
+        overflow: hidden;
+    }
+    .nv-chat-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     .nv-chat-header-info { flex: 1; min-width: 0; }
     .nv-chat-name {
