@@ -9,27 +9,25 @@
 
 @section('content')
 
-<!-- BANNER -->
-<section class="page-banner">
-  <div class="page-banner__bg"></div>
-  <div class="page-banner__orb page-banner__orb--1"></div>
-  <div class="page-banner__orb page-banner__orb--2"></div>
-  <div class="page-banner__orb page-banner__orb--3"></div>
-  <div class="page-banner__content">
-    <h1 class="page-banner__title">Clínicas</h1>
-    <p class="page-banner__sub">Encuentra la clínica de salud visual ideal para ti</p>
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="hero-accent-rect"></div>
+  <div class="page-hero-title">
+    <h1>Clínicas</h1>
+    <div class="breadcrumb"><a>Encuentra la clínica de salud visual ideal para ti</a></div>
   </div>
-</section>
+</div>
 
 <!-- INFORMACIÓN -->
-<section class="info" id="inicio">
+<section class="info reveal" id="inicio">
   <div class="info__inner">
     <div class="info__text">
-      <div class="info__label">INFORMACIÓN</div>
+      <div class="section-kicker">Información</div>
       <h2 class="info__title">¿Qué es una<br/><em>clínica de salud visual?</em></h2>
       <p class="info__body">Una clínica de salud visual es un centro médico especializado en el diagnóstico, tratamiento y seguimiento de enfermedades y defectos del sistema ocular. Cuenta con oftalmólogos, optometristas y tecnología de vanguardia para brindar atención integral a pacientes de todas las edades.</p>
     </div>
-    <div class="info__image">
+    <div class="info__image img-placeholder" style="min-height:360px;">
       <img src="{{ asset('images/clinicaa.avif') }}" alt="Clínica de salud visual" />
     </div>
   </div>

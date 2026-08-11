@@ -8,6 +8,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
+use App\Http\Controllers\ContactanosController;
 
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
 Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
@@ -23,6 +24,8 @@ Route::view('/clinicas', 'clinicas')->name('clinicas');
 Route::get('/sobrenosotras',      fn() => view('sobrenosotras'))->name('sobrenosotras');
 Route::view('/lentes', 'lentes')->name('lentes');
 Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
+Route::get('/contactanos',  [ContactanosController::class, 'index'])->name('contactanos');
+Route::post('/contactanos', [ContactanosController::class, 'enviar'])->name('contactanos.enviar');
 
 
 // ─── Autenticación ───────────────────────────────────────────────────────────
@@ -42,8 +45,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/mi-perfil',  [MiPerfilController::class, 'show'])->name('mi-perfil.show');
     Route::post('/mi-perfil', [MiPerfilController::class, 'update'])->name('mi-perfil.update');
-
-    Route::get('/preferencias',  [MiPerfilController::class, 'preferenciasShow'])->name('preferencias.show');
     Route::post('/mi-perfil/preferencias', [MiPerfilController::class, 'preferencias'])->name('mi-perfil.preferencias');
 
     // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.

@@ -8,20 +8,18 @@
 
 @section('content')
 
-  <!-- BANNER -->
-  <section class="page-banner">
-    <div class="page-banner__bg"></div>
-    <div class="page-banner__orb page-banner__orb--1"></div>
-    <div class="page-banner__orb page-banner__orb--2"></div>
-    <div class="page-banner__orb page-banner__orb--3"></div>
-    <div class="page-banner__content">
-      <h1 class="page-banner__title">Lentes</h1>
-      <p class="page-banner__sub">Conoce los tipos de lentes y encuentra el ideal para tu visión</p>
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="hero-accent-rect"></div>
+    <div class="page-hero-title">
+      <h1>Lentes</h1>
+      <div class="breadcrumb"><a>Conoce los tipos de lentes y encuentra el ideal para tu visión</a></div>
     </div>
-  </section>
+  </div>
 
   <!-- INTRO -->
-  <section class="intro" id="inicio">
+  <section class="intro reveal" id="inicio">
     <div class="intro__text">
       <div class="intro__kicker">INFORMACIÓN</div>
       <h2 class="intro__title">¿Qué son los<br/><em>lentes ópticos?</em></h2>

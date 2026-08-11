@@ -36,8 +36,8 @@
         <p>La Helix Nebula es conocida popularmente como el “ojo de Dios” por su gran parecido con un ojo humano, lo que la convierte en una referencia simbólica perfecta para relacionar el universo con la visión.</p>
       </div>
     </div>
-    <div class="img-placeholder" style="min-height:360px;">
-  <img src="http://127.0.0.1:8000/images/favicon%20y%20logo.png" alt="Nebula View" />
+    <div class="img-placeholder logo-showcase" style="min-height:360px;">
+  <img src="{{ asset('images/favicon y logo.png') }}" alt="Nebula View" />
 </div>
   </div>
 

@@ -240,6 +240,6 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
    Solo overrides de color, la estructura/posición no cambia.
    ══════════════════════════════════════════════════════════════ */
 [data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
-[data-theme="dark"] .habits-card { background: var(--white); border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .habits-card { background: var(--lilac); border-color: rgba(155,89,182,0.15); }
 [data-theme="dark"] .solar-block { background: linear-gradient(135deg, #2E2814, #332A12); border-color: rgba(255,180,0,0.2); }
 [data-theme="dark"] .solar-hi { background: var(--white); border-color: rgba(255,180,0,0.25); }

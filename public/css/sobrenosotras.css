@@ -87,6 +87,17 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   display: block;
 }
 
+.logo-showcase {
+  background: linear-gradient(135deg, var(--blush) 0%, var(--lilac) 100%);
+  border: 1px solid rgba(155,89,182,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.logo-showcase img { padding: 20px; }
+[data-theme="dark"] .logo-showcase { background: linear-gradient(135deg, #1B0E33 0%, #241530 100%); border-color: rgba(155,89,182,0.25); }
+
 
 /* — NAV BAR — */
 nav#navbar {
@@ -587,6 +598,5 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 [data-theme="dark"] .card:hover { border-color: #A9A3F0; }
 [data-theme="dark"] .photo-circle { background: #2A2650; border-color: #534AB7; }
 [data-theme="dark"] .initials { color: #A9A3F0; }
-[data-theme="dark"] .name { color: #E6E4FB; }
 [data-theme="dark"] .role { color: #A9A3F0; }
 [data-theme="dark"] .tag { background: #2A2650; color: #B9B3F5; }
