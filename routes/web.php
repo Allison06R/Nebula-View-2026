@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/mi-perfil',  [MiPerfilController::class, 'show'])->name('mi-perfil.show');
     Route::post('/mi-perfil', [MiPerfilController::class, 'update'])->name('mi-perfil.update');
+
+    Route::get('/mi-perfil/preferencias',  [MiPerfilController::class, 'preferenciasShow'])->name('preferencias.show');
     Route::post('/mi-perfil/preferencias', [MiPerfilController::class, 'preferencias'])->name('mi-perfil.preferencias');
 
     // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.
@@ -57,6 +59,7 @@ Route::middleware('noauth')->group(function () {
     Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
     Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
 });
+
 // ─── Panel de administración ──────────────────────────────────────────────────
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');

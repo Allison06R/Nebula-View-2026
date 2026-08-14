@@ -4,16 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/modelo.css') }}">
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-<style>
-  .custom-model-viewer {
-    width: 100%;
-    height: 100%;
-    min-height: 420px;
-    background: transparent;
-    --poster-color: transparent;
-  }
-</style>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 @endsection
 
 @section('content')
@@ -103,57 +94,27 @@
     </div>
   </div>
 
-  <!-- SEPARATOR -->
-  <div class="sep">
-    <div class="sep-inner">
-      <div class="sep-line"></div>
-      Nuevo modelo
-      <div class="sep-line"></div>
-    </div>
-  </div>
-
-  <!-- CUSTOM UPLOADED MODEL -->
-  <div class="featured-section reveal">
-    <h2>Lentes azules<br><em>en 3D</em></h2>
-    <div class="featured-card">
-      <div class="featured-viewer">
-        <model-viewer
-          class="custom-model-viewer"
-          src="{{ asset('models/blue-eyeglasses.glb') }}"
-          alt="Lentes azules en 3D"
-          camera-controls
-          auto-rotate
-          rotation-per-second="20deg"
-          shadow-intensity="1"
-          exposure="1"
-          camera-orbit="0deg 75deg 105%"
-          min-camera-orbit="auto auto 50%"
-          max-camera-orbit="auto auto 200%">
-        </model-viewer>
-      </div>
-      <div class="featured-info">
-        <div class="featured-badge">Nuevo</div>
-        <div class="featured-title">Blue Eyeglasses</div>
-        <div class="featured-subtitle">Modelo 3D subido por el equipo</div>
-        <div class="featured-divider"></div>
-        <p class="featured-desc">Montura azul con líneas modernas. Gira, acerca y examina el modelo con total libertad usando el visor interactivo.</p>
-        <div class="featured-tags">
-          <span class="ftag">Azul</span>
-          <span class="ftag">Moderno</span>
-          <span class="ftag">Unisex</span>
-        </div>
-        <div class="featured-actions">
-          <a href="#" class="btn-primary">Ver en tienda →</a>
-          <button class="btn-ghost" title="Guardar">♡</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- CATALOG -->
   <div class="catalog-section reveal">
     <h2>Más modelos en<br><em>nuestro catálogo</em></h2>
     <div class="catalog-grid">
+
+      <div class="catalog-card" data-glb="{{ asset('models/purple_eyeglasses_3d_model.glb') }}" data-name="Purple Eyeglasses" data-desc="Montura en tono morado con acabado brillante. Gira, acerca y examina el modelo en 3D real desde cualquier ángulo." data-price="$99 USD">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/lentesmorados.jpg') }}" alt="Purple Eyeglasses" class="catalog-card-photo">
+          <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-name">Purple Eyeglasses</div>
+          <div class="catalog-card-type">montura moderna</div>
+          <div class="catalog-card-desc">Montura en tono morado con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <div class="catalog-card-foot">
+            <div class="catalog-card-price">$99 <span>USD</span></div>
+            <button class="catalog-card-btn">+</button>
+          </div>
+        </div>
+      </div>
 
       <div class="catalog-card">
         <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#f0e8ff,#dce8f5);">
@@ -203,6 +164,38 @@
         </div>
       </div>
 
+      <div class="catalog-card">
+        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#fff0e8,#fde5f0);">
+          😎
+          <span class="catalog-card-badge">Clásico</span>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-name">Cat Eye Elegance</div>
+          <div class="catalog-card-type">montura cat-eye</div>
+          <div class="catalog-card-desc">Líneas felinas ascendentes con acabado brillante. Un toque retro-glam para rostros ovalados y corazón.</div>
+          <div class="catalog-card-foot">
+            <div class="catalog-card-price">$110 <span>USD</span></div>
+            <button class="catalog-card-btn">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card">
+        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#e8eefd,#e8f7f5);">
+          🤓
+          <span class="catalog-card-badge popular">Popular</span>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-name">Square Bold</div>
+          <div class="catalog-card-type">montura cuadrada</div>
+          <div class="catalog-card-desc">Silueta cuadrada de líneas marcadas en acetato mate. Ideal para rostros redondos que buscan definición.</div>
+          <div class="catalog-card-foot">
+            <div class="catalog-card-price">$105 <span>USD</span></div>
+            <button class="catalog-card-btn">+</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -235,6 +228,29 @@
 
 </div><!-- /page-content -->
 
+<!-- PRODUCT 3D MODAL -->
+<div class="model-modal-overlay" id="modelModalOverlay">
+  <div class="model-modal-box">
+    <button class="model-modal-close" id="modelModalClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="model-modal-header">
+      <div class="model-modal-badge">Vista 3D interactiva</div>
+      <h3 id="modelModalName"></h3>
+    </div>
+
+    <div class="model-modal-viewer">
+      <model-viewer id="modelModalViewer" camera-controls auto-rotate shadow-intensity="1" exposure="1" touch-action="pan-y" loading="eager"></model-viewer>
+    </div>
+
+    <div class="model-modal-info">
+      <p id="modelModalDesc"></p>
+      <div class="model-modal-price" id="modelModalPrice"></div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 
 
@@ -265,5 +281,38 @@ hamBtn.addEventListener('click', () => mobileMenu.classList.contains('open') ? c
 drawerCloseBtn.addEventListener('click', closeMenu);
 menuBackdrop.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// MODELO 3D — POPUP
+const modelModalOverlay = document.getElementById('modelModalOverlay');
+const modelModalViewer  = document.getElementById('modelModalViewer');
+const modelModalName    = document.getElementById('modelModalName');
+const modelModalDesc    = document.getElementById('modelModalDesc');
+const modelModalPrice   = document.getElementById('modelModalPrice');
+const modelModalClose   = document.getElementById('modelModalClose');
+
+function openModelModal(card) {
+  const glb = card.getAttribute('data-glb');
+  if (!glb) return;
+  modelModalViewer.setAttribute('src', glb);
+  modelModalName.textContent  = card.getAttribute('data-name')  || '';
+  modelModalDesc.textContent  = card.getAttribute('data-desc')  || '';
+  modelModalPrice.textContent = card.getAttribute('data-price') || '';
+  modelModalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModelModal() {
+  modelModalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  modelModalViewer.removeAttribute('src'); // detiene el render al cerrar c;
+}
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.catalog-card-btn')) return; // no abrir al presionar "+"
+  const card = e.target.closest('.catalog-card[data-glb]');
+  if (card) openModelModal(card);
+  if (e.target === modelModalOverlay) closeModelModal();
+  if (e.target.closest('#modelModalClose')) closeModelModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modelModalOverlay.classList.contains('open')) closeModelModal(); });
 </script>
 @endsection

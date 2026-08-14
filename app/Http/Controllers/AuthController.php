@@ -19,9 +19,7 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
  
-        // Auth::attempt busca por defecto el campo "password" en el array,
-        // pero el modelo ya sabe (via getAuthPassword) que debe comparar
-        // contra la columna "contrasena".
+        
         $credentials = [
             'correo'   => $request->correo,
             'password' => $request->password,
