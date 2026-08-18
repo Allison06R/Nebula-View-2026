@@ -418,11 +418,7 @@ window.addEventListener('scroll', updateScrollProgress);
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
 </script>
-<script>
-  // URL de la API de traducción (Groq)
-  window.NEBULA_TRANSLATOR_URL = "{{ route('translate') }}";
-</script>
-<script src="{{ asset('js/translate.js') }}"></script>
+
 <script src="{{ asset('js/preloader.js') }}"></script>
 @yield('scripts')
 
