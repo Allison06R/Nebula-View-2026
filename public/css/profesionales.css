@@ -233,7 +233,6 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .ps-wrap {
   font-family: 'Nunito', sans-serif;
   padding: 40px 5%;
-  background: var(--white);
 }
 .ps-title {
   text-align: center;
@@ -352,7 +351,6 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .doc-right p {
   font-size: 0.9rem;
   line-height: 1.75;
-  color: #3a2060;
   text-align: justify;
 }
 

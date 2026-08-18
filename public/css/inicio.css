@@ -402,3 +402,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
 [data-theme="dark"] .trust-bar { background: #4C2178; }
 [data-theme="dark"] nav#navbar { background: rgba(20,9,31,0.92); border-bottom-color: rgba(201,160,220,0.12); }
 [data-theme="dark"] body { background: linear-gradient(160deg, var(--lilac) 0%, #5826a3 40%, #2f0535 100%); }
+
+[data-theme="dark"] .nv-left { 
+  background: rgb(42, 5, 81); }

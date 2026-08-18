@@ -1,4 +1,17 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Estas 3 variables no existían en theme.css: por eso el botón "Ver en
+   tienda", el círculo "+" de las tarjetas, los números de "¿Cómo
+   funciona?" y el badge "Nuevo" se veían sin color/transparentes.
+   Se definen aquí apuntando a los colores de marca ya existentes, así
+   se adaptan solas a modo claro/oscuro (--plum, --violet y --pink ya
+   cambian de valor dentro de [data-theme="dark"] en theme.css). */
+:root {
+  --brand-solid: var(--plum);
+  --brand-solid-2: var(--violet);
+  --brand-pink-solid: var(--pink);
+}
+
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
@@ -238,7 +251,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .featured-actions { display: flex; gap: 12px; }
 .btn-primary {
   flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: linear-gradient(135deg, var(--plum), var(--violet));
+  background: linear-gradient(135deg, var(--brand-solid), var(--brand-solid-2));
   color: white; border: none;
   padding: 13px 20px; border-radius: 50px;
   font-size: 13px; font-weight: 600;
@@ -287,19 +300,29 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   position: relative;
   overflow: hidden;
 }
+/* Tarjetas con foto real (data-glb / .has-3d): fondo neutro,
+   sin el degradado morado/rosa detrás — ese degradado es solo
+   decorativo para los íconos emoji de las tarjetas sin foto. */
+.catalog-card-thumb.has-3d {
+  background: var(--white);
+}
+[data-theme="dark"] .catalog-card-thumb.has-3d {
+  background: #F4F0FA;
+}
 .catalog-card-thumb::after {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 50%, rgba(107,47,160,0.08) 100%);
   pointer-events: none;
 }
+.catalog-card-thumb.has-3d::after { display: none; }
 .catalog-card-badge {
   position: absolute; top: 12px; right: 12px;
-  background: var(--plum); color: white;
+  background: var(--brand-solid); color: white;
   font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
   padding: 4px 10px; border-radius: 20px;
 }
-.catalog-card-badge.new { background: var(--pink); }
+.catalog-card-badge.new { background: var(--brand-pink-solid); }
 .catalog-card-badge.popular { background: linear-gradient(135deg, #f59e0b, #ef4444); }
 .catalog-card-body { padding: 22px 22px 24px; }
 .catalog-card-name {
@@ -317,9 +340,21 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   font-family: 'Playfair Display', serif;
 }
 .catalog-card-price span { font-size: 12px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+/* .catalog-card-name usa var(--heading) y .catalog-card-price usa var(--plum):
+   ambas variables están pensadas para pintar texto sobre fondos OSCUROS, así
+   que en modo oscuro se vuelven claras/pastel. El problema es que
+   .catalog-card se queda con fondo claro a propósito en ambos modos
+   (ver "[data-theme=dark] .catalog-card" más abajo), así que ese texto
+   claro terminaba casi invisible sobre una tarjeta también clara.
+   Se fija aquí a los mismos tonos oscuros del modo claro, ya que la
+   tarjeta nunca cambia de fondo. */
+[data-theme="dark"] .catalog-card-name { color: #1A0A2E; }
+[data-theme="dark"] .catalog-card-price { color: #6B2FA0; }
+
 .catalog-card-btn {
   width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--plum), var(--violet));
+  background: linear-gradient(135deg, var(--brand-solid), var(--brand-solid-2));
   border: none; border-radius: 50%; color: white;
   font-size: 16px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -327,6 +362,19 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 }
 .catalog-card-btn:hover { transform: scale(1.1); box-shadow: 0 6px 18px rgba(107,47,160,0.4); }
 
+/* El botón "Ver en 3D" (catalog-card-btn--view) trae un <svg> sin fill/stroke
+   definidos, así que el navegador lo pintaba negro sólido a su tamaño por
+   defecto (mucho más grande que el botón), tapando el círculo entero como
+   una mancha negra. Se define su tamaño real y un trazo blanco a juego con
+   los demás íconos de la página. */
+.catalog-card-btn--view svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 /* ── HOW IT WORKS ── */
 .how-section {
   margin-bottom: 80px;
@@ -359,7 +407,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 }
 .how-num {
   width: 52px; height: 52px;
-  background: linear-gradient(135deg, var(--plum), var(--violet));
+  background: linear-gradient(135deg, var(--brand-solid), var(--brand-solid-2));
   color: white;
   font-family: 'Playfair Display', serif;
   font-size: 20px; font-weight: 900;
@@ -408,10 +456,45 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
 .view3d-btn svg { width: 13px; height: 13px; stroke: white; fill: none; stroke-width: 2; }
 .catalog-card:hover .view3d-btn { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* ── PRODUCT 3D MODAL ── */
+/* ══════════════════════════════════════════════════════════════
+   PRODUCT 3D MODAL — rediseñado
+   ------------------------------------------------------------
+   Antes: header con degradado que usaba var(--plum)/var(--mid)/
+   var(--pink); esas variables se invierten a tonos PASTEL en modo
+   oscuro (están pensadas para texto, no para fondos sólidos), así
+   que el header terminaba viéndose lavanda pálido con texto blanco
+   casi ilegible. También estaba apilado (header → visor → info),
+   lo que dejaba el visor 3D pequeño y poco protagonista.
+
+   Ahora: layout de dos columnas (visor grande a la izquierda,
+   info a la derecha, como la tarjeta "Modelo destacado"), con una
+   paleta cósmica FIJA (--mm-*) que no depende de [data-theme],
+   así el modal se ve igual de bien en modo claro y oscuro.
+   ══════════════════════════════════════════════════════════════ */
 .model-modal-overlay {
+  /* Paleta cósmica FIJA: antes estas variables solo se definían dentro
+     de [data-theme="dark"], así que en modo claro TODAS quedaban sin
+     valor (panel transparente, texto invisible, botones sin fondo).
+     Y ni siquiera en modo oscuro estaban completas: faltaban
+     --mm-pink, --mm-plum, --mm-violet y --mm-viewer-bg, así que el
+     puntito del badge, el CTA y el fondo del visor tampoco pintaban.
+     Ahora se definen una sola vez aquí y se usan igual en claro/oscuro. */
+  --mm-panel: #1f1140;
+  --mm-viewer-bg: #170b30;
+  --mm-plum: #6B2FA0;
+  --mm-violet: #9B59B6;
+  --mm-pink: #E91E8C;
+  --mm-lavender: #C9A8E0;
+  --mm-border: rgba(155,89,182,0.28);
+  --mm-surface: rgba(255,255,255,0.06);
+  --mm-text: rgba(255,255,255,0.94);
+  --mm-muted: rgba(255,255,255,0.58);
+  --mm-close-bg: rgba(255,255,255,0.1);
+  --mm-close-border: rgba(255,255,255,0.16);
+  --mm-close-icon: #ffffff;
+
   position: fixed; inset: 0; z-index: 600;
-  background: rgba(15,5,30,0.75);
+  background: rgba(10,4,20,0.78);
   backdrop-filter: blur(8px);
   display: flex; align-items: center; justify-content: center;
   padding: 24px;
@@ -421,82 +504,192 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
 .model-modal-overlay.open { opacity: 1; pointer-events: all; }
 
 .model-modal-box {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  width: 100%; max-width: 780px; max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.45);
+  background: var(--mm-panel);
+  border-radius: 28px;
+  width: 100%; max-width: 920px; max-height: 88vh;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px var(--mm-border);
   transform: translateY(30px) scale(.97);
   transition: transform .4s cubic-bezier(.4,0,.2,1);
-  border: 1px solid var(--a-border);
   position: relative;
 }
 .model-modal-overlay.open .model-modal-box { transform: translateY(0) scale(1); }
 
 .model-modal-close {
-  position: absolute; top: 18px; right: 18px; z-index: 5;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.2); border: none; color: white;
+  position: absolute; top: 16px; right: 16px; z-index: 8;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--mm-close-bg); border: 1px solid var(--mm-close-border);
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: background .2s, transform .25s;
+  transition: background .2s, transform .25s, border-color .2s;
 }
-.model-modal-close svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-.model-modal-close:hover { background: rgba(255,255,255,0.35); transform: rotate(90deg); }
+.model-modal-close svg { width: 15px; height: 15px; stroke: var(--mm-close-icon); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.model-modal-close:hover { background: var(--mm-surface); border-color: var(--mm-border); transform: rotate(90deg); }
 
-/* Header degradado, mismo estilo que la tarjeta "Astigmatismo" */
-.model-modal-header {
-  position: relative;
-  padding: 32px 36px 28px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  background: linear-gradient(135deg, var(--mid) 0%, var(--plum) 50%, var(--pink) 100%);
-}
-.model-modal-badge {
-  display: inline-flex; width: fit-content; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.22);
-  color: white; font-size: 10px; font-weight: 700;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 20px; margin-bottom: 14px;
-}
-.model-modal-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px; font-weight: 700; color: white; margin: 0;
+/* Grid principal: visor + info */
+.model-modal-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  max-height: 88vh;
 }
 
-/* Visor 3D */
+/* Columna del visor 3D */
 .model-modal-viewer {
-  width: 100%; height: 340px;
-  background: radial-gradient(circle at 50% 40%, var(--mid), var(--dark));
+  position: relative;
+  min-height: 460px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(155,89,182,0.35), transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(233,30,140,0.18), transparent 50%),
+    var(--mm-viewer-bg);
+  border-right: 1px solid var(--mm-border);
+  display: flex; align-items: center; justify-content: center;
 }
-.model-modal-viewer model-viewer { width: 100%; height: 100%; }
+.model-modal-viewer-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(255,255,255,0.06), transparent 60%);
+  pointer-events: none;
+}
+.model-modal-viewer model-viewer { width: 100%; height: 100%; position: relative; z-index: 1; --poster-color: transparent; }
 
-/* Info inferior */
-.model-modal-info { padding: 28px 36px 32px; }
-.model-modal-info p {
-  font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 20px;
+.model-modal-topbadge {
+  position: absolute; top: 18px; left: 18px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(6px);
+  color: white; font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 20px;
+}
+.model-modal-topbadge::before { content: '●'; font-size: 7px; color: var(--mm-pink); }
+
+.model-modal-hint {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(0,0,0,0.4); backdrop-filter: blur(6px);
+  color: rgba(255,255,255,0.85);
+  font-size: 10.5px; font-weight: 500; letter-spacing: .2px;
+  padding: 6px 14px; border-radius: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.model-modal-hint svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.85); fill: none; stroke-width: 1.8; }
+
+/* Columna de información */
+.model-modal-info {
+  background: var(--mm-panel);
+  overflow-y: auto;
+}
+.model-modal-info-inner {
+  padding: 36px 34px 32px;
+  display: flex; flex-direction: column;
+}
+
+.model-modal-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; color: var(--mm-text);
+  margin: 0 0 18px;
+  line-height: 1.2;
+  padding-right: 36px;
+}
+
+.model-modal-toprow {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 12px;
 }
 .model-modal-price {
   font-family: 'Playfair Display', serif;
-  font-size: 26px; font-weight: 700; color: var(--plum);
+  font-size: 25px; font-weight: 700; color: var(--mm-lavender);
 }
 
-@media (max-width: 640px) {
-  .model-modal-header { padding: 24px 22px 22px; }
-  .model-modal-header h3 { font-size: 21px; }
-  .model-modal-viewer { height: 260px; }
-  .model-modal-info { padding: 22px 22px 26px; }
+/* Botón de favorito (corazón) */
+.model-modal-fav {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 16px 9px 12px;
+  border-radius: 30px;
+  border: 1.5px solid var(--mm-border);
+  background: var(--mm-surface);
+  color: var(--mm-text);
+  font-size: 12.5px; font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, transform .15s;
+  flex-shrink: 0;
+}
+.model-modal-fav svg {
+  width: 17px; height: 17px;
+  fill: none; stroke: var(--mm-lavender); stroke-width: 2;
+  transition: fill .2s, stroke .2s, transform .25s;
+}
+.model-modal-fav:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); }
+.model-modal-fav.active {
+  background: linear-gradient(135deg, var(--mm-pink), var(--mm-plum));
+  border-color: transparent;
+  color: white;
+}
+.model-modal-fav.active svg { fill: white; stroke: white; }
+.model-modal-fav.active .model-modal-fav-label::before { content: '¡Guardado! '; }
+.model-modal-fav.pop svg { animation: mmFavPop .4s ease; }
+@keyframes mmFavPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.35); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
 
-/* ── DARK MODE ──
-   La mayoría de colores en esta hoja usan var(--plum), var(--heading), etc.,
-   que ya cambian solas en modo oscuro gracias a theme.css. Aquí solo van
-   los casos con colores fijos (no variables) que necesitan su propio ajuste. */
+.model-modal-info-inner > p {
+  font-size: 13.5px; color: var(--mm-muted); line-height: 1.8; margin-bottom: 24px;
+}
+
+/* Specs: material, montura, rostro recomendado */
+.model-modal-specs {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 28px;
+}
+.mm-spec-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px;
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-border);
+  border-radius: 12px;
+  font-size: 12.5px;
+}
+.mm-spec-label {
+  color: var(--mm-muted); letter-spacing: .3px;
+}
+.mm-spec-val {
+  color: var(--mm-text); font-weight: 600; text-align: right;
+}
+
+/* CTA inferior */
+.model-modal-actions { margin-top: auto; }
+.model-modal-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--mm-plum), var(--mm-violet));
+  color: white; text-decoration: none;
+  padding: 14px 20px; border-radius: 50px;
+  font-size: 13px; font-weight: 600;
+  transition: transform .2s, box-shadow .25s;
+}
+.model-modal-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(107,47,160,0.5); }
+
+@media (max-width: 760px) {
+  .model-modal-overlay { padding: 0; }
+  .model-modal-box { max-width: 100%; max-height: 100vh; height: 100%; border-radius: 0; }
+  .model-modal-grid { grid-template-columns: 1fr; grid-template-rows: 42vh 1fr; max-height: 100vh; overflow-y: auto; }
+  .model-modal-viewer { min-height: 0; border-right: none; border-bottom: 1px solid var(--mm-border); }
+  .model-modal-info-inner { padding: 26px 22px 28px; }
+  .model-modal-info h3 { font-size: 21px; }
+  .model-modal-fav-label { display: none; }
+  .model-modal-fav { padding: 10px; }
+}
+
+
 [data-theme="dark"] .page-hero-bg { background: linear-gradient(120deg, #1B2430 0%, #241530 40%, #16222E 100%); }
 [data-theme="dark"] .hero-accent-rect { background: linear-gradient(180deg, rgba(91,163,201,0.18) 0%, rgba(91,163,201,0.02) 100%); }
 [data-theme="dark"] .catalog-card { background: var(--white); }
-[data-theme="dark"] .model-modal-box { background: var(--white); border-color: var(--a-border); }
-[data-theme="dark"] .model-modal-close { background: rgba(255,255,255,0.12); }
-[data-theme="dark"] .model-modal-close:hover { background: rgba(255,255,255,0.22); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {

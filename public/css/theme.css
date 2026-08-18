@@ -19,8 +19,6 @@
   --pink:     #E91E8C;   /* rosa/magenta — acentos, alertas "evitar" */
   --dark:     #1A0A2E;   /* morado casi negro — fondos oscuros, footer */
   --white:    #FFFFFF;
-
-  /* ── Texto ── */
 --text:  #2D1B4E;      /* texto principal */
   --muted: #7B6F8A;      /* texto secundario / descripciones */
   --heading: #1A0A2E;    /* texto de títulos — SIEMPRE usar esta en vez de --dark para color de texto.

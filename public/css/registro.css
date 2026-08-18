@@ -524,3 +524,5 @@ main.login-wrapper::before {
 [data-theme="dark"] .t-txt span { color: #A99BC0; }
 [data-theme="dark"] .toast.toast-ok .t-ico { background: rgba(52,211,153,0.18); color: #3FE087; }
 [data-theme="dark"] .toast.toast-err .t-ico { background: rgba(239,68,68,0.18); color: #FF6B5B; }
+[data-theme="dark"] .nv-left { 
+  background: rgb(42, 5, 81); }

@@ -160,6 +160,8 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 }
 .drawer-footer p      { font-size: 12px; color: var(--muted); line-height: 1.6; }
 .drawer-footer strong { color: var(--plum); }
+.drawer-footer a      { text-decoration: none; }
+.drawer-footer a:hover strong { text-decoration: underline; }
 
 .drawer-nav a {
   display: flex !important;

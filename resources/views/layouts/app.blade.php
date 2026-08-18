@@ -196,7 +196,7 @@
     </div>
 
     <div class="drawer-footer">
-      <p>¿Necesitas ayuda?<br><strong>Contáctanos en cualquier momento</strong></p>
+      <p>¿Necesitas ayuda?<br><a href="{{ route('contactanos') }}"><strong>Contáctanos en cualquier momento</strong></a></p>
     </div>
 
   </div>
@@ -300,12 +300,13 @@
         <li><a href="{{ route('salud-visual') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Salud Visual</a></li>
         <li><a href="{{ route('modelos3d') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Catálogo</a></li>
         <li><a href="{{ route('profesionales') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Profesionales</a></li>
+        <li><a href="{{ route('contactanos') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Contáctanos</a></li>
       </ul>
     </div>
     <div>
       <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Help</h4>
       <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
-        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Ayuda en línea</a></li>
+        <li><a href="{{ route('contactanos') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Ayuda en línea</a></li>
         <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Política de privacidad</a></li>
         <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Términos</a></li>
       </ul>
@@ -416,18 +417,13 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress);
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
-/* ══════════════════════════════
-   TRADUCCIÓN (ES / EN)
-══════════════════════════════ */
-function switchLang() {
-  const current = "{{ app()->getLocale() }}";
-  const next = current === 'es' ? 'en' : 'es';
-  window.location.href = `{{ url('/lang') }}/${next}`;
-}
-document.getElementById('langToggle')?.addEventListener('click', switchLang);
-document.getElementById('langToggleMobile')?.addEventListener('click', switchLang);
 </script>
- <script src="{{ asset('js/preloader.js') }}"></script>
+<script>
+  // URL de la API de traducción (Groq)
+  window.NEBULA_TRANSLATOR_URL = "{{ route('translate') }}";
+</script>
+<script src="{{ asset('js/translate.js') }}"></script>
+<script src="{{ asset('js/preloader.js') }}"></script>
 @yield('scripts')
 
 @unless(request()->routeIs('test'))

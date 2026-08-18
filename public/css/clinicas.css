@@ -305,7 +305,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.25rem 0;
   cursor: pointer;
-  font-weight: 600; font-size: 0.97rem; color: var(--heading);
+  font-weight: 600; font-size: 0.97rem;  
   transition: color .2s;
   background: none; border: none; width: 100%; text-align: left;
   font-family: 'DM Sans', sans-serif;

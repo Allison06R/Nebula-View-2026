@@ -9,10 +9,13 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
 use App\Http\Controllers\ContactanosController;
+use App\Http\Controllers\TranslateController;
 
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
 Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
 
+// ─── Traductor global (disponible en todo el sitio) ────────────────────────────
+Route::post('/translate', [TranslateController::class, 'translate'])->name('translate');
 // ─── Páginas públicas ────────────────────────────────────────────────────────
 Route::get('/',                   fn() => view('home'))->name('home');
 Route::get('/problemas-visuales', fn() => view('problemas-visuales'))->name('problemas-visuales');

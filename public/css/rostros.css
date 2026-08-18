@@ -233,7 +233,7 @@ html { scroll-behavior: smooth; }
 .lens-item{
   display:flex;align-items:center;gap:12px;
   padding:12px 14px;border-radius:12px;
-  background:var(--white);border:1px solid rgba(107,47,160,.1);
+ border:1px solid rgba(107,47,160,.1);
   transition:border-color .2s,transform .2s;
 }
 .lens-item:hover{border-color:var(--violet);transform:translateX(4px);}
@@ -314,7 +314,7 @@ html { scroll-behavior: smooth; }
 .tips-strip{
   margin:0 60px 60px;border-radius:24px;
   background:var(--plum);
-  background:linear-gradient(135deg,var(--plum) 0%,var(--mid) 100%);
+  background:linear-gradient(135deg,#8734ad 0%,#33135f 100%);
   padding:48px 52px;
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:24px;

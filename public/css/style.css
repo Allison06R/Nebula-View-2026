@@ -193,7 +193,7 @@
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 3.5vw, 44px);
     font-weight: 700;
-    color: var(--heading);
+    color: #751fa7;
     margin-bottom: 14px;
   }
   .section-sub {
@@ -797,7 +797,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 [data-theme="dark"] .hero-badge { background: rgba(155,89,182,0.18); border-color: rgba(155,89,182,0.3); }
-[data-theme="dark"] .condition-item { background: var(--white); }
+[data-theme="dark"] .condition-item { background:#32195a; }
 [data-theme="dark"] .condition-item.active { background: var(--mid); color: white; border-color: var(--mid); }
 [data-theme="dark"] .condition-item.active .condition-dot { background: white; }
 [data-theme="dark"] .products { background: var(--white); }

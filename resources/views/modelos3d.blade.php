@@ -99,7 +99,15 @@
     <h2>Más modelos en<br><em>nuestro catálogo</em></h2>
     <div class="catalog-grid">
 
-      <div class="catalog-card" data-glb="{{ asset('models/purple_eyeglasses_3d_model.glb') }}" data-name="Purple Eyeglasses" data-desc="Montura en tono morado con acabado brillante. Gira, acerca y examina el modelo en 3D real desde cualquier ángulo." data-price="$99 USD">
+      <div class="catalog-card"
+           data-glb="{{ asset('models/purple_eyeglasses_3d_model.glb') }}"
+           data-name="Purple Eyeglasses"
+           data-desc="Montura en tono morado con acabado brillante y líneas modernas. Ideal para quienes buscan un toque de color distintivo en el día a día."
+           data-price="$99 USD"
+           data-material="Acetato premium"
+           data-montura="Full rim"
+           data-rostro="Ovalado · Redondo"
+           data-tags="Moderno,Unisex,UV400,Ligero">
         <div class="catalog-card-thumb has-3d">
           <img src="{{ asset('images/lentesmorados.jpg') }}" alt="Purple Eyeglasses" class="catalog-card-photo">
           <span class="catalog-card-badge new">Nuevo</span>
@@ -111,87 +119,146 @@
           <div class="catalog-card-desc">Montura en tono morado con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$99 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="catalog-card">
-        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#f0e8ff,#dce8f5);">
-          👓
+     
+      <div class="catalog-card"
+           data-glb="{{ asset('models/glasses 3d model.glb') }}"
+           data-name="Blue Eyeglasses"
+           data-desc="Montura en tono azul con acabado satinado. Un diseño moderno y versátil, pensado para uso diario en la oficina o la calle."
+           data-price="$89 USD"
+           data-material="Acetato mate"
+           data-montura="Full rim"
+           data-rostro="Cuadrado · Ovalado"
+           data-tags="Moderno,Unisex,UV400,Ligero">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/Lentesazules.jpg') }}" alt="Blue Eyeglasses" class="catalog-card-photo">
           <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
         <div class="catalog-card-body">
-          <div class="catalog-card-name">Aviator Pro</div>
-          <div class="catalog-card-type">montura metálica</div>
-          <div class="catalog-card-desc">Estilo aviador clásico con puente doble y patillas metálicas. Perfectas para rostros ovalados y cuadrados.</div>
+          <div class="catalog-card-name">Blue Eyeglasses</div>
+          <div class="catalog-card-type">montura moderna</div>
+          <div class="catalog-card-desc">Montura en tono azul con acabado satinado. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$89 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="catalog-card">
-        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#fdf0e8,#fce8d5);">
-          🕶️
-          <span class="catalog-card-badge popular">Popular</span>
+      
+      <div class="catalog-card"
+           data-glb="{{ asset('models/round glasses 3d model.glb') }}"
+           data-name="Red Round Eyeglasses"
+           data-desc="Montura circular en tono rojo intenso, inspirada en el estilo retro. Un modelo con mucha personalidad para looks atrevidos."
+           data-price="$92 USD"
+           data-material="Metal ligero"
+           data-montura="Full rim"
+           data-rostro="Cuadrado · Alargado"
+           data-tags="Retro,Unisex,UV400">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/Lentesrojos.jpg') }}" alt="Red Eyeglasses" class="catalog-card-photo">
+          <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
         <div class="catalog-card-body">
-          <div class="catalog-card-name">Wayfarer Luxe</div>
-          <div class="catalog-card-type">acetato grueso</div>
-          <div class="catalog-card-desc">Diseño wayfarer moderno con acetato de alta densidad. Disponible en 6 colores distintos para toda ocasión.</div>
-          <div class="catalog-card-foot">
-            <div class="catalog-card-price">$120 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="catalog-card">
-        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#e8f5f0,#d5f0e8);">
-          🥽
-          <span class="catalog-card-badge">Clásico</span>
-        </div>
-        <div class="catalog-card-body">
-          <div class="catalog-card-name">Round Vision</div>
+          <div class="catalog-card-name">Red Round Eyeglasses</div>
           <div class="catalog-card-type">montura redonda</div>
-          <div class="catalog-card-desc">Inspirada en el estilo retro de los años 70. Montura circular fina de titanio con gran elegancia y ligereza.</div>
+          <div class="catalog-card-desc">Montura circular en tono rojo intenso, con estilo retro. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <div class="catalog-card-foot">
+            <div class="catalog-card-price">$92 <span>USD</span></div>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card"
+           data-glb="{{ asset('models/green eyeglasses 3d model.glb') }}"
+           data-name="Green Eyeglasses"
+           data-desc="Montura en tono verde con acabado brillante. Un color fresco y distintivo para quienes buscan destacar."
+           data-price="$95 USD"
+           data-material="Acetato premium"
+           data-montura="Full rim"
+           data-rostro="Ovalado · Redondo"
+           data-tags="Vibrante,Unisex,UV400,Ligero">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/Lentesverdes.jpg') }}" alt="Green Eyeglasses" class="catalog-card-photo">
+          <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-name">Green Eyeglasses</div>
+          <div class="catalog-card-type">montura moderna</div>
+          <div class="catalog-card-desc">Montura en tono verde con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$95 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="catalog-card">
-        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#fff0e8,#fde5f0);">
-          😎
-          <span class="catalog-card-badge">Clásico</span>
+      <div class="catalog-card"
+           data-glb="{{ asset('models/black eyeglass frame 3d model.glb') }}"
+           data-name="Black Eyeglasses"
+           data-desc="Montura clásica en negro mate, versátil y atemporal. Combina con cualquier estilo y es una apuesta segura para uso diario."
+           data-price="$109 USD"
+           data-material="Acetato premium"
+           data-montura="Full rim"
+           data-rostro="Ovalado · Cuadrado"
+           data-tags="Clásico,Unisex,UV400">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/Lentesnegros.jpg') }}" alt="Black Eyeglasses" class="catalog-card-photo">
+          <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
         <div class="catalog-card-body">
-          <div class="catalog-card-name">Cat Eye Elegance</div>
-          <div class="catalog-card-type">montura cat-eye</div>
-          <div class="catalog-card-desc">Líneas felinas ascendentes con acabado brillante. Un toque retro-glam para rostros ovalados y corazón.</div>
+          <div class="catalog-card-name">Black Eyeglasses</div>
+          <div class="catalog-card-type">montura clásica</div>
+          <div class="catalog-card-desc">Montura clásica en negro mate, versátil y atemporal. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <div class="catalog-card-foot">
-            <div class="catalog-card-price">$110 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
+            <div class="catalog-card-price">$109 <span>USD</span></div>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="catalog-card">
-        <div class="catalog-card-thumb" style="background: linear-gradient(135deg,#e8eefd,#e8f7f5);">
-          🤓
-          <span class="catalog-card-badge popular">Popular</span>
+       <div class="catalog-card"
+           data-glb="{{ asset('models/aviator glasses 3d model.glb') }}"
+           data-name="Aviator Glasses"
+           data-desc="Montura clásica en tono aviator con detalles retro y una silueta atemporal. Perfecta para aquellos que buscan un estilo versátil y duradero."
+           data-price="$119 USD"
+           data-material="Acetato premium"
+           data-montura="Full rim"
+           data-rostro="Ovalado · Redondo"
+           data-tags="Moderno,Unisex,UV400,Ligero">
+        <div class="catalog-card-thumb has-3d">
+          <img src="{{ asset('images/Lentesaviator.jpg') }}" alt="Purple Eyeglasses" class="catalog-card-photo">
+          <span class="catalog-card-badge new">Nuevo</span>
+          <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
         <div class="catalog-card-body">
-          <div class="catalog-card-name">Square Bold</div>
-          <div class="catalog-card-type">montura cuadrada</div>
-          <div class="catalog-card-desc">Silueta cuadrada de líneas marcadas en acetato mate. Ideal para rostros redondos que buscan definición.</div>
+          <div class="catalog-card-name">Purple Eyeglasses</div>
+          <div class="catalog-card-type">montura moderna</div>
+          <div class="catalog-card-desc">Montura en tono morado con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <div class="catalog-card-foot">
-            <div class="catalog-card-price">$105 <span>USD</span></div>
-            <button class="catalog-card-btn">+</button>
+            <div class="catalog-card-price">$99 <span>USD</span></div>
+            <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -235,18 +302,44 @@
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
 
-    <div class="model-modal-header">
-      <div class="model-modal-badge">Vista 3D interactiva</div>
-      <h3 id="modelModalName"></h3>
-    </div>
+    <div class="model-modal-grid">
 
-    <div class="model-modal-viewer">
-      <model-viewer id="modelModalViewer" camera-controls auto-rotate shadow-intensity="1" exposure="1" touch-action="pan-y" loading="eager"></model-viewer>
-    </div>
+      <!-- Columna izquierda: visor 3D -->
+      <div class="model-modal-viewer">
+        <div class="model-modal-viewer-glow"></div>
+        <div class="model-modal-topbadge">Vista 3D interactiva</div>
+        <model-viewer id="modelModalViewer" camera-controls auto-rotate shadow-intensity="1" exposure="1" touch-action="pan-y" loading="eager"></model-viewer>
+        <div class="model-modal-hint">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
+          Arrastra para girar · Pellizca/scroll para zoom
+        </div>
+      </div>
 
-    <div class="model-modal-info">
-      <p id="modelModalDesc"></p>
-      <div class="model-modal-price" id="modelModalPrice"></div>
+      <!-- Columna derecha: información -->
+      <div class="model-modal-info">
+        <div class="model-modal-info-inner">
+
+          <h3 id="modelModalName"></h3>
+
+          <div class="model-modal-toprow">
+            <div class="model-modal-price" id="modelModalPrice"></div>
+            <button class="model-modal-fav" id="modelModalFav" type="button" aria-pressed="false" aria-label="Agregar a favoritos">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.4 3.5 6.9C19 16.4 12 21 12 21Z"/></svg>
+              <span class="model-modal-fav-label">Favorito</span>
+            </button>
+          </div>
+
+          <p id="modelModalDesc"></p>
+
+          <div class="model-modal-specs" id="modelModalSpecs"></div>
+
+          <div class="model-modal-actions">
+            <a href="#" class="model-modal-cta">Ver en tienda →</a>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -259,57 +352,135 @@
 
 @section('scripts')
 <script>
-// NAV scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', scrollY > 30));
-
-// REVEAL
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-revealEls.forEach(el => obs.observe(el));
-
-// HAMBURGER
-const hamBtn = document.getElementById('hamBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuBackdrop = document.getElementById('menuBackdrop');
-const drawerCloseBtn = document.getElementById('drawerClose');
-function openMenu() { mobileMenu.classList.add('open'); hamBtn.classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeMenu() { mobileMenu.classList.remove('open'); hamBtn.classList.remove('open'); document.body.style.overflow = ''; }
-hamBtn.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
-drawerCloseBtn.addEventListener('click', closeMenu);
-menuBackdrop.addEventListener('click', closeMenu);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
+// ══════════════════════════════════════════
 // MODELO 3D — POPUP
+// (navbar, hamburguesa, menú móvil y la animación .reveal
+//  YA se manejan globalmente en layouts/app.blade.php —
+//  NO se repiten aquí para evitar "Identifier already declared")
+// ══════════════════════════════════════════
 const modelModalOverlay = document.getElementById('modelModalOverlay');
 const modelModalViewer  = document.getElementById('modelModalViewer');
 const modelModalName    = document.getElementById('modelModalName');
 const modelModalDesc    = document.getElementById('modelModalDesc');
 const modelModalPrice   = document.getElementById('modelModalPrice');
 const modelModalClose   = document.getElementById('modelModalClose');
+const modelModalSpecs   = document.getElementById('modelModalSpecs');
+const modelModalFav     = document.getElementById('modelModalFav');
+
+// DIAGNÓSTICO: ¿existen los elementos del modal en el DOM?
+if (!modelModalOverlay || !modelModalViewer) {
+  console.error('[MODAL 3D] ❌ No se encontró #modelModalOverlay o #modelModalViewer en el HTML.');
+} else {
+  console.log('[MODAL 3D] ✅ Elementos del modal encontrados correctamente.');
+}
+
+// DIAGNÓSTICO: ¿está definido el custom element <model-viewer>?
+window.addEventListener('load', () => {
+  if (customElements.get('model-viewer')) {
+    console.log('[MODAL 3D] ✅ model-viewer.js cargó correctamente.');
+  } else {
+    console.error('[MODAL 3D] ❌ model-viewer NO está definido. El script de unpkg.com no cargó.');
+  }
+});
+
+// ══════════════════════════════════════════
+// FAVORITOS (persistidos en localStorage)
+// ══════════════════════════════════════════
+const FAV_KEY = 'nebula_favoritos_3d';
+
+function getFavoritos() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+  catch { return []; }
+}
+function esFavorito(nombre) {
+  return getFavoritos().includes(nombre);
+}
+function toggleFavorito(nombre) {
+  let favs = getFavoritos();
+  if (favs.includes(nombre)) {
+    favs = favs.filter(f => f !== nombre);
+  } else {
+    favs.push(nombre);
+  }
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+  return favs.includes(nombre);
+}
+function pintarEstadoFavorito(nombre) {
+  const activo = esFavorito(nombre);
+  modelModalFav.classList.toggle('active', activo);
+  modelModalFav.setAttribute('aria-pressed', activo ? 'true' : 'false');
+}
+
+let currentCardName = '';
+
+modelModalFav?.addEventListener('click', () => {
+  if (!currentCardName) return;
+  const activo = toggleFavorito(currentCardName);
+  modelModalFav.classList.toggle('active', activo);
+  modelModalFav.setAttribute('aria-pressed', activo ? 'true' : 'false');
+  // Pequeña animación de "pop"
+  modelModalFav.classList.remove('pop');
+  void modelModalFav.offsetWidth; // reinicia la animación
+  modelModalFav.classList.add('pop');
+});
+
+// ══════════════════════════════════════════
+// Construir specs (Material / Montura / Rostro recomendado)
+// y tags a partir de los data-* de la tarjeta
+// ══════════════════════════════════════════
+function buildSpecs(card) {
+  const specsMap = [
+    { key: 'material', label: 'Material' },
+    { key: 'montura',  label: 'Tipo de montura' },
+    { key: 'rostro',   label: 'Recomendado para rostro' },
+  ];
+  modelModalSpecs.innerHTML = '';
+  specsMap.forEach(({ key, label }) => {
+    const val = card.getAttribute('data-' + key);
+    if (!val) return;
+    const row = document.createElement('div');
+    row.className = 'mm-spec-row';
+    row.innerHTML = `<span class="mm-spec-label">${label}</span><span class="mm-spec-val">${val}</span>`;
+    modelModalSpecs.appendChild(row);
+  });
+}
 
 function openModelModal(card) {
   const glb = card.getAttribute('data-glb');
+  console.log('[MODAL 3D] Intentando abrir modelo:', glb);
   if (!glb) return;
+
+  currentCardName = card.getAttribute('data-name') || '';
+
   modelModalViewer.setAttribute('src', glb);
-  modelModalName.textContent  = card.getAttribute('data-name')  || '';
+  modelModalName.textContent  = currentCardName;
   modelModalDesc.textContent  = card.getAttribute('data-desc')  || '';
   modelModalPrice.textContent = card.getAttribute('data-price') || '';
+
+  buildSpecs(card);
+  pintarEstadoFavorito(currentCardName);
+
   modelModalOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  // DIAGNÓSTICO: ¿el archivo .glb realmente carga?
+  modelModalViewer.addEventListener('error', (e) => {
+    console.error('[MODAL 3D] ❌ ERROR al cargar el .glb. URL:', glb, 'Detalle:', e.detail);
+  }, { once: true });
+  modelModalViewer.addEventListener('load', () => {
+    console.log('[MODAL 3D] ✅ Modelo 3D cargado y renderizado correctamente.');
+  }, { once: true });
 }
+
 function closeModelModal() {
   modelModalOverlay.classList.remove('open');
   document.body.style.overflow = '';
-  modelModalViewer.removeAttribute('src'); // detiene el render al cerrar c;
+  modelModalViewer.removeAttribute('src'); // detiene el render al cerrar
 }
 
 document.addEventListener('click', e => {
-  if (e.target.closest('.catalog-card-btn')) return; // no abrir al presionar "+"
   const card = e.target.closest('.catalog-card[data-glb]');
-  if (card) openModelModal(card);
+  if (card) { openModelModal(card); return; }
   if (e.target === modelModalOverlay) closeModelModal();
   if (e.target.closest('#modelModalClose')) closeModelModal();
 });

@@ -251,7 +251,6 @@
 /* ===== FAQ ===== */
 .faq {
   padding: 6rem 6%;
-  background: var(--white);
 }
 .faq__inner {
   max-width: 1100px; margin: 0 auto;
