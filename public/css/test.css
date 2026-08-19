@@ -350,6 +350,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   transition:border-color .25s,background .25s,transform .25s;
 }
 .btn-cta-secondary:hover{border-color:var(--violet);background:var(--blush);transform:translateY(-2px);}
+.btn-cta-secondary:disabled{opacity:.5;pointer-events:none;transform:none;}
 
 /* ── FOOTER ── */
 footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;}

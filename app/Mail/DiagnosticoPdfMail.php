@@ -32,7 +32,7 @@ class DiagnosticoPdfMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.diagnostico-pdf',
+    markdown: 'emails.diagnostico-pdf',
             with: [
                 'usuario' => $this->usuario,
                 'test'    => $this->test,

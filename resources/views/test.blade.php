@@ -139,6 +139,7 @@
       </div>
 
       <div class="result-ctas cta-row">
+        <button class="btn-cta-secondary" id="sendPdfBtn" disabled>💾 Guardando test…</button>
         <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary">📖 Ver más sobre tu condición</a>
         <button class="btn-cta-secondary" id="historyBtn">📋 Ver historial</button>
         <button class="btn-cta-secondary" id="retestBtn">🔄 Repetir test</button>
@@ -275,6 +276,69 @@ let chatHistory = [];
 let isChatLoading = false;
 
 // ═══════════════════════════════════════════════════
+//  PERSISTENCIA DE SESIÓN — para que al recargar la página
+//  a mitad del test (o viendo el resultado) no te saque,
+//  sino que te deje justo donde estabas.
+// ═══════════════════════════════════════════════════
+const SESSION_KEY = 'nebulaTestSession';
+
+function persistState(screen, extra = {}) {
+  try {
+    const state = {
+      screen, // 'questions' | 'result'
+      currentQ,
+      answers,
+      resultMode: extra.resultMode ?? null, // 'ai' | 'local' | null
+      result: extra.result ?? null,
+      scores: extra.scores ?? null,
+      testId: extra.testId !== undefined ? extra.testId : currentTestId,
+    };
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(state));
+  } catch (e) { /* almacenamiento no disponible, no pasa nada grave */ }
+}
+
+function loadPersistedState() {
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function clearPersistedState() {
+  try { sessionStorage.removeItem(SESSION_KEY); } catch (e) { /* noop */ }
+}
+
+// Reconstruye la pantalla en la que estaba el usuario antes de recargar.
+function restoreSession() {
+  const state = loadPersistedState();
+  if (!state) return;
+
+  Object.assign(answers, state.answers || {});
+  currentQ = state.currentQ || 1;
+
+  if (state.screen === 'result' && (state.resultMode === 'ai' || state.resultMode === 'local')) {
+    document.getElementById('intro-screen').style.display = 'none';
+    document.getElementById('questions-screen').style.display = 'none';
+    document.getElementById('loading-screen').style.display = 'none';
+    document.getElementById('testCard').classList.add('wide-card');
+
+    if (state.resultMode === 'local') {
+      showLocalResult(state.scores || {});
+      setSendPdfState('error');
+    } else {
+      renderResults(state.result, state.scores || {});
+      currentTestId = state.testId || null;
+      setSendPdfState(currentTestId ? 'ready' : 'error');
+    }
+  } else if (state.screen === 'questions') {
+    document.getElementById('intro-screen').style.display = 'none';
+    document.getElementById('questions-screen').style.display = 'block';
+    document.getElementById('testCard').classList.remove('wide-card');
+    showQ(currentQ);
+  }
+}
+
+// ═══════════════════════════════════════════════════
 //  BUILD QUESTIONS
 // ═══════════════════════════════════════════════════
 function buildQuestions() {
@@ -329,6 +393,7 @@ function buildQuestions() {
         opt.classList.add('selected');
         answers[q] = opt.dataset.val;
         if (nextBtn) nextBtn.disabled = false;
+        persistState('questions');
       });
     });
 
@@ -356,6 +421,8 @@ function showQ(n) {
     const nb = block.querySelector('.btn-next');
     if (nb) nb.disabled = false;
   }
+
+  persistState('questions');
 }
 
 document.getElementById('startBtn').addEventListener('click', () => {
@@ -545,12 +612,21 @@ async function showResult() {
     document.getElementById('loading-screen').style.display = 'none';
     renderResults(result, sc);
     saveToHistory(result, sc);
-    saveToServer(result, sc);
+    persistState('result', { resultMode: 'ai', result, scores: sc, testId: null });
+
+    setSendPdfState('saving');
+    const id = await saveToServer(result, sc);
+    currentTestId = id;
+    setSendPdfState(id ? 'ready' : 'error');
+    persistState('result', { resultMode: 'ai', result, scores: sc, testId: id });
 
   } catch(err) {
     clearInterval(msgInterval);
     document.getElementById('loading-screen').style.display = 'none';
     showLocalResult(sc);
+    currentTestId = null;
+    setSendPdfState('error');
+    persistState('result', { resultMode: 'local', result: null, scores: sc, testId: null });
   }
 }
 
@@ -807,9 +883,12 @@ function renderHistoryPreview() {
 // que inició sesión. Es "fire and forget": si falla, el usuario igual
 // ve su resultado en pantalla, solo que no quedará en el historial
 // persistente ni podrá pedir el PDF de ese test en particular.
+// Guarda el test en el servidor y devuelve su id_test (o null si falla).
+// Ya no es "fire and forget": necesitamos el id para poder ofrecer el
+// botón de "Enviar PDF" en la propia pantalla de resultado.
 async function saveToServer(result, sc) {
   try {
-    await fetch(TEST_GUARDAR_URL, {
+    const res = await fetch(TEST_GUARDAR_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -818,10 +897,60 @@ async function saveToServer(result, sc) {
       },
       body: JSON.stringify({ resultado: result, scores: sc })
     });
+    if (!res.ok) throw new Error('guardar-failed');
+    const data = await res.json();
+    return data.id_test ?? null;
   } catch (e) {
     console.warn('No se pudo guardar el test en el servidor:', e);
+    return null;
   }
 }
+
+// ═══════════════════════════════════════════════════
+//  ENVIAR PDF — desde la propia pantalla de resultado
+// ═══════════════════════════════════════════════════
+let currentTestId = null;
+
+function setSendPdfState(state) {
+  const btn = document.getElementById('sendPdfBtn');
+  if (!btn) return;
+  if (state === 'saving') {
+    btn.disabled = true;
+    btn.textContent = '💾 Guardando test…';
+  } else if (state === 'ready') {
+    btn.disabled = false;
+    btn.textContent = '📧 Enviar PDF a mi correo';
+  } else if (state === 'sending') {
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+  } else if (state === 'error') {
+    btn.disabled = true;
+    btn.textContent = '⚠️ PDF no disponible';
+  }
+}
+
+async function enviarPdfTestActual() {
+  if (!currentTestId) return;
+  setSendPdfState('sending');
+  try {
+    const res = await fetch(TEST_ENVIAR_PDF_URL(currentTestId), {
+      method: 'POST',
+      headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      doToast('ok', 'Enviado', data.message || 'Revisa tu correo.');
+    } else {
+      doToast('err', 'No se pudo enviar', data.error || 'Inténtalo de nuevo.');
+    }
+  } catch (err) {
+    doToast('err', 'Error de conexión', 'No pudimos enviar el diagnóstico.');
+  } finally {
+    setSendPdfState('ready');
+  }
+}
+
+document.getElementById('sendPdfBtn').addEventListener('click', enviarPdfTestActual);
 
 async function loadHistoryFromServer() {
   const res = await fetch(TEST_HISTORIAL_URL, { headers: { 'Accept': 'application/json' } });
@@ -942,6 +1071,8 @@ document.getElementById('clearHistBtn').addEventListener('click', async () => {
 
 document.getElementById('retestBtn').addEventListener('click', () => {
   Object.keys(answers).forEach(k => delete answers[k]);
+  currentQ = 1;
+  currentTestId = null;
   document.querySelectorAll('.opt,.scale-opt').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
   document.getElementById('result-screen').classList.remove('show');
@@ -952,6 +1083,10 @@ document.getElementById('retestBtn').addEventListener('click', () => {
   document.getElementById('testCard').classList.remove('wide-card');
   document.getElementById('aiAnalysis').innerHTML = '';
   document.getElementById('resultTip').style.display = 'none';
+  setSendPdfState('saving');
+  document.getElementById('sendPdfBtn').textContent = '📧 Enviar PDF a mi correo';
+  document.getElementById('sendPdfBtn').disabled = true;
+  clearPersistedState();
   renderHistoryPreview();
 });
 
@@ -959,6 +1094,7 @@ document.getElementById('retestBtn').addEventListener('click', () => {
 // ── INIT ──
 buildQuestions();
 renderHistoryPreview();
+restoreSession();
 
 document.getElementById('chatSend').addEventListener('click', () => {
   sendChat(document.getElementById('chatInput').value);

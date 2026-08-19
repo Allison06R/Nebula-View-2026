@@ -11,7 +11,9 @@ El documento incluye tus resultados por condición, los lentes recomendados y el
 Hacer un nuevo test
 @endcomponent
 
-Recuerda: este diagnóstico es orientativo y no reemplaza la consulta con un profesional de la salud visual.
+@component('mail::panel')
+⚠️ Recuerda: este diagnóstico es orientativo y no reemplaza la consulta con un profesional de la salud visual.
+@endcomponent
 
 — El equipo de Nebula View
 @endcomponent
