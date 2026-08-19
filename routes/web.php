@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
 use App\Http\Controllers\ContactanosController;
+use App\Http\Controllers\PasswordResetController;
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
 Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
 
@@ -30,10 +31,20 @@ Route::post('/contactanos', [ContactanosController::class, 'enviar'])->name('con
 // ─── Autenticación ───────────────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:6,1');
 
     Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
-    Route::post('/registro', [RegistroController::class, 'store']);
+    Route::post('/registro', [RegistroController::class, 'store'])->middleware('throttle:6,1');
+
+    // ── Olvidé mi contraseña ───────────────────────────────────────────────
+    Route::get('/olvide-password', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/olvide-password', [PasswordResetController::class, 'sendResetLinkEmail'])
+        ->middleware('throttle:4,1')
+        ->name('password.email');
+    Route::get('/restablecer-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/restablecer-password', [PasswordResetController::class, 'reset'])
+        ->middleware('throttle:6,1')
+        ->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
@@ -57,6 +68,14 @@ Route::middleware('noauth')->group(function () {
     Route::get('/test', [TestController::class, 'index'])->name('test');
     Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
     Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
+
+    // ── Historial persistente de tests ─────────────────────────────────────
+    Route::post('/test/guardar', [TestController::class, 'guardar'])->name('test.guardar');
+    Route::get('/test/historial', [TestController::class, 'historial'])->name('test.historial');
+    Route::delete('/test/{test}', [TestController::class, 'destroy'])->name('test.destroy');
+    Route::post('/test/{test}/enviar-pdf', [TestController::class, 'enviarPdf'])
+        ->middleware('throttle:5,10')
+        ->name('test.enviarPdf');
 });
 
 // ─── Panel de administración ──────────────────────────────────────────────────

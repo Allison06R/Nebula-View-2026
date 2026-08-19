@@ -15,6 +15,7 @@ class Test extends Model
 
     protected $casts = [
         'fecha_realizacion' => 'datetime',
+        'resultado'         => 'array',
     ];
 
     public function usuario()

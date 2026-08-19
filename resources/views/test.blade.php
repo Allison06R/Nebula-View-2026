@@ -4,6 +4,36 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/test.css') }}">
+<style>
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #ffffff;
+  border: 1.5px solid rgba(124,58,237,0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.12);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+  width: fit-content;
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e1b4b;
+}
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.t-ico { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.toast.toast-ok  .t-ico { background: rgba(52,211,153,0.12); color: #059669; }
+.toast.toast-err .t-ico { background: rgba(239,68,68,0.10);  color: #dc2626; }
+.t-txt { display: flex; flex-direction: column; gap: 1px; }
+.t-txt b    { font-size: 13px; font-weight: 600; color: #1e1b4b; }
+.t-txt span { font-size: 11px; color: #6b7280; }
+</style>
 @endsection
 
 @section('content')
@@ -132,13 +162,36 @@
   </div>
 </section>
 
+<div class="toast" id="toast">
+  <div class="t-ico" id="t-ico">✓</div>
+  <div class="t-txt">
+    <b id="t-title">Listo</b>
+    <span id="t-msg">Acción completada.</span>
+  </div>
+</div>
+
 @endsection
 
 @section('scripts')
 <script>
 const TEST_DIAGNOSTICO_URL = "{{ route('test.diagnostico') }}";
 const TEST_CHAT_URL = "{{ route('test.chat') }}";
+const TEST_GUARDAR_URL = "{{ route('test.guardar') }}";
+const TEST_HISTORIAL_URL = "{{ route('test.historial') }}";
+const TEST_ENVIAR_PDF_URL = (id) => `{{ url('/test') }}/${id}/enviar-pdf`;
+const TEST_DESTROY_URL = (id) => `{{ url('/test') }}/${id}`;
 const CSRF_TOKEN = "{{ csrf_token() }}";
+
+function doToast(type, title, msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('t-ico').textContent   = type === 'ok' ? '✓' : '✕';
+  document.getElementById('t-title').textContent = title;
+  document.getElementById('t-msg').textContent   = msg;
+  toast.classList.remove('toast-ok', 'toast-err', 'show');
+  toast.classList.add(type === 'ok' ? 'toast-ok' : 'toast-err');
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+  setTimeout(() => toast.classList.remove('show'), 4500);
+}
 
 // ═══════════════════════════════════════════════════
 //  PREGUNTAS (20)
@@ -492,6 +545,7 @@ async function showResult() {
     document.getElementById('loading-screen').style.display = 'none';
     renderResults(result, sc);
     saveToHistory(result, sc);
+    saveToServer(result, sc);
 
   } catch(err) {
     clearInterval(msgInterval);
@@ -716,8 +770,12 @@ async function sendChat(text) {
 }
 
 // ═══════════════════════════════════════════════════
-//  HISTORIAL (localStorage)
+//  HISTORIAL — vista rápida local (preview) + guardado real en servidor
 // ═══════════════════════════════════════════════════
+
+// Vista previa instantánea en la pantalla de inicio (no requiere esperar
+// al servidor). El historial "de verdad" que se puede enviar por correo
+// vive en la base de datos y se carga con loadHistoryFromServer().
 function saveToHistory(result, sc) {
   const history = JSON.parse(localStorage.getItem('nebulaHistory') || '[]');
   history.unshift({
@@ -745,27 +803,115 @@ function renderHistoryPreview() {
     </div>`).join('');
 }
 
-function renderHistoryScreen() {
-  const history = loadHistoryData();
+// Guarda el diagnóstico completo en el servidor, asociado al usuario
+// que inició sesión. Es "fire and forget": si falla, el usuario igual
+// ve su resultado en pantalla, solo que no quedará en el historial
+// persistente ni podrá pedir el PDF de ese test en particular.
+async function saveToServer(result, sc) {
+  try {
+    await fetch(TEST_GUARDAR_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': CSRF_TOKEN,
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ resultado: result, scores: sc })
+    });
+  } catch (e) {
+    console.warn('No se pudo guardar el test en el servidor:', e);
+  }
+}
+
+async function loadHistoryFromServer() {
+  const res = await fetch(TEST_HISTORIAL_URL, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error('historial-fetch-failed');
+  return res.json();
+}
+
+function scoreRow(h) {
+  const sc = h.scores || {};
+  return `
+    <span class="hist-score" style="color:#2D6FA8">M ${sc.mP||0}%</span>
+    <span class="hist-score" style="color:#7B3FC4">A ${sc.aP||0}%</span>
+    <span class="hist-score" style="color:#E91E8C">F ${sc.fP||0}%</span>`;
+}
+
+async function renderHistoryScreen() {
   const container = document.getElementById('historyItems');
+  container.innerHTML = '<div class="hist-empty">Cargando historial…</div>';
+
+  let history = [];
+  try {
+    history = await loadHistoryFromServer();
+  } catch (e) {
+    container.innerHTML = '<div class="hist-empty">No pudimos cargar tu historial. Intenta de nuevo.</div>';
+    return;
+  }
+
   if (!history.length) {
     container.innerHTML = '<div class="hist-empty">No hay tests anteriores guardados.</div>';
     return;
   }
+
   container.innerHTML = history.map(h => `
-    <div class="hist-item">
+    <div class="hist-item" data-id="${h.id_test}">
       <div class="hist-dot" style="background:${h.colorHex}"></div>
       <div class="hist-info">
         <div class="hist-title">${h.titulo}</div>
-        <div class="hist-date">${h.date}</div>
+        <div class="hist-date">${h.fecha}</div>
       </div>
-      <div class="hist-scores">
-        <span class="hist-score" style="color:#2D6FA8">M ${h.sc?.mP||0}%</span>
-        <span class="hist-score" style="color:#7B3FC4">A ${h.sc?.aP||0}%</span>
-        <span class="hist-score" style="color:#E91E8C">F ${h.sc?.fP||0}%</span>
+      <div class="hist-scores">${scoreRow(h)}</div>
+      <div class="hist-actions" style="display:flex;gap:8px;margin-left:10px;">
+        <button type="button" class="btn-cta-secondary hist-send-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;">📧 Enviar PDF</button>
+        <button type="button" class="btn-cta-secondary hist-del-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;color:#c0152e;border-color:rgba(233,30,60,.3);">🗑</button>
       </div>
     </div>`).join('');
 }
+
+// Delegación de eventos: los botones de cada item se crean dinámicamente.
+document.getElementById('historyItems').addEventListener('click', async (e) => {
+  const sendBtn = e.target.closest('.hist-send-btn');
+  const delBtn = e.target.closest('.hist-del-btn');
+
+  if (sendBtn) {
+    const id = sendBtn.dataset.id;
+    sendBtn.disabled = true;
+    const original = sendBtn.textContent;
+    sendBtn.textContent = 'Enviando…';
+    try {
+      const res = await fetch(TEST_ENVIAR_PDF_URL(id), {
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        doToast('ok', 'Enviado', data.message || 'Revisa tu correo.');
+      } else {
+        doToast('err', 'No se pudo enviar', data.error || 'Inténtalo de nuevo.');
+      }
+    } catch (err) {
+      doToast('err', 'Error de conexión', 'No pudimos enviar el diagnóstico.');
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = original;
+    }
+  }
+
+  if (delBtn) {
+    const id = delBtn.dataset.id;
+    if (!confirm('¿Eliminar este test de tu historial? Esta acción no se puede deshacer.')) return;
+    try {
+      await fetch(TEST_DESTROY_URL(id), {
+        method: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+      });
+      renderHistoryScreen();
+    } catch (err) {
+      doToast('err', 'Error', 'No se pudo eliminar el test.');
+    }
+  }
+});
 
 document.getElementById('historyBtn').addEventListener('click', () => {
   renderHistoryScreen();
@@ -778,7 +924,17 @@ document.getElementById('backFromHistBtn').addEventListener('click', () => {
   document.getElementById('result-screen').classList.add('show');
 });
 
-document.getElementById('clearHistBtn').addEventListener('click', () => {
+document.getElementById('clearHistBtn').addEventListener('click', async () => {
+  if (!confirm('¿Vaciar todo tu historial guardado? Esta acción no se puede deshacer.')) return;
+  try {
+    const history = await loadHistoryFromServer();
+    await Promise.all(history.map(h => fetch(TEST_DESTROY_URL(h.id_test), {
+      method: 'DELETE',
+      headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+    })));
+  } catch (e) {
+    console.warn('No se pudo vaciar el historial del servidor:', e);
+  }
   localStorage.removeItem('nebulaHistory');
   renderHistoryScreen();
   renderHistoryPreview();

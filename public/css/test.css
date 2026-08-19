@@ -637,10 +637,13 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 [data-theme="dark"] .opt.selected .opt-radio::after { background: var(--dark); }
 [data-theme="dark"] .chat-messages,
 [data-theme="dark"] .chat-input,
-[data-theme="dark"] .chat-suggestions { background: var(--white); }
+[data-theme="dark"] .chat-suggestions { background: var(--plum); }
 [data-theme="dark"] .chat-wrap { background: rgba(255,2  55,255,0.03); border-color: rgba(155,89,182,0.2); }
 [data-theme="dark"] .msg.user .msg-av { background: var(--lilac); }
 [data-theme="dark"] .result-tip { background: linear-gradient(135deg, #2A1B3D, #241530); }
 [data-theme="dark"] .footer-logo-txt { color: var(--white); }
 [data-theme="dark"] .hero-card h1 { color: var(--lavender); }
 [data-theme="dark"] .q-text { color: var(--white); }
+[data-theme="dark"] .day-content strong{color:var(--white);}
+[data-theme="dark"] .lens-rec-name{color:var(--white);}
+[data-theme="dark"] .sec-title {color:var(--white);}
