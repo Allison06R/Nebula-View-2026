@@ -41,6 +41,7 @@
         <div class="mp-tabbar">
           <button type="button" class="mp-tab mp-tab--active" data-tab="apariencia" onclick="mpSwitchTab('apariencia')">Apariencia</button>
           <button type="button" class="mp-tab" data-tab="informacion" onclick="mpSwitchTab('informacion')">Información</button>
+          <button type="button" class="mp-tab" data-tab="modelos3d" onclick="mpSwitchTab('modelos3d')">Mis Modelos 3D</button>
         </div>
 
         {{-- ── Panel: Apariencia ── --}}
@@ -158,6 +159,36 @@
               <span class="mp-info-label">Correo electrónico</span>
               <span class="mp-info-value">{{ $usuario->correo }}</span>
             </div>
+          </div>
+        </div>
+
+        {{-- ── Panel: Mis Modelos 3D ── --}}
+        <div class="mp-tabpanel" id="tab-modelos3d">
+          <div class="mp-card">
+            <div class="mp-section-badge"><span class="mp-section-dot"></span>Modelos 3D</div>
+            <h3 class="mp-section-title">Tus modelos favoritos</h3>
+            <p class="mp-section-hint">Modelos de lentes que guardaste como favoritos desde el catálogo.</p>
+
+            @if($misModelos3d->isEmpty())
+              <p class="mp-section-hint" style="margin-top:1rem;">
+                Aún no has guardado ningún modelo como favorito.
+                <a href="{{ route('modelos3d') }}">Explora el catálogo →</a>
+              </p>
+            @else
+              <div class="mp-frame-grid" style="margin-top:1.25rem;">
+                @foreach($misModelos3d as $modelo)
+                  <div class="mp-frame-opt" style="cursor:default;">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 10px;border-radius:14px;background:rgba(255,255,255,0.04);">
+                      <span style="font-size:28px;">👓</span>
+                      <span class="mp-frame-label" style="text-align:center;">{{ $modelo->nombre }}</span>
+                      @if($modelo->categoria)
+                        <span style="font-size:11px;color:var(--mp-muted,#9b9bb0);">{{ $modelo->categoria }}</span>
+                      @endif
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endif
           </div>
         </div>
 

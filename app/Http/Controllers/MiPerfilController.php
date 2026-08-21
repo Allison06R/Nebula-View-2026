@@ -27,6 +27,10 @@ class MiPerfilController extends Controller
             'avatares' => config('apariencia.avatares'),
             'banners'  => config('apariencia.banners'),
             'stats'    => $this->statsDe($usuario),
+            'misModelos3d' => $usuario->modelos3d()
+                ->where('favorito', 1)
+                ->orderByDesc('updated_at')
+                ->get(),
         ]);
     }
 

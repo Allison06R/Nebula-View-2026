@@ -11,6 +11,7 @@ use App\Http\Controllers\ChatWidgetController;
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TranslateController;
+use App\Http\Controllers\Modelo3dController;
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
 Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
 
@@ -77,6 +78,10 @@ Route::middleware('noauth')->group(function () {
     Route::post('/test/{test}/enviar-pdf', [TestController::class, 'enviarPdf'])
         ->middleware('throttle:5,10')
         ->name('test.enviarPdf');
+
+    // ── Modelos 3D favoritos ────────────────────────────────────────────────
+    Route::get('/modelos3d/favoritos',        [Modelo3dController::class, 'misFavoritos'])->name('modelos3d.favoritos');
+    Route::post('/modelos3d/favoritos/toggle', [Modelo3dController::class, 'toggle'])->name('modelos3d.toggle');
 });
 
 // ─── Panel de administración ──────────────────────────────────────────────────

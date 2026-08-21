@@ -5,39 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
-/**
- * ============================================================
- * NEBULA VIEW
- * Google Cloud Translation API
- * ============================================================
- *
- * Endpoint:
- *
- * POST /api/translate
- *
- * Recibe:
- *
- * {
- *     "texts": [
- *         "Hola",
- *         "Bienvenido a Nebula View"
- *     ],
- *     "target": "en"
- * }
- *
- * Devuelve:
- *
- * {
- *     "success": true,
- *     "translations": [
- *         "Hello",
- *         "Welcome to Nebula View"
- *     ]
- * }
- *
- * ============================================================
- */
+
 class TranslateController extends Controller
 {
     public function translate(Request $request): JsonResponse
@@ -135,66 +105,103 @@ class TranslateController extends Controller
         }
 
         // ============================================================
-        // LLAMADA A GOOGLE
+        // REVISAR CACHÉ (evita gastar créditos de Google en textos
+        // que ya fueron traducidos antes, por cualquier usuario)
         // ============================================================
-
-        $response = Http::timeout(30)
-            ->connectTimeout(10)
-            ->asJson()
-            ->post($config['url'] . '?key=' . urlencode($apiKey), [
-                'q' => $cleanTexts,
-                'source' => $sourceLanguage,
-                'target' => $targetLanguage,
-                'format' => 'text',
-            ]);
-
-        if ($response->failed()) {
-            $googleError = $response->json('error.message')
-                ?? 'Google Translation devolvió un error.';
-
-            return response()->json([
-                'success' => false,
-                'error' => $googleError,
-            ], $response->status() >= 400 ? $response->status() : 500);
-        }
-
-        // ============================================================
-        // OBTENER TRADUCCIONES
-        // ============================================================
-
-        $googleTranslations = $response->json('data.translations');
-
-        if (!is_array($googleTranslations)) {
-            return response()->json([
-                'success' => false,
-                'error' => 'Google no devolvió traducciones válidas.',
-            ], 500);
-        }
 
         $translations = [];
+        $textsToTranslate = [];
+        $indexMap = [];
 
-        foreach ($googleTranslations as $translation) {
-            $translatedText = $translation['translatedText'] ?? '';
+        foreach ($cleanTexts as $i => $text) {
+            $cacheKey = $this->cacheKey($text, $targetLanguage);
+            $cached = Cache::get($cacheKey);
 
-            $translations[] = html_entity_decode(
-                $translatedText,
-                ENT_QUOTES | ENT_HTML5,
-                'UTF-8'
-            );
+            if ($cached !== null) {
+                $translations[$i] = $cached;
+            } else {
+                $translations[$i] = null;
+                $textsToTranslate[] = $text;
+                $indexMap[] = $i;
+            }
         }
 
-        if (count($translations) !== count($cleanTexts)) {
-            return response()->json([
-                'success' => false,
-                'error' => 'La cantidad de traducciones recibidas no coincide con los textos enviados.',
-            ], 500);
+        // ============================================================
+        // LLAMADA A GOOGLE (solo si hay textos sin caché)
+        // ============================================================
+
+        if (!empty($textsToTranslate)) {
+            $response = Http::timeout(30)
+                ->connectTimeout(10)
+                ->asJson()
+                ->post($config['url'] . '?key=' . urlencode($apiKey), [
+                    'q' => $textsToTranslate,
+                    'source' => $sourceLanguage,
+                    'target' => $targetLanguage,
+                    'format' => 'text',
+                ]);
+
+            if ($response->failed()) {
+                $googleError = $response->json('error.message')
+                    ?? 'Google Translation devolvió un error.';
+
+                return response()->json([
+                    'success' => false,
+                    'error' => $googleError,
+                ], $response->status() >= 400 ? $response->status() : 500);
+            }
+
+            $googleTranslations = $response->json('data.translations');
+
+            if (!is_array($googleTranslations)) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Google no devolvió traducciones válidas.',
+                ], 500);
+            }
+
+            if (count($googleTranslations) !== count($textsToTranslate)) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'La cantidad de traducciones recibidas no coincide con los textos enviados.',
+                ], 500);
+            }
+
+            foreach ($googleTranslations as $j => $translation) {
+                $translatedText = html_entity_decode(
+                    $translation['translatedText'] ?? '',
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $originalIndex = $indexMap[$j];
+                $originalText = $cleanTexts[$originalIndex];
+
+                $translations[$originalIndex] = $translatedText;
+
+                // Guardar en caché indefinidamente (los textos del sitio
+                // no cambian seguido; si cambias textos fuente, limpia
+                // la caché con: php artisan cache:clear)
+                Cache::forever(
+                    $this->cacheKey($originalText, $targetLanguage),
+                    $translatedText
+                );
+            }
         }
 
         return response()->json([
             'success' => true,
             'source' => $sourceLanguage,
             'target' => $targetLanguage,
-            'translations' => $translations,
+            'translations' => array_values($translations),
         ]);
+    }
+
+    /**
+     * Genera una clave de caché única por texto + idioma destino.
+     */
+    private function cacheKey(string $text, string $targetLanguage): string
+    {
+        return 'translate:' . $targetLanguage . ':' . md5($text);
     }
 }

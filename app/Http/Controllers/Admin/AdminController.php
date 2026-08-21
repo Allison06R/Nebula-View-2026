@@ -21,8 +21,16 @@ class AdminController extends Controller
         $totalTests    = Test::count();
         $recientes     = Usuario::orderByDesc('id_usuario')->take(5)->get();
 
+        // Métricas reales para los chips de tendencia (últimos 7 días)
+        $adminsCount    = Usuario::where('rol', 'admin')->count();
+        $usuariosCount  = $totalUsuarios - $adminsCount;
+        $perfilesSemana = PerfilVisual::where('created_at', '>=', now()->subDays(7))->count();
+        $modelosSemana  = Modelo3d::where('created_at', '>=', now()->subDays(7))->count();
+        $testsSemana    = Test::where('created_at', '>=', now()->subDays(7))->count();
+
         return view('admin.dashboard', compact(
-            'totalUsuarios', 'totalPerfiles', 'totalModelos', 'totalTests', 'recientes'
+            'totalUsuarios', 'totalPerfiles', 'totalModelos', 'totalTests', 'recientes',
+            'adminsCount', 'usuariosCount', 'perfilesSemana', 'modelosSemana', 'testsSemana'
         ));
     }
 

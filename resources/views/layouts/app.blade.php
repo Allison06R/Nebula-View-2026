@@ -10,6 +10,7 @@
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
 <script src="{{ asset('js/translator.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 @yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
@@ -187,14 +188,15 @@
       @endauth
     </nav>
 
-    {{-- Traducción y modo oscuro dentro del drawer --}}
+    {{-- Traducción, modo oscuro y regresar dentro del drawer --}}
     <div style="display:flex; gap:10px; justify-content:center; padding:0 28px 16px;">
+      <button class="icon-toggle-btn" id="backBtnMobile" type="button" aria-label="Regresar">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
       <button class="lang-toggle-btn" id="langToggleMobile" type="button">
         {{ app()->getLocale() === 'es' ? 'EN' : 'ES' }}
       </button>
-      <button class="icon-toggle-btn" id="themeToggleMobile" type="button" aria-label="Modo oscuro">
-        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.5A7 7 0 0 1 12 3Z"/></svg>
-      </button>
+      <x-daynight-toggle id="daynightToggleMobile" />
     </div>
 
     <div class="drawer-footer">
@@ -224,17 +226,18 @@
   </a>
 
   <div class="nav-actions">
+    {{-- Botón de regresar --}}
+    <button class="icon-toggle-btn" id="backBtn" type="button" aria-label="Regresar" title="Regresar">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
+
     {{-- Botón de traducción --}}
     <button class="lang-toggle-btn" id="langToggle" type="button">
       {{ app()->getLocale() === 'es' ? 'EN' : 'ES' }}
     </button>
 
     {{-- Botón de modo oscuro --}}
-    <button class="icon-toggle-btn" id="themeToggle" type="button" aria-label="Modo oscuro">
-      <svg id="themeIcon" viewBox="0 0 24 24">
-        <path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.5A7 7 0 0 1 12 3Z"/>
-      </svg>
-    </button>
+    <x-daynight-toggle id="daynightToggle" />
 
     @auth
       <div class="nav-user" id="navUser">
@@ -357,24 +360,77 @@ if (modalOverlayEl && modalCloseBtn) {
 }
 
 /* ══════════════════════════════
-   MODO OSCURO
+   MODO OSCURO — interruptor animado día/noche
 ══════════════════════════════ */
 const rootEl = document.documentElement;
 const savedTheme = localStorage.getItem('theme') || 'light';
 if (savedTheme === 'dark') rootEl.setAttribute('data-theme', 'dark');
 
-function toggleTheme() {
-  const isDark = rootEl.getAttribute('data-theme') === 'dark';
+function pintarWidgetDayNight(widget, isDark, animado) {
+  const sun   = widget.querySelector('.dn-sun');
+  const moon  = widget.querySelector('.dn-moon');
+  const cloud = widget.querySelector('.dn-cloud');
+  const stars = widget.querySelectorAll('.dn-star');
+  const pod   = widget.querySelector('.dn-pod');
+  const tw    = animado ? gsap.to : gsap.set;
+  const d     = animado ? 1 : 0;
+
   if (isDark) {
-    rootEl.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'light');
+    tw(sun,   {duration: d,       x: -157, opacity: 0, ease: 'power1.inOut'});
+    tw(cloud, {duration: d * 0.5, opacity: 0, ease: 'power1.inOut'});
+    tw(moon,  {duration: d,       x: -157, rotate: -360, transformOrigin: 'center', opacity: 1, ease: 'power1.inOut'});
+    tw(stars, {duration: d * 0.5, opacity: 1, ease: 'power1.inOut'});
+    tw(pod,   {duration: d,       background: '#224f6d', borderColor: '#cad4d8', ease: 'power1.inOut'});
   } else {
-    rootEl.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
+    tw(sun,   {duration: d,       x: 15, opacity: 1, ease: 'power1.inOut'});
+    tw(cloud, {duration: d,       opacity: 1, ease: 'power1.inOut'});
+    tw(moon,  {duration: d,       x: 35, rotate: 360, transformOrigin: 'center', opacity: 0, ease: 'power1.inOut'});
+    tw(stars, {duration: d,       opacity: 0, ease: 'power1.inOut'});
+    tw(pod,   {duration: d,       background: '#9cd6ef', borderColor: '#65c0e7', ease: 'power1.inOut'});
   }
 }
-document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
-document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
+
+function toggleTheme() {
+  const isDarkAhora = rootEl.getAttribute('data-theme') === 'dark';
+  const irADark = !isDarkAhora;
+
+  if (irADark) {
+    rootEl.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    rootEl.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  }
+
+  document.querySelectorAll('.daynight-toggle').forEach(widget => {
+    widget.style.pointerEvents = 'none';
+    pintarWidgetDayNight(widget, irADark, true);
+    setTimeout(() => { widget.style.pointerEvents = 'all'; }, 1000);
+  });
+}
+
+document.querySelectorAll('.daynight-toggle').forEach(widget => {
+  pintarWidgetDayNight(widget, savedTheme === 'dark', false);
+  widget.addEventListener('click', toggleTheme);
+});
+
+/* ══════════════════════════════
+   BOTÓN "REGRESAR"
+   Usa history.back(); como cada página se sirve con Cache-Control:
+   no-store (ver PreventBackHistory middleware), el navegador SIEMPRE
+   vuelve a pedir la página al servidor en vez de mostrar una copia en
+   caché. Si ya cerraste sesión, el middleware "auth" te manda a
+   /login en automático — nunca te deja ver una página protegida vieja.
+══════════════════════════════ */
+function irAtras() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = "{{ route('home') }}";
+  }
+}
+document.getElementById('backBtn')?.addEventListener('click', irAtras);
+document.getElementById('backBtnMobile')?.addEventListener('click', () => { closeMenu(); irAtras(); });
 
 /* ══════════════════════════════
    MENÚ DE USUARIO (navbar)

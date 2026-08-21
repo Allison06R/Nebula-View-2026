@@ -217,6 +217,39 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .lang-toggle-btn:hover { background: rgba(107,47,160,0.08); }
 
 /* ══════════════════════════════
+   INTERRUPTOR DÍA / NOCHE (modo claro/oscuro)
+══════════════════════════════ */
+.daynight-toggle {
+  position: relative;
+  width: 58px; height: 27px;
+  padding: 0; border: none; cursor: pointer;
+  border-radius: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: transparent;
+}
+.dn-scale {
+  position: absolute; top: 50%; left: 50%;
+  width: 369px; height: 171.667px;
+  transform: translate(-50%, -50%) scale(0.157);
+  display: block;
+}
+.dn-pod {
+  position: absolute; top: 50%; left: 50%;
+  width: 240px; height: 110px;
+  transform: translate(-50%, -50%);
+  border-radius: 100px;
+  background: #9cd6ef; border: 6px solid #65c0e7;
+  transition: background .3s ease, border-color .3s ease;
+}
+.dn-svg { position: relative; z-index: 1; display: block; width: 369px; height: 171.667px; pointer-events: none; }
+[data-theme="dark"] .dn-pod { background: #224f6d; border-color: #cad4d8; }
+
+@media (max-width: 720px) {
+  .daynight-toggle { width: 50px; height: 23px; }
+}
+
+/* ══════════════════════════════
    MENÚ DE USUARIO (navbar)
 ══════════════════════════════ */
 .nav-user{ position: relative; }

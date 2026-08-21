@@ -392,26 +392,58 @@ window.addEventListener('load', () => {
 });
 
 // ══════════════════════════════════════════
-// FAVORITOS (persistidos en localStorage)
+// FAVORITOS (persistidos en la base de datos)
 // ══════════════════════════════════════════
-const FAV_KEY = 'nebula_favoritos_3d';
+let favoritosCache = [];
+let favoritosCargados = false;
 
-function getFavoritos() {
-  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
-  catch { return []; }
-}
-function esFavorito(nombre) {
-  return getFavoritos().includes(nombre);
-}
-function toggleFavorito(nombre) {
-  let favs = getFavoritos();
-  if (favs.includes(nombre)) {
-    favs = favs.filter(f => f !== nombre);
-  } else {
-    favs.push(nombre);
+async function cargarFavoritos() {
+  try {
+    const res = await fetch('{{ route('modelos3d.favoritos') }}', {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error('No se pudieron cargar los favoritos.');
+    favoritosCache = await res.json();
+  } catch (e) {
+    console.error('[FAVORITOS] Error al cargar:', e);
+    favoritosCache = [];
+  } finally {
+    favoritosCargados = true;
   }
-  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
-  return favs.includes(nombre);
+}
+
+function esFavorito(nombre) {
+  return favoritosCache.includes(nombre);
+}
+
+async function toggleFavorito(nombre, categoria) {
+  try {
+    const res = await fetch('{{ route('modelos3d.toggle') }}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ nombre, categoria })
+    });
+
+    if (!res.ok) throw new Error('No se pudo guardar el favorito.');
+
+    const data = await res.json();
+
+    if (data.favorito) {
+      if (!favoritosCache.includes(nombre)) favoritosCache.push(nombre);
+    } else {
+      favoritosCache = favoritosCache.filter(f => f !== nombre);
+    }
+
+    return data.favorito;
+  } catch (e) {
+    console.error('[FAVORITOS] Error al guardar:', e);
+    alert('No se pudo guardar el favorito. Intenta de nuevo.');
+    return esFavorito(nombre);
+  }
 }
 function pintarEstadoFavorito(nombre) {
   const activo = esFavorito(nombre);
@@ -420,17 +452,23 @@ function pintarEstadoFavorito(nombre) {
 }
 
 let currentCardName = '';
+let currentCardCategoria = '';
 
-modelModalFav?.addEventListener('click', () => {
+modelModalFav?.addEventListener('click', async () => {
   if (!currentCardName) return;
-  const activo = toggleFavorito(currentCardName);
+  modelModalFav.disabled = true;
+  const activo = await toggleFavorito(currentCardName, currentCardCategoria);
   modelModalFav.classList.toggle('active', activo);
   modelModalFav.setAttribute('aria-pressed', activo ? 'true' : 'false');
+  modelModalFav.disabled = false;
   // Pequeña animación de "pop"
   modelModalFav.classList.remove('pop');
   void modelModalFav.offsetWidth; // reinicia la animación
   modelModalFav.classList.add('pop');
 });
+
+// Cargar favoritos guardados al iniciar la página
+cargarFavoritos();
 
 // ══════════════════════════════════════════
 // Construir specs (Material / Montura / Rostro recomendado)
@@ -453,12 +491,13 @@ function buildSpecs(card) {
   });
 }
 
-function openModelModal(card) {
+async function openModelModal(card) {
   const glb = card.getAttribute('data-glb');
   console.log('[MODAL 3D] Intentando abrir modelo:', glb);
   if (!glb) return;
 
   currentCardName = card.getAttribute('data-name') || '';
+  currentCardCategoria = card.getAttribute('data-montura') || card.getAttribute('data-categoria') || '';
 
   modelModalViewer.setAttribute('src', glb);
   modelModalName.textContent  = currentCardName;
@@ -466,6 +505,10 @@ function openModelModal(card) {
   modelModalPrice.textContent = card.getAttribute('data-price') || '';
 
   buildSpecs(card);
+
+  if (!favoritosCargados) {
+    await cargarFavoritos();
+  }
   pintarEstadoFavorito(currentCardName);
 
   modelModalOverlay.classList.add('open');

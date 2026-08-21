@@ -13,29 +13,58 @@
 @section('content')
 
 <div class="admin-stats-grid">
-  <div class="admin-stat-card" style="--a-stat-color:rgba(107,47,160,0.2)">
-    <div class="admin-stat-icon">👥</div>
-    <div class="admin-stat-label">Total Usuarios</div>
+  <div class="admin-stat-card" style="--a-stat-color:rgba(107,47,160,0.22)">
+    <div class="admin-stat-top">
+      <div class="admin-stat-label">Total Usuarios</div>
+      <div class="admin-stat-icon-chip">👥</div>
+    </div>
     <div class="admin-stat-value">{{ $totalUsuarios }}</div>
-    <div class="admin-stat-sub">Cuentas registradas</div>
+    <div class="admin-stat-sub">
+      <span class="stat-trend stat-trend-flat">{{ $adminsCount }} admin{{ $adminsCount == 1 ? '' : 's' }}</span>
+      {{ $usuariosCount }} usuario(s) estándar
+    </div>
   </div>
-  <div class="admin-stat-card" style="--a-stat-color:rgba(46,204,113,0.15)">
-    <div class="admin-stat-icon">👁</div>
-    <div class="admin-stat-label">Perfiles Visuales</div>
+  <div class="admin-stat-card" style="--a-stat-color:rgba(46,204,113,0.18)">
+    <div class="admin-stat-top">
+      <div class="admin-stat-label">Perfiles Visuales</div>
+      <div class="admin-stat-icon-chip">👁</div>
+    </div>
     <div class="admin-stat-value">{{ $totalPerfiles }}</div>
-    <div class="admin-stat-sub">Perfiles completados</div>
+    <div class="admin-stat-sub">
+      <span class="stat-trend {{ $perfilesSemana > 0 ? 'stat-trend-up' : 'stat-trend-flat' }}">
+        @if($perfilesSemana > 0)<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>@endif
+        +{{ $perfilesSemana }}
+      </span>
+      esta semana
+    </div>
   </div>
-  <div class="admin-stat-card" style="--a-stat-color:rgba(52,152,219,0.15)">
-    <div class="admin-stat-icon">🕶️</div>
-    <div class="admin-stat-label">Modelos 3D</div>
+  <div class="admin-stat-card" style="--a-stat-color:rgba(52,152,219,0.18)">
+    <div class="admin-stat-top">
+      <div class="admin-stat-label">Modelos 3D</div>
+      <div class="admin-stat-icon-chip">🕶️</div>
+    </div>
     <div class="admin-stat-value">{{ $totalModelos }}</div>
-    <div class="admin-stat-sub">Guardados por usuarios</div>
+    <div class="admin-stat-sub">
+      <span class="stat-trend {{ $modelosSemana > 0 ? 'stat-trend-up' : 'stat-trend-flat' }}">
+        @if($modelosSemana > 0)<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>@endif
+        +{{ $modelosSemana }}
+      </span>
+      esta semana
+    </div>
   </div>
-  <div class="admin-stat-card" style="--a-stat-color:rgba(243,156,18,0.15)">
-    <div class="admin-stat-icon">📋</div>
-    <div class="admin-stat-label">Tests realizados</div>
+  <div class="admin-stat-card" style="--a-stat-color:rgba(243,156,18,0.18)">
+    <div class="admin-stat-top">
+      <div class="admin-stat-label">Tests realizados</div>
+      <div class="admin-stat-icon-chip">📋</div>
+    </div>
     <div class="admin-stat-value">{{ $totalTests }}</div>
-    <div class="admin-stat-sub">Total de tests</div>
+    <div class="admin-stat-sub">
+      <span class="stat-trend {{ $testsSemana > 0 ? 'stat-trend-up' : 'stat-trend-flat' }}">
+        @if($testsSemana > 0)<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>@endif
+        +{{ $testsSemana }}
+      </span>
+      esta semana
+    </div>
   </div>
 </div>
 

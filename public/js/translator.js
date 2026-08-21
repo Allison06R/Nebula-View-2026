@@ -19,6 +19,38 @@
     const originalTexts = new Map();
 
     // ------------------------------------------------------------
+    // CACHÉ DE TRADUCCIONES EN EL NAVEGADOR
+    // ------------------------------------------------------------
+
+    const CACHE_KEY = 'nebulaTranslateCache';
+
+    function loadCache() {
+        try {
+            return JSON.parse(
+                localStorage.getItem(CACHE_KEY) || '{}'
+            );
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveCache(cache) {
+        try {
+            localStorage.setItem(
+                CACHE_KEY,
+                JSON.stringify(cache)
+            );
+        } catch (e) {
+            // localStorage lleno o no disponible: seguimos sin caché
+            console.warn('No se pudo guardar la caché de traducción.', e);
+        }
+    }
+
+    function cacheKeyFor(text, target) {
+        return target + '::' + text;
+    }
+
+    // ------------------------------------------------------------
     // ELEMENTOS QUE NO QUEREMOS TRADUCIR
     // ------------------------------------------------------------
 
@@ -104,6 +136,41 @@
 
     async function translateBatch(nodes, texts) {
 
+        const target = 'en';
+        const cache = loadCache();
+
+        // Separar lo que ya está en caché de lo que falta traducir
+        const pendingIndexes = [];
+        const pendingTexts = [];
+
+        texts.forEach((text, index) => {
+
+            const key = cacheKeyFor(text, target);
+
+            if (cache[key] !== undefined) {
+
+                if (nodes[index]) {
+                    nodes[index].textContent = cache[key];
+                }
+
+            } else {
+
+                pendingIndexes.push(index);
+                pendingTexts.push(text);
+            }
+        });
+
+        // Si todo estaba en caché, no llamamos al servidor
+        if (pendingTexts.length === 0) {
+
+            console.log(
+                'Traducciones obtenidas de la caché local:',
+                texts.length
+            );
+
+            return;
+        }
+
         const response = await fetch(
             TRANSLATE_URL,
             {
@@ -114,8 +181,8 @@
                 },
 
                 body: JSON.stringify({
-                    texts: texts,
-                    target: 'en'
+                    texts: pendingTexts,
+                    target: target
                 })
             }
         );
@@ -150,16 +217,24 @@
         }
 
         data.translations.forEach(
-            (translation, index) => {
+            (translation, i) => {
 
-                if (nodes[index]) {
+                const originalIndex = pendingIndexes[i];
+                const originalText = pendingTexts[i];
 
-                    nodes[index].textContent =
+                if (nodes[originalIndex]) {
+
+                    nodes[originalIndex].textContent =
                         translation;
                 }
 
+                // Guardar en caché local para no volver a pedirlo
+                cache[cacheKeyFor(originalText, target)] =
+                    translation;
             }
         );
+
+        saveCache(cache);
     }
 
     // ------------------------------------------------------------
