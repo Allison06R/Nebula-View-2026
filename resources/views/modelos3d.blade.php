@@ -246,16 +246,24 @@
            data-rostro="Ovalado · Redondo"
            data-tags="Moderno,Unisex,UV400,Ligero">
         <div class="catalog-card-thumb has-3d">
-          <img src="{{ asset('images/Lentesaviator.jpg') }}" alt="Purple Eyeglasses" class="catalog-card-photo">
+          <img src="{{ asset('images/Lentesaviator.jpg') }}" alt="Aviator Glasses" class="catalog-card-photo">
           <span class="catalog-card-badge new">Nuevo</span>
           <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
         <div class="catalog-card-body">
-          <div class="catalog-card-name">Purple Eyeglasses</div>
+          <div class="catalog-card-name">Aviator Glasses</div>
           <div class="catalog-card-type">montura moderna</div>
-          <div class="catalog-card-desc">Montura en tono morado con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <div class="catalog-card-desc">Montura clásica en tono aviator con detalles retro. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <a href="https://lens.snap.com/experience/1c01e24c-58bc-46b2-9275-3f801730b32b"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="catalog-card-probador"
+             onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            Probador con cámara
+          </a>
           <div class="catalog-card-foot">
-            <div class="catalog-card-price">$99 <span>USD</span></div>
+            <div class="catalog-card-price">$119 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
               <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
             </button>

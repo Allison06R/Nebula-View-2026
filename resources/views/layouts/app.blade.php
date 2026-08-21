@@ -9,6 +9,8 @@
 <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
+<script src="{{ asset('js/translator.js') }}"></script>
+
 @yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
 <body>
@@ -414,12 +416,18 @@ function updateScrollProgress() {
   const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   scrollProgressEl.style.width = pct + '%';
 }
+
+
 window.addEventListener('scroll', updateScrollProgress);
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
+
+
 </script>
 
 <script src="{{ asset('js/preloader.js') }}"></script>
+
+
 @yield('scripts')
 
 @unless(request()->routeIs('test'))

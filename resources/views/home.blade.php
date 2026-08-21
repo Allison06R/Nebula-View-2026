@@ -11,21 +11,19 @@
 <div id="reading-progress"><div id="progress-fill"></div></div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg-circles">
-    <div class="hbc hbc-1"></div><div class="hbc hbc-2"></div><div class="hbc hbc-3"></div>
-    <div class="hbc hbc-4"></div><div class="hbc hbc-5"></div><div class="hbc hbc-6"></div>
+<section class="nebula-hero">
+<img src="{{ asset('images/fondo_galaxia_animado.gif') }}" alt="" class="nebula-bg-gif">
+
+  <div class="nebula-hero-text">
+    <h1 class="nebula-title">Nebula View</h1>
+    <div class="nebula-underline"></div>
+    <p class="nebula-subtitle">Tu visión tiene un universo por descubrir.</p>
+    <p class="nebula-subtitle-2">Atrévete a verlo desde otra perspectiva.</p>
+    <a href="#productos" class="nebula-cta">Explorar <span class="arrow">→</span></a>
   </div>
-  <div class="hero-content">
-    <div class="hero-card">
-      <div class="hero-badge">✨ New Arrival</div>
-      <h1>Descubre una<br><span>nueva mirada</span></h1>
-      <p>Cuidar de tu vista es importante. Mira lo que hay de nuevo en nuestros artículos importados sobre el cuidado de los ojos.</p>
-      <a href="#productos" class="btn-primary">Ver colección <span class="arrow">→</span></a>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <img src="{{ asset('images/indexfoto1.webp') }}" alt="gafas" />
+
+  <div class="nebula-mascot-wrap">
+    <img src="{{ asset('images/Nebulitaindex.png') }}" alt="Mascota Nebula View" class="nebula-mascot">
   </div>
 </section>
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\TranslateController;
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
 Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
 
@@ -104,3 +105,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
 });
+
+Route::post('/translate', [TranslateController::class, 'translate']);

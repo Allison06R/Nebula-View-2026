@@ -713,3 +713,24 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
   .how-step::after { display: none !important; }
   .how-section { padding: 40px 24px; }
 }
+
+/* ── BOTÓN "PROBADOR CON CÁMARA" (AR try-on vía Snap Lens) ── */
+.catalog-card-probador {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--brand-solid), var(--brand-pink-solid));
+  color: white; text-decoration: none;
+  font-size: 12px; font-weight: 600; letter-spacing: .2px;
+  padding: 10px 14px; border-radius: 30px;
+  margin-bottom: 14px;
+  transition: transform .2s, box-shadow .25s;
+}
+.catalog-card-probador:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(233,30,140,0.35);
+}
+.catalog-card-probador svg {
+  width: 15px; height: 15px;
+  fill: none; stroke: white; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}

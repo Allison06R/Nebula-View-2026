@@ -8,204 +8,182 @@
     
   }
 
-  
+  /* ===== NEBULA HERO ===== */
+/* Fondo: gif animado de galaxia en lugar de las estrellas CSS */
 
-  /* ── HERO ── */
-  .hero {
-    min-height: auto;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    background: linear-gradient(160deg, var(--lilac) 0%, #F3EAFF 40%, #EAD9FF 100%);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding-left: 60px;
-    padding-right: 60px;
-    position: relative;
-    overflow: hidden;
-  }
+.nebula-hero {
+  position: relative;
+  z-index: 5;               /* por encima de la siguiente sección, para que la mascota se asome */
+  width: 100%;
+  height: 600px;           /* altura FIJA: evita que el gif estire la sección */
+  background: #1a0a2e;     /* color de respaldo mientras carga el gif */
+  overflow: visible;       /* permite que la mascota sobresalga por abajo */
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;     /* centra texto y mascota verticalmente */
+  padding: 0 0 0 60px;
+}
 
-  .hero-bg-circles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-  .hbc { position: absolute; border-radius: 50%; }
-  .hbc-1 {
-    width: 560px; height: 560px;
-    background: radial-gradient(circle, rgba(155,89,182,0.3) 0%, transparent 65%);
-    top: -180px; right: -100px;
-    animation: orb1 13s ease-in-out infinite;
-  }
-  .hbc-2 {
-    width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(233,30,140,0.18) 0%, transparent 65%);
-    bottom: -100px; left: -80px;
-    animation: orb2 16s ease-in-out infinite;
-  }
-  .hbc-3 {
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(107,47,160,0.22) 0%, transparent 65%);
-    top: 52%; left: 44%;
-    animation: orb3 11s ease-in-out infinite;
-  }
-  .hbc-4 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(195,155,211,0.38) 0%, transparent 65%);
-    top: 15%; left: 10%;
-    animation: orb4 19s ease-in-out infinite;
-  }
-  .hbc-5 {
-    width: 130px; height: 130px;
-    background: radial-gradient(circle, rgba(233,30,140,0.28) 0%, transparent 65%);
-    top: 72%; right: 12%;
-    animation: orb1 10s ease-in-out infinite reverse;
-  }
-  .hbc-6 {
-    width: 90px; height: 90px;
-    background: radial-gradient(circle, rgba(107,47,160,0.35) 0%, transparent 65%);
-    top: 30%; right: 35%;
-    animation: orb4 14s ease-in-out infinite;
-  }
-  @keyframes orb1 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    33%      { transform: translate(44px,-52px) scale(1.08); }
-    66%      { transform: translate(-28px,32px) scale(0.94); }
-  }
-  @keyframes orb2 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    40%      { transform: translate(60px,-38px) scale(1.1); }
-    70%      { transform: translate(-22px,54px) scale(0.92); }
-  }
-  @keyframes orb3 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    50%      { transform: translate(-52px,-64px) scale(1.16); }
-  }
-  @keyframes orb4 {
-    0%,100% { transform: translate(0,0); }
-    30%      { transform: translate(28px,38px); }
-    60%      { transform: translate(-22px,-28px); }
-  }
+/* el gif y el velo van en su propia capa recortada, así no se salen del hero */
+.nebula-bg-gif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* cubre el hero sin deformarse */
+  object-position: center;
+  z-index: 0;
+  border-radius: inherit;
+}
 
-  .hero-content { position: relative; z-index: 2; }
-  .hero-card {
-    background: rgba(255,255,255,0.62);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border: 1px solid rgba(255,255,255,0.88);
-    border-radius: 28px;
-    padding: 46px 46px 42px;
-    box-shadow:
-      0 8px 40px rgba(107,47,160,0.13),
-      0 2px 8px rgba(107,47,160,0.06),
-      inset 0 1px 0 rgba(255,255,255,0.95);
-    max-width: 500px;
-    animation: fadeUp .9s ease forwards;
-  }
+/* velo oscuro para que el texto resalte sobre el gif */
+.nebula-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(20,5,35,0.75) 0%, rgba(40,10,60,0.55) 45%, rgba(70,15,90,0.3) 100%);
+  z-index: 1;
+}
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(107,47,160,0.10);
-    color: var(--plum);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 22px;
-    border: 1px solid rgba(107,47,160,0.18);
-  }
+.nebula-hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  margin-left: 30px;        /* la mueve un poco más a la derecha */
+}
 
-  .hero-card h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 4vw, 56px);
-    font-weight: 900;
-    line-height: 1.08;
-    color: var(--heading);
-    margin-bottom: 18px;
-  }
-  .hero-card h1 span { color: var(--plum); font-style: italic; }
+.nebula-title {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 14px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(50px, 6.4vw, 84px);   /* aún más grande */
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 4px 30px rgba(233,30,140,0.35);
+}
 
-  .hero-card p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 32px;
-  }
+.nebula-underline {
+  position: relative;
+  z-index: 2;
+  width: 140px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ab49cc, #e91e8c);
+  box-shadow: 0 0 16px rgba(233,30,140,0.6);
+  margin-bottom: 28px;
+}
 
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--plum);
-    color: white;
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: background .25s, transform .25s, box-shadow .25s;
-    box-shadow: 0 8px 24px rgba(107,47,160,0.35);
-  }
-  .btn-primary:hover {
-    background: var(--mid);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(107,47,160,0.45);
-  }
-  .btn-primary .arrow {
-    width: 28px; height: 28px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: background .2s, transform .2s;
-  }
-  .btn-primary:hover .arrow { background: rgba(255,255,255,0.35); transform: translateX(3px); }
+.nebula-subtitle {
+  position: relative;
+  z-index: 2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 23px;         /* más grande */
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 6px;
+}
 
-  .hero-visual {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    animation: fadeUp .9s ease .2s both;
-  }
+.nebula-subtitle-2 {
+  position: relative;
+  z-index: 2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;         /* más grande */
+  color: #f0b8f8;
+  margin: 0 0 36px;
+}
 
-  .hero-visual img {
-    width: 100%;
-    max-width: 600px;
+.nebula-cta {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #ab49cc, #e91e8c);
+  color: #fff;
+  border: none;
+  padding: 18px 48px;      /* más grande */
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;         /* más grande */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(233,30,140,0.45);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nebula-cta:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(233,30,140,0.55);
+  color: #fff;
+}
+
+.nebula-mascot-wrap {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 30px;
+}
+
+.nebula-mascot {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;        /* más grande que antes */
+  height: auto;
+  transform: translateY(79px); /* la empuja hacia abajo para que se "asome" fuera del hero */
+  filter: drop-shadow(0 14px 26px rgba(142,34,187,0.25));
+}
+
+@media (max-width: 900px) {
+  .nebula-hero {
+    grid-template-columns: 1fr;
     height: auto;
-    max-height: 650px;
-    object-fit: contain;
-    margin-top: 100px;
+    min-height: 640px;
+    padding: 90px 24px 60px;
+    text-align: center;
+    overflow: hidden;       /* en móvil no queremos que se asome, se ve raro apilado */
   }
+  .nebula-hero-text { text-align: center; }
+  .nebula-mascot-wrap { padding-right: 0; margin-top: 24px; }
+  .nebula-mascot { max-width: 240px; transform: none; }
+}
 
-  /* ── SECTION COMMON ── */
+
+/* ── SECTION COMMON ── */
   section { padding: 90px 60px; }
   .section-label {
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--violet);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
+    font-size: clamp(32px, 4.2vw, 52px);
     font-weight: 700;
     color: #751fa7;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .section-sub {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--muted);
-    max-width: 480px;
-    line-height: 1.7;
-    margin-bottom: 50px;
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 55px;
   }
 
   /* ── VISUAL HEALTH ── */
   .visual-health {
+    position: relative;
+    z-index: 1;             /* menor que el hero: deja que la mascota se asome por encima */
     background: var(--blush);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -217,17 +195,17 @@
   .conditions-list {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: 30px;
+    gap: 16px;
+    margin-top: 34px;
   }
   .condition-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: 16px 24px;
+    padding: 22px 28px;      /* más grande */
     background: white;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color .25s, box-shadow .25s, transform .2s;
@@ -253,17 +231,17 @@
   }
   .condition-top .condition-arrow { margin-left: auto; }
   .condition-dot {
-    width: 10px; height: 10px;
+    width: 12px; height: 12px;
     border-radius: 50%;
     background: var(--violet);
     flex-shrink: 0;
   }
   .condition-item.active .condition-dot { background: white; }
-  .condition-name { font-weight: 500; font-size: 15px; }
+  .condition-name { font-weight: 600; font-size: 18px; }
   .condition-arrow {
     opacity: 0;
     transition: opacity .2s, transform .35s ease;
-    font-size: 14px;
+    font-size: 16px;
   }
   .condition-item:hover .condition-arrow { opacity: 1; }
   .condition-item.active .condition-arrow { transform: rotate(90deg); opacity: 1; }
@@ -282,21 +260,21 @@
     margin-top: 14px;
   }
   .condition-info p {
-    font-size: 13px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.8;
     color: rgba(255,255,255,0.75);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .condition-item:not(.active) .condition-info p { color: var(--muted); }
   .condition-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
+    gap: 7px;
+    margin-bottom: 12px;
   }
   .condition-tag {
-    font-size: 11px;
-    padding: 3px 10px;
+    font-size: 12px;
+    padding: 4px 12px;
     border-radius: 20px;
     background: rgba(255,255,255,0.15);
     color: rgba(255,255,255,0.85);
@@ -307,7 +285,7 @@
     color: var(--plum);
   }
   .condition-stat {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: rgba(255,255,255,0.6);
     display: flex;
@@ -523,22 +501,13 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
-  /* ── HERO ANIMATION ── */
-  .hero-content { animation: fadeUp .9s ease forwards; }
-  .hero-visual { animation: fadeUp .9s ease .2s both; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(32px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
-    .hero, .visual-health { grid-template-columns: 1fr; padding: 60px 24px; }
+    .visual-health { grid-template-columns: 1fr; padding: 60px 24px; }
     section { padding: 60px 24px; }
     .trust-bar { padding: 24px; flex-direction: column; gap: 24px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .hero-visual img { margin-top: 0; }
   }
   @media (max-width: 768px) {
     nav { padding: 14px 20px !important; }
@@ -586,16 +555,6 @@
 
 .products {
   padding: 30px 0px 0px 0px;  /* antes 60px */
-}
-
-.hero {
-  padding-top: 10px; /* antes 40 / 60 */
-}.hero-content {
-  transform: translateY(-30px);
-}
-
-.hero-visual {
-  transform: translateY(-30px);
 }
 
 .glasses-scene {
@@ -790,13 +749,6 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
    MODO OSCURO — style.css (home)
    Solo overrides de color, la estructura/posición no cambia.
    ══════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .hero { background: linear-gradient(160deg, var(--lilac) 0%, #201333 40%, #150C24 100%); }
-[data-theme="dark"] .hero-card {
-  background: rgba(26,14,42,0.72);
-  border-color: rgba(155,89,182,0.25);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-[data-theme="dark"] .hero-badge { background: rgba(155,89,182,0.18); border-color: rgba(155,89,182,0.3); }
 [data-theme="dark"] .condition-item { background:#32195a; }
 [data-theme="dark"] .condition-item.active { background: var(--mid); color: white; border-color: var(--mid); }
 [data-theme="dark"] .condition-item.active .condition-dot { background: white; }
