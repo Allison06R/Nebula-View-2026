@@ -99,9 +99,18 @@
                 <rect x="3" y="11" width="18" height="11" rx="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
-              <input type="password" name="password" placeholder="••••••••" required minlength="6"/>
+              <input type="password" name="password" id="password" placeholder="••••••••" required minlength="8"/>
             </div>
             @error('password') <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $message }}</div> @enderror
+
+            <div class="pw-strength-bar"><div class="pw-strength-fill" id="pwStrengthFill"></div></div>
+            <div class="pw-strength-label" id="pwStrengthLabel">&nbsp;</div>
+
+            <ul class="pw-requisitos" id="pwRequisitos">
+              <li id="req-len">Al menos 8 caracteres</li>
+              <li id="req-mixed">Una mayúscula y una minúscula</li>
+              <li id="req-number">Al menos un número</li>
+            </ul>
           </div>
 
           <div class="field half">
@@ -174,6 +183,57 @@ function doToast(type, title, msg) {
     doToast('ok', 'Éxito', '{{ session('success') }}');
   });
 @endif
+
+// Barra de fortaleza y checklist de requisitos en vivo
+const pwInput   = document.getElementById('password');
+const pwFill    = document.getElementById('pwStrengthFill');
+const pwLabel   = document.getElementById('pwStrengthLabel');
+const reqLen    = document.getElementById('req-len');
+const reqMixed  = document.getElementById('req-mixed');
+const reqNumber = document.getElementById('req-number');
+
+function evaluarPassword(pw) {
+  const tieneLen    = pw.length >= 8;
+  const tieneMixed  = /[a-z]/.test(pw) && /[A-Z]/.test(pw);
+  const tieneNumero = /[0-9]/.test(pw);
+  const tieneSimbolo = /[^a-zA-Z0-9]/.test(pw);
+
+  reqLen.classList.toggle('ok', tieneLen);
+  reqMixed.classList.toggle('ok', tieneMixed);
+  reqNumber.classList.toggle('ok', tieneNumero);
+
+  let puntos = 0;
+  if (pw.length > 0) puntos++;
+  if (tieneLen) puntos++;
+  if (tieneMixed) puntos++;
+  if (tieneNumero) puntos++;
+  if (tieneSimbolo) puntos++;
+  if (pw.length >= 12) puntos++;
+
+  pwFill.className = 'pw-strength-fill';
+  if (pw.length === 0) {
+    pwFill.style.width = '0%';
+    pwLabel.textContent = '\u00a0';
+    return;
+  }
+  if (puntos <= 2) {
+    pwFill.classList.add('weak');
+    pwLabel.textContent = 'Poco segura';
+    pwLabel.style.color = '#dc2626';
+  } else if (puntos <= 4) {
+    pwFill.classList.add('medium');
+    pwLabel.textContent = 'Segura';
+    pwLabel.style.color = '#d97706';
+  } else {
+    pwFill.classList.add('strong');
+    pwLabel.textContent = 'Muy segura';
+    pwLabel.style.color = '#059669';
+  }
+}
+
+if (pwInput) {
+  pwInput.addEventListener('input', () => evaluarPassword(pwInput.value));
+}
 
 // Validación del lado del cliente
 document.getElementById('regForm').addEventListener('submit', function(e) {

@@ -13,7 +13,9 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TranslateController;
 use App\Http\Controllers\Modelo3dController;
 // ─── Asistente flotante (disponible en todo el sitio) ─────────────────────────
-Route::post('/chat-widget', [ChatWidgetController::class, 'send'])->name('chat.widget.send');
+Route::post('/chat-widget', [ChatWidgetController::class, 'send'])
+    ->middleware('throttle:15,1')
+    ->name('chat.widget.send');
 
 // ─── Páginas públicas ────────────────────────────────────────────────────────
 Route::get('/',                   fn() => view('home'))->name('home');
@@ -68,8 +70,12 @@ Route::middleware('auth')->group(function () {
 // ─── Test / diagnóstico IA (requiere sesión) ──────────────────────────────────
 Route::middleware('noauth')->group(function () {
     Route::get('/test', [TestController::class, 'index'])->name('test');
-    Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])->name('test.diagnostico');
-    Route::post('/test/chat', [TestController::class, 'chat'])->name('test.chat');
+    Route::post('/test/diagnostico', [TestController::class, 'diagnostico'])
+        ->middleware('throttle:10,1')
+        ->name('test.diagnostico');
+    Route::post('/test/chat', [TestController::class, 'chat'])
+        ->middleware('throttle:15,1')
+        ->name('test.chat');
 
     // ── Historial persistente de tests ─────────────────────────────────────
     Route::post('/test/guardar', [TestController::class, 'guardar'])->name('test.guardar');
@@ -111,4 +117,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
 });
 
-Route::post('/translate', [TranslateController::class, 'translate']);
+Route::post('/translate', [TranslateController::class, 'translate'])
+    ->middleware('throttle:30,1');

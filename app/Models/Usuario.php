@@ -2,12 +2,14 @@
  
 namespace App\Models;
  
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
  
-class Usuario extends Authenticatable
+class Usuario extends Authenticatable implements CanResetPassword
 {
-    use Notifiable;
+    use Notifiable, CanResetPasswordTrait;
 
     protected $table = 'usuario';
     protected $primaryKey = 'id_usuario';
@@ -38,6 +40,25 @@ class Usuario extends Authenticatable
     public function getAuthPassword()
     {
         return $this->contrasena;
+    }
+
+    /**
+     * El broker de reseteo de contraseña de Laravel busca por defecto
+     * la columna "email"; esta tabla usa "correo", así que se sobrescribe.
+     */
+    public function getEmailForPasswordReset()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * El sistema de notificaciones de Laravel busca por defecto el atributo
+     * "email" para saber a quién enviar el correo. Como esta tabla usa
+     * "correo", sin esto el envío fallaba en silencio (sin excepción).
+     */
+    public function routeNotificationForMail($notification = null)
+    {
+        return $this->correo;
     }
 
     public function perfilVisual()
@@ -73,11 +94,6 @@ class Usuario extends Authenticatable
         return $archivo ? asset($archivo) : null;
     }
 
-    /**
-     * URL del banner subido por el usuario, o null si el banner activo
-     * es uno de la galería (esos se dibujan como degradado CSS, ver
-     * getBannerGradientAttribute) o si no hay ninguno configurado.
-     */
     public function getBannerUrlAttribute(): ?string
     {
         if ($this->banner_tipo === 'custom' && $this->banner_custom) {
@@ -87,10 +103,7 @@ class Usuario extends Authenticatable
         return null;
     }
 
-    /**
-     * Degradado CSS del banner de galería elegido (solo aplica cuando
-     * banner_tipo no es 'custom').
-     */
+   
     public function getBannerGradientAttribute(): ?string
     {
         if ($this->banner_tipo === 'custom') {

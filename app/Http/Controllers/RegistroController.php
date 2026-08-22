@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
  
 class RegistroController extends Controller
 {
@@ -22,7 +23,7 @@ class RegistroController extends Controller
            
             'usuario'               => ['required', 'string', 'max:50', Rule::unique('usuario', 'usuario')],
             'correo'                => ['required', 'email', 'max:150', Rule::unique('usuario', 'correo')],
-            'password'              => ['required', 'string', 'min:6', 'confirmed'],
+            'password'              => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->uncompromised()],
             'terms'                 => ['accepted'],
         ]);
  

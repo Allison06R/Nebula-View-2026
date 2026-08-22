@@ -21,6 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
     // Evita que el navegador guarde en caché las páginas (login, perfil-visual, etc.)
     // para que el botón "atrás" no muestre contenido obsoleto tras iniciar/cerrar sesión.
     $middleware->appendToGroup('web', \App\Http\Middleware\PreventBackHistory::class);
+
+    // Cabeceras de seguridad (CSP, X-Frame-Options, HSTS, etc.) en toda respuesta web.
+    $middleware->appendToGroup('web', \App\Http\Middleware\SecurityHeaders::class);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

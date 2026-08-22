@@ -9,6 +9,7 @@ use App\Models\Modelo3d;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -75,7 +76,7 @@ class AdminController extends Controller
             'usuario'  => 'required|string|max:50|unique:usuario,usuario',
             'correo'   => 'required|email|max:100|unique:usuario,correo',
             'rol'      => 'required|in:admin,usuario',
-            'password' => 'required|min:6|confirmed',
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->uncompromised()],
         ]);
 
         Usuario::create([
@@ -102,7 +103,7 @@ class AdminController extends Controller
             'usuario' => 'required|string|max:50|unique:usuario,usuario,' . $usuario->id_usuario . ',id_usuario',
             'correo'  => 'required|email|max:100|unique:usuario,correo,' . $usuario->id_usuario . ',id_usuario',
             'rol'     => 'required|in:admin,usuario',
-            'password' => 'nullable|min:6|confirmed',
+            'password' => ['nullable', 'confirmed', Password::min(8)->mixedCase()->numbers()->uncompromised()],
         ]);
 
         $usuario->nombre  = $request->nombre;

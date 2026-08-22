@@ -88,7 +88,7 @@ footer.lc-footer {
             <input type="checkbox" name="recordar"/>
             Recordarme
           </label>
-          <span class="forgot">¿Olvidaste tu contraseña?</span>
+          <a href="{{ route('password.request') }}" class="forgot">¿Olvidaste tu contraseña?</a>
         </div>
 
         <button type="submit" class="btn-login">
