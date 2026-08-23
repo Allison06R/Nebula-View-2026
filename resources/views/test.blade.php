@@ -50,6 +50,11 @@
     <!-- INTRO -->
     <div id="intro-screen">
       <div class="hero-badge">🔬 Test interactivo · IA</div>
+      <div>
+        <a href="{{ route('test-ishihara') }}" class="test-switch-link">
+          🎨 ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
+        </a>
+      </div>
       <h1>Descubre tu<br><em>perfil visual</em></h1>
       <p>Responde 20 preguntas sobre tus síntomas, hábitos, estilo de vida y antecedentes. Obtendrás un diagnóstico por condición, un plan semanal de hábitos y un chat personalizado con tu asistente visual.</p>
 

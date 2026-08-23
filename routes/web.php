@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\MiPerfilController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestIshiharaController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
@@ -84,6 +85,21 @@ Route::middleware('noauth')->group(function () {
     Route::post('/test/{test}/enviar-pdf', [TestController::class, 'enviarPdf'])
         ->middleware('throttle:5,10')
         ->name('test.enviarPdf');
+
+    // ─── Test de Ishihara (daltonismo) — se guarda en la misma tabla "tests" ─
+    Route::get('/test-ishihara', [TestIshiharaController::class, 'index'])->name('test-ishihara');
+    Route::get('/test-ishihara/laminas', [TestIshiharaController::class, 'laminas'])->name('test-ishihara.laminas');
+    Route::post('/test-ishihara/finalizar', [TestIshiharaController::class, 'finalizar'])
+        ->middleware('throttle:10,1')
+        ->name('test-ishihara.finalizar');
+    Route::post('/test-ishihara/chat', [TestIshiharaController::class, 'chat'])
+        ->middleware('throttle:15,1')
+        ->name('test-ishihara.chat');
+    Route::get('/test-ishihara/historial', [TestIshiharaController::class, 'historial'])->name('test-ishihara.historial');
+    Route::delete('/test-ishihara/{test}', [TestIshiharaController::class, 'destroy'])->name('test-ishihara.destroy');
+    Route::post('/test-ishihara/{test}/enviar-pdf', [TestIshiharaController::class, 'enviarPdf'])
+        ->middleware('throttle:5,10')
+        ->name('test-ishihara.enviarPdf');
 
     // ── Modelos 3D favoritos ────────────────────────────────────────────────
     Route::get('/modelos3d/favoritos',        [Modelo3dController::class, 'misFavoritos'])->name('modelos3d.favoritos');

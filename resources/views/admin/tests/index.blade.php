@@ -49,12 +49,15 @@
         </td>
         <td style="color:var(--a-muted);font-size:12.5px;max-width:320px">
           @php
-            $resumen = $t->resultado['resultadoIA']['titulo']
-                ?? $t->resultado['resultadoIA']['analisis']
-                ?? null;
+            $esIshihara = ($t->resultado['tipo'] ?? null) === 'ishihara';
+            $resumen = $esIshihara
+                ? ($t->resultado['resultado_ia']['titulo'] ?? 'Test de Ishihara')
+                : ($t->resultado['resultadoIA']['titulo']
+                    ?? $t->resultado['resultadoIA']['analisis']
+                    ?? null);
             $resumen = $resumen ? Str::limit($resumen, 100) : '— Sin resumen';
           @endphp
-          {{ $resumen }}
+          @if($esIshihara)<span style="color:var(--a-accent);font-size:10.5px;font-weight:600;">ISHIHARA · </span>@endif{{ $resumen }}
         </td>
         <td style="color:var(--a-muted);font-size:12px">{{ $t->fecha_realizacion?->format('d/m/Y H:i') ?? '—' }}</td>
         <td>

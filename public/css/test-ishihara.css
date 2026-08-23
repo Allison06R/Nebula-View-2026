@@ -1,0 +1,209 @@
+/* ═══════════════════════════════════════════
+   TEST DE ISHIHARA — estilos propios
+   Reutiliza variables y clases base de theme.css / test.css
+   (hero-card, progress-bar, btn-next, chat-wrap, hist-item, etc.)
+═══════════════════════════════════════════ */
+
+.ish-info-box{
+  display:flex;flex-direction:column;gap:10px;
+  background:rgba(107,47,160,0.05);
+  border:1px solid rgba(107,47,160,0.12);
+  border-radius:14px;
+  padding:16px 18px;
+  margin:22px 0;
+}
+.ish-info-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--text);
+}
+.ish-info-ico{font-size:16px;flex-shrink:0;}
+
+/* — Lámina — */
+.ish-plate-wrap{
+  display:flex;justify-content:center;align-items:center;
+  margin:20px 0 26px;
+}
+.ish-plate-img{
+  width:260px;height:260px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 8px 30px rgba(26,10,46,0.18);
+  background:var(--white);
+}
+@media (max-width:480px){
+  .ish-plate-img{width:200px;height:200px;}
+}
+
+.ish-question{
+  text-align:center;
+  font-size:15px;font-weight:600;
+  color:var(--heading);
+  margin-bottom:18px;
+}
+
+/* — Teclado numérico — */
+.ish-keypad{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  max-width:280px;
+  margin:0 auto 14px;
+}
+.ish-key{
+  padding:16px 0;
+  font-size:18px;font-weight:700;
+  color:var(--heading);
+  background:var(--white);
+  border:1.5px solid rgba(107,47,160,0.18);
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .18s ease;
+}
+.ish-key:hover{border-color:var(--plum);background:rgba(107,47,160,0.06);}
+.ish-key:active{transform:scale(0.95);}
+.ish-key-clear{color:var(--muted);font-size:16px;}
+.ish-key-novelo{
+  grid-column:span 3;
+  font-size:13px;font-weight:600;
+  background:transparent;
+  border-style:dashed;
+  color:var(--muted);
+}
+.ish-key-novelo.selected{
+  background:var(--plum);
+  border-style:solid;
+  border-color:var(--plum);
+  color:#fff;
+}
+
+.ish-answer-display{
+  text-align:center;
+  font-size:26px;font-weight:700;
+  letter-spacing:.04em;
+  color:var(--plum);
+  min-height:34px;
+  margin-bottom:18px;
+}
+
+/* — Score card en resultado — */
+.ish-score-card{
+  display:flex;flex-direction:column;align-items:center;
+  gap:2px;
+  margin:-34px auto 22px;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:var(--white);
+  box-shadow:0 8px 26px rgba(26,10,46,0.18);
+  justify-content:center;
+  border:4px solid var(--white);
+}
+.ish-score-num{font-size:28px;font-weight:800;color:var(--heading);font-family:'MuseoModerno',serif;}
+.ish-score-lbl{font-size:10.5px;color:var(--muted);text-align:center;padding:0 8px;}
+
+/* — Paneles de interpretación — */
+.ish-panel{
+  background:rgba(107,47,160,0.05);
+  border:1px solid rgba(107,47,160,0.12);
+  border-radius:12px;
+  padding:14px 16px;
+  margin-bottom:16px;
+  font-size:13.5px;color:var(--text);line-height:1.7;
+  text-align:left;
+}
+.ish-panel-title{font-weight:700;color:var(--heading);margin-bottom:6px;font-size:13px;}
+.ish-panel-dark{
+  background:var(--dark);
+  color:#f3ecff;
+  border:none;
+}
+.ish-panel-dark .ish-panel-title{color:#d9c6ff;}
+
+/* — Detalle lámina por lámina — */
+.ish-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:10px;
+  margin-bottom:24px;
+}
+.ish-detail-item{
+  display:flex;flex-direction:column;gap:4px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1.5px solid rgba(107,47,160,0.12);
+  font-size:11.5px;
+  position:relative;
+}
+.ish-detail-item.ok{border-color:rgba(52,211,153,0.4);background:rgba(52,211,153,0.06);}
+.ish-detail-item.fail{border-color:rgba(233,30,60,0.3);background:rgba(233,30,60,0.05);}
+.ish-detail-num{font-weight:700;color:var(--heading);}
+.ish-detail-resp{color:var(--muted);}
+.ish-detail-ico{position:absolute;top:8px;right:10px;font-weight:800;}
+.ish-detail-item.ok .ish-detail-ico{color:#059669;}
+.ish-detail-item.fail .ish-detail-ico{color:#dc2626;}
+
+.hist-item-main{display:flex;flex-direction:column;gap:3px;}
+.hist-item-main strong{color:var(--heading);font-size:13.5px;}
+.hist-item-main span{color:var(--muted);font-size:11.5px;}
+
+/* Las pantallas de resultado e historial del test de Ishihara solo deben
+   verse cuando el JS les agrega la clase .show (igual que en test.css para
+   el test general). Sin esto, quedaban visibles apiladas debajo del intro. */
+#ish-result-screen{display:none;}
+#ish-result-screen.show{display:block;animation:fadeUp .7s ease forwards;}
+#ish-history-screen{display:none;}
+#ish-history-screen.show{display:block;animation:fadeUp .7s ease forwards;}
+
+/* ── Resultado en formato horizontal (2 columnas) ──
+   Izquierda: resumen + paneles + detalle lámina por lámina.
+   Derecha: chat. En pantallas angostas se apilan (1 columna). */
+#ishCard.wide-card{max-width:960px;}
+.ish-result-columns{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:30px;
+  align-items:start;
+  text-align:left;
+}
+.ish-result-left,.ish-result-right{min-width:0;}
+.ish-result-right .chat-wrap{margin-bottom:0;}
+.ish-result-right .chat-messages{height:100%;min-height:300px;}
+@media (max-width:860px){
+  .ish-result-columns{grid-template-columns:1fr;gap:0;}
+  .ish-result-right .chat-messages{min-height:220px;}
+}
+
+/* ══════════════════════════════════════════════
+   MODO OSCURO — test-ishihara.css
+   Los colores base (var(--white), var(--text), var(--muted), etc.)
+   ya se redefinen automáticamente en [data-theme="dark"] (theme.css),
+   así que solo hace falta reforzar los pocos elementos que usan
+   colores fijos (blanco, sombras claras) en vez de esas variables.
+   ══════════════════════════════════════════════ */
+[data-theme="dark"] .ish-info-box{
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(155,89,182,0.2);
+}
+[data-theme="dark"] .ish-key{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(155,89,182,0.28);
+  color:var(--heading);
+}
+[data-theme="dark"] .ish-key:hover{background:rgba(155,89,182,0.14);border-color:var(--violet);}
+[data-theme="dark"] .ish-key-novelo{color:var(--muted);}
+[data-theme="dark"] .ish-plate-img{background:rgba(255,255,255,0.92);}
+[data-theme="dark"] .ish-score-card{
+  background:rgba(26,14,42,0.92);
+  border-color:rgba(155,89,182,0.35);
+  box-shadow:0 8px 26px rgba(0,0,0,0.45);
+}
+[data-theme="dark"] .ish-panel{
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(155,89,182,0.2);
+}
+[data-theme="dark"] .ish-panel-dark{background:rgba(0,0,0,0.35);}
+[data-theme="dark"] .ish-detail-item{border-color:rgba(155,89,182,0.2);}
+[data-theme="dark"] .ish-detail-item.ok{background:rgba(63,224,135,0.08);border-color:rgba(63,224,135,0.35);}
+[data-theme="dark"] .ish-detail-item.fail{background:rgba(255,107,91,0.08);border-color:rgba(255,107,91,0.35);}
+[data-theme="dark"] .ish-detail-item.ok .ish-detail-ico{color:#3FE087;}
+[data-theme="dark"] .ish-detail-item.fail .ish-detail-ico{color:#FF6B5B;}
+

@@ -136,6 +136,7 @@ class TestController extends Controller
         $test = Test::create([
             'id_usuario'        => auth()->id(),
             'resultado'         => [
+                'tipo'        => 'diagnostico',
                 'resultadoIA' => $datos['resultado'],
                 'scores'      => $datos['scores'] ?? [],
             ],
@@ -155,6 +156,10 @@ class TestController extends Controller
     public function historial(Request $request)
     {
         $tests = Test::where('id_usuario', auth()->id())
+            ->where(function ($q) {
+                $q->whereNull('resultado->tipo')
+                  ->orWhere('resultado->tipo', 'diagnostico');
+            })
             ->orderByDesc('fecha_realizacion')
             ->limit(20)
             ->get()
@@ -182,7 +187,8 @@ class TestController extends Controller
      */
     public function enviarPdf(Request $request, Test $test)
     {
-        if ($test->id_usuario !== auth()->id()) {
+        $tipo = $test->resultado['tipo'] ?? 'diagnostico';
+        if ($test->id_usuario !== auth()->id() || $tipo !== 'diagnostico') {
             abort(403, 'No tienes permiso para acceder a este test.');
         }
 
