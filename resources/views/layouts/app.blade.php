@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title', 'Nebula View')</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
+<link href="{{ asset('css/icons.css') }}" rel="stylesheet">
 <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
@@ -15,6 +16,7 @@
 @yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
 <body>
+@include('partials.icons')
 @include('layouts.preloader')
 
 {{-- MOBILE MENU DRAWER --}}
@@ -291,10 +293,10 @@
 @yield('content')
 
 <!-- FOOTER -->
-<footer style="background:#1A0A2E;color:rgba(255,255,255,0.7);padding:50px 60px 28px;font-family:'DM Sans',sans-serif;">
+<footer style="background:#1A0A2E;color:rgba(255,255,255,0.7);padding:50px 60px 28px;font-family: 'MuseoModerno', sans-serif;">
   <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:30px;">
     <div>
-      <span style="font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:700;display:block;margin-bottom:14px;">Nebula View 👁</span>
+      <span style="font-family: 'MuseoModerno', serif;font-size:20px;color:white;font-weight:700;display:block;margin-bottom:14px;">Nebula View 👁</span>
       <p style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:280px;margin:0 0 14px;">Tu destino de confianza para lentes de calidad y cuidado visual.</p>
       <p style="font-size:13px;color:rgba(255,255,255,0.5);">info@nebulaview.com</p>
     </div>

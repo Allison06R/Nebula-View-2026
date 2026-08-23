@@ -32,8 +32,8 @@ class SecurityHeaders
             . "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
             . "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             . "font-src 'self' https://fonts.gstatic.com; "
-            . "img-src 'self' data: https:; "
-            . "connect-src 'self' https://api.groq.com https://translation.googleapis.com https://storage.googleapis.com https://cdn.jsdelivr.net; "
+            . "img-src 'self' data: blob: https:; "
+            . "connect-src 'self' blob: https://api.groq.com https://translation.googleapis.com https://storage.googleapis.com https://cdn.jsdelivr.net; "
             . "frame-src https://sketchfab.com; "
             . "frame-ancestors 'none';"
         );

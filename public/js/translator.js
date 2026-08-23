@@ -62,18 +62,44 @@
         'PRE'
     ];
 
-    // ------------------------------------------------------------
-    // OBTENER TEXTOS DE LA PÁGINA
-    // ------------------------------------------------------------
+    // El botón de idioma maneja su propio texto (EN/ES/...) con
+    // updateButtons(); nunca debe pasar por Google Translate.
+    const excludedIds = [
+        'langToggle',
+        'langToggleMobile'
+    ];
 
-    function collectPageTexts() {
+    function isInsideExcludedElement(parent) {
 
-        if (originalTexts.size > 0) {
-            return;
+        if (!parent) return true;
+
+        if (excludedTags.includes(parent.tagName)) {
+            return true;
         }
 
+        return Boolean(
+            parent.closest &&
+            excludedIds.some(
+                id => parent.closest('#' + id)
+            )
+        );
+    }
+
+    // Ya escaneamos el documento completo al menos una vez
+    let pageScanned = false;
+
+    // ------------------------------------------------------------
+    // RECOLECTAR TEXTOS NUEVOS DENTRO DE UNA RAÍZ (reutilizable
+    // tanto para la página completa como para contenido dinámico
+    // que aparece después, como modales generados con innerHTML)
+    // ------------------------------------------------------------
+
+    function collectTextsFrom(root) {
+
+        const newEntries = [];
+
         const walker = document.createTreeWalker(
-            document.body,
+            root,
             NodeFilter.SHOW_TEXT
         );
 
@@ -83,10 +109,12 @@
 
             const parent = node.parentElement;
 
-            if (!parent) continue;
+            if (isInsideExcludedElement(parent)) {
+                continue;
+            }
 
-            // No traducir elementos excluidos
-            if (excludedTags.includes(parent.tagName)) {
+            // Ya lo conocíamos de antes: no lo dupliquemos
+            if (originalTexts.has(node)) {
                 continue;
             }
 
@@ -96,7 +124,26 @@
 
             // Guardar el texto original
             originalTexts.set(node, node.textContent);
+
+            newEntries.push([node, node.textContent]);
         }
+
+        return newEntries;
+    }
+
+    // ------------------------------------------------------------
+    // OBTENER TEXTOS DE LA PÁGINA (una sola vez por carga de página)
+    // ------------------------------------------------------------
+
+    function collectPageTexts() {
+
+        if (pageScanned) {
+            return;
+        }
+
+        pageScanned = true;
+
+        collectTextsFrom(document.body);
 
         console.log(
             'Textos encontrados para traducir:',
@@ -238,25 +285,25 @@
     }
 
     // ------------------------------------------------------------
-    // TRADUCIR PÁGINA COMPLETA
+    // TRADUCIR UNA LISTA DE ENTRADAS [nodo, textoOriginal] POR LOTES
     // ------------------------------------------------------------
+    // Reutilizable tanto para la traducción inicial de la página
+    // como para contenido dinámico detectado más tarde (modales,
+    // carruseles, etc.). Devuelve true si algún lote falló.
 
-    async function translatePage() {
-
-        collectPageTexts();
-
-        const entries =
-            Array.from(originalTexts.entries());
+    async function translateEntries(entries) {
 
         if (!entries.length) {
-            console.warn(
-                'No se encontraron textos para traducir.'
-            );
-            return;
+            return false;
         }
 
         // Google permite hasta 50 textos por petición
         const BATCH_SIZE = 50;
+
+        // Si un lote falla (red, timeout, límite de Google, etc.)
+        // NO debe cancelar la traducción de los lotes siguientes.
+        // Reintentamos una vez por lote antes de darlo por perdido.
+        let hadError = false;
 
         for (
             let i = 0;
@@ -278,12 +325,66 @@
                     item[1].trim()
                 );
 
-            await translateBatch(
-                nodes,
-                texts
-            );
+            try {
+
+                await translateBatch(
+                    nodes,
+                    texts
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    'Falló un lote de traducción, reintentando una vez...',
+                    error
+                );
+
+                try {
+
+                    await translateBatch(
+                        nodes,
+                        texts
+                    );
+
+                } catch (retryError) {
+
+                    console.error(
+                        'El lote falló también en el reintento. Se continúa con el resto.',
+                        retryError
+                    );
+
+                    hadError = true;
+                }
+            }
         }
 
+        return hadError;
+    }
+
+    // ------------------------------------------------------------
+    // TRADUCIR PÁGINA COMPLETA
+    // ------------------------------------------------------------
+
+    async function translatePage() {
+
+        collectPageTexts();
+
+        const entries =
+            Array.from(originalTexts.entries());
+
+        if (!entries.length) {
+            console.warn(
+                'No se encontraron textos para traducir.'
+            );
+            return;
+        }
+
+        const hadError = await translateEntries(entries);
+
+        // Guardamos como 'en' aunque haya habido errores parciales:
+        // lo que sí se tradujo debe mantenerse así al cambiar de
+        // página, y el auto-traductor reintentará lo que falló
+        // (esos textos no quedaron en caché, así que se piden de nuevo).
         currentLanguage = 'en';
 
         localStorage.setItem(
@@ -293,9 +394,103 @@
 
         updateButtons();
 
+        if (hadError) {
+
+            throw new Error(
+                'Algunos textos no se pudieron traducir. Revisa la consola para más información.'
+            );
+        }
+
         console.log(
             'Página traducida correctamente.'
         );
+    }
+
+    // ------------------------------------------------------------
+    // CONTENIDO DINÁMICO (modales, carruseles, etc.)
+    // ------------------------------------------------------------
+    // Algunas partes del sitio se generan con innerHTML después de
+    // que la página ya cargó (por ejemplo, el modal de "Ver más" en
+    // Problemas Visuales). El traductor solo escanea el HTML que
+    // existe en el momento en que corre, así que ese contenido nuevo
+    // se quedaba siempre en español. Este observer detecta cuando
+    // aparece contenido nuevo y, si el sitio ya está en inglés, lo
+    // traduce automáticamente.
+
+    let dynamicObserverStarted = false;
+
+    function startDynamicContentObserver() {
+
+        if (dynamicObserverStarted) {
+            return;
+        }
+
+        dynamicObserverStarted = true;
+
+        const observer = new MutationObserver(mutations => {
+
+            // Si el sitio está en español no hay nada que traducir;
+            // el contenido nuevo se recolectará solo si más tarde
+            // se aprieta el botón de traducir.
+            if (currentLanguage !== 'en') {
+                return;
+            }
+
+            let newEntries = [];
+
+            mutations.forEach(mutation => {
+
+                mutation.addedNodes.forEach(added => {
+
+                    if (added.nodeType === Node.ELEMENT_NODE) {
+
+                        if (isInsideExcludedElement(added)) {
+                            return;
+                        }
+
+                        newEntries = newEntries.concat(
+                            collectTextsFrom(added)
+                        );
+
+                    } else if (added.nodeType === Node.TEXT_NODE) {
+
+                        const parent = added.parentElement;
+
+                        if (isInsideExcludedElement(parent)) {
+                            return;
+                        }
+
+                        if (originalTexts.has(added)) {
+                            return;
+                        }
+
+                        const text = added.textContent.trim();
+
+                        if (!text) return;
+
+                        originalTexts.set(added, added.textContent);
+
+                        newEntries.push([added, added.textContent]);
+                    }
+                });
+            });
+
+            if (!newEntries.length) {
+                return;
+            }
+
+            translateEntries(newEntries).catch(error => {
+                console.error(
+                    'ERROR AL TRADUCIR CONTENIDO DINÁMICO:',
+                    error
+                );
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     }
 
     // ------------------------------------------------------------
@@ -350,6 +545,10 @@
 
             return;
         }
+
+        // Empieza a vigilar el contenido dinámico desde ya, para
+        // que quede listo apenas el sitio esté en inglés.
+        startDynamicContentObserver();
 
         buttons.forEach(button => {
 
@@ -410,6 +609,34 @@
         });
 
         updateButtons();
+
+        // ------------------------------------------------------------
+        // MANTENER EL IDIOMA AL CAMBIAR DE PÁGINA
+        // ------------------------------------------------------------
+        // Si el usuario ya había activado inglés en otra página,
+        // esta página nueva también debe traducirse automáticamente
+        // (usa la caché, así que normalmente no llama a Google).
+        if (currentLanguage === 'en') {
+
+            buttons.forEach(button => {
+                button.disabled = true;
+                button.textContent = '...';
+            });
+
+            translatePage()
+                .catch(error => {
+                    console.error(
+                        'ERROR AL AUTOTRADUCIR LA PÁGINA:',
+                        error
+                    );
+                })
+                .finally(() => {
+                    buttons.forEach(button => {
+                        button.disabled = false;
+                    });
+                    updateButtons();
+                });
+        }
 
         console.log(
             'Traductor Nebula View iniciado.'

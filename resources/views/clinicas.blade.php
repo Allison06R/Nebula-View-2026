@@ -48,12 +48,12 @@
       <p>Oftalmólogos y optometristas con formación continua y acreditaciones internacionales.</p>
     </div>
     <div class="causa-card">
-      <div class="causa-card__icon">🔭</div>
+      <div class="causa-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-telescopio"></use></svg></div>
       <h3>Equipos de diagnóstico</h3>
       <p>Tomografías OCT, topografías corneales, campimetrías y más para un diagnóstico preciso.</p>
     </div>
     <div class="causa-card">
-      <div class="causa-card__icon">📋</div>
+      <div class="causa-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></div>
       <h3>Seguimiento personalizado</h3>
       <p>Historial clínico digital y planes de tratamiento adaptados a cada paciente.</p>
     </div>
@@ -116,7 +116,7 @@
 <!-- SERVICIOS -->
 <section class="info-cards" id="servicios">
   <div class="info-card">
-    <div class="info-card__icon">🔬</div>
+    <div class="info-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></div>
     <h3>Examen visual completo</h3>
     <p>Evaluación de la agudeza visual, presión intraocular, fondo de ojo y salud corneal. Duración aproximada de 45 minutos con tecnología de diagnóstico avanzado.</p>
   </div>

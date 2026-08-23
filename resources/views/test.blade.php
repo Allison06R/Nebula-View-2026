@@ -93,7 +93,7 @@
           <div class="ai-ring r3"></div>
         </div>
       </div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--dark);margin:28px 0 10px;">Generando tu diagnóstico</h3>
+      <h3 style="font-family: 'MuseoModerno', serif;font-size:22px;color:var(--dark);margin:28px 0 10px;">Generando tu diagnóstico</h3>
       <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto;" id="loadingMsg">Procesando tus síntomas y hábitos visuales...</p>
       <div class="loading-dots" style="margin-top:20px;"><span></span><span></span><span></span></div>
     </div>
@@ -734,7 +734,7 @@ function showLocalResult(sc) {
   setTimeout(() => { document.querySelectorAll('.risk-bar').forEach(b => { b.style.width = b.dataset.target+'%'; }); }, 100);
 
   document.getElementById('conditionsList').innerHTML = `<div class="cond-card">
-    <div class="cond-header"><div class="cond-icon">👁</div><div class="cond-name">${p.name}</div><span class="cond-sev sev-mid">Media</span></div>
+    <div class="cond-header"><div class="cond-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></div><div class="cond-name">${p.name}</div><span class="cond-sev sev-mid">Media</span></div>
     <div class="cond-desc">Tu indicador de ${p.name.toLowerCase()} es el más alto de tus resultados. Te recomendamos una revisión profesional para confirmar el diagnóstico.</div>
   </div>`;
 

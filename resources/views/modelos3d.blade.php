@@ -117,6 +117,14 @@
           <div class="catalog-card-name">Purple Eyeglasses</div>
           <div class="catalog-card-type">montura moderna</div>
           <div class="catalog-card-desc">Montura en tono morado con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+           <a href="https://lens.snap.com/experience/536d17fc-051f-4c07-a9e2-8985c8f6c25d"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="catalog-card-probador"
+              onclick="event.stopPropagation()">
+              <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              Probador con cámara
+            </a>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$99 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
@@ -145,6 +153,14 @@
           <div class="catalog-card-name">Blue Eyeglasses</div>
           <div class="catalog-card-type">montura moderna</div>
           <div class="catalog-card-desc">Montura en tono azul con acabado satinado. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <a href="https://lens.snap.com/experience/7a88f672-2928-4dd3-a209-d1a621f39cc1"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="catalog-card-probador"
+              onclick="event.stopPropagation()">
+              <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              Probador con cámara
+            </a>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$89 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
@@ -173,6 +189,15 @@
           <div class="catalog-card-name">Red Round Eyeglasses</div>
           <div class="catalog-card-type">montura redonda</div>
           <div class="catalog-card-desc">Montura circular en tono rojo intenso, con estilo retro. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+            <a href="https://lens.snap.com/experience/1f8ebf47-3462-46a1-a3b3-32df4cd64a9c"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="catalog-card-probador"
+              onclick="event.stopPropagation()">
+              <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              Probador con cámara
+            </a>
+          
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$92 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
@@ -227,6 +252,14 @@
           <div class="catalog-card-name">Black Eyeglasses</div>
           <div class="catalog-card-type">montura clásica</div>
           <div class="catalog-card-desc">Montura clásica en negro mate, versátil y atemporal. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <a href="https://lens.snap.com/experience/9bf5d5a6-3a9b-40e3-9ae3-c07b550a2e2c"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="catalog-card-probador"
+   onclick="event.stopPropagation()">
+  <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+  Probador con cámara
+</a>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$109 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">

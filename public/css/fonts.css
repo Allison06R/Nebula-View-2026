@@ -1,0 +1,28 @@
+/* MuseoModerno — self-hosted variable font (weights 100–900) */
+@font-face {
+  font-family: 'MuseoModerno';
+  src: url('../fonts/MuseoModerno/MuseoModerno-VariableFont_wght.ttf') format('truetype-variations'),
+       url('../fonts/MuseoModerno/MuseoModerno-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MuseoModerno';
+  src: url('../fonts/MuseoModerno/MuseoModerno-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+       url('../fonts/MuseoModerno/MuseoModerno-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-primary: 'MuseoModerno', sans-serif;
+}
+
+/* Fuerza MuseoModerno en todo el sitio, sin importar lo que declare
+   cualquier otra hoja de estilo (gana por especificidad con !important) */
+* {
+  font-family: var(--font-primary) !important;
+}

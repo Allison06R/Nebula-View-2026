@@ -1,0 +1,22 @@
+/* Iconos SVG que reemplazan a los emojis del sitio (usan el sprite
+   definido en resources/views/partials/icons.blade.php vía <use>) */
+.custom-icon {
+  width: 90%;
+  height: 90%;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+/* En íconos pequeños dentro de texto (spans inline), 60% del contenedor
+   de texto se ve minúsculo, así que ahí usamos el alto de línea en su lugar */
+.habitos-highlight-icon .custom-icon,
+.sv-highlight-icon .custom-icon,
+.what-highlight-icon .custom-icon,
+.reco-icon .custom-icon,
+.proceso__card-icon .custom-icon,
+.pilar__num .custom-icon,
+.cond-icon .custom-icon {
+  width: 1.2em;
+  height: 1.2em;
+}

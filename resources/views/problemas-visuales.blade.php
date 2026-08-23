@@ -32,7 +32,7 @@
         <p>Los problemas visuales son alteraciones en el sistema óptico del ojo o en las vías nerviosas que transmiten la información visual al cerebro. Pueden afectar la nitidez, el campo visual, la percepción del color o la capacidad de enfocar a diferentes distancias.</p>
         <p>Algunos surgen desde el nacimiento, otros se desarrollan con la edad o por factores externos como el uso prolongado de pantallas, la exposición solar sin protección o enfermedades sistémicas como la diabetes.</p>
         <div class="what-highlight">
-          <span class="what-highlight-icon">👁️</span>
+          <span class="what-highlight-icon"><svg class="custom-icon"><use href="#icon-ojo"></use></svg></use></svg></span>
           <p><strong>¿Sabías que?</strong> Más del 80% de los problemas visuales son evitables o tratables si se detectan a tiempo mediante revisiones periódicas con un profesional de la salud visual.</p>
         </div>
       </div>
@@ -41,21 +41,20 @@
         <div class="anatomy-wrap">
           <!-- Floating stat chips -->
           <div class="stat-chip chip-1">
-            <div class="stat-chip-icon">👥</div>
-            <div class="stat-chip-text">
+              <div class="stat-chip-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="black" aria-label="pair of people" viewBox="-0.0 -30.0 246.1 246.1"><g transform="translate(0.000000,186.000000) scale(0.100000,-0.100000)"><path d="M743 1670 c-196 -41 -319 -226 -278 -421 18 -87 36 -122 95 -179 132 -129 365 -127 496 4 174 175 105 499 -124 580 -54 19 -139 26 -189 16z M1565 1617 c-97 -32 -161 -88 -204 -177 -22 -48 -26 -68 -26 -150 0 -80 4 -102 23 -138 34 -63 89 -120 146 -150 46 -24 61 -27 156 -27 90 0 111 3 148 23 66 35 119 88 149 150 23 49 27 70 28 147 0 77 -4 98 -27 147 -31 67 -91 127 -156 159 -58 27 -177 35 -237 16z M645 901 c-208 -20 -338 -98 -410 -244 -43 -88 -61 -219 -46 -336 11 -86 34 -117 97 -131 60 -14 939 -11 994 3 32 9 51 21 67 46 21 30 23 46 23 145 0 185 -39 297 -133 389 -60 59 -145 100 -237 115 -92 16 -261 22 -355 13z M1483 879 c-63 -11 -163 -47 -163 -60 0 -5 14 -28 31 -51 74 -103 102 -212 101 -401 0 -130 1 -138 22 -150 15 -9 112 -12 366 -12 436 0 427 -3 438 160 16 269 -120 458 -366 511 -74 15 -343 17 -429 3z"></path></g></svg></div>            <div class="stat-chip-text">
               <strong>2.2 mil millones</strong>
               <span>personas con discapacidad visual</span>
             </div>
           </div>
           <div class="stat-chip chip-2">
-            <div class="stat-chip-icon">🌍</div>
+            <div class="stat-chip-icon"><svg class="custom-icon"><use href="#icon-ojo"></use></svg></div>
             <div class="stat-chip-text">
               <strong>80% prevenibles</strong>
               <span>con detección temprana</span>
             </div>
           </div>
           <div class="stat-chip chip-3">
-            <div class="stat-chip-icon">📅</div>
+            <div class="stat-chip-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></div>
             <div class="stat-chip-text">
               <strong>1 vez al año</strong>
               <span>revisión recomendada</span>
@@ -113,7 +112,7 @@
     <div class="types-grid reveal">
       <div class="type-card refractivo">
         <div class="type-card-header">
-          <div class="type-icon">🔭</div>
+          <div class="type-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-telescopio"></use></svg></div>
           <div>
             <h4>Defectos refractivos</h4>
             <div class="type-badge">Más comunes · 60% de casos</div>
@@ -130,7 +129,7 @@
  
       <div class="type-card degenerativo">
         <div class="type-card-header">
-          <div class="type-icon">⏳</div>
+          <div class="type-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-reloj"></use></svg></div>
           <div>
             <h4>Enfermedades degenerativas</h4>
             <div class="type-badge">Relacionadas con la edad</div>
@@ -147,7 +146,7 @@
  
       <div class="type-card infeccioso">
         <div class="type-card-header">
-          <div class="type-icon">🦠</div>
+          <div class="type-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-bacteria"></use></svg></div>
           <div>
             <h4>Infecciones e inflamaciones</h4>
             <div class="type-badge">Causas externas</div>
@@ -164,7 +163,7 @@
  
       <div class="type-card neurologico">
         <div class="type-card-header">
-          <div class="type-icon">🧠</div>
+          <div class="type-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-cerebro"></use></svg></div>
           <div>
             <h4>Alteraciones neurológicas</h4>
             <div class="type-badge">Vías visuales y cerebro</div>
@@ -183,22 +182,22 @@
     <!-- Causes strip -->
     <div class="causes-strip reveal">
       <div class="cause-item">
-        <div class="cause-icon-wrap">🧬</div>
+        <div class="cause-icon-wrap"><svg class="custom-icon" aria-hidden="true"><use href="#icon-genetica"></use></svg></div>
         <h5>Genética</h5>
         <p>Predisposición hereditaria a ciertos defectos visuales</p>
       </div>
       <div class="cause-item">
-        <div class="cause-icon-wrap">📱</div>
+        <div class="cause-icon-wrap"><svg class="custom-icon" aria-hidden="true"><use href="#icon-telefono"></use></svg></div>
         <h5>Pantallas digitales</h5>
         <p>Fatiga ocular por uso prolongado sin descanso</p>
       </div>
       <div class="cause-item">
-        <div class="cause-icon-wrap">☀️</div>
+        <div class="cause-icon-wrap"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sol"></use></svg></div>
         <h5>Radiación UV</h5>
         <p>Daño acumulado por exposición solar sin protección</p>
       </div>
       <div class="cause-item">
-        <div class="cause-icon-wrap">🎂</div>
+        <div class="cause-icon-wrap"><svg class="custom-icon" aria-hidden="true"><use href="#icon-pastel"></use></svg></div>
         <h5>Envejecimiento</h5>
         <p>Cambios naturales en el cristalino y la retina con la edad</p>
       </div>
@@ -268,17 +267,17 @@
   <!-- Info cards below -->
   <div class="info-grid">
     <div class="info-card reveal reveal-delay-1">
-      <div class="info-card-icon">🔬</div>
+      <div class="info-card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></div>
       <h3>¿Cómo se diagnostican?</h3>
       <p>Los problemas visuales se detectan mediante exámenes optométricos completos. Un profesional evalúa la agudeza visual, la refracción y la salud ocular general.</p>
     </div>
     <div class="info-card reveal reveal-delay-2">
-      <div class="info-card-icon">💊</div>
+      <div class="info-card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-pastilla"></use></svg></div>
       <h3>Tratamientos disponibles</h3>
       <p>La mayoría de los defectos refractivos se corrigen con lentes graduados, lentes de contacto o cirugía refractiva como el LASIK, dependiendo del caso clínico.</p>
     </div>
     <div class="info-card reveal reveal-delay-3">
-      <div class="info-card-icon">📅</div>
+      <div class="info-card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></div>
       <h3>Revisiones recomendadas</h3>
       <p>Se recomienda visitar al oftalmólogo al menos una vez al año, o con mayor frecuencia si ya tiene algún problema visual diagnosticado o antecedentes familiares.</p>
     </div>

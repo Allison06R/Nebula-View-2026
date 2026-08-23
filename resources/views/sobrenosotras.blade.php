@@ -32,7 +32,7 @@
       <p>Por su parte, “View” se conecta directamente con la visión y la capacidad de percibir el entorno con claridad. Juntas, ambas palabras transmiten el paso de una percepción incierta hacia una visión más clara y consciente, reflejando el propósito de la plataforma: ayudar a las personas a comprender y cuidar mejor su salud visual mediante la tecnología.</p>
 
       <div class="habitos-highlight">
-        <span class="habitos-highlight-icon">✅</span>
+        <span class="habitos-highlight-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-checklist"></use></svg></span>
         <p>La Helix Nebula es conocida popularmente como el “ojo de Dios” por su gran parecido con un ojo humano, lo que la convierte en una referencia simbólica perfecta para relacionar el universo con la visión.</p>
       </div>
     </div>

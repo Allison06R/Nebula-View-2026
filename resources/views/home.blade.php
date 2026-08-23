@@ -102,7 +102,7 @@
   <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(107,47,160,0.3)">👁️<span class="habit-number">1</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(107,47,160,0.3)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg><span class="habit-number">1</span></div>
         <div class="habit-title">Regla 20-20-20</div>
         <div class="habit-desc">Cada 20 minutos de pantalla, mira a un objeto a 20 pies de distancia durante 20 segundos.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Coloca un recordatorio en tu teléfono cada 20 minutos mientras trabajas.</div>
@@ -114,13 +114,13 @@
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Beber al menos 8 vasos de agua al día también contribuye a la salud de tus ojos.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(40,180,100,0.2)">🥦<span class="habit-number">3</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(40,180,100,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-brocoli"></use></svg><span class="habit-number">3</span></div>
         <div class="habit-title">Nutrición para los ojos</div>
         <div class="habit-desc">Incorpora alimentos ricos en luteína, zeaxantina, vitamina A y omega-3: zanahoria, espinaca, salmón y huevo.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Los arándanos y el kale son superalimentos para los ojos por su alto contenido en antioxidantes.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(255,180,0,0.2)">☀️<span class="habit-number">4</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(255,180,0,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sol"></use></svg><span class="habit-number">4</span></div>
         <div class="habit-title">Protección UV</div>
         <div class="habit-desc">La radiación ultravioleta puede causar daños irreversibles como cataratas. Usa lentes de sol con filtro UV400.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Incluso en días nublados, la radiación UV puede alcanzar tus ojos.</div>
@@ -132,13 +132,13 @@
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Activa el filtro de luz azul en tus dispositivos a partir de las 8 PM.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(180,60,200,0.2)">🏃<span class="habit-number">6</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(180,60,200,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-corriendo"></use></svg><span class="habit-number">6</span></div>
         <div class="habit-title">Ejercicio físico regular</div>
         <div class="habit-desc">El ejercicio mejora la circulación sanguínea, lo que incluye el flujo de sangre hacia los ojos. Reduce el riesgo de glaucoma.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> 30 minutos de caminata al día pueden reducir la presión intraocular hasta en un 25%.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(255,100,50,0.2)">🩺<span class="habit-number">7</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(255,100,50,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-estetoscopio"></use></svg><span class="habit-number">7</span></div>
         <div class="habit-title">Revisiones periódicas</div>
         <div class="habit-desc">Acudir al oftalmólogo al menos una vez al año permite detectar enfermedades oculares en etapas tempranas.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Si usas lentes o tienes antecedentes familiares, la revisión semestral es lo recomendado.</div>
@@ -185,9 +185,9 @@
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
-    <div class="trust-item"><div class="trust-icon">🏆</div><div class="trust-text"><strong>Información de calidad</strong><span>Verified top materials</span></div></div>
-    <div class="trust-item"><div class="trust-icon">✅</div><div class="trust-text"><strong>Aprobado por ópticas</strong><span>Over 3 years</span></div></div>
-    <div class="trust-item"><div class="trust-icon">📚</div><div class="trust-text"><strong>Apoyo educativo</strong><span>Verificado</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-trofeo"></use></svg></div><div class="trust-text"><strong>Información de calidad</strong><span>Verified top materials</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-checklist"></use></svg></div><div class="trust-text"><strong>Aprobado por ópticas</strong><span>Over 3 years</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-libros"></use></svg></div><div class="trust-text"><strong>Apoyo educativo</strong><span>Verificado</span></div></div>
   </div>
 </section>
 

@@ -30,7 +30,7 @@
       
 
       <div class="habitos-highlight">
-        <span class="habitos-highlight-icon">👁️</span>
+        <span class="habitos-highlight-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></span>
         <p><strong>¿Sabías que?</strong><p>Un examen visual completo no solo detecta problemas de la vista, sino que también puede revelar enfermedades 
             generales como la diabetes antes de que presenten síntomas visibles.</p>
       </div>
@@ -218,7 +218,7 @@
       <summary>
         <span class="reco-num">01</span>
         <span class="reco-head">
-          <span class="reco-icon">📋</span>
+          <span class="reco-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></span>
           Preparación previa
         </span>
         <span class="reco-toggle">+</span>
@@ -232,7 +232,7 @@
       <summary>
         <span class="reco-num">02</span>
         <span class="reco-head">
-          <span class="reco-icon">👁️</span>
+          <span class="reco-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></span>
           Antes de la cita
         </span>
         <span class="reco-toggle">+</span>
@@ -246,7 +246,7 @@
       <summary>
         <span class="reco-num">03</span>
         <span class="reco-head">
-          <span class="reco-icon">☀️</span>
+          <span class="reco-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sol"></use></svg></span>
           Protección ese mismo día
         </span>
         <span class="reco-toggle">+</span>
