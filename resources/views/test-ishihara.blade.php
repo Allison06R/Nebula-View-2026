@@ -21,11 +21,7 @@
     <!-- INTRO -->
     <div id="ish-intro-screen">
       <div class="hero-badge">🎨 Test de Ishihara · IA</div>
-      <div>
-        <a href="{{ route('test') }}" class="test-switch-link">
-          🔬 ¿Buscas el test visual general? <span class="arrow-ic">→</span>
-        </a>
-      </div>
+      @include('partials.test-switcher')
       <h1>Test de<br><em>daltonismo</em></h1>
       <p>El test de Ishihara es una prueba visual clásica, creada por el oftalmólogo japonés Shinobu Ishihara, que se usa para detectar dificultades en la percepción de los colores (daltonismo), principalmente del tipo rojo-verde. Consiste en láminas formadas por puntos de colores donde se "esconde" un número: si tu percepción del color es típica podrás leerlo con facilidad, y si tienes alguna deficiencia cromática te costará más o verás un número distinto.</p>
 
@@ -49,6 +45,7 @@
 
     <!-- LÁMINAS -->
     <div id="ish-plate-screen" style="display:none;">
+      <button type="button" class="btn-exit-test" id="ishExitBtn">← Volver a tests</button>
       <div class="test-meta">
         <span id="ish-counter">Lámina 1 de 10</span>
       </div>
@@ -156,6 +153,7 @@
         <button class="btn-cta-secondary" id="ishSendPdfBtn" disabled>💾 Guardando test…</button>
         <button class="btn-cta-secondary" id="ishHistoryBtn">📋 Ver historial</button>
         <button class="btn-cta-secondary" id="ishRetestBtn">🔄 Repetir test</button>
+        <button class="btn-cta-secondary btn-back-tests" id="ishBackToTestsBtn">← Volver a tests</button>
       </div>
       <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">⚠️ Este resultado es orientativo y no reemplaza un examen profesional completo de visión del color. Ante cualquier duda, consulta a un especialista.</p>
     </div>
@@ -206,6 +204,55 @@ function ishToast(type, title, msg) {
   setTimeout(() => toast.classList.remove('show'), 4500);
 }
 
+// ═══════════════════════════════════════════════════
+//  PERSISTENCIA DE SESIÓN — para que al recargar la página
+//  a mitad del test (o viendo el resultado) no te saque,
+//  sino que te deje justo donde estabas. (mismo patrón que test.blade.php)
+// ═══════════════════════════════════════════════════
+const ISH_SESSION_KEY = 'nebulaIshiharaSession';
+
+function ishPersistState(screen, extra = {}) {
+  try {
+    const state = {
+      screen, // 'plate' | 'result'
+      currentIdx,
+      ishAnswers,
+      resultData: extra.resultData ?? null,
+      testId: extra.testId !== undefined ? extra.testId : ishCurrentTestId,
+    };
+    sessionStorage.setItem(ISH_SESSION_KEY, JSON.stringify(state));
+  } catch (e) { /* almacenamiento no disponible, no pasa nada grave */ }
+}
+
+function ishLoadPersistedState() {
+  try {
+    const raw = sessionStorage.getItem(ISH_SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function ishClearPersistedState() {
+  try { sessionStorage.removeItem(ISH_SESSION_KEY); } catch (e) { /* noop */ }
+}
+
+// Reconstruye la pantalla en la que estaba el usuario antes de recargar.
+async function ishRestoreSession() {
+  const state = ishLoadPersistedState();
+  if (!state) return;
+
+  if (state.screen === 'result' && state.resultData) {
+    ishCurrentTestId = state.testId || null;
+    ishRenderResult(state.resultData);
+    ishSetSendPdfState(ishCurrentTestId ? 'ready' : 'error');
+  } else if (state.screen === 'plate') {
+    if (!laminas.length) await ishLoadLaminas();
+    Object.assign(ishAnswers, state.ishAnswers || {});
+    currentIdx = Math.min(state.currentIdx || 0, laminas.length - 1);
+    ishShowScreen('plate');
+    ishRenderPlate();
+  }
+}
+
 let laminas = [];
 let currentIdx = 0;
 const ishAnswers = {}; // { id: '15' | 'no lo veo' }
@@ -246,6 +293,8 @@ function ishRenderPlate() {
     ? 'Ver mi resultado 🎯'
     : 'Siguiente <span class="arrow-ic">→</span>';
   document.getElementById('ishNextBtn').disabled = !(saved !== undefined && saved !== '');
+
+  ishPersistState('plate');
 }
 
 function ishUpdateAnswerDisplay() {
@@ -275,6 +324,7 @@ document.getElementById('ishKeypad').addEventListener('click', (e) => {
 
   ishUpdateAnswerDisplay();
   document.getElementById('ishNextBtn').disabled = !(ishAnswers[l.id] !== undefined && ishAnswers[l.id] !== '');
+  ishPersistState('plate');
 });
 
 document.getElementById('ishBackBtn').addEventListener('click', () => {
@@ -319,6 +369,7 @@ async function ishFinalizarTest() {
     ishCurrentTestId = data.id_test_ishihara ?? null;
     ishRenderResult(data);
     ishSetSendPdfState(ishCurrentTestId ? 'ready' : 'error');
+    ishPersistState('result', { resultData: data, testId: ishCurrentTestId });
   } catch (err) {
     ishShowScreen('intro');
     ishToast('err', 'Error', 'No pudimos calcular tu resultado. Inténtalo de nuevo.');
@@ -483,12 +534,17 @@ document.getElementById('ishSendPdfBtn').addEventListener('click', async () => {
   }
 });
 
+// ── VOLVER A TESTS (desde las láminas o desde el resultado) ──
+document.getElementById('ishExitBtn').addEventListener('click', () => ishShowScreen('intro'));
+document.getElementById('ishBackToTestsBtn').addEventListener('click', () => ishShowScreen('intro'));
+
 // ── REPETIR ──
 document.getElementById('ishRetestBtn').addEventListener('click', async () => {
   if (!laminas.length) await ishLoadLaminas();
   currentIdx = 0;
   Object.keys(ishAnswers).forEach(k => delete ishAnswers[k]);
   ishCurrentTestId = null;
+  ishClearPersistedState();
   ishShowScreen('plate');
   ishRenderPlate();
 });
@@ -530,6 +586,8 @@ document.getElementById('ishBackFromHistBtn').addEventListener('click', () => {
         </div>`).join('');
     }
   } catch (e) { /* usuario sin historial o sin conexión, no pasa nada */ }
+
+  await ishRestoreSession();
 })();
 </script>
 @endsection

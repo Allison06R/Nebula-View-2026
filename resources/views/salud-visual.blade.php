@@ -100,6 +100,114 @@
   </div>
 
 </div>
+
+{{-- S5: DATOS GLOBALES --}}
+<div class="svx-section reveal">
+  <div class="svx-kicker">Datos globales</div>
+  <h2>La salud visual<br><em>en cifras</em></h2>
+  <p class="svx-lead">Estos datos, publicados por la Organización Mundial de la Salud (OMS), muestran por qué el cuidado ocular preventivo es una prioridad de salud pública en todo el mundo.</p>
+
+  <div class="svx-stats-grid">
+    <div class="svx-stat-card">
+      <span class="svx-stat-number">2,200M</span>
+      <span class="svx-stat-label">personas en el mundo viven con algún grado de deterioro visual, de cerca o de lejos.</span>
+    </div>
+    <div class="svx-stat-card">
+      <span class="svx-stat-number">1,000M</span>
+      <span class="svx-stat-label">de esos casos podrían haberse evitado o todavía no han recibido tratamiento adecuado.</span>
+    </div>
+    <div class="svx-stat-card">
+      <span class="svx-stat-number">80%</span>
+      <span class="svx-stat-label">de los casos de ceguera a nivel mundial se consideran prevenibles o tratables.</span>
+    </div>
+    <div class="svx-stat-card">
+      <span class="svx-stat-number">+50</span>
+      <span class="svx-stat-label">años es la edad a partir de la cual se concentra la mayoría de los casos de discapacidad visual.</span>
+    </div>
+  </div>
+  <p class="svx-stats-source">Fuente: Organización Mundial de la Salud (OMS), informe sobre ceguera y discapacidad visual.</p>
+</div>
+
+
+
+{{-- S7: SALUD VISUAL INFANTIL --}}
+<div class="svx-section reveal">
+  <div class="svx-kicker">Primeros años</div>
+  <div class="svx-kids-wrap">
+    <div class="svx-kids-card">
+      <h2>Salud visual<br><em>infantil</em></h2>
+      <p>La mayor parte del desarrollo visual ocurre durante los primeros años de vida. Detectar a tiempo problemas como el ojo vago (ambliopía) o el estrabismo mejora enormemente las probabilidades de corrección total.</p>
+      <ul class="svx-kids-list">
+        <li><svg viewBox="0 0 24 24"><path d="M4.3 5.2h15.4c.6 0 1 .5 1 1.1v13c0 .6-.4 1.1-1 1.1H4.3c-.6 0-1-.5-1-1.1v-13c0-.6.4-1.1 1-1.1Z"/><path d="M3.4 9.8h17.2"/><path d="M7.5 3.2v4"/><path d="M16.5 3.2v4"/></svg>Primer examen visual recomendado entre los 6 y 12 meses de edad.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2.7c2.6 3.4 5.4 7.4 5.4 10.7a5.4 5.4 0 1 1-10.8 0C6.6 10.1 9.4 6.1 12 2.7Z"/></svg>Nuevas revisiones antes de iniciar la etapa escolar y de forma periódica después.</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/></svg>Señales de alerta: acercarse mucho a pantallas o libros, entrecerrar los ojos o inclinar la cabeza al mirar.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M4 12c2.2-4 5-6.3 8-6.3s5.8 2.3 8 6.3c-2.2 4-5 6.3-8 6.3S6.2 16 4 12Z"/><circle cx="12" cy="12" r="2"/></svg>Limitar el tiempo continuo frente a pantallas y fomentar juegos al aire libre favorece un desarrollo visual saludable.</li>
+      </ul>
+    </div>
+    <div class="svx-kids-img">
+      <img src="{{ asset('images/kids.png') }}" alt="Cuidado visual infantil">
+    </div>
+  </div>
+</div>
+
+{{-- S8: MITOS Y REALIDADES --}}
+<div class="svx-section reveal">
+  <div class="svx-kicker">Aclarando dudas</div>
+  <h2>Mitos y realidades<br><em>sobre la vista</em></h2>
+  <p class="svx-lead">Existen muchas creencias populares sobre el cuidado ocular. Aquí separamos lo que dice la evidencia de lo que es simplemente un mito.</p>
+
+  <div class="svx-myths-list">
+    <details class="svx-myth">
+      <summary>Leer con poca luz daña permanentemente la vista
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="svx-tag svx-mito">Mito</span>
+          <svg class="svx-chevron" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </span>
+      </summary>
+      <p>Leer con poca luz puede causar fatiga ocular temporal y molestia, pero no provoca un daño permanente en los ojos. Aun así, se recomienda una buena iluminación para mayor comodidad visual.</p>
+    </details>
+
+    <details class="svx-myth">
+      <summary>Mirar pantallas de cerca perjudica la vista con el tiempo
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="svx-tag svx-real">Realidad</span>
+          <svg class="svx-chevron" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </span>
+      </summary>
+      <p>El uso prolongado y cercano de pantallas se asocia con fatiga visual digital y, en niños, con mayor riesgo de desarrollar miopía. Aplicar la regla 20-20-20 y tomar descansos ayuda a reducir este efecto.</p>
+    </details>
+
+    <details class="svx-myth">
+      <summary>Comer zanahorias da una visión perfecta
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="svx-tag svx-mito">Mito</span>
+          <svg class="svx-chevron" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </span>
+      </summary>
+      <p>Las zanahorias aportan vitamina A, importante para la salud ocular, pero no corrigen problemas de refracción ni otorgan una "visión perfecta". Una dieta variada rica en vitaminas y antioxidantes es lo que realmente beneficia a los ojos.</p>
+    </details>
+
+    <details class="svx-myth">
+      <summary>Usar lentes constantemente "acostumbra" al ojo y empeora la vista
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="svx-tag svx-mito">Mito</span>
+          <svg class="svx-chevron" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </span>
+      </summary>
+      <p>Usar la graduación correcta no debilita el ojo ni crea dependencia. Lo que ocurre es que, al quitarte los lentes, vuelves a notar el problema visual que ya tenías; los lentes simplemente lo corrigen mientras los usas.</p>
+    </details>
+
+    <details class="svx-myth">
+      <summary>El glaucoma y otras enfermedades oculares pueden no dar síntomas al inicio
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="svx-tag svx-real">Realidad</span>
+          <svg class="svx-chevron" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </span>
+      </summary>
+      <p>Enfermedades como el glaucoma pueden avanzar sin síntomas notorios hasta etapas avanzadas. Por eso los exámenes oculares regulares son esenciales, incluso cuando sientes que ves bien.</p>
+    </details>
+  </div>
+</div>
 @endsection
 
 @section('scripts')

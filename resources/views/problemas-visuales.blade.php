@@ -178,7 +178,43 @@
         </div>
       </div>
     </div>
- 
+ {{-- ENFERMEDADES OCULARES MÁS COMUNES --}}
+<div class="svx-section reveal">
+  <div class="svx-kicker">Prevención</div>
+  <h2>Enfermedades oculares<br><em>más comunes</em></h2>
+  <p class="svx-lead">Conocer estas condiciones ayuda a identificar señales de alerta a tiempo. Ninguna reemplaza una consulta con un especialista: ante cualquier síntoma, acude a un oftalmólogo u optometrista.</p>
+
+  <div class="svx-disease-grid">
+    <div class="svx-disease-card">
+      <div class="svx-disease-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/></svg>
+      </div>
+      <h3>Cataratas</h3>
+      <p>Opacidad progresiva del cristalino que provoca visión borrosa o nublada. Es la principal causa de ceguera reversible en el mundo y suele tratarse con cirugía.</p>
+    </div>
+    <div class="svx-disease-card">
+      <div class="svx-disease-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3v3.2"/><path d="M12 17.8V21"/><path d="M4.5 12H3"/><path d="M21 12h-1.5"/><circle cx="12" cy="12" r="4.3"/></svg>
+      </div>
+      <h3>Glaucoma</h3>
+      <p>Daña el nervio óptico, generalmente por presión intraocular elevada. Avanza sin síntomas evidentes, por eso se le conoce como "el ladrón silencioso de la visión".</p>
+    </div>
+    <div class="svx-disease-card">
+      <div class="svx-disease-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 12c2.2-4 5-6.3 8-6.3s5.8 2.3 8 6.3c-2.2 4-5 6.3-8 6.3S6.2 16 4 12Z"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <h3>Degeneración macular</h3>
+      <p>Afecta la mácula y deteriora la visión central, dificultando leer o reconocer rostros. Es más frecuente a partir de los 50 años.</p>
+    </div>
+    <div class="svx-disease-card">
+      <div class="svx-disease-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.7c2.6 3.4 5.4 7.4 5.4 10.7a5.4 5.4 0 1 1-10.8 0C6.6 10.1 9.4 6.1 12 2.7Z"/><path d="M9.6 15.2c0 1.2 1 2.2 2.4 2.2"/></svg>
+      </div>
+      <h3>Retinopatía diabética</h3>
+      <p>Complicación de la diabetes que daña los vasos sanguíneos de la retina. El control de la glucosa y las revisiones anuales son clave para prevenirla.</p>
+    </div>
+  </div>
+</div>
     <!-- Causes strip -->
     <div class="causes-strip reveal">
       <div class="cause-item">

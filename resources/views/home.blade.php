@@ -185,8 +185,8 @@
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
-    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-trofeo"></use></svg></div><div class="trust-text"><strong>Información de calidad</strong><span>Verified top materials</span></div></div>
-    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-checklist"></use></svg></div><div class="trust-text"><strong>Aprobado por ópticas</strong><span>Over 3 years</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-trofeo"></use></svg></div><div class="trust-text"><strong>Información de calidad</strong><span>Profesional</span></div></div>
+    <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-checklist"></use></svg></div><div class="trust-text"><strong>Aprobado por profesionales en la salud</strong><span>Originalidad</span></div></div>
     <div class="trust-item"><div class="trust-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-libros"></use></svg></div><div class="trust-text"><strong>Apoyo educativo</strong><span>Verificado</span></div></div>
   </div>
 </section>

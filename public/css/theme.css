@@ -6,7 +6,15 @@
    con los mismos colores, lo que hacía imposible cambiar el
    tema (o crear modo oscuro) sin editar 15 archivos distintos.
    ══════════════════════════════════════════════════════════════ */
-
+/* Reset básico — quita el margen/padding por defecto del navegador
+   que dejaba una franja blanca alrededor de toda la página */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--white, #fff);
+}
 :root {
   /* ── Paleta principal (marca) ── */
   --heading: #1A0A2E;    /* texto de títulos, distinta de --dark que es solo para fondos */

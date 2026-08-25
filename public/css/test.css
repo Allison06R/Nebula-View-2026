@@ -627,6 +627,105 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
  
 /* ── TARJETA ANCHA PARA RESULTADO/HISTORIAL ── */
 .hero-card.wide-card{max-width:680px;}
+
+/* ── TOAST DE NOTIFICACIÓN (compartido: test.blade.php y test-ishihara.blade.php) ── */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:#ffffff;
+  border:1.5px solid rgba(124,58,237,0.25);
+  border-radius:12px;
+  padding:10px 14px;
+  box-shadow:0 4px 24px rgba(124,58,237,0.12);
+  z-index:9999;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .3s ease, transform .3s ease;
+  pointer-events:none;
+  width:fit-content;
+  max-width:280px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#1e1b4b;
+}
+.toast.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.toast .t-ico{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.toast.toast-ok  .t-ico{background:rgba(52,211,153,0.12);color:#059669;}
+.toast.toast-err .t-ico{background:rgba(239,68,68,0.10);color:#dc2626;}
+.toast .t-txt{display:flex;flex-direction:column;gap:1px;}
+.toast .t-txt b{font-size:13px;font-weight:600;color:#1e1b4b;}
+.toast .t-txt span{font-size:11px;color:#6b7280;}
+@media(max-width:640px){
+  .toast{left:16px;right:16px;bottom:16px;max-width:none;}
+}
+
+/* ── Botón "salir/volver a tests" dentro del flujo de preguntas/láminas ── */
+.btn-exit-test{
+  display:inline-flex;align-items:center;gap:6px;
+  background:transparent;border:none;
+  color:var(--muted);
+  font-size:12.5px;font-weight:600;
+  cursor:pointer;padding:0 0 14px;
+  transition:color .2s,transform .2s;
+}
+.btn-exit-test:hover{color:var(--plum);transform:translateX(-2px);}
+
+
+/* ── Selector de tests (tarjetas) — usado en las pantallas de intro ── */
+.test-picker{display:flex;gap:14px;margin-bottom:24px;}
+.test-pick-card{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;gap:7px;
+  padding:18px 20px 16px;
+  border-radius:18px;
+  border:1.5px solid rgba(107,47,160,.14);
+  background:rgba(107,47,160,.03);
+  text-decoration:none;
+  cursor:pointer;text-align:left;
+  transform:scale(1);
+  transition:transform .28s cubic-bezier(.4,0,.2,1),box-shadow .28s ease,border-color .28s ease,background .28s ease;
+}
+.test-pick-card::before{
+  content:'';display:block;height:5px;width:38px;border-radius:4px;margin-bottom:6px;
+  background:linear-gradient(90deg,var(--violet),var(--pink));
+}
+.test-pick-card:hover,.test-pick-card:focus-visible{
+  transform:scale(1.04) translateY(-3px);
+  box-shadow:0 14px 34px rgba(107,47,160,.18);
+  border-color:var(--violet);
+  background:var(--white);
+  z-index:2;
+}
+.test-pick-card.is-active{
+  border-color:var(--plum);
+  background:var(--white);
+  box-shadow:0 8px 24px rgba(107,47,160,.16);
+  transform:scale(1.02);
+}
+.tpc-top{display:flex;align-items:center;gap:9px;}
+.tpc-ico{font-size:21px;line-height:1;}
+.tpc-name{font-size:14px;font-weight:700;color:var(--heading);}
+.tpc-desc{font-size:12.5px;color:var(--muted);line-height:1.5;margin:0;}
+.tpc-foot{display:flex;gap:12px;font-size:11px;font-weight:700;color:var(--violet);margin-top:3px;letter-spacing:.02em;}
+.tpc-soon{opacity:.55;cursor:default;}
+.tpc-soon:hover{transform:none;box-shadow:none;border-color:rgba(107,47,160,.14);background:rgba(107,47,160,.03);}
+
+/* En pantallas de escritorio, el hero-card gana un poco más de aire
+   para que las tarjetas de selección de test no se vean apretadas. */
+@media(min-width:900px){
+  .hero-card{max-width:660px;}
+  .test-picker{gap:20px;margin-bottom:28px;}
+  .test-pick-card{padding:24px 26px 22px;border-radius:20px;}
+  .test-pick-card::before{height:6px;width:44px;margin-bottom:10px;}
+  .tpc-top{gap:11px;}
+  .tpc-ico{font-size:26px;}
+  .tpc-name{font-size:16px;}
+  .tpc-desc{font-size:13.5px;line-height:1.55;}
+  .tpc-foot{font-size:12px;gap:16px;margin-top:5px;}
+}
+@media(max-width:480px){
+  .test-picker{flex-direction:column;}
+}
  
 @media(max-width:640px){
   .intro-stats{grid-template-columns:1fr 1fr 1fr;gap:8px;}
@@ -649,7 +748,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 [data-theme="dark"] .opt.selected .opt-radio::after { background: var(--dark); }
 [data-theme="dark"] .chat-messages,
 [data-theme="dark"] .chat-input,
-[data-theme="dark"] .chat-suggestions { background: var(--plum); }
 [data-theme="dark"] .chat-wrap { background: rgba(255,255,255,0.03); border-color: rgba(155,89,182,0.2); }
 [data-theme="dark"] .msg.user .msg-av { background: var(--lilac); }
 [data-theme="dark"] .result-tip { background: linear-gradient(135deg, #2A1B3D, #241530); }
@@ -658,4 +756,10 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 [data-theme="dark"] .q-text { color: var(--white); }
 [data-theme="dark"] .day-content strong{color:var(--white);}
 [data-theme="dark"] .lens-rec-name{color:var(--white);}
+[data-theme="dark"] .test-pick-card{background:rgba(255,255,255,0.03);border-color:rgba(155,89,182,0.22);}
+[data-theme="dark"] .test-pick-card:hover,
+[data-theme="dark"] .test-pick-card.is-active{background:rgba(255,255,255,0.06);border-color:var(--violet);}
+[data-theme="dark"] .btn-exit-test{color:var(--muted);}
+[data-theme="dark"] .btn-exit-test:hover{color:var(--lavender);}
 [data-theme="dark"] .sec-title {color:var(--white);}
+[data-theme="dark"] .chat-suggestions { background: #4a2c61; }

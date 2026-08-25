@@ -225,6 +225,15 @@
           <div class="catalog-card-name">Green Eyeglasses</div>
           <div class="catalog-card-type">montura moderna</div>
           <div class="catalog-card-desc">Montura en tono verde con acabado brillante. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
+          <a href="https://lens.snap.com/experience/315a22a4-8dc5-4198-afb5-726ffa570dbe"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="catalog-card-probador"
+              onclick="event.stopPropagation()">
+              <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              Probador con cámara
+            </a>
+          
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$95 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">
@@ -244,7 +253,7 @@
            data-rostro="Ovalado · Cuadrado"
            data-tags="Clásico,Unisex,UV400">
         <div class="catalog-card-thumb has-3d">
-          <img src="{{ asset('images/Lentesnegros.jpg') }}" alt="Black Eyeglasses" class="catalog-card-photo">
+          <img src="{{ asset('images/LentesNegrosss.jpg') }}" alt="Black Eyeglasses" class="catalog-card-photo">
           <span class="catalog-card-badge new">Nuevo</span>
           <span class="view3d-btn"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg> Ver en 3D</span>
         </div>
@@ -253,13 +262,13 @@
           <div class="catalog-card-type">montura clásica</div>
           <div class="catalog-card-desc">Montura clásica en negro mate, versátil y atemporal. Modelo 3D interactivo en alta fidelidad, gira y explora cada detalle.</div>
           <a href="https://lens.snap.com/experience/9bf5d5a6-3a9b-40e3-9ae3-c07b550a2e2c"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="catalog-card-probador"
-   onclick="event.stopPropagation()">
-  <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-  Probador con cámara
-</a>
+            target="_blank"
+            rel="noopener noreferrer"
+            class="catalog-card-probador"
+            onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            Probador con cámara
+          </a>
           <div class="catalog-card-foot">
             <div class="catalog-card-price">$109 <span>USD</span></div>
             <button class="catalog-card-btn catalog-card-btn--view" title="Ver modelo en 3D" aria-label="Ver modelo en 3D">

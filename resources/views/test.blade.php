@@ -4,36 +4,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/test.css') }}">
-<style>
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #ffffff;
-  border: 1.5px solid rgba(124,58,237,0.25);
-  border-radius: 12px;
-  padding: 10px 14px;
-  box-shadow: 0 4px 24px rgba(124,58,237,0.12);
-  z-index: 9999;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .3s ease, transform .3s ease;
-  pointer-events: none;
-  width: fit-content;
-  max-width: 280px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #1e1b4b;
-}
-.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.t-ico { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
-.toast.toast-ok  .t-ico { background: rgba(52,211,153,0.12); color: #059669; }
-.toast.toast-err .t-ico { background: rgba(239,68,68,0.10);  color: #dc2626; }
-.t-txt { display: flex; flex-direction: column; gap: 1px; }
-.t-txt b    { font-size: 13px; font-weight: 600; color: #1e1b4b; }
-.t-txt span { font-size: 11px; color: #6b7280; }
-</style>
 @endsection
 
 @section('content')
@@ -50,11 +20,7 @@
     <!-- INTRO -->
     <div id="intro-screen">
       <div class="hero-badge">🔬 Test interactivo · IA</div>
-      <div>
-        <a href="{{ route('test-ishihara') }}" class="test-switch-link">
-          🎨 ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
-        </a>
-      </div>
+      @include('partials.test-switcher')
       <h1>Descubre tu<br><em>perfil visual</em></h1>
       <p>Responde 20 preguntas sobre tus síntomas, hábitos, estilo de vida y antecedentes. Obtendrás un diagnóstico por condición, un plan semanal de hábitos y un chat personalizado con tu asistente visual.</p>
 
@@ -78,6 +44,7 @@
 
     <!-- QUESTIONS -->
     <div id="questions-screen" style="display:none;">
+      <button type="button" class="btn-exit-test" id="exitTestBtn">← Volver a tests</button>
       <div class="test-meta">
         <span id="q-counter">Pregunta 1 de 20</span>
       </div>
@@ -148,6 +115,7 @@
         <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary">📖 Ver más sobre tu condición</a>
         <button class="btn-cta-secondary" id="historyBtn">📋 Ver historial</button>
         <button class="btn-cta-secondary" id="retestBtn">🔄 Repetir test</button>
+        <button class="btn-cta-secondary btn-back-tests" id="backToTestsBtn">← Volver a tests</button>
       </div>
       <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">⚠️ Este diagnóstico es orientativo. Consulta siempre a un profesional de la salud visual.</p>
     </div>
@@ -436,6 +404,17 @@ document.getElementById('startBtn').addEventListener('click', () => {
   document.getElementById('testCard').classList.remove('wide-card');
   showQ(1);
 });
+
+// ── VOLVER A TESTS (desde las preguntas o desde el resultado) ──
+function goToTestIntro() {
+  document.getElementById('questions-screen').style.display = 'none';
+  document.getElementById('result-screen').classList.remove('show');
+  document.getElementById('history-screen').classList.remove('show');
+  document.getElementById('testCard').classList.remove('wide-card');
+  document.getElementById('intro-screen').style.display = 'block';
+}
+document.getElementById('exitTestBtn').addEventListener('click', goToTestIntro);
+document.getElementById('backToTestsBtn').addEventListener('click', goToTestIntro);
 
 // ── SCORES ──
 function calcScores() {

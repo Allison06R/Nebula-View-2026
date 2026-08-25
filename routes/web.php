@@ -26,6 +26,7 @@ Route::get('/habitos',            fn() => view('habitos'))->name('habitos');
 Route::get('/modelos3d',          fn() => view('modelos3d'))->name('modelos3d')->middleware('noauth');
 Route::get('/profesionales',      fn() => view('profesionales'))->name('profesionales');
 Route::view('/clinicas', 'clinicas')->name('clinicas');
+Route::view('/faq', 'faq')->name('faq');
 Route::get('/sobrenosotras',      fn() => view('sobrenosotras'))->name('sobrenosotras');
 Route::view('/lentes', 'lentes')->name('lentes');
 Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
@@ -135,3 +136,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::post('/translate', [TranslateController::class, 'translate'])
     ->middleware('throttle:30,1');
+
+    Route::view('/clinicas', 'clinicas')->name('clinicas');
+Route::view('/faq', 'faq')->name('faq');
+Route::view('/legal', 'legal')->name('legal');

@@ -10,12 +10,10 @@
 <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
+@yield('css')
 <script src="{{ asset('js/translator.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-@yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
-<body>
 @include('partials.icons')
 @include('layouts.preloader')
 
@@ -37,39 +35,74 @@
       </button>
     </div>
 
-    <nav class="drawer-nav">
-      <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
-          Home
-        </span>
-        <span class="d-arr">›</span>
-      </a>
+    
+<div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Información</span><div class="d-sep-line"></div></div>
+<nav class="drawer-nav">
+  <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+      Home
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+  <a href="{{ route('problemas-visuales') }}" class="{{ request()->routeIs('problemas-visuales') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      Problemas visuales
+    </span>
+    <span class="d-arr">›</span>
+  </a>
 
-      <a href="{{ route('problemas-visuales') }}" class="{{ request()->routeIs('problemas-visuales') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-          Problemas visuales
-        </span>
-        <span class="d-arr">›</span>
-      </a>
+  <a href="{{ route('salud-visual') }}" class="{{ request()->routeIs('salud-visual') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.4 3.5 6.9C19 16.4 12 21 12 21Z"/></svg>
+      Salud Visual
+    </span>
+    <span class="d-arr">›</span>
+  </a>
 
-      <a href="{{ route('salud-visual') }}" class="{{ request()->routeIs('salud-visual') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.4 3.5 6.9C19 16.4 12 21 12 21Z"/></svg>
-          Salud Visual
-        </span>
-        <span class="d-arr">›</span>
-      </a>
+  <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+      Hábitos
+    </span>
+    <span class="d-arr">›</span>
+  </a>
 
-      <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-          Hábitos
-        </span>
-        <span class="d-arr">›</span>
-      </a>
-<a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }}">
+  <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="6" cy="14" r="3.2"/><circle cx="18" cy="14" r="3.2"/><path d="M9.2 14h5.6"/><path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/><path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/></svg>
+      Lentes
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+
+  <a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+      Rostros
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+
+  <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+      Profesionales
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+
+  <a href="{{ route('clinicas') }}" class="{{ request()->routeIs('clinicas') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M12 2v6"/><path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/></svg>
+      Clínicas
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+  <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Usuario</span><div class="d-sep-line"></div></div>
+
+ <a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
   <span class="d-link">
     <svg class="d-icon" viewBox="0 0 24 24">
       <path d="M9 2h6"/>
@@ -77,56 +110,36 @@
       <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
     </svg>
     Test
-  </span>
-  <span class="d-arr">›</span>
-</a>
-      <a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
-          Tienda / Modelos 3D
-        </span>
-        <span class="d-arr">›</span>
-      </a>
-      <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
-  <span class="d-link">
-    <svg class="d-icon" viewBox="0 0 24 24">
-      <circle cx="6" cy="14" r="3.2"/>
-      <circle cx="18" cy="14" r="3.2"/>
-      <path d="M9.2 14h5.6"/>
-      <path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/>
-      <path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/>
-    </svg>
-    Lentes
+    @guest
+      <span class="d-lock" title="Requiere iniciar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="10" width="16" height="10" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        </svg>
+      </span>
+    @endguest
   </span>
   <span class="d-arr">›</span>
 </a>
 
-<a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-          Rostros
-        </span>
-        <span class="d-arr">›</span>
-      </a>
-      <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
-        <span class="d-link">
-          <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
-          Profesionales
-        </span>
-        <span class="d-arr">›</span>
-      </a>
-<a href="{{ route('clinicas') }}" class="{{ request()->routeIs('clinicas') ? 'active' : '' }}">
+<a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
   <span class="d-link">
-    <svg class="d-icon" viewBox="0 0 24 24">
-      <path d="M9 2h6"/>
-      <path d="M12 2v6"/>
-      <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
-    </svg>
-    Clínicas
+    <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+    Tienda / Modelos 3D
+    @guest
+      <span class="d-lock" title="Requiere iniciar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="10" width="16" height="10" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        </svg>
+      </span>
+    @endguest
   </span>
   <span class="d-arr">›</span>
 </a>
-   <a href="{{ route('sobrenosotras') }}" class="{{ request()->routeIs('sobrenosotras') ? 'active' : '' }}">
+
+  <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Sobre Nebula View</span><div class="d-sep-line"></div></div>
+  <a href="{{ route('sobrenosotras') }}" class="{{ request()->routeIs('sobrenosotras') ? 'active' : '' }}">
     <span class="d-link">
       <svg class="d-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 21v-1a5 5 0 0 1 6-4.9"/></svg>
       Sobre Nosotras
@@ -134,11 +147,26 @@
     <span class="d-arr">›</span>
   </a>
 
+  <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 1.9-2.4 3.5"/><line x1="12" y1="17" x2="12" y2="17.1"/></svg>
+      Preguntas Frecuentes
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+  
+  <a href="{{ route('contactanos') }}" class="{{ request()->routeIs('contactanos') ? 'active' : '' }}">
+    <span class="d-link">
+      <svg class="d-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+      Contáctanos
+    </span>
+    <span class="d-arr">›</span>
+  </a>
+
   @auth
-
   @endauth
-    </nav>
-
+</nav>
+ <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Acciones</span><div class="d-sep-line"></div></div>
   <div class="drawer-divider" style="margin: 8px 16px;"></div>
 
     {{-- Botones de sesión dentro del drawer --}}
@@ -202,7 +230,7 @@
     </div>
 
     <div class="drawer-footer">
-      <p>¿Necesitas ayuda?<br><a href="{{ route('contactanos') }}"><strong>Contáctanos en cualquier momento</strong></a></p>
+      <p>¿Ya leíste nuestras políticas?<br><a href="{{ route('legal') }}"><strong>Políticas de privacidad y créditos</strong></a></p>
     </div>
 
   </div>
@@ -314,8 +342,8 @@
       <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Help</h4>
       <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
         <li><a href="{{ route('contactanos') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Ayuda en línea</a></li>
-        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Política de privacidad</a></li>
-        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Términos</a></li>
+        <li><a href="{{ route('legal') }}#privacidad" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Política de privacidad</a></li> 
+        <li><a href="{{ route('legal') }}#terminos" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Términos</a></li>
       </ul>
     </div>
     <div>
@@ -416,14 +444,7 @@ document.querySelectorAll('.daynight-toggle').forEach(widget => {
   widget.addEventListener('click', toggleTheme);
 });
 
-/* ══════════════════════════════
-   BOTÓN "REGRESAR"
-   Usa history.back(); como cada página se sirve con Cache-Control:
-   no-store (ver PreventBackHistory middleware), el navegador SIEMPRE
-   vuelve a pedir la página al servidor en vez de mostrar una copia en
-   caché. Si ya cerraste sesión, el middleware "auth" te manda a
-   /login en automático — nunca te deja ver una página protegida vieja.
-══════════════════════════════ */
+
 function irAtras() {
   if (window.history.length > 1) {
     window.history.back();

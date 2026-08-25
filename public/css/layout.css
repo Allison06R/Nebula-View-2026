@@ -383,3 +383,61 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   z-index: 101;
 }
 [data-theme="dark"] #scrollProgress { background: linear-gradient(90deg, var(--lavender), var(--violet)); }
+
+.d-sep { display: flex; align-items: center; gap: 10px; margin: 18px 16px 8px; }
+.d-sep-line { flex: 1; height: 1px; background: var(--lilac); }
+.d-sep-text { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+[data-theme="dark"] .d-sep-line { background: rgba(155,89,182,0.2); }
+
+.d-lock {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-left: 8px;
+  color: #E74C3C;
+}
+.d-lock svg { width: 13px; height: 13px; }
+
+[data-theme="dark"] .d-lock { color: #FF6B6B; }
+
+/* Scrollbar personalizado y consistente para el drawer del menú */
+.mobile-menu-drawer {
+  scrollbar-width: thin;                 /* Firefox */
+  scrollbar-color: var(--lilac) transparent;
+}
+.mobile-menu-drawer::-webkit-scrollbar {
+  width: 6px;                            /* Chrome, Edge, Safari */
+}
+.mobile-menu-drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mobile-menu-drawer::-webkit-scrollbar-thumb {
+  background: var(--lilac);
+  border-radius: 10px;
+}
+.mobile-menu-drawer::-webkit-scrollbar-thumb:hover {
+  background: var(--violet);
+}
+/* Candado dentro del link */
+.d-lock {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-left: 8px;
+}
+.d-lock svg { width: 13px; height: 13px; }
+
+/* Fila completa en rojo cuando está bloqueada (usuario invitado) */
+.drawer-nav a.d-locked { color: #C0392B; }
+.drawer-nav a.d-locked .d-icon { stroke: #C0392B; opacity: 0.85; }
+.drawer-nav a.d-locked:hover {
+  background: rgba(192,57,43,0.08);
+  color: #A93226;
+  transform: translateX(4px);
+}
+.drawer-nav a.d-locked:hover .d-icon { stroke: #A93226; }
+
+[data-theme="dark"] .drawer-nav a.d-locked { color: #FF6B6B; }
+[data-theme="dark"] .drawer-nav a.d-locked .d-icon { stroke: #FF6B6B; }
+[data-theme="dark"] .drawer-nav a.d-locked:hover {
+  background: rgba(255,107,107,0.12);
+  color: #FF8787;
+}
+[data-theme="dark"] .drawer-nav a.d-locked:hover .d-icon { stroke: #FF8787; }

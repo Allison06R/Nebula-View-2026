@@ -243,3 +243,143 @@ footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 60
 [data-theme="dark"] .habits-card { background: var(--lilac); border-color: rgba(155,89,182,0.15); }
 [data-theme="dark"] .solar-block { background: linear-gradient(135deg, #2E2814, #332A12); border-color: rgba(255,180,0,0.2); }
 [data-theme="dark"] .solar-hi { background: var(--white); border-color: rgba(255,180,0,0.25); }
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIONES NUEVAS — Datos globales / Enfermedades / Infantil / Mitos
+   Usa exactamente las mismas variables de color que el resto del
+   archivo (--plum, --violet, --pink, --blush, --lilac, --lavender,
+   --heading, --text, --muted, --dark). No se redefine ningún color
+   de texto: hereda la misma paleta que ya tenías.
+   ══════════════════════════════════════════════════════════════ */
+
+.svx-section { padding: 0 0 80px; max-width: 1100px; margin: 0 auto; }
+
+.svx-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--plum); background: var(--lilac);
+  padding: 7px 16px; border-radius: 20px; margin-bottom: 16px;
+  border: 1px solid rgba(107,47,160,0.15);
+}
+
+.svx-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 900;
+  color: var(--heading);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.svx-section h2 em { color: var(--plum); font-style: italic; }
+
+.svx-lead {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.85;
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+/* ---------- STATS ---------- */
+.svx-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.svx-stat-card {
+  background: white; border-radius: 20px; padding: 28px 22px;
+  border: 1px solid rgba(107,47,160,0.08);
+  box-shadow: 0 4px 24px rgba(107,47,160,0.1);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.svx-stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(107,47,160,0.18); }
+.svx-stat-number {
+  display: block; font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: 2.1rem; color: var(--plum); margin-bottom: 8px;
+}
+.svx-stat-label { font-size: 13.5px; color: var(--text); line-height: 1.6; }
+.svx-stats-source { margin-top: 18px; font-size: 12px; color: var(--muted); font-style: italic; }
+
+/* ---------- DISEASES ---------- */
+.svx-disease-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.svx-disease-card {
+  background: white; border-radius: 20px; padding: 26px 22px;
+  border: 1px solid rgba(107,47,160,0.08);
+  box-shadow: 0 4px 24px rgba(107,47,160,0.06);
+}
+.svx-disease-icon {
+  width: 46px; height: 46px; border-radius: 14px; background: var(--blush);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.svx-disease-icon svg {
+  width: 24px; height: 24px; stroke: var(--violet); fill: none;
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.svx-disease-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.svx-disease-card p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+/* ---------- KIDS / INFANTIL ---------- */
+.svx-kids-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; align-items: center; }
+.svx-kids-card {
+  background: var(--blush); border-radius: 20px; padding: 34px;
+  border: 1px solid rgba(107,47,160,0.08);
+}
+.svx-kids-card p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+.svx-kids-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.svx-kids-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--text); line-height: 1.65; }
+.svx-kids-list svg {
+  flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px;
+  stroke: var(--violet); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.svx-kids-img {
+  border-radius: 20px; overflow: hidden; min-height: 320px;
+  background: var(--lilac); display: flex; align-items: center; justify-content: center;
+}
+.svx-kids-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- MYTHS / FAQ ---------- */
+.svx-myths-list { display: flex; flex-direction: column; gap: 14px; }
+.svx-myth {
+  border: 1px solid rgba(107,47,160,0.08); border-radius: 16px;
+  background: white; padding: 4px 22px;
+  box-shadow: 0 4px 24px rgba(107,47,160,0.06);
+}
+.svx-myth summary {
+  cursor: pointer; list-style: none; padding: 18px 0;
+  font-weight: 600; color: var(--text);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.svx-myth summary::-webkit-details-marker { display: none; }
+.svx-tag {
+  font-size: 10px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700;
+  padding: 4px 10px; border-radius: 20px; white-space: nowrap;
+}
+.svx-tag.svx-mito { background: #FDE8E8; color: #C43D3D; }
+.svx-tag.svx-real { background: var(--lilac); color: var(--plum); }
+.svx-myth .svx-chevron {
+  width: 18px; height: 18px; flex-shrink: 0;
+  stroke: var(--violet); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .25s ease;
+}
+.svx-myth[open] .svx-chevron { transform: rotate(90deg); }
+.svx-myth p {
+  font-size: 13.5px; color: var(--muted); line-height: 1.75;
+  margin: 0 0 20px; padding-top: 14px; border-top: 1px dashed var(--lilac);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .svx-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .svx-disease-grid { grid-template-columns: repeat(2, 1fr); }
+  .svx-kids-wrap { grid-template-columns: 1fr; }
+  .svx-kids-img { order: -1; min-height: 240px; }
+}
+@media (max-width: 600px) {
+  .svx-stats-grid { grid-template-columns: 1fr; }
+  .svx-disease-grid { grid-template-columns: 1fr; }
+}
+
+/* Modo oscuro — secciones nuevas (mismo criterio que arriba) */
+[data-theme="dark"] .svx-stat-card,
+[data-theme="dark"] .svx-disease-card,
+[data-theme="dark"] .svx-myth { background: var(--lilac); border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .svx-kids-card { background: var(--lilac); border-color: rgba(155,89,182,0.15); }
+[data-theme="dark"] .svx-kids-img { background: var(--blush); }
+[data-theme="dark"] .svx-disease-icon { background: var(--white); }
+
