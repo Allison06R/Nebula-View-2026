@@ -4,6 +4,36 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/test.css') }}">
+<style>
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #ffffff;
+  border: 1.5px solid rgba(124,58,237,0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.12);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+  width: fit-content;
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e1b4b;
+}
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.t-ico { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.toast.toast-ok  .t-ico { background: rgba(52,211,153,0.12); color: #059669; }
+.toast.toast-err .t-ico { background: rgba(239,68,68,0.10);  color: #dc2626; }
+.t-txt { display: flex; flex-direction: column; gap: 1px; }
+.t-txt b    { font-size: 13px; font-weight: 600; color: #1e1b4b; }
+.t-txt span { font-size: 11px; color: #6b7280; }
+</style>
 @endsection
 
 @section('content')
@@ -20,7 +50,11 @@
     <!-- INTRO -->
     <div id="intro-screen">
       <div class="hero-badge">🔬 Test interactivo · IA</div>
-      @include('partials.test-switcher')
+      <div>
+        <a href="{{ route('test-ishihara') }}" class="test-switch-link">
+          🎨 ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
+        </a>
+      </div>
       <h1>Descubre tu<br><em>perfil visual</em></h1>
       <p>Responde 20 preguntas sobre tus síntomas, hábitos, estilo de vida y antecedentes. Obtendrás un diagnóstico por condición, un plan semanal de hábitos y un chat personalizado con tu asistente visual.</p>
 
@@ -44,7 +78,6 @@
 
     <!-- QUESTIONS -->
     <div id="questions-screen" style="display:none;">
-      <button type="button" class="btn-exit-test" id="exitTestBtn">← Volver a tests</button>
       <div class="test-meta">
         <span id="q-counter">Pregunta 1 de 20</span>
       </div>
@@ -115,7 +148,6 @@
         <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary">📖 Ver más sobre tu condición</a>
         <button class="btn-cta-secondary" id="historyBtn">📋 Ver historial</button>
         <button class="btn-cta-secondary" id="retestBtn">🔄 Repetir test</button>
-        <button class="btn-cta-secondary btn-back-tests" id="backToTestsBtn">← Volver a tests</button>
       </div>
       <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">⚠️ Este diagnóstico es orientativo. Consulta siempre a un profesional de la salud visual.</p>
     </div>
@@ -155,6 +187,13 @@ const TEST_HISTORIAL_URL = "{{ route('test.historial') }}";
 const TEST_ENVIAR_PDF_URL = (id) => `{{ url('/test') }}/${id}/enviar-pdf`;
 const TEST_DESTROY_URL = (id) => `{{ url('/test') }}/${id}`;
 const CSRF_TOKEN = "{{ csrf_token() }}";
+const CURRENT_USER_ID = "{{ auth()->id() }}";
+const NEBULA_HISTORY_KEY = 'nebulaHistory_' + CURRENT_USER_ID;
+// Restos de una versión anterior guardaban el historial bajo una sola
+// clave sin distinguir usuario, así que en un navegador compartido
+// una cuenta veía la vista previa de la anterior. La eliminamos una
+// sola vez para no arrastrar datos de otra persona.
+try { localStorage.removeItem('nebulaHistory'); } catch (e) { /* noop */ }
 
 function doToast(type, title, msg) {
   const toast = document.getElementById('toast');
@@ -404,17 +443,6 @@ document.getElementById('startBtn').addEventListener('click', () => {
   document.getElementById('testCard').classList.remove('wide-card');
   showQ(1);
 });
-
-// ── VOLVER A TESTS (desde las preguntas o desde el resultado) ──
-function goToTestIntro() {
-  document.getElementById('questions-screen').style.display = 'none';
-  document.getElementById('result-screen').classList.remove('show');
-  document.getElementById('history-screen').classList.remove('show');
-  document.getElementById('testCard').classList.remove('wide-card');
-  document.getElementById('intro-screen').style.display = 'block';
-}
-document.getElementById('exitTestBtn').addEventListener('click', goToTestIntro);
-document.getElementById('backToTestsBtn').addEventListener('click', goToTestIntro);
 
 // ── SCORES ──
 function calcScores() {
@@ -837,7 +865,7 @@ async function sendChat(text) {
 // al servidor). El historial "de verdad" que se puede enviar por correo
 // vive en la base de datos y se carga con loadHistoryFromServer().
 function saveToHistory(result, sc) {
-  const history = JSON.parse(localStorage.getItem('nebulaHistory') || '[]');
+  const history = JSON.parse(localStorage.getItem(NEBULA_HISTORY_KEY) || '[]');
   history.unshift({
     date: new Date().toLocaleDateString('es-ES', { day:'numeric', month:'short', year:'numeric' }),
     titulo: result.titulo,
@@ -845,11 +873,11 @@ function saveToHistory(result, sc) {
     sc
   });
   if (history.length > 10) history.pop();
-  localStorage.setItem('nebulaHistory', JSON.stringify(history));
+  localStorage.setItem(NEBULA_HISTORY_KEY, JSON.stringify(history));
 }
 
 function loadHistoryData() {
-  return JSON.parse(localStorage.getItem('nebulaHistory') || '[]');
+  return JSON.parse(localStorage.getItem(NEBULA_HISTORY_KEY) || '[]');
 }
 
 function renderHistoryPreview() {
@@ -1048,7 +1076,7 @@ document.getElementById('clearHistBtn').addEventListener('click', async () => {
   } catch (e) {
     console.warn('No se pudo vaciar el historial del servidor:', e);
   }
-  localStorage.removeItem('nebulaHistory');
+  localStorage.removeItem(NEBULA_HISTORY_KEY);
   renderHistoryScreen();
   renderHistoryPreview();
 });

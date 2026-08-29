@@ -19,7 +19,7 @@
     <div class="nebula-underline"></div>
     <p class="nebula-subtitle">Tu visión tiene un universo por descubrir.</p>
     <p class="nebula-subtitle-2">Atrévete a verlo desde otra perspectiva.</p>
-    <a href="#productos" class="nebula-cta">Explorar <span class="arrow">→</span></a>
+    <a href="{{ asset('salud-visual') }}" class="nebula-cta">Explorar <span class="arrow">→</span></a>
   </div>
 
   <div class="nebula-mascot-wrap">

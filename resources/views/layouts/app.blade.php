@@ -10,10 +10,12 @@
 <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
-@yield('css')
 <script src="{{ asset('js/translator.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+@yield('css')
 <link rel="icon" href="/images/favicon%20y%20logo.png" type="image/png"></head>
+<body>
 @include('partials.icons')
 @include('layouts.preloader')
 
@@ -35,139 +37,137 @@
       </button>
     </div>
 
-    
-<div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Información</span><div class="d-sep-line"></div></div>
-<nav class="drawer-nav">
-  <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
-      Home
-    </span>
-    <span class="d-arr">›</span>
-  </a>
-  <a href="{{ route('problemas-visuales') }}" class="{{ request()->routeIs('problemas-visuales') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-      Problemas visuales
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+    <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Información</span><div class="d-sep-line"></div></div>
+    <nav class="drawer-nav">
+      <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+          Home
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      <a href="{{ route('problemas-visuales') }}" class="{{ request()->routeIs('problemas-visuales') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          Problemas visuales
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('salud-visual') }}" class="{{ request()->routeIs('salud-visual') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.4 3.5 6.9C19 16.4 12 21 12 21Z"/></svg>
-      Salud Visual
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('salud-visual') }}" class="{{ request()->routeIs('salud-visual') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9.1C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.4 3.5 6.9C19 16.4 12 21 12 21Z"/></svg>
+          Salud Visual
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-      Hábitos
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('habitos') }}" class="{{ request()->routeIs('habitos') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Hábitos
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="6" cy="14" r="3.2"/><circle cx="18" cy="14" r="3.2"/><path d="M9.2 14h5.6"/><path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/><path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/></svg>
-      Lentes
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('lentes') }}" class="{{ request()->routeIs('lentes') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="6" cy="14" r="3.2"/><circle cx="18" cy="14" r="3.2"/><path d="M9.2 14h5.6"/><path d="M2.8 14 4 9c.3-1 1-1.6 2-1.6h.5"/><path d="M21.2 14 20 9c-.3-1-1-1.6-2-1.6h-.5"/></svg>
+          Lentes
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-      Rostros
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('rostros') }}" class="{{ request()->routeIs('rostros') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Rostros
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
-      Profesionales
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('profesionales') }}" class="{{ request()->routeIs('profesionales') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+          Profesionales
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('clinicas') }}" class="{{ request()->routeIs('clinicas') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M12 2v6"/><path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/></svg>
-      Clínicas
-    </span>
-    <span class="d-arr">›</span>
-  </a>
-  <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Usuario</span><div class="d-sep-line"></div></div>
+      <a href="{{ route('clinicas') }}" class="{{ request()->routeIs('clinicas') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M12 2v6"/><path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/></svg>
+          Clínicas
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
- <a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
-  <span class="d-link">
-    <svg class="d-icon" viewBox="0 0 24 24">
-      <path d="M9 2h6"/>
-      <path d="M12 2v6"/>
-      <path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/>
-    </svg>
-    Test
-    @guest
-      <span class="d-lock" title="Requiere iniciar sesión">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="10" width="16" height="10" rx="2"/>
-          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-        </svg>
-      </span>
-    @endguest
-  </span>
-  <span class="d-arr">›</span>
-</a>
+      <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Usuario</span><div class="d-sep-line"></div></div>
 
-<a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
-  <span class="d-link">
-    <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
-    Tienda / Modelos 3D
-    @guest
-      <span class="d-lock" title="Requiere iniciar sesión">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="10" width="16" height="10" rx="2"/>
-          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-        </svg>
-      </span>
-    @endguest
-  </span>
-  <span class="d-arr">›</span>
-</a>
+      <a href="{{ route('test') }}" class="{{ request()->routeIs('test') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M12 2v6"/><path d="M6 22h12l-4-9 2-4H8l2 4-4 9Z"/></svg>
+          Test
+          @guest
+            <span class="d-lock" title="Requiere iniciar sesión">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="10" width="16" height="10" rx="2"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+              </svg>
+            </span>
+          @endguest
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Sobre Nebula View</span><div class="d-sep-line"></div></div>
-  <a href="{{ route('sobrenosotras') }}" class="{{ request()->routeIs('sobrenosotras') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 21v-1a5 5 0 0 1 6-4.9"/></svg>
-      Sobre Nosotras
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+          Tienda / Modelos 3D
+          @guest
+            <span class="d-lock" title="Requiere iniciar sesión">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="10" width="16" height="10" rx="2"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+              </svg>
+            </span>
+          @endguest
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 1.9-2.4 3.5"/><line x1="12" y1="17" x2="12" y2="17.1"/></svg>
-      Preguntas Frecuentes
-    </span>
-    <span class="d-arr">›</span>
-  </a>
-  
-  <a href="{{ route('contactanos') }}" class="{{ request()->routeIs('contactanos') ? 'active' : '' }}">
-    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
-      Contáctanos
-    </span>
-    <span class="d-arr">›</span>
-  </a>
+      <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Sobre Nebula View</span><div class="d-sep-line"></div></div>
+      <a href="{{ route('sobrenosotras') }}" class="{{ request()->routeIs('sobrenosotras') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 21v-1a5 5 0 0 1 6-4.9"/></svg>
+          Sobre Nosotras
+        </span>
+        <span class="d-arr">›</span>
+      </a>
 
-  @auth
-  @endauth
-</nav>
- <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Acciones</span><div class="d-sep-line"></div></div>
-  <div class="drawer-divider" style="margin: 8px 16px;"></div>
+      <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 1.9-2.4 3.5"/><line x1="12" y1="17" x2="12" y2="17.1"/></svg>
+          Preguntas Frecuentes
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      
+        
+      <a href="{{ route('contactanos') }}" class="{{ request()->routeIs('contactanos') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          Contáctanos
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+
+      @auth
+      @endauth
+    </nav>
+
+    <div class="d-sep"><div class="d-sep-line"></div><span class="d-sep-text">Acciones</span><div class="d-sep-line"></div></div>
+    <div class="drawer-divider" style="margin: 8px 16px;"></div>
 
     {{-- Botones de sesión dentro del drawer --}}
     <nav class="drawer-nav" style="padding-top: 0;">
@@ -183,38 +183,38 @@
       </a>
       @endif
 
-      <a href="{{ route('mi-perfil.show') }}" class="{{ request()->routeIs('mi-perfil.show') ? 'active' : '' }}">    <span class="d-link">
-      <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-      Mi Perfil
-    </span>
-    <span class="d-arr">›</span>
-  </a>
-        <a href="{{ route('logout') }}"
-           onclick="event.preventDefault(); document.getElementById('logout-drawer-form').submit();">
-          <span class="d-link">
-            <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-            Cerrar sesión
-          </span>
-          <span class="d-arr">›</span>
-        </a>
-        <form id="logout-drawer-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+      <a href="{{ route('mi-perfil.show') }}" class="{{ request()->routeIs('mi-perfil.show') ? 'active' : '' }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Mi Perfil
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      <a href="{{ route('logout') }}"
+         onclick="event.preventDefault(); document.getElementById('logout-drawer-form').submit();">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Cerrar sesión
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      <form id="logout-drawer-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
 
-
-        @else
-        <a href="{{ route('login') }}">
-          <span class="d-link">
-            <svg class="d-icon" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-            Inicio de Sesión
-          </span>
-          <span class="d-arr">›</span>
-        </a>
-        <a href="{{ route('registro') }}">
-          <span class="d-link">
-            <svg class="d-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-            Registro
-          </span>
-          <span class="d-arr">›</span>
-        </a>
+      @else
+      <a href="{{ route('login') }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Inicio de Sesión
+        </span>
+        <span class="d-arr">›</span>
+      </a>
+      <a href="{{ route('registro') }}">
+        <span class="d-link">
+          <svg class="d-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          Registro
+        </span>
+        <span class="d-arr">›</span>
+      </a>
       @endauth
     </nav>
 
@@ -230,7 +230,7 @@
     </div>
 
     <div class="drawer-footer">
-      <p>¿Ya leíste nuestras políticas?<br><a href="{{ route('legal') }}"><strong>Políticas de privacidad y créditos</strong></a></p>
+      <p>¿Ya leíste nuestra Políticas?<br><a href="{{ route('legal') }}"><strong>Política de Privacidad y Créditos</strong></a></p>
     </div>
 
   </div>
@@ -256,17 +256,14 @@
   </a>
 
   <div class="nav-actions">
-    {{-- Botón de regresar --}}
     <button class="icon-toggle-btn" id="backBtn" type="button" aria-label="Regresar" title="Regresar">
       <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     </button>
 
-    {{-- Botón de traducción --}}
     <button class="lang-toggle-btn" id="langToggle" type="button">
       {{ app()->getLocale() === 'es' ? 'EN' : 'ES' }}
     </button>
 
-    {{-- Botón de modo oscuro --}}
     <x-daynight-toggle id="daynightToggle" />
 
     @auth
@@ -307,7 +304,7 @@
       <a href="{{ route('login') }}" class="nav-session-link">Inicio de Sesión</a>
       <a href="{{ route('registro') }}" class="nav-session-link nav-session-link--btn">Registro</a>
     @endauth
-<button class="ham-btn" id="hamBtn" aria-label="Abrir menú">
+    <button class="ham-btn" id="hamBtn" aria-label="Abrir menú">
       <div class="ham-line"></div>
       <div class="ham-line"></div>
       <div class="ham-line"></div>
@@ -315,51 +312,124 @@
   </div>
 
   <div id="scrollProgress"></div>
+
 </nav>
   </div>
 
 @yield('content')
-
 <!-- FOOTER -->
-<footer style="background:#1A0A2E;color:rgba(255,255,255,0.7);padding:50px 60px 28px;font-family: 'MuseoModerno', sans-serif;">
-  <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:30px;">
-    <div>
-      <span style="font-family: 'MuseoModerno', serif;font-size:20px;color:white;font-weight:700;display:block;margin-bottom:14px;">Nebula View 👁</span>
-      <p style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:280px;margin:0 0 14px;">Tu destino de confianza para lentes de calidad y cuidado visual.</p>
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);">info@nebulaview.com</p>
-    </div>
-    <div>
-      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Links</h4>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
-        <li><a href="{{ route('home') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Inicio</a></li>
-        <li><a href="{{ route('salud-visual') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Salud Visual</a></li>
-        <li><a href="{{ route('modelos3d') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Catálogo</a></li>
-        <li><a href="{{ route('profesionales') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Profesionales</a></li>
-        <li><a href="{{ route('contactanos') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Contáctanos</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Help</h4>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
-        <li><a href="{{ route('contactanos') }}" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Ayuda en línea</a></li>
-        <li><a href="{{ route('legal') }}#privacidad" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Política de privacidad</a></li> 
-        <li><a href="{{ route('legal') }}#terminos" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;">Términos</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:white;margin:0 0 14px;">Newsletter</h4>
-      <p style="font-size:13px;margin:0 0 10px;color:rgba(255,255,255,0.6);">Recibe lo último sobre cuidado visual y nuevas colecciones.</p>
-      <div style="display:flex;gap:8px;">
-        <input type="email" placeholder="Tu correo electrónico" style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:white;font-size:13px;outline:none;">
-        <button style="padding:10px 18px;border-radius:10px;border:none;background:linear-gradient(135deg,#9B59B6,#6B2FA0);color:white;font-size:13px;font-weight:600;cursor:pointer;">Suscribir</button>
+<footer class="nv-footer">
+  <div class="nv-footer-inner">
+    <div class="nv-footer-top">
+      <div class="nv-footer-brand">
+        <span class="nv-footer-logo">Nebula View 👁</span>
+        <p>Tu destino de confianza para lentes de calidad y cuidado visual.</p>
       </div>
+      <nav class="nv-footer-links">
+        <a href="{{ route('home') }}">Inicio</a>
+        <a href="{{ route('salud-visual') }}">Salud Visual</a>
+        <a href="{{ route('modelos3d') }}">Catálogo</a>
+        <a href="{{ route('profesionales') }}">Profesionales</a>
+        <a href="{{ route('contactanos') }}">Contáctanos</a>
+      </nav>
+      <a href="mailto:info@nebulaview.com" class="nv-footer-email">info@nebulaview.com</a>
     </div>
-  </div>
-  <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.35);border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;margin-top:20px;flex-wrap:wrap;gap:10px;">
-    <span>© 2026 Nebula View. Todos los derechos reservados.</span>
-    <span>Hecho con 💜 para tu visión</span>
+    <div class="nv-footer-bottom">
+      <span>© 2026 Nebula View. Todos los derechos reservados.</span>
+      <span>Hecho con 💜 para tu visión</span>
+    </div>
   </div>
 </footer>
+
+<style>
+.nv-footer {
+  position: relative;
+  width: 100%;
+  height: 40vw; /* = 632/1580, proporción real de la imagen: se ve completa */
+  max-height: 640px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #1A0A2E url('{{ asset('images/footer-space-bg.png') }}') no-repeat top center;
+  background-size: cover;
+  overflow: hidden;
+}
+.nv-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26,10,46,0) 0%, rgba(26,10,46,0.45) 55%, rgba(26,10,46,0.93) 100%);
+  pointer-events: none;
+}
+.nv-footer-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0 60px 20px;
+  color: rgba(255,255,255,0.9);
+  font-family: 'MuseoModerno', sans-serif;
+}
+.nv-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.nv-footer-brand { max-width: 300px; }
+.nv-footer-logo {
+  font-family: 'MuseoModerno', serif;
+  font-size: 19px;
+  color: #fff;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+.nv-footer-brand p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+.nv-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  padding-top: 4px;
+}
+.nv-footer-links a,
+.nv-footer-email {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.nv-footer-links a:hover,
+.nv-footer-email:hover { color: #fff; }
+.nv-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  padding-top: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media (max-width: 720px) {
+  .nv-footer {
+    height: auto;
+    padding-top: 0;
+    min-height: 480px;
+    background-position: center top;
+  }
+  .nv-footer-inner { padding: 0 24px 20px; }
+  .nv-footer-top { flex-direction: column; gap: 18px; }
+}
+</style>
 
 <script>
 const navbar = document.getElementById('navbar');
@@ -444,7 +514,14 @@ document.querySelectorAll('.daynight-toggle').forEach(widget => {
   widget.addEventListener('click', toggleTheme);
 });
 
-
+/* ══════════════════════════════
+   BOTÓN "REGRESAR"
+   Usa history.back(); como cada página se sirve con Cache-Control:
+   no-store (ver PreventBackHistory middleware), el navegador SIEMPRE
+   vuelve a pedir la página al servidor en vez de mostrar una copia en
+   caché. Si ya cerraste sesión, el middleware "auth" te manda a
+   /login en automático — nunca te deja ver una página protegida vieja.
+══════════════════════════════ */
 function irAtras() {
   if (window.history.length > 1) {
     window.history.back();

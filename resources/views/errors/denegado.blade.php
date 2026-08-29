@@ -113,9 +113,27 @@
     }
     body { justify-content:center; }
   }
+
+  .lang-toggle-btn {
+    position:absolute;
+    top:24px;
+    right:24px;
+    z-index:3;
+    padding:8px 16px;
+    border-radius:10px;
+    border:1px solid rgba(155,89,182,0.35);
+    background: rgba(13,6,32,0.55);
+    color:#fff;
+    font-family:'DM Sans', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+  }
 </style>
 </head>
 <body>
+
+  <button class="lang-toggle-btn" id="langToggle" type="button">EN</button>
 
   <div class="no-acceso-box">
     <span class="no-acceso-eyebrow">Nebula View</span>
@@ -128,6 +146,8 @@
       Regresar
     </a>
   </div>
+
+<script src="{{ asset('js/translator.js') }}"></script>
 
 </body>
 </html>

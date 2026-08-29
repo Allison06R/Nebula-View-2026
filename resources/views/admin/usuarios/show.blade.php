@@ -127,16 +127,30 @@
   <div class="admin-card-body" style="padding:0">
     <table class="admin-table">
       <thead>
-        <tr><th>Resultado</th><th>Fecha</th></tr>
+        <tr><th>Tipo</th><th>Resultado</th><th>Fecha</th></tr>
       </thead>
       <tbody>
         @forelse($usuario->tests as $t)
+        @php
+          $tipo = $t->resultado['tipo'] ?? 'diagnostico';
+          if ($tipo === 'ishihara') {
+              $tipoLabel = 'Ishihara';
+              $tituloResultado = $t->resultado['resultado_ia']['titulo']
+                  ?? (isset($t->resultado['aciertos'], $t->resultado['total_laminas'])
+                      ? $t->resultado['aciertos'] . ' de ' . $t->resultado['total_laminas'] . ' láminas'
+                      : 'Test de Ishihara');
+          } else {
+              $tipoLabel = 'Diagnóstico visual';
+              $tituloResultado = $t->resultado['resultadoIA']['titulo'] ?? 'Diagnóstico visual';
+          }
+        @endphp
         <tr>
-          <td>{{ $t->resultado }}</td>
+          <td>{{ $tipoLabel }}</td>
+          <td>{{ $tituloResultado }}</td>
           <td style="color:var(--a-muted)">{{ $t->fecha_realizacion?->format('d/m/Y H:i') ?? '—' }}</td>
         </tr>
         @empty
-        <tr><td colspan="2" style="text-align:center;color:var(--a-muted);padding:30px">Sin tests realizados.</td></tr>
+        <tr><td colspan="3" style="text-align:center;color:var(--a-muted);padding:30px">Sin tests realizados.</td></tr>
         @endforelse
       </tbody>
     </table>

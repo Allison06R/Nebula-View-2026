@@ -222,8 +222,9 @@
 }
 
 /* ===== MODO OSCURO ===== */
-[data-theme="dark"] .faq-intro { background: #1B2430; }
-[data-theme="dark"] .faq-card { background: #1B2430; border-color: rgba(155,89,182,0.2); }
+[data-theme="dark"] .faq-intro { background:#3d1250; }
+[data-theme="dark"] .faq-card { background: #2d1b30; border-color: rgba(155,89,182,0.2); }
 [data-theme="dark"] .faq-card__icon { background: #241530; }
 [data-theme="dark"] .chip { background: #1B2430; border-color: rgba(155,89,182,0.3); color: rgba(255,255,255,0.55); }
 [data-theme="dark"] .contact-band { background: linear-gradient(135deg, #1B2430 0%, #241530 50%, #16222E 100%); }
+[data-theme="dark"] .faq-card__num{ color: #8051a8c3; box-shadow: 0 6px 24px rgba(107,47,160,0.28); }

@@ -215,3 +215,4 @@
 [data-theme="dark"] .ish-detail-item.ok .ish-detail-ico{color:#3FE087;}
 [data-theme="dark"] .ish-detail-item.fail .ish-detail-ico{color:#FF6B5B;}
 [data-theme="dark"] .chat-header-name { strong{color:var(--white);}}
+[data-theme="dark"] .history-card h2 { color:#d1aeff; }
