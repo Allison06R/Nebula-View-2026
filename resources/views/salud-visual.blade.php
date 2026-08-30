@@ -64,10 +64,18 @@
         <h3>Hábitos</h3>
         <p>Los hábitos son la clave para mantener una salud visual óptima. Buenos hábitos diarios pueden ayudarte a prevenir enfermedades como el glaucoma o la degeneración macular.</p>
         <div class="habits-tags">
-          <span class="habit-tag">🌙 Regla 20-20-20</span>
+          <span class="habit-tag"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+           <path d="M20 5c-6 1-10 6-9 12s7 10 13 8c-2 3-6 5-10 4C7 27 3 20 5 13S15 2 20 5z" fill="none" stroke="#f0d824" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+           <circle cx="24" cy="8" r="1" fill="#f0d824"/>
+           <circle cx="27" cy="13" r="0.7" fill="#f0d824"/>
+          </svg> Regla 20-20-20</span>
           <span class="habit-tag">🥕 Alimentación</span>
           <span class="habit-tag">😎 Protección UV</span>
-          <span class="habit-tag">💧 Hidratación</span>
+          <span class="habit-tag">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <path d="M16 4c4 6 9 12 9 17a9 9 0 0 1-18 0c0-5 5-11 9-17z"
+        fill="none" stroke="#6FA8DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 21c0 2 1.5 3.5 3 4" stroke="#6FA8DC" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+       </svg> Hidratación</span>
           <span class="habit-tag">🖥️ Descanso digital</span>
           <span class="habit-tag">📅 Revisiones</span>
         </div>

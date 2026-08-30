@@ -74,8 +74,12 @@
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
             </svg>
             <span style="font-size:13px;color:#c4aee8;margin-right:4px;">@</span>
-            <input type="text" name="usuario" placeholder="tu_usuario" required value="{{ old('usuario') }}"/>
+            <input type="text" name="usuario" placeholder="tu_usuario" required
+                   pattern="[a-zA-Z0-9._-]+"
+                   title="Solo letras, números, puntos, guiones y guion bajo. No puede ser un correo ni tener espacios."
+                   value="{{ old('usuario') }}"/>
           </div>
+          <div style="font-size:11px;color:#9c8bb0;margin-top:4px;">Solo letras, números, puntos, guiones y guion bajo. No puede ser un correo.</div>
           @error('usuario') <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $message }}</div> @enderror
         </div>
 
@@ -101,7 +105,11 @@
               </svg>
               <input type="password" name="password" id="password" placeholder="••••••••" required minlength="8"/>
             </div>
-            @error('password') <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $message }}</div> @enderror
+            @if ($errors->has('password'))
+              @foreach ($errors->get('password') as $msg)
+                <div style="font-size:11px;color:#dc2626;margin-top:4px;">{{ $msg }}</div>
+              @endforeach
+            @endif
 
             <div class="pw-strength-bar"><div class="pw-strength-fill" id="pwStrengthFill"></div></div>
             <div class="pw-strength-label" id="pwStrengthLabel">&nbsp;</div>
@@ -110,6 +118,7 @@
               <li id="req-len">Al menos 8 caracteres</li>
               <li id="req-mixed">Una mayúscula y una minúscula</li>
               <li id="req-number">Al menos un número</li>
+              <li class="pw-req-info">Que no sea una contraseña filtrada o muy usada</li>
             </ul>
           </div>
 

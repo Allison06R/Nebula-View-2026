@@ -102,13 +102,22 @@
   <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(107,47,160,0.3)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg><span class="habit-number">1</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(107,47,160,0.3)"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+         <path d="M4 16c3-6 8-9 12-9s9 3 12 9c-3 6-8 9-12 9s-9-3-12-9z" fill="none" stroke="#8B5FBF" stroke-width="1.8" stroke-linecap="round"  stroke-linejoin="round"/>
+         <circle cx="16" cy="16" r="4.2" fill="none" stroke="#8B5FBF" stroke-width="1.8"/>
+         <circle cx="16" cy="16" r="1.4" fill="#8B5FBF"/>
+         <path d="M11 10c1-1 2-1.5 3-1.7M21 22c-1 1-2 1.5-3 1.7" stroke="#8B5FBF" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        </svg><span class="habit-number">1</span></div>
         <div class="habit-title">Regla 20-20-20</div>
         <div class="habit-desc">Cada 20 minutos de pantalla, mira a un objeto a 20 pies de distancia durante 20 segundos.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Coloca un recordatorio en tu teléfono cada 20 minutos mientras trabajas.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(233,30,140,0.2)">💧<span class="habit-number">2</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(233,30,140,0.2)">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <path d="M16 4c4 6 9 12 9 17a9 9 0 0 1-18 0c0-5 5-11 9-17z"
+        fill="none" stroke="#6FA8DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 21c0 2 1.5 3.5 3 4" stroke="#6FA8DC" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+       </svg><span class="habit-number">2</span></div>
         <div class="habit-title">Hidratación ocular</div>
         <div class="habit-desc">Parpadea conscientemente para mantener los ojos lubricados. La sequedad ocular es uno de los problemas más comunes causados por pantallas.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Beber al menos 8 vasos de agua al día también contribuye a la salud de tus ojos.</div>
@@ -126,7 +135,13 @@
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Incluso en días nublados, la radiación UV puede alcanzar tus ojos.</div>
       </div>
       <div class="habit-card">
-        <div class="habit-icon-wrap" style="background:rgba(100,150,255,0.2)">🌙<span class="habit-number">5</span></div>
+        <div class="habit-icon-wrap" style="background:rgba(100,150,255,0.2)"><!-- Luna -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+           <path d="M20 5c-6 1-10 6-9 12s7 10 13 8c-2 3-6 5-10 4C7 27 3 20 5 13S15 2 20 5z" fill="none" stroke="#f0d824" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+           <circle cx="24" cy="8" r="1" fill="#f0d824"/>
+           <circle cx="27" cy="13" r="0.7" fill="#f0d824"/>
+          </svg>
+        <!--fin luna --><span class="habit-number">5</span></div>
         <div class="habit-title">Descanso nocturno</div>
         <div class="habit-desc">Dormir entre 7 y 9 horas permite que tus ojos se recuperen. Evita pantallas al menos una hora antes de dormir.</div>
         <div class="habit-tip"><span class="habit-tip-icon">💡</span> Activa el filtro de luz azul en tus dispositivos a partir de las 8 PM.</div>
@@ -191,7 +206,7 @@
   </div>
 </section>
 
-<!-- ROSTROS Y LENTES -->
+
 <!-- ROSTROS Y LENTES -->
 <section id="rostros">
   <p class="section-label">Tipos de Rostro</p>

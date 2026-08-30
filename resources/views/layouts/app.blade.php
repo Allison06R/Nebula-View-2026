@@ -314,7 +314,6 @@
   <div id="scrollProgress"></div>
 
 </nav>
-  </div>
 
 @yield('content')
 <!-- FOOTER -->
@@ -345,13 +344,15 @@
 .nv-footer {
   position: relative;
   width: 100%;
-  height: 40vw; /* = 632/1580, proporción real de la imagen: se ve completa */
+  aspect-ratio: 1580 / 593; /* misma proporción que la imagen (ya recortada, sin margen transparente arriba), calculada sobre el propio ancho del footer para evitar líneas por el scrollbar */
   max-height: 640px;
   min-height: 360px;
+  padding: 0; /* neutraliza los "footer { padding: ... }" viejos de cada página (test.css, habitos.css, etc.) */
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: #1A0A2E url('{{ asset('images/footer-space-bg.png') }}') no-repeat top center;
+  background: url('{{ asset('images/footer-space-bg.png') }}') no-repeat top center;
   background-size: cover;
   overflow: hidden;
 }
@@ -365,7 +366,7 @@
 .nv-footer-inner {
   position: relative;
   z-index: 1;
-  padding: 0 60px 20px;
+  padding: 0 60px 48px;
   color: rgba(255,255,255,0.9);
   font-family: 'MuseoModerno', sans-serif;
 }
@@ -374,35 +375,35 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
 }
-.nv-footer-brand { max-width: 300px; }
+.nv-footer-brand { max-width: 380px; }
 .nv-footer-logo {
   font-family: 'MuseoModerno', serif;
-  font-size: 19px;
+  font-size: 34px;
   color: #fff;
   font-weight: 700;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 .nv-footer-brand p {
-  font-size: 13px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.8);
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
   margin: 0;
 }
 .nv-footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
-  padding-top: 4px;
+  gap: 14px 30px;
+  padding-top: 8px;
 }
 .nv-footer-links a,
 .nv-footer-email {
-  color: rgba(255,255,255,0.8);
-  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  font-size: 17px;
   text-decoration: none;
   white-space: nowrap;
   transition: color .15s ease;
@@ -413,21 +414,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.55);
-  padding-top: 14px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  padding-top: 26px;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 @media (max-width: 720px) {
   .nv-footer {
-    height: auto;
-    padding-top: 0;
-    min-height: 480px;
+    aspect-ratio: unset;
+    padding: 0;
+    min-height: 560px;
     background-position: center top;
   }
-  .nv-footer-inner { padding: 0 24px 20px; }
-  .nv-footer-top { flex-direction: column; gap: 18px; }
+  .nv-footer-inner { padding: 0 24px 32px; }
+  .nv-footer-top { flex-direction: column; gap: 22px; padding-bottom: 24px; }
+  .nv-footer-logo { font-size: 28px; }
+  .nv-footer-brand p,
+  .nv-footer-links a,
+  .nv-footer-email { font-size: 15px; }
 }
 </style>
 

@@ -21,10 +21,12 @@ class RegistroController extends Controller
         $request->validate([
             'nombre'                => ['required', 'string', 'max:100'],
            
-            'usuario'               => ['required', 'string', 'max:50', Rule::unique('usuario', 'usuario')],
+            'usuario'               => ['required', 'string', 'max:50', 'regex:/^[a-zA-Z0-9._-]+$/', Rule::unique('usuario', 'usuario')],
             'correo'                => ['required', 'email', 'max:150', Rule::unique('usuario', 'correo')],
             'password'              => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->uncompromised()],
             'terms'                 => ['accepted'],
+        ], [
+            'usuario.regex' => 'El nombre de usuario no puede ser un correo ni contener espacios o símbolos especiales (solo letras, números, puntos, guiones y guion bajo).',
         ]);
  
         $nuevoUsuario = Usuario::create([
