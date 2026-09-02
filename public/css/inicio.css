@@ -258,7 +258,25 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--white);
+  background-image: url('/images/fondoLog.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* fijo al viewport: cubre TODA la página (footer incluido) sin importar cuánto mida el contenido */
+  color: var(--text);
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.15) 0%, rgba(237,224,255,0.25) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
 /* ── FOOTER ── */
   footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 60px 60px 30px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 48px; }
@@ -305,21 +323,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
 }
 
 /* ══════════════════════════════
-   FONDO ESPACIAL + PERSONAJE FLOTANTE
+   FONDO ESPACIAL + PERSONAJE FLOTANTE (ahora vive en body, arriba)
 ══════════════════════════════ */
 .login-wrapper {
   position: relative;
-  background-image: url('/images/fondoLog.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.login-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, rgba(255,255,255,0.15) 0%, rgba(237,224,255,0.25) 100%);
-  pointer-events: none;
+  z-index: 1;
 }
 
 .nv-left {

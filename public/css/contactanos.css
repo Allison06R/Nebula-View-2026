@@ -21,11 +21,8 @@
 
 .contacto-bg {
   position: relative;
-  margin-top: 64px; 
-  background-image: url('/images/fondocontacto.png');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  z-index: 1;
+  margin-top: 64px;
 }
 
 /* ---------- Layout ---------- */
@@ -285,6 +282,12 @@
   .form-card { order: 1; }
   .contacto-page { padding: 24px 20px 64px; }
 }
-body { font-family: 'DM Sans', sans-serif;
-
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #fff9fc;
+  background-image: url('/images/fondocontacto.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* fijo al viewport: cubre TODA la página (footer incluido) sin importar cuánto mida el contenido */
 }

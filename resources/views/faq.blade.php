@@ -76,6 +76,38 @@
         </div>
       </div>
 
+      <div class="faq-card" data-cat="uso">
+        <div class="faq-card__num">07</div>
+        <button class="faq-card__question" aria-expanded="false">
+          <span>¿Qué es el test de diagnóstico visual con inteligencia artificial?</span>
+          <div class="faq-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-card__answer">
+          <p>Es una herramienta que, a partir de tus respuestas, genera un reporte orientativo sobre posibles problemas visuales y recomendaciones de cuidado. Incluye además el test de Ishihara para daltonismo. Ambos resultados quedan guardados en tu historial y puedes descargarlos en PDF.</p>
+          <span class="faq-card__tag">Uso</span>
+        </div>
+      </div>
+
+      <div class="faq-card" data-cat="uso">
+        <div class="faq-card__num">09</div>
+        <button class="faq-card__question" aria-expanded="false">
+          <span>¿Mis resultados del test y mis datos personales están seguros?</span>
+          <div class="faq-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-card__answer">
+          <p>Sí. Tus resultados solo son visibles para ti y para el equipo administrativo cuando corresponda. Aplicamos buenas prácticas de seguridad como contraseñas robustas, cabeceras de seguridad y límites de intentos en las rutas sensibles.</p>
+          <span class="faq-card__tag">Uso</span>
+        </div>
+      </div>
+
     </div>
 
     <div class="faq-col">
@@ -125,6 +157,38 @@
         <div class="faq-card__answer">
           <p>Sí, Nebula View es completamente gratuito. Todo el contenido informativo, guías, secciones de lentes, clínicas y herramientas como el test visual están disponibles sin costo. El registro es opcional y solo te permite acceder a funciones personalizadas adicionales.</p>
           <span class="faq-card__tag">Uso</span>
+        </div>
+      </div>
+
+      <div class="faq-card" data-cat="contenido">
+        <div class="faq-card__num">08</div>
+        <button class="faq-card__question" aria-expanded="false">
+          <span>¿Puedo probarme los lentes de forma virtual antes de comprarlos?</span>
+          <div class="faq-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-card__answer">
+          <p>Sí. En la sección de probador virtual puedes tomarte una foto y ver cómo te quedan distintos modelos de lentes en tiempo real, además de comparar armazones según la forma de tu rostro y compartir el resultado o descargarlo con un código QR.</p>
+          <span class="faq-card__tag">Contenido</span>
+        </div>
+      </div>
+
+      <div class="faq-card" data-cat="pagina">
+        <div class="faq-card__num">10</div>
+        <button class="faq-card__question" aria-expanded="false">
+          <span>¿Cómo cambio el idioma o activo el modo oscuro?</span>
+          <div class="faq-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-card__answer">
+          <p>En la barra de navegación encontrarás el botón "ES/EN" para cambiar el idioma del sitio, y el interruptor de día/noche para alternar entre modo claro y oscuro. Tu preferencia se guarda automáticamente para tus próximas visitas.</p>
+          <span class="faq-card__tag">La página</span>
         </div>
       </div>
 

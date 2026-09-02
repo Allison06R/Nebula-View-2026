@@ -1,3 +1,12 @@
+body {
+  background: linear-gradient(135deg, var(--blush) 0%, var(--lilac) 50%, var(--lavender) 100%);
+  background-attachment: fixed; /* fijo al viewport: cubre TODA la página (footer incluido), así no queda espacio en blanco entre .contact-band y el footer */
+}
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1B2430 0%, #241530 50%, #16222E 100%);
+  background-attachment: fixed;
+}
+
 /* ===== FAQ INTRO ===== */
 .faq-intro {
   padding: 5rem 6% 3.5rem;
@@ -160,7 +169,6 @@
 /* ===== CONTACT BAND ===== */
 .contact-band {
   padding: 5.5rem 6%;
-  background: linear-gradient(135deg, var(--blush) 0%, var(--lilac) 50%, var(--lavender) 100%);
   position: relative; overflow: hidden;
 }
 .contact-band__orb { position: absolute; border-radius: 50%; pointer-events: none; }
@@ -219,12 +227,12 @@
 }
 @media (max-width: 600px) {
   .faq-card__question { font-size: 0.9rem; padding: 1.25rem 3.5rem 1.25rem 1.25rem; }
-}
+}y
 
 /* ===== MODO OSCURO ===== */
 [data-theme="dark"] .faq-intro { background:#3d1250; }
 [data-theme="dark"] .faq-card { background: #2d1b30; border-color: rgba(155,89,182,0.2); }
 [data-theme="dark"] .faq-card__icon { background: #241530; }
 [data-theme="dark"] .chip { background: #1B2430; border-color: rgba(155,89,182,0.3); color: rgba(255,255,255,0.55); }
-[data-theme="dark"] .contact-band { background: linear-gradient(135deg, #1B2430 0%, #241530 50%, #16222E 100%); }
 [data-theme="dark"] .faq-card__num{ color: #8051a8c3; box-shadow: 0 6px 24px rgba(107,47,160,0.28); }
+[data-theme="dark"] .chip{ background: #6f0d7c; ; }

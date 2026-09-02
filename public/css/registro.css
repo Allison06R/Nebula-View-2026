@@ -2,18 +2,33 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
-  background: linear-gradient(160deg, var(--lilac) 0%, #F3EAFF 40%, #EAD9FF 100%);
+  background-color: #F3EAFF;
+  background-image: url('/images/fondoLog.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* fijo al viewport: cubre TODA la página (footer incluido) sin importar cuánto mida el contenido */
   color: var(--text);
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.15) 0%, rgba(237,224,255,0.25) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* ══════════════════════════════
    MAIN / LOGIN WRAPPER
 ══════════════════════════════ */
 main.login-wrapper {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   align-items: center;
@@ -410,23 +425,7 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107, 47, 160, 0.12); }
   position: relative;
 }
 
-/* ══════════════════════════════
-   FONDO ESPACIAL + PERSONAJE FLOTANTE
-══════════════════════════════ */
-main.login-wrapper {
-  position: relative;
-  background-image: url('/images/fondoLog.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-main.login-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, rgba(255,255,255,0.15) 0%, rgba(237,224,255,0.25) 100%);
-  pointer-events: none;
-}
+/* Fondo espacial + personaje flotante — ahora vive en body (ver arriba) */
 
 .nv-left {
   border-radius: 24px;

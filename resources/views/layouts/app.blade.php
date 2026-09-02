@@ -331,7 +331,7 @@
         <a href="{{ route('profesionales') }}">Profesionales</a>
         <a href="{{ route('contactanos') }}">Contáctanos</a>
       </nav>
-      <a href="mailto:info@nebulaview.com" class="nv-footer-email">info@nebulaview.com</a>
+      <a href="mailto:nebulitavieww@gmail.com" class="nv-footer-email">nebulitavieww@gmail.com</a>
     </div>
     <div class="nv-footer-bottom">
       <span>© 2026 Nebula View. Todos los derechos reservados.</span>

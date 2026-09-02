@@ -441,3 +441,106 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
   color: #FF8787;
 }
 [data-theme="dark"] .drawer-nav a.d-locked:hover .d-icon { stroke: #FF8787; }
+/* ══════════════════════════════════════════════════════════════
+   FOOTER (nv-footer) — footer ilustrado con fondo espacial
+   ══════════════════════════════════════════════════════════════ */
+.nv-footer {
+  position: relative;
+  z-index: 2; /* se sobrepone al contenido de la página, no lo empuja hacia abajo */
+  width: 100%;
+  aspect-ratio: 1580 / 593; /* misma proporción que la imagen (ya recortada, sin margen transparente arriba), calculada sobre el propio ancho del footer para evitar líneas por el scrollbar */
+  max-height: 640px;
+  min-height: 360px;
+  /* La imagen trae un margen transparente arriba (la "ola"). Con margin-top negativo
+     el footer se sobrepone al final de cada página en vez de dejar un bloque de color
+     plano (el fondo del body) entre el contenido y la ola. */
+  margin: clamp(-60px, -6vw, -32px) 0 0;
+  padding: 0; /* neutraliza los "footer { padding: ... }" viejos de cada página (test.css, habitos.css, etc.) */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: url('/images/footer-space-bg.png') no-repeat top center;
+  background-size: cover;
+  overflow: hidden;
+  pointer-events: none; /* el hueco transparente de arriba no debe bloquear clics del contenido que tapa */
+}
+.nv-footer-inner { pointer-events: auto; }
+.nv-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26,10,46,0) 0%, rgba(26,10,46,0.45) 55%, rgba(26,10,46,0.93) 100%);
+  pointer-events: none;
+}
+.nv-footer-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0 60px 48px;
+  color: rgba(255,255,255,0.9);
+  font-family: 'MuseoModerno', sans-serif;
+}
+.nv-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.nv-footer-brand { max-width: 380px; }
+.nv-footer-logo {
+  font-family: 'MuseoModerno', serif;
+  font-size: 34px;
+  color: #fff;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 14px;
+}
+.nv-footer-brand p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.nv-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+  padding-top: 8px;
+}
+.nv-footer-links a,
+.nv-footer-email {
+  color: rgba(255,255,255,0.85);
+  font-size: 17px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.nv-footer-links a:hover,
+.nv-footer-email:hover { color: #fff; }
+.nv-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  padding-top: 26px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+@media (max-width: 720px) {
+  .nv-footer {
+    aspect-ratio: unset;
+    padding: 0;
+    min-height: 560px;
+    margin-top: -28px;
+    background-position: center top;
+  }
+  .nv-footer-inner { padding: 0 24px 32px; }
+  .nv-footer-top { flex-direction: column; gap: 22px; padding-bottom: 24px; }
+  .nv-footer-logo { font-size: 28px; }
+  .nv-footer-brand p,
+  .nv-footer-links a,
+  .nv-footer-email { font-size: 15px; }
+}
