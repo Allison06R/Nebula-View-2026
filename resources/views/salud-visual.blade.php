@@ -216,6 +216,9 @@
     </details>
   </div>
 </div>
+
+
+@include('partials.comentarios', ['pagina' => 'salud-visual'])
 @endsection
 
 @section('scripts')

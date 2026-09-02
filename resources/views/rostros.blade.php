@@ -630,6 +630,9 @@
   </div>
 </div>
 
+
+
+@include('partials.comentarios', ['pagina' => 'rostros'])
 @endsection
 
 @section('scripts')

@@ -333,6 +333,9 @@
     </div>
   </section>
 
+
+
+@include('partials.comentarios', ['pagina' => 'lentes'])
 @endsection
 
 @section('scripts')

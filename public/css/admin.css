@@ -182,6 +182,7 @@ body {
 .badge-usuario { background: rgba(52,152,219,0.15); color: #7fb3d3; border: 1px solid rgba(52,152,219,0.3); }
 .badge-si      { background: rgba(46,204,113,0.15); color: #2ECC71; border: 1px solid rgba(46,204,113,0.3); }
 .badge-no      { background: rgba(231,76,60,0.15);  color: #E74C3C; border: 1px solid rgba(231,76,60,0.3); }
+.badge-pendiente { background: rgba(241,196,15,0.15); color: #F1C40F; border: 1px solid rgba(241,196,15,0.3); }
 
 /* BOTONES */
 .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .2s, transform .15s, box-shadow .2s; white-space: nowrap; }

@@ -76,6 +76,11 @@ class Usuario extends Authenticatable implements CanResetPassword
         return $this->hasMany(Test::class, 'id_usuario', 'id_usuario');
     }
 
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class, 'id_usuario', 'id_usuario');
+    }
+
     /**
      * URL de la foto de perfil a mostrar.
      * - Si avatar_tipo es 'custom' y hay un archivo subido -> esa imagen.

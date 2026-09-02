@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RostrosController;
 use App\Http\Controllers\ChatWidgetController;
 use App\Http\Controllers\ContactanosController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TranslateController;
 use App\Http\Controllers\Modelo3dController;
@@ -32,6 +33,14 @@ Route::view('/lentes', 'lentes')->name('lentes');
 Route::get('/rostros', [RostrosController::class, 'index'])->name('rostros');
 Route::get('/contactanos',  [ContactanosController::class, 'index'])->name('contactanos');
 Route::post('/contactanos', [ContactanosController::class, 'enviar'])->name('contactanos.enviar');
+
+// ─── Comentarios en páginas informativas ───────────────────────────────────
+Route::get('/comentarios/{pagina}', [ComentarioController::class, 'index'])->name('comentarios.index');
+Route::middleware('auth')->group(function () {
+    Route::post('/comentarios', [ComentarioController::class, 'store'])
+        ->middleware('throttle:10,1')
+        ->name('comentarios.store');
+});
 
 
 // ─── Autenticación ───────────────────────────────────────────────────────────
@@ -132,6 +141,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Tests
     Route::get('/tests',           [AdminController::class, 'testsIndex'])->name('tests.index');
     Route::delete('/tests/{test}', [AdminController::class, 'testsDestroy'])->name('tests.destroy');
+
+    // Comentarios
+    Route::get('/comentarios',                    [AdminController::class, 'comentariosIndex'])->name('comentarios.index');
+    Route::put('/comentarios/{comentario}/aprobar', [AdminController::class, 'comentariosAprobar'])->name('comentarios.aprobar');
+    Route::put('/comentarios/{comentario}/rechazar', [AdminController::class, 'comentariosRechazar'])->name('comentarios.rechazar');
+    Route::delete('/comentarios/{comentario}',     [AdminController::class, 'comentariosDestroy'])->name('comentarios.destroy');
 });
 
 Route::post('/translate', [TranslateController::class, 'translate'])

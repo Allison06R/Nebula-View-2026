@@ -292,6 +292,9 @@
 
 
 
+
+
+@include('partials.comentarios', ['pagina' => 'profesionales'])
 @endsection
 
 @section('scripts')

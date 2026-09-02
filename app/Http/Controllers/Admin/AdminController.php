@@ -204,4 +204,48 @@ class AdminController extends Controller
         $test->delete();
         return back()->with('success', 'Test eliminado.');
     }
+
+    // ── COMENTARIOS ──────────────────────────────────────────────────────
+    public function comentariosIndex(Request $request)
+    {
+        $query = \App\Models\Comentario::with('usuario');
+
+        if ($request->filled('buscar')) {
+            $query->where('contenido', 'like', '%' . $request->buscar . '%');
+        }
+
+        if ($request->filled('pagina')) {
+            $query->where('pagina', $request->pagina);
+        }
+
+        if ($request->filled('estado')) {
+            $query->where('estado', $request->estado);
+        }
+
+        $comentarios = $query->orderByDesc('created_at')->paginate(15)->withQueryString();
+        $paginas     = \App\Models\Comentario::PAGINAS_PERMITIDAS;
+
+        return view('admin.comentarios.index', compact('comentarios', 'paginas'));
+    }
+
+    public function comentariosAprobar(\App\Models\Comentario $comentario)
+    {
+        $comentario->update(['estado' => 'aprobado', 'motivo_rechazo' => null]);
+        return back()->with('success', 'Comentario aprobado y publicado.');
+    }
+
+    public function comentariosRechazar(\App\Models\Comentario $comentario)
+    {
+        $comentario->update([
+            'estado'         => 'rechazado',
+            'motivo_rechazo' => 'Rechazado manualmente por un administrador.',
+        ]);
+        return back()->with('success', 'Comentario rechazado.');
+    }
+
+    public function comentariosDestroy(\App\Models\Comentario $comentario)
+    {
+        $comentario->delete();
+        return back()->with('success', 'Comentario eliminado.');
+    }
 }

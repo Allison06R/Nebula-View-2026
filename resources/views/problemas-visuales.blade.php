@@ -320,6 +320,9 @@
   </div>
  
 </div>
+
+
+@include('partials.comentarios', ['pagina' => 'problemas-visuales'])
 @endsection
  
 @section('scripts')

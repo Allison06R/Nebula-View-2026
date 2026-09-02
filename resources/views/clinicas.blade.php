@@ -204,6 +204,9 @@
   </div>
 </section>
 
+
+
+@include('partials.comentarios', ['pagina' => 'clinicas'])
 @endsection
 
 @section('scripts')

@@ -267,6 +267,9 @@
   </div>
 
 </div>
+
+
+@include('partials.comentarios', ['pagina' => 'habitos'])
 @endsection
 
 @section('scripts')
