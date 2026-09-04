@@ -71,7 +71,7 @@
           </div>
         </button>
         <div class="faq-card__answer">
-          <p>La mayor parte del contenido es de acceso libre. Sin embargo, al registrarte podrás acceder a herramientas como el test visual interactivo, recibir recomendaciones personalizadas según tu perfil ocular y acceder a la tienda.</p>
+          <p>La mayor parte del contenido es de acceso libre. Sin embargo, al registrarte podrás acceder a herramientas como el test visual interactivo, recibir recomendaciones personalizadas según tu perfil ocular.</p>
           <span class="faq-card__tag">Uso</span>
         </div>
       </div>

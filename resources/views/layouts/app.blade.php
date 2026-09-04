@@ -123,7 +123,7 @@
       <a href="{{ route('modelos3d') }}" class="{{ request()->routeIs('modelos3d') ? 'active' : '' }} {{ auth()->guest() ? 'd-locked' : '' }}">
         <span class="d-link">
           <svg class="d-icon" viewBox="0 0 24 24"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
-          Tienda / Modelos 3D
+          Modelos 3D
           @guest
             <span class="d-lock" title="Requiere iniciar sesión">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -1,11 +1,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Estas 3 variables no existían en theme.css: por eso el botón "Ver en
-   tienda", el círculo "+" de las tarjetas, los números de "¿Cómo
-   funciona?" y el badge "Nuevo" se veían sin color/transparentes.
-   Se definen aquí apuntando a los colores de marca ya existentes, así
-   se adaptan solas a modo claro/oscuro (--plum, --violet y --pink ya
-   cambian de valor dentro de [data-theme="dark"] en theme.css). */
+
 :root {
   --brand-solid: var(--plum);
   --brand-solid-2: var(--violet);

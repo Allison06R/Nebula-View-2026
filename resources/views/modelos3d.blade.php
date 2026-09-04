@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tienda / Modelos 3D — Nebula View')
+@section('title', 'Modelos 3D — Nebula View')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/modelo.css') }}">
@@ -13,7 +13,7 @@
   <div class="page-hero-bg"></div>
   <div class="hero-accent-rect"></div>
   <div class="page-hero-title">
-    <h1>Tienda / Modelos 3D</h1>
+    <h1>Modelos 3D</h1>
     <div class="breadcrumb">
       <a>Explora y visualiza nuestros modelos interactivos</a>
     </div>
@@ -87,7 +87,7 @@
           <span class="ftag">Ligero</span>
         </div>
         <div class="featured-actions">
-          <a href="#" class="btn-primary">Ver en tienda →</a>
+          <a href="#" class="btn-primary">Ver→</a>
           <button class="btn-ghost" title="Guardar"><svg class="hand-icon" width="16" height="16"><use href="#icon-shape-heart"></use></svg></button>
         </div>
       </div>
@@ -384,7 +384,7 @@
           <div class="model-modal-specs" id="modelModalSpecs"></div>
 
           <div class="model-modal-actions">
-            <a href="#" class="model-modal-cta">Ver en tienda →</a>
+            <a href="#" class="model-modal-cta">Ver →</a>
           </div>
 
         </div>
