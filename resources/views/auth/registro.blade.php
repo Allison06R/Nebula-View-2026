@@ -227,14 +227,17 @@ function evaluarPassword(pw) {
   }
   if (puntos <= 2) {
     pwFill.classList.add('weak');
+    pwFill.style.width = '33%';
     pwLabel.textContent = 'Poco segura';
     pwLabel.style.color = '#dc2626';
   } else if (puntos <= 4) {
     pwFill.classList.add('medium');
+    pwFill.style.width = '66%';
     pwLabel.textContent = 'Segura';
     pwLabel.style.color = '#d97706';
   } else {
     pwFill.classList.add('strong');
+    pwFill.style.width = '100%';
     pwLabel.textContent = 'Muy segura';
     pwLabel.style.color = '#059669';
   }
@@ -260,3 +263,4 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
 });
 </script>
 @endsection
+
