@@ -29,11 +29,14 @@
         ojos a las radiaciones. El deslumbramiento que producen el hielo y la nieve hace que las gafas de sol sean un componente indispensable para usar a diario.</p>
       
 
-      <div class="habitos-highlight">
-        <span class="habitos-highlight-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></span>
-        <p><strong>¿Sabías que?</strong><p>Un examen visual completo no solo detecta problemas de la vista, sino que también puede revelar enfermedades 
-            generales como la diabetes antes de que presenten síntomas visibles.</p>
-      </div>
+      @include('partials.dato-curioso', [
+        'icono' => '🔍',
+        'datos' => [
+          'Un examen visual completo no solo detecta problemas de la vista, sino que también puede revelar enfermedades generales como la diabetes antes de que presenten síntomas visibles.',
+          'Un optometrista evalúa la refracción y salud general del ojo, mientras que un oftalmólogo es un médico especializado que también puede operar.',
+          'Se recomienda una revisión visual anual, incluso sin síntomas, ya que muchas condiciones oculares avanzan sin dar señales de alerta.',
+        ],
+      ])
     </div>
     <div class="img-placeholder" style="min-height:360px;">
       <img src="{{ asset('images/profesionales.png') }}" alt="Profesionales" />

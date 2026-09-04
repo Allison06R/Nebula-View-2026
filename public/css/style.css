@@ -13,14 +13,14 @@
 
 .nebula-hero {
   position: relative;
-  z-index: 5;               /* por encima de la siguiente sección, para que la mascota se asome */
+  z-index: 5;            
   width: 100%;
-  height: 600px;           /* altura FIJA: evita que el gif estire la sección */
-  background: #1a0a2e;     /* color de respaldo mientras carga el gif */
-  overflow: visible;       /* permite que la mascota sobresalga por abajo */
+  height: 600px;           
+  background: #1a0a2e;     
+  overflow: visible;   
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  align-items: center;     /* centra texto y mascota verticalmente */
+  align-items: center;    
   padding: 0 0 0 60px;
 }
 
@@ -372,21 +372,60 @@
   .trust-text span { font-size: 12px; opacity: 0.75; }
 
   /* ── FACE SHAPES ── */
-  .faces-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+  .faces-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.75rem; }
   .face-card {
-    text-align: center; padding: 2rem 1.25rem;
-    border: 1px solid rgba(160,100,255,0.12); border-radius: 16px;
-    transition: all .3s; position: relative; overflow: hidden;
+    text-align: center; padding: 2.25rem 1.5rem 1.75rem;
+    background: linear-gradient(160deg, #ffffff 0%, var(--blush) 100%);
+    border: 1px solid rgba(160,100,255,0.12); border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(107,47,160,0.06);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    position: relative; overflow: hidden;
+  }
+  .face-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--violet), var(--pink));
+    opacity: 0; transition: opacity .3s ease;
   }
   .face-card:hover {
     border-color: rgba(160,100,255,0.4);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 50px rgba(160,100,255,0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(160,100,255,0.16);
   }
-  .face-svg { width: 80px; height: 100px; margin: 0 auto 1.25rem; display: block; filter: drop-shadow(0 0 12px rgba(160,100,255,0.4)); }
-  .face-name { font-weight: 700; font-size: 1rem; color: var(--heading); margin-bottom: .4rem; }
-  .face-lens-rec { font-size: .8rem; color: var(--muted); margin-bottom: .5rem; }
-  .face-lens-name { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); font-weight: 600; }
+  .face-card:hover::before { opacity: 1; }
+  .face-icon-circle {
+    position: relative;
+    width: 108px; height: 108px;
+    margin: 0 auto 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(160,100,255,0.16), rgba(160,100,255,0.04) 70%);
+    transition: background .3s ease;
+  }
+  .face-card:hover .face-icon-circle {
+    background: radial-gradient(circle at 35% 30%, rgba(160,100,255,0.26), rgba(160,100,255,0.06) 70%);
+  }
+  .face-icon-num {
+    position: absolute; top: -2px; right: -2px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    color: #fff; font-size: .72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 10px rgba(107,47,160,0.35);
+  }
+  .face-svg { width: 68px; height: 84px; display: block; filter: drop-shadow(0 0 10px rgba(160,100,255,0.35)); }
+  .face-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--heading); margin-bottom: .45rem; }
+  .face-lens-rec { font-size: .82rem; color: var(--muted); margin-bottom: .7rem; line-height: 1.5; }
+  .face-lens-name {
+    display: inline-block;
+    font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--plum); font-weight: 700;
+    background: var(--lilac);
+    padding: .35rem .85rem; border-radius: 100px;
+  }
+
+  .section-cta { margin-top: 40px; }
+  .section-cta-center { display: flex; width: fit-content; margin: 40px auto 0; }
 
   
 
@@ -496,8 +535,9 @@
   /* ── SCROLL ANIMATIONS ── */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-1, .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-delay-2, .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 

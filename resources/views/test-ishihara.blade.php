@@ -237,8 +237,25 @@ function ishClearPersistedState() {
   try { sessionStorage.removeItem(ISH_SESSION_KEY); } catch (e) { /* noop */ }
 }
 
+// ── ¿Recarga de página o navegación nueva? (mismo patrón que test.blade.php) ──
+// Sin esto, volver a /test-ishihara tras visitar otro apartado también
+// restauraba el último resultado/lámina en vez de mostrar el inicio.
+function ishEsRecargaDePagina() {
+  try {
+    const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (nav) return nav.type === 'reload';
+    if (performance.navigation) return performance.navigation.type === 1;
+  } catch (e) { /* noop */ }
+  return false;
+}
+
 // Reconstruye la pantalla en la que estaba el usuario antes de recargar.
 async function ishRestoreSession() {
+  if (!ishEsRecargaDePagina()) {
+    ishClearPersistedState();
+    return;
+  }
+
   const state = ishLoadPersistedState();
   if (!state) return;
 

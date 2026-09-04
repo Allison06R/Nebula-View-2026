@@ -344,7 +344,9 @@ nav#navbar.scrolled { box-shadow: 0 4px 30px rgba(107,47,160,0.12); }
 .tip-text strong{display:block;color:var(--plum);font-size:14px;margin-bottom:4px;}
 
 /* cta buttons */
-.result-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.result-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.result-ctas .btn-cta-primary,
+.result-ctas .btn-cta-secondary{flex:0 1 auto;}
 .btn-cta-primary{
   flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;
   background:var(--plum);color:white;padding:14px 28px;border-radius:50px;
@@ -649,11 +651,13 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
   text-align:left;
 }
 .result-left,.result-right{min-width:0;}
+.result-right{position:sticky;top:24px;align-self:start;}
 .result-right .chat-wrap{margin-bottom:0;}
-.result-right .chat-messages{height:100%;min-height:340px;}
+.result-right .chat-messages{height:100%;min-height:420px;max-height:calc(100vh - 220px);}
 @media(max-width:860px){
   .result-columns{grid-template-columns:1fr;gap:0;}
-  .result-right .chat-messages{min-height:220px;}
+  .result-right{position:static;}
+  .result-right .chat-messages{min-height:220px;max-height:none;}
 }
 
 /* ── Botón "volver a tests" en la barra de acciones del resultado
@@ -706,7 +710,13 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
    Por eso aquí se sube la especificidad con "body .nv-footer" en vez de
    ".nv-footer" a secas, para que gane sin depender del orden. */
 body .nv-footer{background-color:#EAD9FF;}
-[data-theme="dark"] body .nv-footer{background-color:#16222E;}
+/* En modo oscuro el degradado de .test-hero termina en tonos morado
+   oscuro (#1B0E33 → #381252), no en el teal que había antes (#16222E),
+   así que ese color de respaldo cortaba muy feo justo donde empieza
+   la imagen del footer. Se usa el mismo tono morado oscuro del hero
+   para que la transición sea invisible y el contraste con el texto
+   blanco del footer se mantenga correcto. */
+[data-theme="dark"] body .nv-footer{background-color:#1B0E33;}
 
 /* ── Botón "salir/volver a tests" dentro del flujo de preguntas/láminas ── */
 .btn-exit-test{

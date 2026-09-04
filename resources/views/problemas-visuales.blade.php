@@ -31,10 +31,15 @@
         <h2>¿Qué son los<br><em>problemas visuales?</em></h2>
         <p>Los problemas visuales son alteraciones en el sistema óptico del ojo o en las vías nerviosas que transmiten la información visual al cerebro. Pueden afectar la nitidez, el campo visual, la percepción del color o la capacidad de enfocar a diferentes distancias.</p>
         <p>Algunos surgen desde el nacimiento, otros se desarrollan con la edad o por factores externos como el uso prolongado de pantallas, la exposición solar sin protección o enfermedades sistémicas como la diabetes.</p>
-        <div class="what-highlight">
-          <span class="what-highlight-icon"><svg class="custom-icon"><use href="#icon-ojo"></use></svg></span>
-          <p><strong>¿Sabías que?</strong> Más del 80% de los problemas visuales son evitables o tratables si se detectan a tiempo mediante revisiones periódicas con un profesional de la salud visual.</p>
-        </div>
+        @include('partials.dato-curioso', [
+          'icono' => '🔍',
+          'datos' => [
+            'Más del 80% de los problemas visuales son evitables o tratables si se detectan a tiempo mediante revisiones periódicas con un profesional de la salud visual.',
+            'El glaucoma se conoce como "el ladrón silencioso de la visión" porque puede avanzar durante años sin producir ningún síntoma perceptible.',
+            'La diabetes es una de las principales causas de problemas visuales en adultos: por eso una revisión ocular puede detectarla antes que un análisis de rutina.',
+            'Muchos defectos refractivos, como la miopía o el astigmatismo, se corrigen fácilmente con el par de lentes adecuado.',
+          ],
+        ])
       </div>
  
       <div class="what-visual">

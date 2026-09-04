@@ -324,8 +324,32 @@ function clearPersistedState() {
   try { sessionStorage.removeItem(SESSION_KEY); } catch (e) { /* noop */ }
 }
 
+// ── ¿Es esta una RECARGA de la página (F5 / Ctrl+R) o una NAVEGACIÓN
+// nueva hacia /test (p. ej. viniendo de otro apartado del sitio)? ──
+// sessionStorage sobrevive a ambos casos, así que sin esta distinción
+// volver a /test después de visitar otra página también restauraba
+// el último test (resultado o preguntas a medias) en vez de mostrar
+// el inicio del test, como si nunca se hubiera salido de ahí.
+function esRecargaDePagina() {
+  try {
+    const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (nav) return nav.type === 'reload';
+    // Fallback para navegadores antiguos sin Navigation Timing API L2
+    if (performance.navigation) return performance.navigation.type === 1;
+  } catch (e) { /* noop */ }
+  return false;
+}
+
 // Reconstruye la pantalla en la que estaba el usuario antes de recargar.
 function restoreSession() {
+  // Si el usuario llegó aquí navegando desde otra página (y no
+  // recargando /test), empezamos siempre en la pantalla de inicio
+  // de tests, no en el último resultado/pregunta guardado.
+  if (!esRecargaDePagina()) {
+    clearPersistedState();
+    return;
+  }
+
   const state = loadPersistedState();
   if (!state) return;
 

@@ -26,10 +26,16 @@
       <p>Los hábitos visuales son todas aquellas prácticas y comportamientos que adoptamos en nuestro día a día y que tienen un impacto directo sobre la salud de nuestros ojos. Desde la forma en que usamos dispositivos digitales hasta la alimentación que seguimos.</p>
       <p>Desarrollar buenos hábitos desde temprana edad es la mejor inversión para conservar una visión nítida y saludable a lo largo de la vida. La mayoría de problemas visuales pueden prevenirse o ralentizarse con rutinas adecuadas.</p>
       <p>La educación visual es clave: conocer qué actividades favorecen o perjudican la vista nos permite tomar decisiones más conscientes en nuestra vida cotidiana.</p>
-      <div class="habitos-highlight">
-        <span class="habitos-highlight-icon" aria-hidden="true"><svg class="custom-icon" aria-hidden="true"><use href="#icon-bombilla"></use></svg></span>
-        <p><strong>Prevención:</strong> Pequeñas acciones diarias pueden marcar una gran diferencia en la salud de tus ojos a largo plazo.</p>
-      </div>
+      @include('partials.dato-curioso', [
+        'icono' => '🔍',
+        'kicker' => 'Prevención',
+        'datos' => [
+          'Pequeñas acciones diarias pueden marcar una gran diferencia en la salud de tus ojos a largo plazo.',
+          'La regla 20-20-20 (cada 20 minutos, mirar 20 segundos a algo a 20 pies) reduce notablemente la fatiga visual frente a pantallas.',
+          'Dormir entre 7 y 9 horas permite que la superficie ocular se repare y se lubrique de forma natural.',
+          'Los alimentos ricos en luteína y omega-3, como la espinaca y el salmón, ayudan a proteger la retina con el paso del tiempo.',
+        ],
+      ])
     </div>
     <div class="img-placeholder" style="min-height:360px;">
       <img src="{{ asset('images/image 128.png') }}" alt="Hábitos visuales" />

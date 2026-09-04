@@ -26,10 +26,15 @@
       <p>La salud visual se refiere al conjunto de condiciones que permiten al ojo funcionar de forma óptima, permitiendo la percepción clara del entorno.</p>
       <p>Mantener una buena salud visual es fundamental para realizar actividades cotidianas como leer, conducir o usar dispositivos digitales.</p>
       <p>Los exámenes oculares regulares pueden detectar no solo problemas de la vista, sino también enfermedades sistémicas como la diabetes o hipertensión.</p>
-      <div class="sv-highlight">
-        <span class="sv-highlight-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></span>
-        <p><strong>¿Sabías que?</strong> Existe un pequeño punto en cada ojo llamado "punto ciego" donde el nervio óptico se une con la retina. En esta área no hay células sensibles a la luz, por lo que técnicamente no podemos ver. </p>
-      </div>
+      @include('partials.dato-curioso', [
+        'icono' => '🔍',
+        'datos' => [
+          'Existe un pequeño punto en cada ojo llamado "punto ciego" donde el nervio óptico se une con la retina. En esta área no hay células sensibles a la luz, por lo que técnicamente no podemos ver.',
+          'El ojo humano puede distinguir más de un millón de tonalidades de color gracias a los conos de la retina.',
+          'Parpadeamos entre 15 y 20 veces por minuto: es el mecanismo natural del ojo para limpiarse y mantenerse hidratado.',
+          'La córnea es el único tejido del cuerpo humano que no tiene vasos sanguíneos; recibe oxígeno directamente del aire.',
+        ],
+      ])
     </div>
     <div class="img-placeholder" style="min-height:360px;">
       <img src="{{ asset('images/image 117.png') }}" alt="Salud visual" />
