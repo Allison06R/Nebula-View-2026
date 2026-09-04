@@ -260,7 +260,7 @@
       <summary>
         <span class="reco-num">04</span>
         <span class="reco-head">
-          <span class="reco-icon">📝</span>
+          <span class="reco-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-nota"></use></svg></span>
           Anote sus síntomas
         </span>
         <span class="reco-toggle">+</span>

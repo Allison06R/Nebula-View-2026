@@ -49,10 +49,10 @@
   <div class="hero-card" id="testCard">
     <!-- INTRO -->
     <div id="intro-screen">
-      <div class="hero-badge">🔬 Test interactivo · IA</div>
+      <div class="hero-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-scope"></use></svg> Test interactivo · IA</div>
       <div>
         <a href="{{ route('test-ishihara') }}" class="test-switch-link">
-          🎨 ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
+          <svg class="hand-icon" width="15" height="15"><use href="#icon-paleta"></use></svg> ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
         </a>
       </div>
       <h1>Descubre tu<br><em>perfil visual</em></h1>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="hist-preview" id="histPreview">
-        <div class="hist-preview-title">📋 Tests anteriores</div>
+        <div class="hist-preview-title"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Tests anteriores</div>
         <div id="histPreviewItems"></div>
       </div>
 
@@ -73,7 +73,7 @@
         Comenzar test
         <span class="arrow-ic">→</span>
       </button>
-      <p style="font-size:11px;color:var(--muted);margin-top:16px;">⚠️ Este test es orientativo y no reemplaza la consulta con un profesional.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:16px;"><svg class="hand-icon" width="13" height="13"><use href="#icon-warning"></use></svg> Este test es orientativo y no reemplaza la consulta con un profesional.</p>
     </div>
 
     <!-- QUESTIONS -->
@@ -89,7 +89,7 @@
 
     <!-- LOADING STATE -->
     <div id="loading-screen" style="display:none;text-align:center;padding:20px 0;">
-      <div class="hero-badge" style="margin-bottom:28px;">🤖 IA analizando tus respuestas</div>
+      <div class="hero-badge" style="margin-bottom:28px;"><svg class="hand-icon" width="15" height="15"><use href="#icon-robot"></use></svg> IA analizando tus respuestas</div>
       <div class="ai-loader">
         <div class="ai-orb"></div>
         <div class="ai-rings">
@@ -129,7 +129,7 @@
       <div class="sec-title">Chat con tu asistente visual</div>
       <div class="chat-wrap">
         <div class="chat-header">
-          <div class="chat-avatar">🤖</div>
+          <div class="chat-avatar"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div>
           <div class="chat-header-info">
             <div class="chat-header-name">Asistente Nebulita</div>
             <div class="chat-header-status">● En línea · contexto de tu diagnóstico activo</div>
@@ -144,24 +144,24 @@
       </div>
 
       <div class="result-ctas cta-row">
-        <button class="btn-cta-secondary" id="sendPdfBtn" disabled>💾 Guardando test…</button>
-        <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary">📖 Ver más sobre tu condición</a>
-        <button class="btn-cta-secondary" id="historyBtn">📋 Ver historial</button>
-        <button class="btn-cta-secondary" id="retestBtn">🔄 Repetir test</button>
+        <button class="btn-cta-secondary" id="sendPdfBtn" disabled><svg class="hand-icon" width="15" height="15"><use href="#icon-guardar"></use></svg> Guardando test…</button>
+        <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary"><svg class="hand-icon" width="15" height="15"><use href="#icon-libros"></use></svg> Ver más sobre tu condición</a>
+        <button class="btn-cta-secondary" id="historyBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Ver historial</button>
+        <button class="btn-cta-secondary" id="retestBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-recargar"></use></svg> Repetir test</button>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">⚠️ Este diagnóstico es orientativo. Consulta siempre a un profesional de la salud visual.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;"><svg class="hand-icon" width="13" height="13"><use href="#icon-warning"></use></svg> Este diagnóstico es orientativo. Consulta siempre a un profesional de la salud visual.</p>
     </div>
 
     <!-- HISTORY -->
     <div id="history-screen">
       <div class="history-card">
-        <div class="hero-badge">📋 Tu historial</div>
+        <div class="hero-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Tu historial</div>
         <h2>Evolución visual</h2>
         <p>Compara tus resultados a lo largo del tiempo.</p>
         <div class="hist-items" id="historyItems"></div>
         <div class="cta-row" style="margin-top:24px;">
           <button class="btn-cta-secondary" id="backFromHistBtn">← Volver</button>
-          <button class="btn-cta-secondary" id="clearHistBtn" style="color:#c0152e;border-color:rgba(233,30,60,.3);">🗑 Borrar historial</button>
+          <button class="btn-cta-secondary" id="clearHistBtn" style="color:#c0152e;border-color:rgba(233,30,60,.3);"><svg class="hand-icon" width="15" height="15"><use href="#icon-papelera"></use></svg> Borrar historial</button>
         </div>
       </div>
     </div>
@@ -378,7 +378,7 @@ function buildQuestions() {
       ? '<div></div>'
       : `<button class="btn-back" id="backBtn${q.id}">← Anterior</button>`;
     const nextHtml = isLast
-      ? `<button class="btn-next" id="nextBtn${q.id}" disabled>Ver mi diagnóstico 🎯</button>`
+      ? `<button class="btn-next" id="nextBtn${q.id}" disabled>Ver mi diagnóstico <svg class="hand-icon" width="14" height="14"><use href="#icon-diana"></use></svg></button>`
       : `<button class="btn-next" id="nextBtn${q.id}" disabled>Siguiente <span class="arrow-ic">→</span></button>`;
 
     div.innerHTML = `
@@ -703,7 +703,7 @@ function renderResults(result, sc) {
 
   if (result.consejo) {
     document.getElementById('resultTip').innerHTML = `
-      <div class="tip-icon">💡</div>
+      <div class="tip-icon"><svg class="hand-icon" width="20" height="20"><use href="#icon-bombilla"></use></svg></div>
       <div class="tip-text">
         <strong>Consejo personalizado de Nebula View</strong>
         ${result.consejo}
@@ -770,8 +770,8 @@ Responde en español, de forma clara, empática y concisa (máximo 3-4 oraciones
   const messagesEl = document.getElementById('chatMessages');
   messagesEl.innerHTML = '';
   appendMsg('ai', result
-    ? `Hola 👋 Ya tengo tu diagnóstico. Soy tu asistente de Nebula View. Puedes preguntarme sobre tu perfil <em>${result.titulo}</em>, las condiciones detectadas, lentes recomendados o hábitos. ¿Por dónde empezamos?`
-    : 'Hola 👋 Soy tu asistente de Nebula View. Puedes preguntarme sobre tus síntomas, hábitos visuales o lentes. ¿En qué te ayudo?');
+    ? `Hola <svg class="hand-icon" width="15" height="15"><use href="#icon-mano-saludo"></use></svg> Ya tengo tu diagnóstico. Soy tu asistente de Nebula View. Puedes preguntarme sobre tu perfil <em>${result.titulo}</em>, las condiciones detectadas, lentes recomendados o hábitos. ¿Por dónde empezamos?`
+    : 'Hola <svg class="hand-icon" width="15" height="15"><use href="#icon-mano-saludo"></use></svg> Soy tu asistente de Nebula View. Puedes preguntarme sobre tus síntomas, hábitos visuales o lentes. ¿En qué te ayudo?');
 
   const suggestions = [
     '¿Qué es la miopía?',
@@ -792,7 +792,7 @@ function appendMsg(role, html) {
   const messagesEl = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-  const av = role === 'ai' ? '🤖' : '👤';
+  const av = role === 'ai' ? '<svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg>' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
   div.innerHTML = `<div class="msg-av">${av}</div><div class="msg-bubble">${html}</div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -804,7 +804,7 @@ function appendTyping() {
   const div = document.createElement('div');
   div.className = 'msg ai';
   div.id = 'typingIndicator';
-  div.innerHTML = `<div class="msg-av">🤖</div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
+  div.innerHTML = `<div class="msg-av"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
@@ -928,16 +928,16 @@ function setSendPdfState(state) {
   if (!btn) return;
   if (state === 'saving') {
     btn.disabled = true;
-    btn.textContent = '💾 Guardando test…';
+    btn.innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-guardar"></use></svg> Guardando test…';
   } else if (state === 'ready') {
     btn.disabled = false;
-    btn.textContent = '📧 Enviar PDF a mi correo';
+    btn.innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-sobre"></use></svg> Enviar PDF a mi correo';
   } else if (state === 'sending') {
     btn.disabled = true;
     btn.textContent = 'Enviando…';
   } else if (state === 'error') {
     btn.disabled = true;
-    btn.textContent = '⚠️ PDF no disponible';
+    btn.innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-warning"></use></svg> PDF no disponible';
   }
 }
 
@@ -1004,8 +1004,8 @@ async function renderHistoryScreen() {
       </div>
       <div class="hist-scores">${scoreRow(h)}</div>
       <div class="hist-actions" style="display:flex;gap:8px;margin-left:10px;">
-        <button type="button" class="btn-cta-secondary hist-send-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;">📧 Enviar PDF</button>
-        <button type="button" class="btn-cta-secondary hist-del-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;color:#c0152e;border-color:rgba(233,30,60,.3);">🗑</button>
+        <button type="button" class="btn-cta-secondary hist-send-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;"><svg class="hand-icon" width="13" height="13"><use href="#icon-sobre"></use></svg> Enviar PDF</button>
+        <button type="button" class="btn-cta-secondary hist-del-btn" data-id="${h.id_test}" style="padding:6px 10px;font-size:12px;color:#c0152e;border-color:rgba(233,30,60,.3);"><svg class="hand-icon" width="14" height="14"><use href="#icon-papelera"></use></svg></button>
       </div>
     </div>`).join('');
 }
@@ -1096,7 +1096,7 @@ document.getElementById('retestBtn').addEventListener('click', () => {
   document.getElementById('aiAnalysis').innerHTML = '';
   document.getElementById('resultTip').style.display = 'none';
   setSendPdfState('saving');
-  document.getElementById('sendPdfBtn').textContent = '📧 Enviar PDF a mi correo';
+  document.getElementById('sendPdfBtn').innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-sobre"></use></svg> Enviar PDF a mi correo';
   document.getElementById('sendPdfBtn').disabled = true;
   clearPersistedState();
   renderHistoryPreview();

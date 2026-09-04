@@ -27,7 +27,7 @@
       <p>Desarrollar buenos hábitos desde temprana edad es la mejor inversión para conservar una visión nítida y saludable a lo largo de la vida. La mayoría de problemas visuales pueden prevenirse o ralentizarse con rutinas adecuadas.</p>
       <p>La educación visual es clave: conocer qué actividades favorecen o perjudican la vista nos permite tomar decisiones más conscientes en nuestra vida cotidiana.</p>
       <div class="habitos-highlight">
-        <span class="habitos-highlight-icon" aria-hidden="true">💡</span>
+        <span class="habitos-highlight-icon" aria-hidden="true"><svg class="custom-icon" aria-hidden="true"><use href="#icon-bombilla"></use></svg></span>
         <p><strong>Prevención:</strong> Pequeñas acciones diarias pueden marcar una gran diferencia en la salud de tus ojos a largo plazo.</p>
       </div>
     </div>

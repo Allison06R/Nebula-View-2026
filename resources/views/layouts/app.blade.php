@@ -321,7 +321,7 @@
   <div class="nv-footer-inner">
     <div class="nv-footer-top">
       <div class="nv-footer-brand">
-        <span class="nv-footer-logo">Nebula View 👁</span>
+        <span class="nv-footer-logo">Nebula View <svg class="hand-icon" width="16" height="16"><use href="#icon-ojo"></use></svg></span>
         <p>Tu destino de confianza para lentes de calidad y cuidado visual.</p>
       </div>
       <nav class="nv-footer-links">
@@ -335,7 +335,7 @@
     </div>
     <div class="nv-footer-bottom">
       <span>© 2026 Nebula View. Todos los derechos reservados.</span>
-      <span>Hecho con 💜 para tu visión</span>
+      <span>Hecho con <svg class="hand-icon" width="14" height="14"><use href="#icon-shape-heart"></use></svg> para tu visión</span>
     </div>
   </div>
 </footer>

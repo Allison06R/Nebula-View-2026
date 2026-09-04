@@ -16,7 +16,7 @@
   <div class="admin-stat-card" style="--a-stat-color:rgba(107,47,160,0.22)">
     <div class="admin-stat-top">
       <div class="admin-stat-label">Total Usuarios</div>
-      <div class="admin-stat-icon-chip">👥</div>
+      <div class="admin-stat-icon-chip"><svg class="custom-icon" aria-hidden="true"><use href="#icon-personas"></use></svg></div>
     </div>
     <div class="admin-stat-value">{{ $totalUsuarios }}</div>
     <div class="admin-stat-sub">
@@ -27,7 +27,7 @@
   <div class="admin-stat-card" style="--a-stat-color:rgba(46,204,113,0.18)">
     <div class="admin-stat-top">
       <div class="admin-stat-label">Perfiles Visuales</div>
-      <div class="admin-stat-icon-chip">👁</div>
+      <div class="admin-stat-icon-chip"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></div>
     </div>
     <div class="admin-stat-value">{{ $totalPerfiles }}</div>
     <div class="admin-stat-sub">
@@ -41,7 +41,7 @@
   <div class="admin-stat-card" style="--a-stat-color:rgba(52,152,219,0.18)">
     <div class="admin-stat-top">
       <div class="admin-stat-label">Modelos 3D</div>
-      <div class="admin-stat-icon-chip">🕶️</div>
+      <div class="admin-stat-icon-chip"><svg class="hand-icon" width="20" height="20"><use href="#icon-aviator"></use></svg></div>
     </div>
     <div class="admin-stat-value">{{ $totalModelos }}</div>
     <div class="admin-stat-sub">
@@ -55,7 +55,7 @@
   <div class="admin-stat-card" style="--a-stat-color:rgba(243,156,18,0.18)">
     <div class="admin-stat-top">
       <div class="admin-stat-label">Tests realizados</div>
-      <div class="admin-stat-icon-chip">📋</div>
+      <div class="admin-stat-icon-chip"><svg class="hand-icon" width="20" height="20"><use href="#icon-nota"></use></svg></div>
     </div>
     <div class="admin-stat-value">{{ $totalTests }}</div>
     <div class="admin-stat-sub">

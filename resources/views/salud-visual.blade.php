@@ -27,7 +27,7 @@
       <p>Mantener una buena salud visual es fundamental para realizar actividades cotidianas como leer, conducir o usar dispositivos digitales.</p>
       <p>Los exámenes oculares regulares pueden detectar no solo problemas de la vista, sino también enfermedades sistémicas como la diabetes o hipertensión.</p>
       <div class="sv-highlight">
-        <span class="sv-highlight-icon">👁️</span>
+        <span class="sv-highlight-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ojo"></use></svg></span>
         <p><strong>¿Sabías que?</strong> Existe un pequeño punto en cada ojo llamado "punto ciego" donde el nervio óptico se une con la retina. En esta área no hay células sensibles a la luz, por lo que técnicamente no podemos ver. </p>
       </div>
     </div>
@@ -69,15 +69,15 @@
            <circle cx="24" cy="8" r="1" fill="#f0d824"/>
            <circle cx="27" cy="13" r="0.7" fill="#f0d824"/>
           </svg> Regla 20-20-20</span>
-          <span class="habit-tag">🥕 Alimentación</span>
-          <span class="habit-tag">😎 Protección UV</span>
+          <span class="habit-tag"><svg class="hand-icon" width="13" height="13"><use href="#icon-brocoli"></use></svg> Alimentación</span>
+          <span class="habit-tag"><svg class="hand-icon" width="13" height="13"><use href="#icon-aviator"></use></svg> Protección UV</span>
           <span class="habit-tag">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
         <path d="M16 4c4 6 9 12 9 17a9 9 0 0 1-18 0c0-5 5-11 9-17z"
         fill="none" stroke="#6FA8DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M12 21c0 2 1.5 3.5 3 4" stroke="#6FA8DC" stroke-width="1.4" stroke-linecap="round" fill="none"/>
        </svg> Hidratación</span>
-          <span class="habit-tag">🖥️ Descanso digital</span>
-          <span class="habit-tag">📅 Revisiones</span>
+          <span class="habit-tag"><svg class="hand-icon" width="13" height="13"><use href="#icon-monitor"></use></svg> Descanso digital</span>
+          <span class="habit-tag"><svg class="hand-icon" width="13" height="13"><use href="#icon-calendario"></use></svg> Revisiones</span>
         </div>
         <a href="{{ route('habitos') }}" class="ver-mas-btn">Ver más →</a>
       </div>

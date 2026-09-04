@@ -30,7 +30,7 @@
       <h2>Prueba tus lentes<br><em>antes de comprar</em></h2>
       <p>Nuestra tecnología de modelos 3D interactivos te permite explorar cada par de lentes en detalle desde cualquier ángulo. Observa los materiales, colores y proporciones antes de tomar tu decisión.</p>
       <p>Gira, acerca y examina cada montura con total libertad. Cada modelo ha sido diseñado con precisión para reflejar fielmente el producto real que recibirás.</p>
-      <span class="intro-badge">🔄 Interactivo · 360°</span>
+      <span class="intro-badge"><svg class="hand-icon" width="14" height="14"><use href="#icon-recargar"></use></svg> Interactivo · 360°</span>
     </div>
     <!-- 3D VIEWER -->
     <div class="viewer-wrap">
@@ -88,7 +88,7 @@
         </div>
         <div class="featured-actions">
           <a href="#" class="btn-primary">Ver en tienda →</a>
-          <button class="btn-ghost" title="Guardar">♡</button>
+          <button class="btn-ghost" title="Guardar"><svg class="hand-icon" width="16" height="16"><use href="#icon-shape-heart"></use></svg></button>
         </div>
       </div>
     </div>

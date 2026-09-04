@@ -33,6 +33,6 @@ class ContactanosController extends Controller
 
         Mail::to($destino)->send(new ContactoMensaje($datos));
 
-        return back()->with('contacto_ok', '¡Gracias! Tu mensaje voló directo a las nubes de Nebulita 💜');
+        return back()->with('contacto_ok', '¡Gracias! Tu mensaje voló directo a las nubes de Nebulita.');
     }
 }

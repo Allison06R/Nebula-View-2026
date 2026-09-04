@@ -284,4 +284,31 @@ M1831 968 c-37 -24 -132 -33 -164 -16 -15 8 -25 5 -46 -14 -54 -51 -101 -69
   <symbol id="icon-shape-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/></symbol>
   <symbol id="icon-shape-oblong" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="5.5"/></symbol>
 
+  <!-- ── Íconos hand-drawn adicionales (reemplazan emojis en el resto del sitio) ── -->
+  <symbol id="icon-paleta" viewBox="0 0 24 24"><path d="M12 3.2c-5 0-8.8 3.6-8.8 8 0 3.3 2.3 4.4 4.1 4.1 1-.2 1.3-.9.9-1.7-.5-1 .2-2 1.3-2h3.6c2.6 0 4.7-2 4.7-4.6 0-2.1-2.4-3.8-5.8-3.8Z"/><circle cx="7.6" cy="9.4" r="1"/><circle cx="10.8" cy="6.9" r="1"/><circle cx="14.6" cy="7.3" r="1"/><circle cx="16.6" cy="10.3" r="1"/></symbol>
+  <symbol id="icon-bombilla" viewBox="0 0 24 24"><path d="M8.4 9.6a3.6 3.6 0 1 1 7.2 0c0 1.7-1 2.4-1.7 3.3-.5.6-.7 1-.7 1.7h-2.4c0-.7-.2-1.1-.7-1.7-.7-.9-1.7-1.6-1.7-3.3Z"/><path d="M10.3 17.2h3.4"/><path d="M10.8 19.4h2.4"/><path d="M12 2.6v1.3"/></symbol>
+  <symbol id="icon-mano-saludo" viewBox="0 0 24 24"><path d="M6.4 12.4V6.9a1.3 1.3 0 0 1 2.6 0v4"/><path d="M9 10.7V5.4a1.3 1.3 0 0 1 2.6 0v5.3"/><path d="M11.6 10.6V6.2a1.3 1.3 0 0 1 2.6 0v6.2"/><path d="M14.2 12.2V7.8a1.3 1.3 0 0 1 2.6 0v6.9c0 3.4-2 6.5-5.6 6.5-2.4 0-3.7-1-4.9-2.8L4 14.6c-.5-.8-.2-1.6.5-2 .8-.4 1.6-.1 2.1.6l1 1.4"/></symbol>
+  <symbol id="icon-papelera" viewBox="0 0 24 24"><path d="M4.6 7h14.8"/><path d="M9.4 7V5.2c0-.7.6-1.2 1.2-1.2h2.8c.6 0 1.2.5 1.2 1.2V7"/><path d="M6.6 7l.9 12.1c.1.9.8 1.6 1.7 1.6h5.6c.9 0 1.6-.7 1.7-1.6L17.4 7"/><path d="M10.2 10.8v6.4"/><path d="M13.8 10.8v6.4"/></symbol>
+  <symbol id="icon-bola-cristal" viewBox="0 0 24 24"><circle cx="12" cy="10.6" r="6.4"/><path d="M8.6 8.4c-1.2 1-1.4 2.6-.6 4"/><path d="M6 19.8h12"/><path d="M9 19.8c.4-1.3 1.6-2.2 3-2.2s2.6.9 3 2.2"/></symbol>
+  <symbol id="icon-diana" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+  <symbol id="icon-sobre" viewBox="0 0 24 24"><rect x="2.6" y="5.4" width="18.8" height="13.2" rx="2"/><path d="M3.4 6.6l8.6 6.6 8.6-6.6"/></symbol>
+  <symbol id="icon-usuario" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.6"/><path d="M4.8 20.2c1-3.6 3.8-5.6 7.2-5.6s6.2 2 7.2 5.6"/></symbol>
+  <symbol id="icon-recargar" viewBox="0 0 24 24"><path d="M4.2 12a7.8 7.8 0 0 1 13.2-5.6"/><path d="M19.8 12a7.8 7.8 0 0 1-13.2 5.6"/><path d="M17.4 3.8v3.2h-3.2"/><path d="M6.6 20.2V17h3.2"/></symbol>
+  <symbol id="icon-guardar" viewBox="0 0 24 24"><path d="M4.8 3.8h11.4l3 3v13.4H4.8Z"/><path d="M7.6 3.8v5.4h7V3.8"/><path d="M7.4 14.2h9.2v6.2H7.4Z"/></symbol>
+  <symbol id="icon-robot" viewBox="0 0 24 24"><rect x="4.6" y="8.4" width="14.8" height="10.6" rx="2.6"/><circle cx="9" cy="13.4" r="1.2"/><circle cx="15" cy="13.4" r="1.2"/><path d="M9.4 17h5.2"/><path d="M12 8.4V5.4"/><circle cx="12" cy="3.8" r="1.2"/><path d="M2.6 12.4v3.4"/><path d="M21.4 12.4v3.4"/></symbol>
+  <symbol id="icon-luna" viewBox="0 0 24 24"><path d="M17.6 13.4A7.6 7.6 0 1 1 10.6 3.4a6.2 6.2 0 0 0 7 10Z"/></symbol>
+  <symbol id="icon-arcoiris" viewBox="0 0 24 24"><path d="M3 18a9 9 0 0 1 18 0"/><path d="M6.3 18a5.7 5.7 0 0 1 11.4 0"/><path d="M9.6 18a2.4 2.4 0 0 1 4.8 0"/></symbol>
+  <symbol id="icon-gota" viewBox="0 0 24 24"><path d="M12 3.4c2.8 4 5.6 7.6 5.6 10.9A5.6 5.6 0 0 1 6.4 14.3c0-3.3 2.8-6.9 5.6-10.9Z"/></symbol>
+  <symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4.6" width="18" height="12" rx="1.6"/><path d="M8.4 20.4h7.2"/><path d="M12 16.6v3.8"/></symbol>
+  <symbol id="icon-calendario" viewBox="0 0 24 24"><rect x="3.4" y="5" width="17.2" height="15.4" rx="2"/><path d="M3.4 9.8h17.2"/><path d="M7.6 3v4"/><path d="M16.4 3v4"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/></symbol>
+  <symbol id="icon-cruz-medica" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8.2v7.6"/><path d="M8.2 12h7.6"/></symbol>
+  <symbol id="icon-rayo" viewBox="0 0 24 24"><path d="M13.2 2.6 5.6 13.8h5l-1.6 7.6 8.4-11.6h-5.2Z"/></symbol>
+  <symbol id="icon-hospital" viewBox="0 0 24 24"><rect x="4" y="9.4" width="16" height="11.2" rx="1.4"/><path d="M9 21V15h6v6"/><path d="M12 3v4.8"/><path d="M9.6 5.4h4.8"/><path d="M4 21h16"/></symbol>
+  <symbol id="icon-x-mark" viewBox="0 0 24 24"><path d="M6.4 6.4l11.2 11.2"/><path d="M17.6 6.4 6.4 17.6"/></symbol>
+  <symbol id="icon-check-mark" viewBox="0 0 24 24"><path d="M4.4 12.6l4.8 4.8L19.6 6.8"/></symbol>
+  <symbol id="icon-numeros" viewBox="0 0 24 24"><path d="M8.6 4.4 7 19.6"/><path d="M17 4.4l-1.6 15.2"/><path d="M4.6 9.4h15.2"/><path d="M3.8 15h15.2"/></symbol>
+  <symbol id="icon-ventana" viewBox="0 0 24 24"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="1.6"/><path d="M12 3.4v17.2"/><path d="M3.4 12h17.2"/></symbol>
+  <symbol id="icon-escudo" viewBox="0 0 24 24"><path d="M12 2.8 4.6 5.6v6c0 5 3 8.4 7.4 9.6 4.4-1.2 7.4-4.6 7.4-9.6v-6Z"/><path d="M8.8 12l2.2 2.4 4.2-5"/></symbol>
+  <symbol id="icon-nota" viewBox="0 0 24 24"><path d="M6 3.6h9.4L18.4 6.6V20.4H6Z"/><path d="M15.4 3.6V6.6h3"/><path d="M8.6 11h6.8"/><path d="M8.6 14.4h6.8"/><path d="M8.6 17.8h4.4"/></symbol>
+
 </svg>

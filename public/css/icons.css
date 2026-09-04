@@ -20,3 +20,24 @@
   width: 1.2em;
   height: 1.2em;
 }
+
+/* ── Iconos "hand-drawn" (trazo, sin relleno) ──────────────────────────
+   Sistema global para reemplazar emojis por iconos ilustrados que se
+   adaptan automáticamente a modo claro/oscuro (usan currentColor, así
+   heredan el color del texto que ya cambia con el tema). */
+.hand-icon {
+  display: inline-block;
+  vertical-align: -0.2em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-icon--inline {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+}

@@ -110,7 +110,7 @@
         </svg><span class="habit-number">1</span></div>
         <div class="habit-title">Regla 20-20-20</div>
         <div class="habit-desc">Cada 20 minutos de pantalla, mira a un objeto a 20 pies de distancia durante 20 segundos.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Coloca un recordatorio en tu teléfono cada 20 minutos mientras trabajas.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Coloca un recordatorio en tu teléfono cada 20 minutos mientras trabajas.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(233,30,140,0.2)">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -120,19 +120,19 @@
        </svg><span class="habit-number">2</span></div>
         <div class="habit-title">Hidratación ocular</div>
         <div class="habit-desc">Parpadea conscientemente para mantener los ojos lubricados. La sequedad ocular es uno de los problemas más comunes causados por pantallas.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Beber al menos 8 vasos de agua al día también contribuye a la salud de tus ojos.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Beber al menos 8 vasos de agua al día también contribuye a la salud de tus ojos.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(40,180,100,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-brocoli"></use></svg><span class="habit-number">3</span></div>
         <div class="habit-title">Nutrición para los ojos</div>
         <div class="habit-desc">Incorpora alimentos ricos en luteína, zeaxantina, vitamina A y omega-3: zanahoria, espinaca, salmón y huevo.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Los arándanos y el kale son superalimentos para los ojos por su alto contenido en antioxidantes.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Los arándanos y el kale son superalimentos para los ojos por su alto contenido en antioxidantes.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(255,180,0,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sol"></use></svg><span class="habit-number">4</span></div>
         <div class="habit-title">Protección UV</div>
         <div class="habit-desc">La radiación ultravioleta puede causar daños irreversibles como cataratas. Usa lentes de sol con filtro UV400.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Incluso en días nublados, la radiación UV puede alcanzar tus ojos.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Incluso en días nublados, la radiación UV puede alcanzar tus ojos.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(100,150,255,0.2)"><!-- Luna -->
@@ -144,19 +144,19 @@
         <!--fin luna --><span class="habit-number">5</span></div>
         <div class="habit-title">Descanso nocturno</div>
         <div class="habit-desc">Dormir entre 7 y 9 horas permite que tus ojos se recuperen. Evita pantallas al menos una hora antes de dormir.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Activa el filtro de luz azul en tus dispositivos a partir de las 8 PM.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Activa el filtro de luz azul en tus dispositivos a partir de las 8 PM.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(180,60,200,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-corriendo"></use></svg><span class="habit-number">6</span></div>
         <div class="habit-title">Ejercicio físico regular</div>
         <div class="habit-desc">El ejercicio mejora la circulación sanguínea, lo que incluye el flujo de sangre hacia los ojos. Reduce el riesgo de glaucoma.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> 30 minutos de caminata al día pueden reducir la presión intraocular hasta en un 25%.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> 30 minutos de caminata al día pueden reducir la presión intraocular hasta en un 25%.</div>
       </div>
       <div class="habit-card">
         <div class="habit-icon-wrap" style="background:rgba(255,100,50,0.2)"><svg class="custom-icon" aria-hidden="true"><use href="#icon-estetoscopio"></use></svg><span class="habit-number">7</span></div>
         <div class="habit-title">Revisiones periódicas</div>
         <div class="habit-desc">Acudir al oftalmólogo al menos una vez al año permite detectar enfermedades oculares en etapas tempranas.</div>
-        <div class="habit-tip"><span class="habit-tip-icon">💡</span> Si usas lentes o tienes antecedentes familiares, la revisión semestral es lo recomendado.</div>
+        <div class="habit-tip"><span class="habit-tip-icon"><svg class="hand-icon" width="16" height="16"><use href="#icon-bombilla"></use></svg></span> Si usas lentes o tienes antecedentes familiares, la revisión semestral es lo recomendado.</div>
       </div>
     </div>
   </div>

@@ -38,22 +38,22 @@
   <h2 class="section-title" style="color:#fff;">¿Qué ofrece una buena clínica?</h2>
   <div class="causas__grid">
     <div class="causa-card">
-      <div class="causa-card__icon">🏥</div>
+      <div class="causa-card__icon" style="color:#fff"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-hospital"></use></svg></div>
       <h3>Infraestructura moderna</h3>
       <p>Instalaciones equipadas con tecnología de punta para diagnóstico y cirugía ocular.</p>
     </div>
     <div class="causa-card">
-      <div class="causa-card__icon">👨‍⚕️</div>
+      <div class="causa-card__icon" style="color:#fff"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-cruz-medica"></use></svg></div>
       <h3>Especialistas certificados</h3>
       <p>Oftalmólogos y optometristas con formación continua y acreditaciones internacionales.</p>
     </div>
     <div class="causa-card">
-      <div class="causa-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-telescopio"></use></svg></div>
+      <div class="causa-card__icon" style="color:#fff"><svg class="custom-icon" aria-hidden="true"><use href="#icon-telescopio"></use></svg></div>
       <h3>Equipos de diagnóstico</h3>
       <p>Tomografías OCT, topografías corneales, campimetrías y más para un diagnóstico preciso.</p>
     </div>
     <div class="causa-card">
-      <div class="causa-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></div>
+      <div class="causa-card__icon" style="color:#fff"><svg class="custom-icon" aria-hidden="true"><use href="#icon-portapapeles"></use></svg></div>
       <h3>Seguimiento personalizado</h3>
       <p>Historial clínico digital y planes de tratamiento adaptados a cada paciente.</p>
     </div>
@@ -116,17 +116,17 @@
 <!-- SERVICIOS -->
 <section class="info-cards" id="servicios">
   <div class="info-card">
-    <div class="info-card__icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></div>
+    <div class="info-card__icon" style="color:#fff"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></div>
     <h3>Examen visual completo</h3>
     <p>Evaluación de la agudeza visual, presión intraocular, fondo de ojo y salud corneal. Duración aproximada de 45 minutos con tecnología de diagnóstico avanzado.</p>
   </div>
   <div class="info-card">
-    <div class="info-card__icon">⚡</div>
+    <div class="info-card__icon" style="color:#fff"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-rayo"></use></svg> </div>
     <h3>Cirugía refractiva LASIK</h3>
     <p>Procedimiento con láser excimer para eliminar la dependencia de gafas o lentes de contacto en pacientes con miopía, hipermetropía o astigmatismo.</p>
   </div>
   <div class="info-card">
-    <div class="info-card__icon">📅</div>
+    <div class="info-card__icon" style="color:#fff"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-calendario"></use></svg></div>
     <h3>Consultas de seguimiento</h3>
     <p>Citas periódicas para monitorear enfermedades crónicas, ajustar tratamientos y garantizar que la salud visual se mantenga en óptimas condiciones.</p>
   </div>

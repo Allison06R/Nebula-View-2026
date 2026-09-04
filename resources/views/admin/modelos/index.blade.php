@@ -79,7 +79,7 @@
 
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-box">
-    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-icon"><svg class="hand-icon" width="40" height="40" style="stroke-width:1.3"><use href="#icon-papelera"></use></svg></div>
     <div class="confirm-title">¿Eliminar modelo?</div>
     <div class="confirm-desc" id="confirmDesc">Esta acción no se puede deshacer.</div>
     <div class="confirm-actions">

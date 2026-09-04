@@ -424,7 +424,17 @@
             input.focus();
             if (!opened) {
                 opened = true;
-                addMessage('Hola 👋 Soy el asistente de Nebula View. ¿En qué puedo ayudarte hoy?', 'bot');
+                const greetRow = addMessage('Hola. Soy el asistente de Nebula View. ¿En qué puedo ayudarte hoy?', 'bot');
+                const greetBubble = greetRow.querySelector('.nv-msg-bubble');
+                const greetIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                greetIcon.setAttribute('class', 'hand-icon');
+                greetIcon.setAttribute('width', '15');
+                greetIcon.setAttribute('height', '15');
+                greetIcon.style.marginRight = '5px';
+                const greetUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                greetUse.setAttribute('href', '#icon-mano-saludo');
+                greetIcon.appendChild(greetUse);
+                greetBubble.prepend(greetIcon);
                 renderSuggestions();
             }
         }

@@ -42,22 +42,22 @@
     </div>
     <div class="pilares__row">
       <div class="pilar">
-        <div class="pilar__num">🔬</div>
+        <div class="pilar__num"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></div>
         <h3>Material</h3>
         <p>Policarbonato, trivex o cristal: resistencia, ligereza y claridad óptica distintas según el uso.</p>
       </div>
       <div class="pilar">
-        <div class="pilar__num">✨</div>
+        <div class="pilar__num"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sparkle"></use></svg></div>
         <h3>Tratamientos</h3>
         <p>Antirreflejo, anti-UV y anti-luz azul: capas que protegen tanto la lente como tus ojos.</p>
       </div>
       <div class="pilar">
-        <div class="pilar__num">📐</div>
+        <div class="pilar__num"><svg class="custom-icon" aria-hidden="true"><use href="#icon-ruler"></use></svg></div>
         <h3>Graduación</h3>
         <p>Una prescripción precisa y actualizada es la base de cualquier lente de calidad.</p>
       </div>
       <div class="pilar">
-        <div class="pilar__num">🕶️</div>
+        <div class="pilar__num"><svg class="custom-icon" aria-hidden="true"><use href="#icon-aviator"></use></svg></div>
         <h3>Montura</h3>
         <p>El centrado pupilar y el tamaño del armazón influyen directamente en la comodidad diaria.</p>
       </div>
@@ -117,28 +117,28 @@
       <div class="trat-item">
         <div class="trat-item__num">01</div>
         <div class="trat-item__body">
-          <div class="trat-item__name"><span>🛡️</span> Antirreflejo</div>
+          <div class="trat-item__name"><span><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-escudo"></use></svg></span> Antirreflejo</div>
           <p class="trat-item__desc">Elimina los reflejos de luz artificial y solar sobre la lente, mejorando la comodidad visual en pantallas, conducción nocturna y ambientes de iluminación intensa. Resulta especialmente útil para quienes pasan muchas horas frente a monitores.</p>
         </div>
       </div>
       <div class="trat-item">
         <div class="trat-item__num">02</div>
         <div class="trat-item__body">
-          <div class="trat-item__name"><span>☀️</span> Filtro UV y luz azul</div>
+          <div class="trat-item__name"><span><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-sol"></use></svg></span> Filtro UV y luz azul</div>
           <p class="trat-item__desc">Bloquea la radiación ultravioleta y filtra la luz azul emitida por dispositivos digitales, protegiendo la retina del daño acumulado a largo plazo. Recomendado especialmente para menores de edad y usuarios de pantallas más de 4 horas al día.</p>
         </div>
       </div>
       <div class="trat-item">
         <div class="trat-item__num">03</div>
         <div class="trat-item__body">
-          <div class="trat-item__name"><span>🌗</span> Fotocromáticas</div>
+          <div class="trat-item__name"><span><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-luna"></use></svg></span> Fotocromáticas</div>
           <p class="trat-item__desc">Se oscurecen automáticamente al recibir luz solar y recuperan su transparencia en interiores. Una sola lente cumple la función de lente graduada y gafa solar, adaptándose en segundos a distintos entornos de iluminación.</p>
         </div>
       </div>
       <div class="trat-item">
         <div class="trat-item__num">04</div>
         <div class="trat-item__body">
-          <div class="trat-item__name"><span>💎</span> Endurecido y antirayado</div>
+          <div class="trat-item__name"><span><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-shape-diamond"></use></svg></span> Endurecido y antirayado</div>
           <p class="trat-item__desc">Capa de recubrimiento que aumenta la dureza superficial de la lente, reduciendo la formación de rayaduras por uso cotidiano. Prolonga la vida útil del lente y mantiene la calidad óptica a lo largo del tiempo.</p>
         </div>
       </div>
@@ -199,7 +199,7 @@
         <div class="mat-card__glow mat-card__glow--a"></div>
         <div class="mat-card__top">
           <span class="mat-card__label">Estándar</span>
-          <div class="mat-card__icon">🪟</div>
+          <div class="mat-card__icon"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-ventana"></use></svg></div>
         </div>
         <h3 class="mat-card__name">Cristal mineral</h3>
         <p class="mat-card__desc">Máxima claridad óptica y resistencia al rayado. Más pesado que los plásticos, pero insuperable en nitidez. Ideal para graduaciones bajas.</p>
@@ -224,7 +224,7 @@
         <div class="mat-card__badge">Más popular</div>
         <div class="mat-card__top">
           <span class="mat-card__label">Recomendado</span>
-          <div class="mat-card__icon">🛡️</div>
+          <div class="mat-card__icon"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-escudo"></use></svg></div>
         </div>
         <h3 class="mat-card__name">Policarbonato</h3>
         <p class="mat-card__desc">Ligero, delgado y altamente resistente a impactos. Con protección UV integrada. El material preferido para niños, deportistas y graduaciones altas.</p>
@@ -248,7 +248,7 @@
         <div class="mat-card__glow mat-card__glow--c"></div>
         <div class="mat-card__top">
           <span class="mat-card__label">Premium</span>
-          <div class="mat-card__icon">💎</div>
+          <div class="mat-card__icon"><svg class="hand-icon" style="width:1em;height:1em"><use href="#icon-shape-diamond"></use></svg></div>
         </div>
         <h3 class="mat-card__name">Trivex</h3>
         <p class="mat-card__desc">Combina lo mejor: ligereza comparable al policarbonato y nitidez casi al nivel del cristal. Menos aberraciones ópticas. Opción premium para exigentes.</p>
@@ -289,7 +289,7 @@
         </div>
         <div class="proceso__connector" aria-hidden="true"></div>
         <div class="proceso__card">
-          <span class="proceso__card-icon">🔬</span>
+          <span class="proceso__card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-microscopio"></use></svg></span>
           <h3>Examen visual</h3>
           <p>Un optometrista u oftalmólogo evalúa tu agudeza visual, presión intraocular y salud corneal. Duración aproximada: 45 minutos.</p>
         </div>
@@ -301,7 +301,7 @@
         </div>
         <div class="proceso__connector" aria-hidden="true"></div>
         <div class="proceso__card">
-          <span class="proceso__card-icon">📋</span>
+          <span class="proceso__card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-nota"></use></svg></span>
           <h3>Prescripción</h3>
           <p>Recibes tu receta óptica con los valores de esfera, cilindro, eje y distancia pupilar para cada ojo.</p>
         </div>
@@ -313,7 +313,7 @@
         </div>
         <div class="proceso__connector" aria-hidden="true"></div>
         <div class="proceso__card">
-          <span class="proceso__card-icon">🕶️</span>
+          <span class="proceso__card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-aviator"></use></svg></span>
           <h3>Elección de montura</h3>
           <p>Seleccionas la armazón según tu estilo, morfología facial y el tipo de lente recomendado por tu especialista.</p>
         </div>
@@ -324,7 +324,7 @@
           <div class="proceso__bubble-inner">04</div>
         </div>
         <div class="proceso__card">
-          <span class="proceso__card-icon">✨</span>
+          <span class="proceso__card-icon"><svg class="custom-icon" aria-hidden="true"><use href="#icon-sparkle"></use></svg></span>
           <h3>Listo para ver</h3>
           <p>Tus lentes son tallados, tratados y montados con precisión. En pocos días, una visión completamente nueva te espera.</p>
         </div>

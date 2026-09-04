@@ -32,7 +32,7 @@
         <p>Los problemas visuales son alteraciones en el sistema óptico del ojo o en las vías nerviosas que transmiten la información visual al cerebro. Pueden afectar la nitidez, el campo visual, la percepción del color o la capacidad de enfocar a diferentes distancias.</p>
         <p>Algunos surgen desde el nacimiento, otros se desarrollan con la edad o por factores externos como el uso prolongado de pantallas, la exposición solar sin protección o enfermedades sistémicas como la diabetes.</p>
         <div class="what-highlight">
-          <span class="what-highlight-icon"><svg class="custom-icon"><use href="#icon-ojo"></use></svg></use></svg></span>
+          <span class="what-highlight-icon"><svg class="custom-icon"><use href="#icon-ojo"></use></svg></span>
           <p><strong>¿Sabías que?</strong> Más del 80% de los problemas visuales son evitables o tratables si se detectan a tiempo mediante revisiones periódicas con un profesional de la salud visual.</p>
         </div>
       </div>
@@ -367,9 +367,9 @@ const conditions = [
         'Ortoqueratología (lentes nocturnos)',
       ],
       lenses: [
-        { icon: '👓', name: 'Lentes cilíndricas', desc: 'Corrección exacta por zonas' },
-        { icon: '🥽', name: 'Lentes tóricas', desc: 'Contacto especializado' },
-        { icon: '✨', name: 'LASIK', desc: 'Corrección permanente' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-glasses"></use></svg>', name: 'Lentes cilíndricas', desc: 'Corrección exacta por zonas' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-oversized-glasses"></use></svg>', name: 'Lentes tóricas', desc: 'Contacto especializado' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-sparkle"></use></svg>', name: 'LASIK', desc: 'Corrección permanente' },
       ],
       tip: '¡Buenas noticias! El astigmatismo es muy fácil de corregir. Una revisión optométrica anual permite mantener la graduación actualizada y evitar el cansancio visual acumulado.',
     }
@@ -407,9 +407,9 @@ const conditions = [
         'Gotas de atropina para frenar progresión en niños',
       ],
       lenses: [
-        { icon: '👓', name: 'Lentes cóncavos', desc: 'Corrección con prescripción negativa' },
-        { icon: '🌙', name: 'Ortoqueratología', desc: 'Lentes nocturnos remodeladores' },
-        { icon: '⚡', name: 'SMILE / LASIK', desc: 'Cirugía láser de precisión' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-glasses"></use></svg>', name: 'Lentes cóncavos', desc: 'Corrección con prescripción negativa' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-luna"></use></svg>', name: 'Ortoqueratología', desc: 'Lentes nocturnos remodeladores' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-rayo"></use></svg>', name: 'SMILE / LASIK', desc: 'Cirugía láser de precisión' },
       ],
       tip: 'Reduce el tiempo frente a pantallas y toma descansos frecuentes mirando al horizonte. La exposición a la luz natural al aire libre puede ayudar a frenar la progresión de la miopía en niños y jóvenes.',
     }
@@ -447,9 +447,9 @@ const conditions = [
         'Terapia visual en casos de estrabismo acomodativo',
       ],
       lenses: [
-        { icon: '👓', name: 'Lentes convexas', desc: 'Prescripción positiva (+)' },
-        { icon: '💧', name: 'Lentes blandas', desc: 'Contacto para corrección cercana' },
-        { icon: '🎯', name: 'LASEK', desc: 'Alternativa al LASIK' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-glasses"></use></svg>', name: 'Lentes convexas', desc: 'Prescripción positiva (+)' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-gota"></use></svg>', name: 'Lentes blandas', desc: 'Contacto para corrección cercana' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-diana"></use></svg>', name: 'LASEK', desc: 'Alternativa al LASIK' },
       ],
       tip: 'Es normal que los bebés nazcan hipermétropes de forma leve: el ojo sigue creciendo hasta los 7-8 años y suele corregirse solo. Sin embargo, si persiste, es importante corregirlo pronto para evitar el "ojo vago" (ambliopía).',
     }
@@ -490,9 +490,9 @@ const conditions = [
         'Cirugía de intercambio de cristalino (CLE)',
       ],
       lenses: [
-        { icon: '📖', name: 'Lentes de lectura', desc: 'Para uso en distancia corta' },
-        { icon: '🌈', name: 'Progresivos', desc: 'Corrección para todas las distancias' },
-        { icon: '🔄', name: 'Multifocales', desc: 'Lentes de contacto avanzadas' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-libros"></use></svg>', name: 'Lentes de lectura', desc: 'Para uso en distancia corta' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-arcoiris"></use></svg>', name: 'Progresivos', desc: 'Corrección para todas las distancias' },
+        { icon: '<svg class="hand-icon" width="22" height="22"><use href="#icon-recargar"></use></svg>', name: 'Multifocales', desc: 'Lentes de contacto avanzadas' },
       ],
       tip: 'Los lentes progresivos modernos son prácticamente invisibles (sin la línea visible de los bifocales). Permiten ver bien de cerca, a distancia intermedia y de lejos con una sola montura — ideales para el uso diario.',
     }
@@ -633,7 +633,7 @@ function openModal(idx) {
     </div>
  
     <div class="modal-tip-box">
-      <div class="modal-tip-icon">💡</div>
+      <div class="modal-tip-icon"><svg class="hand-icon" width="20" height="20"><use href="#icon-bombilla"></use></svg></div>
       <div class="modal-tip-text">
         <strong>Consejo de Nebula View</strong>
         ${d.tip}

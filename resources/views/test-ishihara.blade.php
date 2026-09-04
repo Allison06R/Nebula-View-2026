@@ -20,19 +20,19 @@
 
     <!-- INTRO -->
     <div id="ish-intro-screen">
-      <div class="hero-badge">🎨 Test de Ishihara · IA</div>
+      <div class="hero-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-paleta"></use></svg> Test de Ishihara · IA</div>
       @include('partials.test-switcher')
       <h1>Test de<br><em>daltonismo</em></h1>
       <p>El test de Ishihara es una prueba visual clásica, creada por el oftalmólogo japonés Shinobu Ishihara, que se usa para detectar dificultades en la percepción de los colores (daltonismo), principalmente del tipo rojo-verde. Consiste en láminas formadas por puntos de colores donde se "esconde" un número: si tu percepción del color es típica podrás leerlo con facilidad, y si tienes alguna deficiencia cromática te costará más o verás un número distinto.</p>
 
       <div class="ish-info-box">
-        <div class="ish-info-item"><span class="ish-info-ico">🔢</span> Verás {{ count(config('ishihara.laminas')) }} láminas, una por una</div>
+        <div class="ish-info-item"><span class="ish-info-ico"><svg class="hand-icon" width="16" height="16"><use href="#icon-numeros"></use></svg></span> Verás {{ count(config('ishihara.laminas')) }} láminas, una por una</div>
         <div class="ish-info-item"><span class="ish-info-ico">⌨️</span> Escribe el número que veas en cada una (o marca "No lo veo")</div>
-        <div class="ish-info-item"><span class="ish-info-ico">🤖</span> Al final, la IA te da una interpretación orientativa y puedes chatear sobre tu resultado</div>
+        <div class="ish-info-item"><span class="ish-info-ico"><svg class="hand-icon" width="16" height="16"><use href="#icon-robot"></use></svg></span> Al final, la IA te da una interpretación orientativa y puedes chatear sobre tu resultado</div>
       </div>
 
       <div class="hist-preview" id="ishHistPreview" style="display:none;">
-        <div class="hist-preview-title">📋 Tests anteriores</div>
+        <div class="hist-preview-title"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Tests anteriores</div>
         <div id="ishHistPreviewItems"></div>
       </div>
 
@@ -40,7 +40,7 @@
         Comenzar test
         <span class="arrow-ic">→</span>
       </button>
-      <p style="font-size:11px;color:var(--muted);margin-top:16px;">⚠️ Este test es orientativo y <strong>no reemplaza un examen profesional completo de visión del color</strong> (por ejemplo, con un optometrista u oftalmólogo). Úsalo solo como una primera referencia.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:16px;"><svg class="hand-icon" width="13" height="13"><use href="#icon-warning"></use></svg> Este test es orientativo y <strong>no reemplaza un examen profesional completo de visión del color</strong> (por ejemplo, con un optometrista u oftalmólogo). Úsalo solo como una primera referencia.</p>
     </div>
 
     <!-- LÁMINAS -->
@@ -84,7 +84,7 @@
 
     <!-- LOADING -->
     <div id="ish-loading-screen" style="display:none;text-align:center;padding:20px 0;">
-      <div class="hero-badge" style="margin-bottom:28px;">🤖 IA analizando tus respuestas</div>
+      <div class="hero-badge" style="margin-bottom:28px;"><svg class="hand-icon" width="15" height="15"><use href="#icon-robot"></use></svg> IA analizando tus respuestas</div>
       <div class="ai-loader">
         <div class="ai-orb"></div>
         <div class="ai-rings">
@@ -101,7 +101,7 @@
     <!-- RESULTADO -->
     <div id="ish-result-screen">
       <div class="result-header" id="ishResultHeader">
-        <div class="result-badge">🎨 Test de Ishihara · Nebula View</div>
+        <div class="result-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-paleta"></use></svg> Test de Ishihara · Nebula View</div>
         <div class="result-title" id="ishResultTitle">Resultado del test</div>
         <div class="result-subtitle" id="ishResultSubtitle">Interpretación orientativa basada en tus respuestas</div>
       </div>
@@ -116,12 +116,12 @@
           <div id="ishAiResumen" style="font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:18px;text-align:left;"></div>
 
           <div class="ish-panel" id="ishPatronPanel" style="display:none;">
-            <div class="ish-panel-title">🔎 Patrón observado</div>
+            <div class="ish-panel-title"><svg class="hand-icon" width="15" height="15"><use href="#icon-scope"></use></svg> Patrón observado</div>
             <div id="ishPatronTexto"></div>
           </div>
 
           <div class="ish-panel ish-panel-dark" id="ishRecoPanel" style="display:none;">
-            <div class="ish-panel-title">💡 Recomendación</div>
+            <div class="ish-panel-title"><svg class="hand-icon" width="15" height="15"><use href="#icon-bombilla"></use></svg> Recomendación</div>
             <div id="ishRecoTexto"></div>
           </div>
 
@@ -133,7 +133,7 @@
           <div class="sec-title">Chat con tu asistente visual</div>
           <div class="chat-wrap">
             <div class="chat-header">
-              <div class="chat-avatar">🤖</div>
+              <div class="chat-avatar"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div>
               <div class="chat-header-info">
                 <div class="chat-header-name">Asistente Nebulita</div>
                 <div class="chat-header-status">● En línea · contexto de tu resultado activo</div>
@@ -150,18 +150,18 @@
       </div>
 
       <div class="result-ctas cta-row">
-        <button class="btn-cta-secondary" id="ishSendPdfBtn" disabled>💾 Guardando test…</button>
-        <button class="btn-cta-secondary" id="ishHistoryBtn">📋 Ver historial</button>
-        <button class="btn-cta-secondary" id="ishRetestBtn">🔄 Repetir test</button>
+        <button class="btn-cta-secondary" id="ishSendPdfBtn" disabled><svg class="hand-icon" width="15" height="15"><use href="#icon-guardar"></use></svg> Guardando test…</button>
+        <button class="btn-cta-secondary" id="ishHistoryBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Ver historial</button>
+        <button class="btn-cta-secondary" id="ishRetestBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-recargar"></use></svg> Repetir test</button>
         <button class="btn-cta-secondary btn-back-tests" id="ishBackToTestsBtn">← Volver a tests</button>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">⚠️ Este resultado es orientativo y no reemplaza un examen profesional completo de visión del color. Ante cualquier duda, consulta a un especialista.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;"><svg class="hand-icon" width="13" height="13"><use href="#icon-warning"></use></svg> Este resultado es orientativo y no reemplaza un examen profesional completo de visión del color. Ante cualquier duda, consulta a un especialista.</p>
     </div>
 
     <!-- HISTORIAL -->
     <div id="ish-history-screen">
       <div class="history-card">
-        <div class="hero-badge">📋 Tu historial</div>
+        <div class="hero-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Tu historial</div>
         <h2>Tests de Ishihara anteriores</h2>
         <p>Compara tus resultados a lo largo del tiempo.</p>
         <div class="hist-items" id="ishHistoryItems"></div>
@@ -290,7 +290,7 @@ function ishRenderPlate() {
 
   const isLast = currentIdx === laminas.length - 1;
   document.getElementById('ishNextBtn').innerHTML = isLast
-    ? 'Ver mi resultado 🎯'
+    ? 'Ver mi resultado <svg class="hand-icon" width="14" height="14"><use href="#icon-diana"></use></svg>'
     : 'Siguiente <span class="arrow-ic">→</span>';
   document.getElementById('ishNextBtn').disabled = !(saved !== undefined && saved !== '');
 
@@ -428,7 +428,7 @@ Responde en español, de forma clara, empática y concisa (máximo 3-4 oraciones
 
   const messagesEl = document.getElementById('ishChatMessages');
   messagesEl.innerHTML = '';
-  ishAppendMsg('ai', `Hola 👋 Ya tengo tu resultado del test de Ishihara. Puedes preguntarme sobre qué significa, si un patrón de errores sugiere algo en particular, o cuándo conviene consultar a un especialista.`);
+  ishAppendMsg('ai', `Hola <svg class="hand-icon" width="15" height="15"><use href="#icon-mano-saludo"></use></svg> Ya tengo tu resultado del test de Ishihara. Puedes preguntarme sobre qué significa, si un patrón de errores sugiere algo en particular, o cuándo conviene consultar a un especialista.`);
 
   const suggestions = [
     '¿Qué significa mi resultado?',
@@ -446,7 +446,7 @@ function ishAppendMsg(role, html) {
   const messagesEl = document.getElementById('ishChatMessages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-  const av = role === 'ai' ? '🤖' : '👤';
+  const av = role === 'ai' ? '<svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg>' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
   div.innerHTML = `<div class="msg-av">${av}</div><div class="msg-bubble">${html}</div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -457,7 +457,7 @@ function ishAppendTyping() {
   const div = document.createElement('div');
   div.className = 'msg ai';
   div.id = 'ishTypingIndicator';
-  div.innerHTML = `<div class="msg-av">🤖</div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
+  div.innerHTML = `<div class="msg-av"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
@@ -508,9 +508,9 @@ document.getElementById('ishChatInput').addEventListener('keydown', (e) => {
 function ishSetSendPdfState(state) {
   const btn = document.getElementById('ishSendPdfBtn');
   if (!btn) return;
-  if (state === 'ready') { btn.disabled = false; btn.textContent = '📧 Enviar PDF a mi correo'; }
+  if (state === 'ready') { btn.disabled = false; btn.innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-sobre"></use></svg> Enviar PDF a mi correo'; }
   else if (state === 'sending') { btn.disabled = true; btn.textContent = 'Enviando…'; }
-  else if (state === 'error') { btn.disabled = true; btn.textContent = '⚠️ PDF no disponible'; }
+  else if (state === 'error') { btn.disabled = true; btn.innerHTML = '<svg class="hand-icon" width="14" height="14"><use href="#icon-warning"></use></svg> PDF no disponible'; }
 }
 
 document.getElementById('ishSendPdfBtn').addEventListener('click', async () => {

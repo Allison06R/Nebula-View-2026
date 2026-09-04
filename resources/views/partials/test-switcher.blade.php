@@ -11,7 +11,7 @@
 <div class="test-picker">
   <a href="{{ route('test') }}" class="test-pick-card {{ request()->routeIs('test') ? 'is-active' : '' }}">
     <div class="tpc-top">
-      <span class="tpc-ico">🔬</span>
+      <span class="tpc-ico"><svg class="hand-icon" width="18" height="18"><use href="#icon-scope"></use></svg></span>
       <span class="tpc-name">Test Visual General</span>
     </div>
     <p class="tpc-desc">Síntomas, hábitos digitales y estilo de vida</p>
@@ -20,7 +20,7 @@
 
   <a href="{{ route('test-ishihara') }}" class="test-pick-card {{ request()->routeIs('test-ishihara') ? 'is-active' : '' }}">
     <div class="tpc-top">
-      <span class="tpc-ico">🎨</span>
+      <span class="tpc-ico"><svg class="hand-icon" width="18" height="18"><use href="#icon-paleta"></use></svg></span>
       <span class="tpc-name">Test de Ishihara</span>
     </div>
     <p class="tpc-desc">Detecta dificultad para percibir colores</p>
@@ -30,7 +30,7 @@
   {{--
   <div class="test-pick-card tpc-soon">
     <div class="tpc-top">
-      <span class="tpc-ico">✨</span>
+      <span class="tpc-ico"><svg class="hand-icon" width="18" height="18"><use href="#icon-sparkle"></use></svg></span>
       <span class="tpc-name">Próximo test</span>
     </div>
     <p class="tpc-desc">Muy pronto</p>
