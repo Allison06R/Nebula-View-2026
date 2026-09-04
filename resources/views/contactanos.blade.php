@@ -60,7 +60,7 @@
     </div>
 
     <div class="contact-alt">
-      <a href="mailto:hola@nebulaview.com">hola@nebulaview.com</a>
+      <a href="mailto:nebulitavieww@gmail.com">nebulitavieww@gmail.com</a>
       <a href="#">Instagram</a>
       <a href="#">TikTok</a>
     </div>

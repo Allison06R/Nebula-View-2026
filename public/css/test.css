@@ -532,7 +532,10 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
   display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
 }
 .chat-header-info{flex:1;}
-.chat-header-name{font-size:13px;font-weight:700;color:var(--dark);}
+.chat-header-name{font-size:13px;font-weight:700;color:var(--heading);}
+.chat-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
+.msg-av{overflow:hidden;}
+.msg-av img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
 .chat-header-status{font-size:11px;color:#2e9e6e;}
 .chat-messages{
   height:264px;overflow-y:auto;padding:16px;
@@ -601,7 +604,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 }
 .history-card h2{
   font-family:'Playfair Display',serif;font-size:22px;font-weight:900;
-  color:var(--dark);margin-bottom:6px;
+  color:var(--heading);margin-bottom:6px;
 }
 .history-card > p{font-size:13px;color:var(--muted);}
 .hist-items{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
@@ -614,7 +617,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 .hist-item:hover{border-color:var(--violet);transform:translateX(4px);}
 .hist-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .hist-info{flex:1;}
-.hist-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.hist-title{font-size:13px;font-weight:700;color:var(--heading);margin-bottom:2px;}
 .hist-date{font-size:11px;color:var(--muted);}
 .hist-scores{display:flex;gap:7px;flex-wrap:wrap;}
 .hist-score{font-size:11px;padding:3px 9px;background:rgba(107,47,160,.08);border-radius:100px;color:var(--plum);font-weight:600;}
@@ -625,8 +628,40 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 .cta-row .btn-cta-primary,
 .cta-row .btn-cta-secondary{flex:1;min-width:140px;}
  
-/* ── TARJETA ANCHA PARA RESULTADO/HISTORIAL ── */
-.hero-card.wide-card{max-width:680px;}
+/* ── TARJETA ANCHA PARA RESULTADO/HISTORIAL ──
+   Mismo ancho que el test de Ishihara, para que el resultado se vea
+   adaptado a escritorio (2 columnas) y no como una vista de celular
+   estirada. El historial reutiliza esta clase pero .history-card ya
+   se autolimita a 560px, así que no queda demasiado ancho. */
+.hero-card.wide-card{max-width:1180px;width:94%;}
+@media(max-width:1050px){
+  .hero-card.wide-card{max-width:760px;}
+}
+
+/* ── Resultado en 2 columnas en escritorio (izquierda: diagnóstico,
+   derecha: chat) — mismo patrón que .ish-result-columns en el test
+   de Ishihara. En pantallas angostas se apilan en 1 columna. ── */
+.result-columns{
+  display:grid;
+  grid-template-columns:1.25fr 0.9fr;
+  gap:40px;
+  align-items:start;
+  text-align:left;
+}
+.result-left,.result-right{min-width:0;}
+.result-right .chat-wrap{margin-bottom:0;}
+.result-right .chat-messages{height:100%;min-height:340px;}
+@media(max-width:860px){
+  .result-columns{grid-template-columns:1fr;gap:0;}
+  .result-right .chat-messages{min-height:220px;}
+}
+
+/* ── Botón "volver a tests" en la barra de acciones del resultado
+   (compartido entre test.blade.php y test-ishihara.blade.php) ── */
+.result-ctas .btn-back-tests{
+  flex:1;min-width:140px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
 
 /* ── TOAST DE NOTIFICACIÓN (compartido: test.blade.php y test-ishihara.blade.php) ── */
 .toast{
@@ -658,6 +693,20 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
 @media(max-width:640px){
   .toast{left:16px;right:16px;bottom:16px;max-width:none;}
 }
+
+/* ── Footer: corrige el corte blanco entre el fondo del test y el footer ──
+   La imagen de fondo del footer (footer-space-bg.png) es transparente en su
+   parte superior (para fundirse con el fondo blanco normal del sitio), pero
+   .test-hero usa un degradado lavanda, no blanco. Sin color de fondo aquí,
+   ese hueco transparente dejaba ver un bloque blanco entre ambos.
+   Nota: el <style> de layouts/app.blade.php define ".nv-footer{background:
+   url(...) ...}" como shorthand, lo que resetea background-color a
+   transparent; como ese <style> va DESPUÉS de este archivo en el HTML,
+   ganaba la cascada (misma especificidad, último en orden de aparición).
+   Por eso aquí se sube la especificidad con "body .nv-footer" en vez de
+   ".nv-footer" a secas, para que gane sin depender del orden. */
+body .nv-footer{background-color:#EAD9FF;}
+[data-theme="dark"] body .nv-footer{background-color:#16222E;}
 
 /* ── Botón "salir/volver a tests" dentro del flujo de preguntas/láminas ── */
 .btn-exit-test{
@@ -738,7 +787,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:44px 60px 26px;
    MODO OSCURO — test.css
    Solo overrides de color, la estructura/posición no cambia.
    ══════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .test-hero { background: linear-gradient(160deg, #1B0E33 0%, #241530 40%, #16222E 100%); }
+[data-theme="dark"] .test-hero { background: linear-gradient(160deg, #1B0E33 0%, #351b49 40%, #381252 100%); }
 [data-theme="dark"] .hero-card,
 [data-theme="dark"] .history-card {
   background: rgba(26,14,42,0.75);

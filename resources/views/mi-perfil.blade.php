@@ -42,6 +42,9 @@
           <button type="button" class="mp-tab mp-tab--active" data-tab="apariencia" onclick="mpSwitchTab('apariencia')">Apariencia</button>
           <button type="button" class="mp-tab" data-tab="informacion" onclick="mpSwitchTab('informacion')">Información</button>
           <button type="button" class="mp-tab" data-tab="modelos3d" onclick="mpSwitchTab('modelos3d')">Mis Modelos 3D</button>
+          <button type="button" class="mp-tab" data-tab="tests" onclick="mpSwitchTab('tests')">Tests realizados</button>
+          <button type="button" class="mp-tab" data-tab="chats" onclick="mpSwitchTab('chats')">Chats con Nebulita</button>
+          <button type="button" class="mp-tab" data-tab="comentarios" onclick="mpSwitchTab('comentarios')">Comentarios</button>
         </div>
 
         {{-- ── Panel: Apariencia ── --}}
@@ -169,21 +172,137 @@
             <h3 class="mp-section-title">Tus modelos favoritos</h3>
             <p class="mp-section-hint">Modelos de lentes que guardaste como favoritos desde el catálogo.</p>
 
-            @if($misModelos3d->isEmpty())
+            <div id="mp3dEmpty" @if(!$misModelos3d->isEmpty()) style="display:none;" @endif>
               <p class="mp-section-hint" style="margin-top:1rem;">
                 Aún no has guardado ningún modelo como favorito.
                 <a href="{{ route('modelos3d') }}">Explora el catálogo →</a>
               </p>
+            </div>
+
+            <div class="mp-frame-grid" id="mp3dGrid" style="margin-top:1.25rem; @if($misModelos3d->isEmpty()) display:none; @endif">
+              @foreach($misModelos3d as $modelo)
+                <div class="mp-3d-item" data-nombre="{{ $modelo->nombre }}" data-categoria="{{ $modelo->categoria }}">
+                  <span style="font-size:28px;">👓</span>
+                  <span class="mp-frame-label" style="text-align:center;">{{ $modelo->nombre }}</span>
+                  @if($modelo->categoria)
+                    <span class="mp-3d-cat">{{ $modelo->categoria }}</span>
+                  @endif
+                  <button type="button" class="mp-3d-remove" title="Quitar de favoritos">✕</button>
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+
+        {{-- ── Panel: Tests realizados ── --}}
+        <div class="mp-tabpanel" id="tab-tests">
+          <div class="mp-card">
+            <div class="mp-section-badge"><span class="mp-section-dot"></span>Historial</div>
+            <h3 class="mp-section-title">Tus tests realizados</h3>
+            <p class="mp-section-hint">Diagnósticos visuales y tests de Ishihara que has completado.</p>
+
+            @if(empty($misTests))
+              <p class="mp-section-hint" style="margin-top:1rem;">
+                Aún no has realizado ningún test.
+                <a href="{{ route('test') }}">Haz el diagnóstico visual →</a>
+              </p>
             @else
-              <div class="mp-frame-grid" style="margin-top:1.25rem;">
-                @foreach($misModelos3d as $modelo)
-                  <div class="mp-frame-opt" style="cursor:default;">
-                    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 10px;border-radius:14px;background:rgba(255,255,255,0.04);">
-                      <span style="display:inline-flex"><svg class="hand-icon" width="28" height="28"><use href="#icon-glasses"></use></svg></span>
-                      <span class="mp-frame-label" style="text-align:center;">{{ $modelo->nombre }}</span>
-                      @if($modelo->categoria)
-                        <span style="font-size:11px;color:var(--mp-muted,#9b9bb0);">{{ $modelo->categoria }}</span>
+              <div class="mp-list" id="mpTestsList">
+                @foreach($misTests as $t)
+                  <div class="mp-list-item" data-delete-url="{{ $t['rutaDelete'] }}">
+                    <div class="mp-list-main">
+                      <span class="mp-badge mp-badge--{{ $t['tipo'] }}">{{ $t['etiqueta'] }}</span>
+                      <div class="mp-list-title">{{ $t['titulo'] }}</div>
+                      @if($t['detalle'])
+                        <div class="mp-list-sub">{{ $t['detalle'] }}</div>
                       @endif
+                      <div class="mp-list-date">{{ $t['fecha'] }}</div>
+                    </div>
+                    <div class="mp-list-actions">
+                      <button type="button" class="mp-icon-btn mp-send-pdf" data-url="{{ $t['rutaPdf'] }}" title="Enviar PDF por correo">📧</button>
+                      <button type="button" class="mp-icon-btn mp-icon-btn--danger mp-delete-item" title="Eliminar">🗑</button>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endif
+          </div>
+        </div>
+
+        {{-- ── Panel: Chats con Nebulita ── --}}
+        <div class="mp-tabpanel" id="tab-chats">
+          <div class="mp-card">
+            <div class="mp-section-badge"><span class="mp-section-dot"></span>Asistente</div>
+            <h3 class="mp-section-title">Tus conversaciones con Nebulita</h3>
+            <p class="mp-section-hint">Preguntas que le hiciste al asistente virtual y sus respuestas.</p>
+
+            @if($misChats->isEmpty())
+              <p class="mp-section-hint" style="margin-top:1rem;">
+                Aún no has hablado con Nebulita. Ábrela desde la burbuja en la esquina de la pantalla.
+              </p>
+            @else
+              <div class="mp-actions" style="margin-bottom:1rem;">
+                <button type="button" class="mp-btn-secondary" id="mpClearChats">Vaciar historial de chats</button>
+              </div>
+              <div class="mp-list" id="mpChatsList">
+                @foreach($misChats as $chat)
+                  <div class="mp-chat-item" data-delete-url="{{ route('chat.widget.destroy', $chat->id_chat_mensaje) }}">
+                    <div class="mp-chat-q"><span class="mp-chat-tag">Tú</span>{{ $chat->mensaje_usuario }}</div>
+                    <div class="mp-chat-a"><span class="mp-chat-tag mp-chat-tag--bot">Nebulita</span>{{ $chat->respuesta_bot }}</div>
+                    <div class="mp-list-actions">
+                      <span class="mp-list-date">{{ $chat->created_at?->format('d/m/Y H:i') }}</span>
+                      <button type="button" class="mp-icon-btn mp-icon-btn--danger mp-delete-item" title="Eliminar conversación">🗑</button>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endif
+          </div>
+        </div>
+
+        {{-- ── Panel: Comentarios ── --}}
+        <div class="mp-tabpanel" id="tab-comentarios">
+          <div class="mp-card">
+            <div class="mp-section-badge"><span class="mp-section-dot"></span>Comunidad</div>
+            <h3 class="mp-section-title">Tus comentarios</h3>
+            <p class="mp-section-hint">Comentarios que has dejado en las páginas informativas del sitio.</p>
+
+            @if($misComentarios->isEmpty())
+              <p class="mp-section-hint" style="margin-top:1rem;">
+                Aún no has dejado ningún comentario.
+              </p>
+            @else
+              @php
+                $mpPaginas = [
+                  'problemas-visuales' => 'Problemas visuales',
+                  'salud-visual'       => 'Salud visual',
+                  'habitos'            => 'Hábitos',
+                  'lentes'             => 'Lentes',
+                  'clinicas'           => 'Clínicas',
+                  'profesionales'      => 'Profesionales',
+                  'rostros'            => 'Rostros',
+                ];
+                $mpEstados = [
+                  'aprobado'            => ['Publicado', 'ok'],
+                  'pendiente_revision'  => ['En revisión', 'pending'],
+                  'rechazado'           => ['Rechazado', 'rejected'],
+                ];
+              @endphp
+              <div class="mp-list" id="mpComentariosList">
+                @foreach($misComentarios as $c)
+                  @php $estado = $mpEstados[$c->estado] ?? ['Desconocido', 'pending']; @endphp
+                  <div class="mp-list-item" data-delete-url="{{ route('comentarios.destroyMio', $c->id_comentario) }}">
+                    <div class="mp-list-main">
+                      <span class="mp-badge mp-badge--estado-{{ $estado[1] }}">{{ $estado[0] }}</span>
+                      <div class="mp-list-title">{{ $mpPaginas[$c->pagina] ?? $c->pagina }}</div>
+                      <div class="mp-list-sub">{{ $c->contenido }}</div>
+                      @if($c->estado === 'rechazado' && $c->motivo_rechazo)
+                        <div class="mp-list-sub mp-list-sub--danger">Motivo: {{ $c->motivo_rechazo }}</div>
+                      @endif
+                      <div class="mp-list-date">{{ $c->created_at?->format('d/m/Y H:i') }}</div>
+                    </div>
+                    <div class="mp-list-actions">
+                      <button type="button" class="mp-icon-btn mp-icon-btn--danger mp-delete-item" title="Eliminar">🗑</button>
                     </div>
                   </div>
                 @endforeach
@@ -266,5 +385,135 @@ function mpSwitchTab(tab) {
     panel.classList.toggle('mp-tabpanel--active', panel.id === 'tab-' + tab);
   });
 }
+
+/* ══════════════ Modelos 3D favoritos / Tests / Chats / Comentarios ══════════════ */
+(function () {
+  const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]')?.content ?? '';
+  const TOGGLE_FAVORITO_URL = "{{ route('modelos3d.toggle') }}";
+  const CLEAR_CHATS_URL     = "{{ route('chat.widget.clear') }}";
+
+  function mpToast(msg, isError) {
+    // Aviso simple y no intrusivo; evita depender de una librería externa.
+    const el = document.createElement('div');
+    el.textContent = msg;
+    el.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;'
+      + 'background:' + (isError ? '#f87171' : '#34d399') + ';color:#1e1b4b;'
+      + 'padding:.75rem 1.2rem;border-radius:12px;font-family:"DM Sans",sans-serif;'
+      + 'font-size:.85rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.35);';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3200);
+  }
+
+  // ── Quitar un modelo 3D de favoritos ──────────────────────────────────
+  document.getElementById('mp3dGrid')?.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.mp-3d-remove');
+    if (!btn) return;
+
+    const item = btn.closest('.mp-3d-item');
+    const nombre = item.dataset.nombre;
+    const categoria = item.dataset.categoria || '';
+
+    btn.disabled = true;
+    try {
+      const res = await fetch(TOGGLE_FAVORITO_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': CSRF_TOKEN,
+        },
+        body: JSON.stringify({ nombre, categoria }),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        item.remove();
+        const grid = document.getElementById('mp3dGrid');
+        if (!grid.querySelector('.mp-3d-item')) {
+          grid.style.display = 'none';
+          document.getElementById('mp3dEmpty').style.display = '';
+        }
+      } else {
+        mpToast('No se pudo quitar el favorito.', true);
+        btn.disabled = false;
+      }
+    } catch (err) {
+      mpToast('Error de conexión.', true);
+      btn.disabled = false;
+    }
+  });
+
+  // ── Eliminar un item (test, chat o comentario) ────────────────────────
+  document.querySelectorAll('#mpTestsList, #mpChatsList, #mpComentariosList').forEach(list => {
+    list.addEventListener('click', async (e) => {
+      const delBtn = e.target.closest('.mp-delete-item');
+      if (delBtn) {
+        const row = delBtn.closest('[data-delete-url]');
+        if (!confirm('¿Eliminar este elemento? Esta acción no se puede deshacer.')) return;
+
+        delBtn.disabled = true;
+        try {
+          const res = await fetch(row.dataset.deleteUrl, {
+            method: 'DELETE',
+            headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+          });
+          if (res.ok) {
+            row.remove();
+          } else {
+            mpToast('No se pudo eliminar.', true);
+            delBtn.disabled = false;
+          }
+        } catch (err) {
+          mpToast('Error de conexión.', true);
+          delBtn.disabled = false;
+        }
+        return;
+      }
+
+      const pdfBtn = e.target.closest('.mp-send-pdf');
+      if (pdfBtn) {
+        pdfBtn.disabled = true;
+        const original = pdfBtn.textContent;
+        pdfBtn.textContent = '…';
+        try {
+          const res = await fetch(pdfBtn.dataset.url, {
+            method: 'POST',
+            headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            mpToast(data.message || 'Diagnóstico enviado por correo.');
+          } else {
+            mpToast(data.error || 'No se pudo enviar el PDF.', true);
+          }
+        } catch (err) {
+          mpToast('Error de conexión.', true);
+        } finally {
+          pdfBtn.disabled = false;
+          pdfBtn.textContent = original;
+        }
+      }
+    });
+  });
+
+  // ── Vaciar todo el historial de chats ─────────────────────────────────
+  document.getElementById('mpClearChats')?.addEventListener('click', async () => {
+    if (!confirm('¿Vaciar todo tu historial de chats con Nebulita? Esta acción no se puede deshacer.')) return;
+    try {
+      const res = await fetch(CLEAR_CHATS_URL, {
+        method: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        document.getElementById('mpChatsList')?.querySelectorAll('.mp-chat-item').forEach(el => el.remove());
+        mpToast('Historial de chats vaciado.');
+      } else {
+        mpToast('No se pudo vaciar el historial.', true);
+      }
+    } catch (err) {
+      mpToast('Error de conexión.', true);
+    }
+  });
+})();
 </script>
 @endsection

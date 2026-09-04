@@ -50,11 +50,7 @@
     <!-- INTRO -->
     <div id="intro-screen">
       <div class="hero-badge"><svg class="hand-icon" width="15" height="15"><use href="#icon-scope"></use></svg> Test interactivo · IA</div>
-      <div>
-        <a href="{{ route('test-ishihara') }}" class="test-switch-link">
-          <svg class="hand-icon" width="15" height="15"><use href="#icon-paleta"></use></svg> ¿Buscas el test de daltonismo (Ishihara)? <span class="arrow-ic">→</span>
-        </a>
-      </div>
+      @include('partials.test-switcher')
       <h1>Descubre tu<br><em>perfil visual</em></h1>
       <p>Responde 20 preguntas sobre tus síntomas, hábitos, estilo de vida y antecedentes. Obtendrás un diagnóstico por condición, un plan semanal de hábitos y un chat personalizado con tu asistente visual.</p>
 
@@ -78,6 +74,7 @@
 
     <!-- QUESTIONS -->
     <div id="questions-screen" style="display:none;">
+      <button type="button" class="btn-exit-test" id="exitTestBtn">← Volver a tests</button>
       <div class="test-meta">
         <span id="q-counter">Pregunta 1 de 20</span>
       </div>
@@ -98,7 +95,7 @@
           <div class="ai-ring r3"></div>
         </div>
       </div>
-      <h3 style="font-family: 'MuseoModerno', serif;font-size:22px;color:var(--dark);margin:28px 0 10px;">Generando tu diagnóstico</h3>
+      <h3 style="font-family: 'MuseoModerno', serif;font-size:22px;color:var(--heading);margin:28px 0 10px;">Generando tu diagnóstico</h3>
       <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto;" id="loadingMsg">Procesando tus síntomas y hábitos visuales...</p>
       <div class="loading-dots" style="margin-top:20px;"><span></span><span></span><span></span></div>
     </div>
@@ -111,35 +108,41 @@
         <div class="result-subtitle" id="resultSubtitle">Análisis personalizado basado en tus respuestas</div>
       </div>
 
-      <div id="aiAnalysis" style="font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:24px;min-height:60px;text-align:left;"></div>
+      <div class="result-columns">
+        <div class="result-left">
+          <div id="aiAnalysis" style="font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:24px;min-height:60px;text-align:left;"></div>
 
-      <div class="risk-grid" id="riskGrid"></div>
+          <div class="risk-grid" id="riskGrid"></div>
 
-      <div class="sec-title">Diagnóstico por condición</div>
-      <div class="conditions-list" id="conditionsList"></div>
+          <div class="sec-title">Diagnóstico por condición</div>
+          <div class="conditions-list" id="conditionsList"></div>
 
-      <div class="lens-recs-title">Lentes recomendados por IA</div>
-      <div class="lens-recs-grid" id="lensRecsGrid"></div>
+          <div class="lens-recs-title">Lentes recomendados por IA</div>
+          <div class="lens-recs-grid" id="lensRecsGrid"></div>
 
-      <div class="sec-title">Plan semanal de hábitos</div>
-      <div class="week-grid" id="weekGrid"></div>
+          <div class="sec-title">Plan semanal de hábitos</div>
+          <div class="week-grid" id="weekGrid"></div>
 
-      <div class="result-tip" id="resultTip" style="display:none;"></div>
-
-      <div class="sec-title">Chat con tu asistente visual</div>
-      <div class="chat-wrap">
-        <div class="chat-header">
-          <div class="chat-avatar"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div>
-          <div class="chat-header-info">
-            <div class="chat-header-name">Asistente Nebulita</div>
-            <div class="chat-header-status">● En línea · contexto de tu diagnóstico activo</div>
-          </div>
+          <div class="result-tip" id="resultTip" style="display:none;"></div>
         </div>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-suggestions" id="chatSuggestions"></div>
-        <div class="chat-input-wrap">
-          <input class="chat-input" id="chatInput" placeholder="Pregunta sobre tu diagnóstico..." />
-          <button class="chat-send" id="chatSend">↑</button>
+
+        <div class="result-right">
+          <div class="sec-title">Chat con tu asistente visual</div>
+          <div class="chat-wrap">
+            <div class="chat-header">
+              <div class="chat-avatar"><img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita"></div>
+              <div class="chat-header-info">
+                <div class="chat-header-name">Asistente Nebulita</div>
+                <div class="chat-header-status">● En línea · contexto de tu diagnóstico activo</div>
+              </div>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-suggestions" id="chatSuggestions"></div>
+            <div class="chat-input-wrap">
+              <input class="chat-input" id="chatInput" placeholder="Pregunta sobre tu diagnóstico..." />
+              <button class="chat-send" id="chatSend">↑</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -148,6 +151,7 @@
         <a href="{{ route('problemas-visuales') }}" class="btn-cta-primary"><svg class="hand-icon" width="15" height="15"><use href="#icon-libros"></use></svg> Ver más sobre tu condición</a>
         <button class="btn-cta-secondary" id="historyBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-nota"></use></svg> Ver historial</button>
         <button class="btn-cta-secondary" id="retestBtn"><svg class="hand-icon" width="15" height="15"><use href="#icon-recargar"></use></svg> Repetir test</button>
+        <button class="btn-cta-secondary btn-back-tests" id="backToTestsBtn">← Volver a tests</button>
       </div>
       <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;"><svg class="hand-icon" width="13" height="13"><use href="#icon-warning"></use></svg> Este diagnóstico es orientativo. Consulta siempre a un profesional de la salud visual.</p>
     </div>
@@ -792,7 +796,7 @@ function appendMsg(role, html) {
   const messagesEl = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-  const av = role === 'ai' ? '<svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg>' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
+  const av = role === 'ai' ? '<img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita">' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
   div.innerHTML = `<div class="msg-av">${av}</div><div class="msg-bubble">${html}</div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -804,7 +808,7 @@ function appendTyping() {
   const div = document.createElement('div');
   div.className = 'msg ai';
   div.id = 'typingIndicator';
-  div.innerHTML = `<div class="msg-av"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
+  div.innerHTML = `<div class="msg-av"><img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita"></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
@@ -1080,6 +1084,21 @@ document.getElementById('clearHistBtn').addEventListener('click', async () => {
   renderHistoryScreen();
   renderHistoryPreview();
 });
+
+// ── VOLVER A TESTS (desde las preguntas o desde el resultado) ──
+// A diferencia de "Repetir test", esto NO borra las respuestas guardadas:
+// solo regresa a la pantalla de inicio, igual que en el test de Ishihara.
+function goToIntroScreen() {
+  document.getElementById('result-screen').classList.remove('show');
+  document.getElementById('history-screen').classList.remove('show');
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('questions-screen').style.display = 'none';
+  document.getElementById('intro-screen').style.display = 'block';
+  document.getElementById('testCard').classList.remove('wide-card');
+  renderHistoryPreview();
+}
+document.getElementById('exitTestBtn').addEventListener('click', goToIntroScreen);
+document.getElementById('backToTestsBtn').addEventListener('click', goToIntroScreen);
 
 document.getElementById('retestBtn').addEventListener('click', () => {
   Object.keys(answers).forEach(k => delete answers[k]);

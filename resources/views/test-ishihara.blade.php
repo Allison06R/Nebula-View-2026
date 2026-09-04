@@ -54,7 +54,9 @@
       </div>
 
       <div class="ish-plate-wrap">
-        <img id="ishPlateImg" class="ish-plate-img" src="" alt="Lámina de Ishihara">
+        <div class="ish-plate-frame">
+          <img id="ishPlateImg" class="ish-plate-img" src="" alt="Lámina de Ishihara">
+        </div>
       </div>
 
       <div class="ish-question">¿Qué número ves en el círculo?</div>
@@ -93,7 +95,7 @@
           <div class="ai-ring r3"></div>
         </div>
       </div>
-      <h3 style="font-family: 'MuseoModerno', serif;font-size:22px;color:var(--dark);margin:28px 0 10px;">Generando tu resultado</h3>
+      <h3 style="font-family: 'MuseoModerno', serif;font-size:22px;color:var(--heading);margin:28px 0 10px;">Generando tu resultado</h3>
       <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto;">Comparando tus respuestas y preparando una interpretación orientativa...</p>
       <div class="loading-dots" style="margin-top:20px;"><span></span><span></span><span></span></div>
     </div>
@@ -133,7 +135,7 @@
           <div class="sec-title">Chat con tu asistente visual</div>
           <div class="chat-wrap">
             <div class="chat-header">
-              <div class="chat-avatar"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div>
+              <div class="chat-avatar"><img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita"></div>
               <div class="chat-header-info">
                 <div class="chat-header-name">Asistente Nebulita</div>
                 <div class="chat-header-status">● En línea · contexto de tu resultado activo</div>
@@ -446,7 +448,7 @@ function ishAppendMsg(role, html) {
   const messagesEl = document.getElementById('ishChatMessages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-  const av = role === 'ai' ? '<svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg>' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
+  const av = role === 'ai' ? '<img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita">' : '<svg class="hand-icon" width="18" height="18"><use href="#icon-usuario"></use></svg>';
   div.innerHTML = `<div class="msg-av">${av}</div><div class="msg-bubble">${html}</div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -457,7 +459,7 @@ function ishAppendTyping() {
   const div = document.createElement('div');
   div.className = 'msg ai';
   div.id = 'ishTypingIndicator';
-  div.innerHTML = `<div class="msg-av"><svg class="hand-icon" width="18" height="18"><use href="#icon-robot"></use></svg></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
+  div.innerHTML = `<div class="msg-av"><img src="{{ asset('images/Nebulitaa.png') }}" alt="Nebulita"></div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }

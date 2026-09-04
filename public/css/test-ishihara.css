@@ -18,20 +18,25 @@
 }
 .ish-info-ico{font-size:16px;flex-shrink:0;}
 
-/* — Lámina — */
 .ish-plate-wrap{
   display:flex;justify-content:center;align-items:center;
   margin:20px 0 26px;
 }
-.ish-plate-img{
+.ish-plate-frame{
   width:260px;height:260px;
   border-radius:50%;
-  object-fit:cover;
+  overflow:hidden;
   box-shadow:0 8px 30px rgba(26,10,46,0.18);
   background:var(--white);
 }
+.ish-plate-img{
+  display:block;
+  width:100%;height:100%;
+  object-fit:cover;
+  transform:scale(1.18);
+}
 @media (max-width:480px){
-  .ish-plate-img{width:200px;height:200px;}
+  .ish-plate-frame{width:200px;height:200px;}
 }
 
 .ish-question{
@@ -178,12 +183,6 @@
   .ish-result-right .chat-messages{min-height:220px;}
 }
 
-/* — Botón "volver a tests" en la barra de acciones del resultado — */
-.result-ctas .btn-back-tests{
-  flex:1;min-width:140px;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-}
-
 /* ══════════════════════════════════════════════
    MODO OSCURO — test-ishihara.css
    ══════════════════════════════════════════════ */
@@ -198,7 +197,7 @@
 }
 [data-theme="dark"] .ish-key:hover{background:rgba(155,89,182,0.14);border-color:var(--violet);}
 [data-theme="dark"] .ish-key-novelo{color:var(--muted);}
-[data-theme="dark"] .ish-plate-img{background:rgba(255,255,255,0.92);}
+[data-theme="dark"] .ish-plate-frame{background:rgba(255,255,255,0.92);}
 [data-theme="dark"] .ish-score-card{
   background:rgba(26,14,42,0.92);
   border-color:rgba(155,89,182,0.35);
