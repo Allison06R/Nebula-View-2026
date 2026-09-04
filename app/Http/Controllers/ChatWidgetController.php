@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatMensaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -20,6 +21,8 @@ class ChatWidgetController extends Controller
         // ── 1) RESPUESTAS FIJAS ────────────────────────────────────────────
 
         if ($respuestaFija = $this->respuestaFija($mensajeUsuario)) {
+            $this->guardarConversacion($mensajeUsuario, $respuestaFija);
+
             return response()->json(['reply' => $respuestaFija]);
         }
 
@@ -68,11 +71,62 @@ class ChatWidgetController extends Controller
             ], 200);
         }
 
-        $reply = $response->json('choices.0.message.content');
+        $reply = $response->json('choices.0.message.content')
+            ?: 'No pude generar una respuesta. ¿Puedes reformular tu pregunta?';
 
-        return response()->json([
-            'reply' => $reply ?: 'No pude generar una respuesta. ¿Puedes reformular tu pregunta?',
-        ]);
+        $this->guardarConversacion($mensajeUsuario, $reply);
+
+        return response()->json(['reply' => $reply]);
+    }
+
+    /**
+     * Guarda el intercambio (pregunta + respuesta) en el historial del
+     * usuario autenticado, para que pueda revisarlo luego en "Mi Perfil".
+     * El widget es público, así que si nadie inició sesión simplemente no
+     * se guarda nada (no hay a quién asociarlo).
+     */
+    protected function guardarConversacion(string $mensajeUsuario, string $respuestaBot): void
+    {
+        if (!auth()->check()) {
+            return;
+        }
+
+        try {
+            ChatMensaje::create([
+                'id_usuario'      => auth()->id(),
+                'mensaje_usuario' => $mensajeUsuario,
+                'respuesta_bot'   => $respuestaBot,
+            ]);
+        } catch (\Throwable $e) {
+            // Nunca dejamos que un fallo al guardar el historial rompa la
+            // respuesta del chat: el usuario ya tiene su respuesta.
+            Log::error('ChatWidget: no se pudo guardar el mensaje en el historial', ['error' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Elimina una conversación guardada, solo si pertenece al usuario
+     * autenticado.
+     */
+    public function destroy(ChatMensaje $chat)
+    {
+        if ($chat->id_usuario !== auth()->id()) {
+            abort(403, 'No tienes permiso para eliminar esta conversación.');
+        }
+
+        $chat->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Vacía todo el historial de chat guardado del usuario autenticado.
+     */
+    public function clear()
+    {
+        ChatMensaje::where('id_usuario', auth()->id())->delete();
+
+        return response()->json(['success' => true]);
     }
 
     protected function respuestaFija(string $mensaje): ?string

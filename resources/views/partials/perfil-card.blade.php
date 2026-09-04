@@ -41,6 +41,14 @@
         <span class="mp-card2-stat-num">{{ $stats['modelos3d'] ?? 0 }}</span>
         <span class="mp-card2-stat-label">Modelos 3D guardados</span>
       </div>
+      <div class="mp-card2-stat">
+        <span class="mp-card2-stat-num">{{ $stats['chats'] ?? 0 }}</span>
+        <span class="mp-card2-stat-label">Chats con Nebulita</span>
+      </div>
+      <div class="mp-card2-stat">
+        <span class="mp-card2-stat-num">{{ $stats['comentarios'] ?? 0 }}</span>
+        <span class="mp-card2-stat-label">Comentarios</span>
+      </div>
     </div>
 
     <div class="mp-pillnav">

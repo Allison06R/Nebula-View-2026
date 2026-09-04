@@ -83,6 +83,21 @@ class ComentarioController extends Controller
     }
 
     /**
+     * Elimina un comentario propio desde "Mi Perfil". Solo el autor puede
+     * borrarlo (los administradores tienen su propia ruta en el panel).
+     */
+    public function destroyMio(Comentario $comentario)
+    {
+        if ($comentario->id_usuario !== Auth::id()) {
+            abort(403, 'No tienes permiso para eliminar este comentario.');
+        }
+
+        $comentario->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
      * Le pide a Groq que clasifique el comentario como ofensivo o no.
      * Devuelve [estado, motivo]. Si la IA falla o responde algo no parseable,
      * el comentario queda "pendiente_revision" (no se publica ni se rechaza

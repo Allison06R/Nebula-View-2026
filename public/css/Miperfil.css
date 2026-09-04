@@ -213,3 +213,87 @@ input[type="file"]{ display:none; }
   .mp-layout{ grid-template-columns:1fr; }
   .mp-card2{ position:static; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Modelos 3D favoritos — tarjetas con botón de quitar
+   ══════════════════════════════════════════════════════════════ */
+.mp-3d-item{
+  position:relative; display:flex; flex-direction:column; align-items:center; gap:8px;
+  padding:14px 10px; border-radius:14px; background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08); transition:background .2s;
+}
+.mp-3d-item:hover{ background:rgba(255,255,255,.07); }
+.mp-3d-cat{ font-size:11px; color:rgba(255,255,255,.5); }
+.mp-3d-remove{
+  position:absolute; top:6px; right:6px; width:22px; height:22px; border-radius:50%;
+  border:none; background:rgba(248,113,113,.18); color:#f87171; cursor:pointer;
+  font-size:11px; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition:background .15s, transform .15s;
+}
+.mp-3d-remove:hover{ background:rgba(248,113,113,.35); transform:scale(1.08); }
+
+/* ══════════════════════════════════════════════════════════════
+   Botón secundario (acciones no destructivas)
+   ══════════════════════════════════════════════════════════════ */
+.mp-btn-secondary{
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+  color:#fff; padding:.6rem 1.1rem; border-radius:10px; font-size:.82rem; font-weight:600;
+  cursor:pointer; transition:background .15s, border-color .15s;
+}
+.mp-btn-secondary:hover{ background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.3); }
+
+/* ══════════════════════════════════════════════════════════════
+   Listas genéricas — Tests realizados / Comentarios
+   ══════════════════════════════════════════════════════════════ */
+.mp-list{ display:flex; flex-direction:column; gap:.85rem; margin-top:1rem; }
+.mp-list-item{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;
+  padding:1rem 1.1rem; border-radius:14px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+}
+.mp-list-main{ min-width:0; flex:1; }
+.mp-list-title{ color:#fff; font-weight:600; font-size:.92rem; margin-top:.4rem; }
+.mp-list-sub{ color:rgba(255,255,255,.6); font-size:.82rem; margin-top:.25rem; line-height:1.5; word-break:break-word; }
+.mp-list-sub--danger{ color:#f87171; }
+.mp-list-date{ color:rgba(255,255,255,.4); font-size:.72rem; margin-top:.5rem; }
+.mp-list-actions{ display:flex; align-items:center; gap:.4rem; flex-shrink:0; }
+
+.mp-icon-btn{
+  width:32px; height:32px; border-radius:9px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05); color:#fff; cursor:pointer; font-size:14px;
+  display:flex; align-items:center; justify-content:center; transition:all .15s;
+}
+.mp-icon-btn:hover{ background:rgba(255,255,255,.12); }
+.mp-icon-btn--danger:hover{ background:rgba(248,113,113,.2); border-color:rgba(248,113,113,.4); }
+.mp-icon-btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+.mp-badge{
+  display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.03em;
+  text-transform:uppercase; padding:.28rem .6rem; border-radius:999px;
+}
+.mp-badge--diagnostico{ background:rgba(147,112,219,.2); color:#c39bd3; }
+.mp-badge--ishihara{ background:rgba(217,70,239,.18); color:#e879f9; }
+.mp-badge--estado-ok{ background:rgba(52,211,153,.15); color:#34d399; }
+.mp-badge--estado-pending{ background:rgba(251,191,36,.15); color:#fbbf24; }
+.mp-badge--estado-rejected{ background:rgba(248,113,113,.15); color:#f87171; }
+
+/* ══════════════════════════════════════════════════════════════
+   Chats con Nebulita — burbujas pregunta / respuesta
+   ══════════════════════════════════════════════════════════════ */
+.mp-chat-item{
+  padding:1rem 1.1rem; border-radius:14px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+}
+.mp-chat-q, .mp-chat-a{ font-size:.86rem; line-height:1.55; color:rgba(255,255,255,.85); margin-bottom:.6rem; }
+.mp-chat-a{ margin-bottom:0; color:rgba(255,255,255,.7); }
+.mp-chat-tag{
+  display:inline-block; font-size:.68rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.03em; color:var(--lavender); margin-right:.5rem;
+}
+.mp-chat-tag--bot{ color:#e879f9; }
+.mp-chat-item .mp-list-actions{ margin-top:.7rem; justify-content:space-between; width:100%; }
+
+@media(max-width:600px){
+  .mp-list-item{ flex-direction:column; }
+  .mp-list-actions{ align-self:flex-end; }
+}

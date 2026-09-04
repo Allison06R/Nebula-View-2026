@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\PerfilVisual;
+use App\Models\Test;
 
 class MiPerfilController extends Controller
 {
@@ -31,7 +32,62 @@ class MiPerfilController extends Controller
                 ->where('favorito', 1)
                 ->orderByDesc('updated_at')
                 ->get(),
+            'misTests' => $this->testsDe($usuario),
+            'misChats' => $usuario->chats()
+                ->orderByDesc('created_at')
+                ->limit(60)
+                ->get(),
+            'misComentarios' => $usuario->comentarios()
+                ->orderByDesc('created_at')
+                ->get(),
         ]);
+    }
+
+    /**
+     * Junta los tests de diagnóstico general y de Ishihara (ambos viven en
+     * la tabla "tests", distinguidos por resultado->tipo) en un solo
+     * arreglo listo para pintar en la pestaña "Tests realizados".
+     */
+    private function testsDe($usuario): array
+    {
+        return $usuario->tests()
+            ->orderByDesc('fecha_realizacion')
+            ->get()
+            ->map(function (Test $test) {
+                $resultado = $test->resultado ?? [];
+                $tipo      = $resultado['tipo'] ?? 'diagnostico';
+
+                if ($tipo === 'ishihara') {
+                    $ia = $resultado['resultado_ia'] ?? [];
+
+                    return [
+                        'id'      => $test->id_test,
+                        'tipo'    => 'ishihara',
+                        'etiqueta' => 'Test de Ishihara',
+                        'titulo'  => $ia['titulo'] ?? 'Test de Ishihara',
+                        'fecha'   => $test->fecha_realizacion?->format('d/m/Y') ?? '—',
+                        'detalle' => ($resultado['aciertos'] ?? 0) . ' de ' . ($resultado['total_laminas'] ?? 0) . ' láminas correctas',
+                        'nivel'   => $ia['nivel'] ?? null,
+                        'rutaPdf'    => route('test-ishihara.enviarPdf', $test->id_test),
+                        'rutaDelete' => route('test-ishihara.destroy', $test->id_test),
+                    ];
+                }
+
+                $ia = $resultado['resultadoIA'] ?? [];
+
+                return [
+                    'id'      => $test->id_test,
+                    'tipo'    => 'diagnostico',
+                    'etiqueta' => 'Diagnóstico visual',
+                    'titulo'  => $ia['titulo'] ?? 'Diagnóstico visual',
+                    'fecha'   => $test->fecha_realizacion?->format('d/m/Y') ?? '—',
+                    'detalle' => $ia['subtitulo'] ?? null,
+                    'nivel'   => null,
+                    'rutaPdf'    => route('test.enviarPdf', $test->id_test),
+                    'rutaDelete' => route('test.destroy', $test->id_test),
+                ];
+            })
+            ->all();
     }
 
     // ── Guardar la foto, el banner y el marco elegido ─────────────────────────
@@ -69,6 +125,12 @@ class MiPerfilController extends Controller
             $usuario->avatar_custom = $request->file('foto')->store('avatars', 'public');
             $usuario->avatar_tipo   = 'custom';
         } elseif (!empty($datos['avatar_preset'])) {
+            // Si el usuario tenía una foto propia y ahora elige una de la
+            // galería, borramos el archivo subido para no dejarlo huérfano.
+            if ($usuario->avatar_tipo === 'custom' && $usuario->avatar_custom) {
+                Storage::disk('public')->delete($usuario->avatar_custom);
+                $usuario->avatar_custom = null;
+            }
             $usuario->avatar_preset = $datos['avatar_preset'];
             $usuario->avatar_tipo   = 'preset';
         }
@@ -80,6 +142,10 @@ class MiPerfilController extends Controller
             $usuario->banner_custom = $request->file('banner')->store('banners', 'public');
             $usuario->banner_tipo   = 'custom';
         } elseif (!empty($datos['banner_preset'])) {
+            if ($usuario->banner_tipo === 'custom' && $usuario->banner_custom) {
+                Storage::disk('public')->delete($usuario->banner_custom);
+                $usuario->banner_custom = null;
+            }
             $usuario->banner_perfil = $datos['banner_preset'];
             $usuario->banner_tipo   = 'preset';
         }
@@ -138,8 +204,10 @@ class MiPerfilController extends Controller
     private function statsDe($usuario): array
     {
         return [
-            'tests'     => $usuario->tests()->count(),
-            'modelos3d' => $usuario->modelos3d()->count(),
+            'tests'       => $usuario->tests()->count(),
+            'modelos3d'   => $usuario->modelos3d()->where('favorito', 1)->count(),
+            'chats'       => $usuario->chats()->count(),
+            'comentarios' => $usuario->comentarios()->count(),
         ];
     }
 }

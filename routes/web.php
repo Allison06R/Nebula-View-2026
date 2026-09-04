@@ -74,6 +74,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mi-perfil/preferencias',  [MiPerfilController::class, 'preferenciasShow'])->name('preferencias.show');
     Route::post('/mi-perfil/preferencias', [MiPerfilController::class, 'preferencias'])->name('mi-perfil.preferencias');
 
+    // ── Historial de chats con Nebulita (pestaña "Chats con Nebulita") ──────
+    Route::delete('/mi-perfil/chats/{chat}', [ChatWidgetController::class, 'destroy'])->name('chat.widget.destroy');
+    Route::delete('/mi-perfil/chats',        [ChatWidgetController::class, 'clear'])->name('chat.widget.clear');
+
+    // ── Comentarios propios (pestaña "Comentarios") ──────────────────────────
+    Route::delete('/mi-perfil/comentarios/{comentario}', [ComentarioController::class, 'destroyMio'])->name('comentarios.destroyMio');
+
     // Redirecciones de compatibilidad por si algo aún apunta a la página vieja.
     Route::redirect('/perfil-visual', '/mi-perfil');
 });
